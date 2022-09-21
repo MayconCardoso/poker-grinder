@@ -1,0 +1,7 @@
+ext.targets = [
+    aplicationId            : "com.mctech.pokergrinder",
+    minSdk                  : 27,
+    compileSdk              : 32,
+    targetSdk               : 32,
+    kotlinJvmTarget         : 11,
+]

@@ -1,0 +1,36 @@
+apply from: "$rootDir/config/android_targets.gradle"
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdk targets.compileSdk
+
+    defaultConfig {
+        applicationId targets.aplicationId
+        minSdk targets.minSdk
+        targetSdk targets.targetSdk
+
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release { }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = targets.kotlinJvmTarget
+    }
+}
+
+dependencies {
+    implementation "androidx.core:core-ktx:$ANDROID_CORE_VERSION"
+    implementation "androidx.appcompat:appcompat:$ANDROID_APPCOMPAT_VERSION"
+    implementation "com.google.android.material:material:$ANDROID_MATERIAL_VERSION"
+}
