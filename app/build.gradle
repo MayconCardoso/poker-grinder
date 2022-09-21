@@ -1,7 +1,6 @@
 apply from: "$rootDir/config/android_targets.gradle"
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -21,8 +20,8 @@ android {
         release { }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
         jvmTarget = targets.kotlinJvmTarget
@@ -30,7 +29,12 @@ android {
 }
 
 dependencies {
+
     implementation "androidx.core:core-ktx:$ANDROID_CORE_VERSION"
     implementation "androidx.appcompat:appcompat:$ANDROID_APPCOMPAT_VERSION"
     implementation "com.google.android.material:material:$ANDROID_MATERIAL_VERSION"
+
+    // dagger
+    implementation "com.google.dagger:hilt-android:$DAGGER_VERSION"
+    kapt "com.google.dagger:hilt-compiler:$DAGGER_VERSION"
 }

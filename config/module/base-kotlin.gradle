@@ -1,0 +1,21 @@
+apply plugin: 'kotlin'
+
+kotlin {
+    explicitApi()
+}
+
+dependencies {
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+
+    // Standard
+    implementation "com.google.code.gson:gson:$gson_version"
+
+    // DI
+    implementation "com.google.dagger:dagger:$dagger_version"
+
+    // Testing
+    testImplementation project(path: ':testing:common-test')
+}
