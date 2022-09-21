@@ -20,6 +20,7 @@ buildscript {
         GSON_VERSION = "2.9.1"
         DAGGER_VERSION = "2.43.2"
         COROUTINES_VERSION = "1.6.4"
+        ROOM_VERSION = "2.4.3"
 
         //==========================================================================================
         // Versions - Tests

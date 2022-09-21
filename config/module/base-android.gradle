@@ -3,10 +3,6 @@ apply plugin: "kotlin-android"
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 
-kotlin {
-    explicitApi()
-}
-
 android {
     defaultConfig {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -23,12 +19,10 @@ android {
 }
 
 dependencies {
-
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$KOTLIN_VERSION"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$COROUTINES_VERSION"
     implementation "androidx.core:core-ktx:$ANDROID_CORE_VERSION"
-
 
     // Standard
     implementation "com.google.code.gson:gson:$GSON_VERSION"
@@ -38,7 +32,5 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:$DAGGER_VERSION"
 
     // Testing
-    testImplementation project(path: ':testing:architecture-testing')
     testImplementation project(path: ':testing:common-test')
-    testImplementation project(path: ':testing:android-unit-test')
 }
