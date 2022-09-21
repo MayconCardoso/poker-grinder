@@ -1,6 +1,7 @@
 apply plugin: 'kotlin'
 
 dependencies {
+    implementation project(path: ':libraries:threading')
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$KOTLIN_VERSION"

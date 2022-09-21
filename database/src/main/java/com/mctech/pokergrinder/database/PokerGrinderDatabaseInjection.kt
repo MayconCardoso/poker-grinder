@@ -3,17 +3,19 @@ package com.mctech.pokergrinder.database
 import android.app.Application
 import androidx.room.Room
 import com.mctech.pokergrinder.tournament.data.database.TournamentDao
+import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
-internal class PokerGrinderDatabaseInjection {
+@Module
+public class PokerGrinderDatabaseInjection {
 
   @Provides
   @Singleton
-  fun providesVideoProjectDatabase(application: Application): PokerGrinderDatabase {
+  public fun providesVideoProjectDatabase(application: Application): PokerGrinderDatabase {
     return Room.databaseBuilder(
       application,
       PokerGrinderDatabase::class.java,
@@ -23,7 +25,7 @@ internal class PokerGrinderDatabaseInjection {
 
   @Provides
   @Singleton
-  fun providesTournamentDao(db: PokerGrinderDatabase): TournamentDao {
+  public fun providesTournamentDao(db: PokerGrinderDatabase): TournamentDao {
     return db.tournamentDao()
   }
 

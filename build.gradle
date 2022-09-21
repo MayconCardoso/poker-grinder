@@ -21,6 +21,9 @@ buildscript {
         DAGGER_VERSION = "2.43.2"
         COROUTINES_VERSION = "1.6.4"
         ROOM_VERSION = "2.4.3"
+        FRAGMENT_VERSION = "1.5.2"
+        CONSTRAINT_LAYOUT_VERSION = "2.1.4"
+        RECYCLER_VIEW_VERSION = "1.2.1"
 
         //==========================================================================================
         // Versions - Tests

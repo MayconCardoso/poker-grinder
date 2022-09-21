@@ -15,3 +15,4 @@ include ':testing:architecture-testing'
 // Features
 include ':features:tournaments:domain'
 include ':features:tournaments:data'
+include ':features:tournaments:presentation'

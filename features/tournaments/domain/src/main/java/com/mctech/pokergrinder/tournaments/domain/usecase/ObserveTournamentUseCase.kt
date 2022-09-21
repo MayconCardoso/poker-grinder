@@ -8,7 +8,7 @@ import javax.inject.Inject
 class ObserveTournamentUseCase @Inject constructor(
   private val repository: TournamentRepository,
 ) {
-  operator fun invoke(tournament: Tournament): Flow<List<Tournament>> {
+  operator fun invoke(): Flow<List<Tournament>> {
     return repository.observe()
   }
 }
