@@ -24,7 +24,8 @@ buildscript {
         //==============================================================================================
 
         submodulesLibraries = [
-
+            designSystem : ':libraries:design',
+            localization : ':libraries:localization',
         ]
 
         submodulesFeatures = [
@@ -51,6 +52,28 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+    }
+}
+
+subprojects {
+    afterEvaluate { project ->
+        if (project.hasProperty('android')) {
+            android {
+                compileSdk targets.compileSdk
+                defaultConfig {
+                    minSdk targets.minSdk
+                    targetSdk targets.targetSdk
+                    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+                }
+                buildTypes {
+                    release { }
+                }
+                compileOptions {
+                    sourceCompatibility JavaVersion.VERSION_11
+                    targetCompatibility JavaVersion.VERSION_11
+                }
+            }
+        }
     }
 }
 
