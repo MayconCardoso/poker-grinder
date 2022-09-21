@@ -10,3 +10,4 @@ include ':libraries:threading'
 // Testing
 include ':testing:common-test'
 include ':testing:architecture-testing'
+include ':features:tournaments:domain'

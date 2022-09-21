@@ -31,6 +31,7 @@ android {
 dependencies {
     // Internal Libraries
     implementation project(path: ':libraries:design')
+    implementation project(path: ':libraries:threading')
     implementation project(path: ':libraries:localization')
 
     implementation "androidx.core:core-ktx:$ANDROID_CORE_VERSION"

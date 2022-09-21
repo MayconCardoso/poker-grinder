@@ -1,17 +1,20 @@
-package com.mctech.pokergrind.threading
+package com.mctech.pokergrinder.di
 
+import com.mctech.pokergrind.threading.CoroutineDispatchers
+import com.mctech.pokergrind.threading.DefaultCoroutineDispatchers
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Qualifier
 import javax.inject.Singleton
-import kotlinx.coroutines.CoroutineDispatcher
 
 @Retention(AnnotationRetention.BINARY)
 @Qualifier
 annotation class IoDispatcher
 
-@InstallIn(dagger.hilt.components.SingletonComponent::class)
+@InstallIn(SingletonComponent::class)
 @Module
 object CoroutineDispatcherModule {
 

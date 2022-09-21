@@ -1,20 +1,16 @@
 apply plugin: 'kotlin'
 
-kotlin {
-    explicitApi()
-}
-
 dependencies {
 
     // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$KOTLIN_VERSION"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$COROUTINES_VERSION"
 
     // Standard
-    implementation "com.google.code.gson:gson:$gson_version"
+    implementation "com.google.code.gson:gson:$GSON_VERSION"
 
     // DI
-    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger:$DAGGER_VERSION"
 
     // Testing
     testImplementation project(path: ':testing:common-test')
