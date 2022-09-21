@@ -30,8 +30,8 @@ android {
 
 dependencies {
     // Internal Libraries
-    implementation project(path: submodulesLibraries.localization)
-    implementation project(path: submodulesLibraries.designSystem)
+    implementation project(path: ':libraries:design')
+    implementation project(path: ':libraries:localization')
 
     implementation "androidx.core:core-ktx:$ANDROID_CORE_VERSION"
     implementation "androidx.appcompat:appcompat:$ANDROID_APPCOMPAT_VERSION"

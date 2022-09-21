@@ -1,0 +1,13 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+dependencies {
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$COROUTINES_VERSION"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$COROUTINES_VERSION"
+
+    // dagger
+    implementation "com.google.dagger:hilt-android:$DAGGER_VERSION"
+
+    // Testing
+    testImplementation project(path: ':testing:common-test')
+}

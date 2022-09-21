@@ -5,3 +5,8 @@ include ':app'
 include ':libraries:design'
 include ':libraries:localization'
 include ':libraries:architecture'
+include ':libraries:threading'
+
+// Testing
+include ':testing:common-test'
+include ':testing:architecture-testing'
