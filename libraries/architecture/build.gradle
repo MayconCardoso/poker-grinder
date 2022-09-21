@@ -1,0 +1,15 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+dependencies {
+    // Kotlin Platform
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$KOTLIN_VERSION"
+
+    // Android Core Libs
+    implementation "androidx.core:core-ktx:$ANDROID_CORE_VERSION"
+    implementation "androidx.appcompat:appcompat:$ANDROID_APPCOMPAT_VERSION"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$LIFECYCLE_VERSION"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$LIFECYCLE_VERSION"
+    implementation "androidx.lifecycle:lifecycle-extensions:$LIFECYCLE_VERSION"
+    implementation "androidx.databinding:viewbinding:$ANDROIDX_VIEWBINDING_VERSION"
+}

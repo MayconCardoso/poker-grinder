@@ -1,3 +1,7 @@
+// Main App
 include ':app'
+
+// Internal Libraries
 include ':libraries:design'
 include ':libraries:localization'
+include ':libraries:architecture'
