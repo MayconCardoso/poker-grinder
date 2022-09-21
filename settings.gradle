@@ -1,5 +1,6 @@
-// Main App
+// Global modules
 include ':app'
+include ':database'
 
 // Internal Libraries
 include ':libraries:design'

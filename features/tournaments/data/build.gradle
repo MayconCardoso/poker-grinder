@@ -1,19 +1,5 @@
 apply from: "$rootDir/config/module/base-android.gradle"
 
-android {
-    defaultConfig {
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
-            }
-        }
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-    sourceSets {
-        androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
-    }
-}
-
 dependencies {
     // Internal Modules.
     implementation project(path: ':libraries:threading')
