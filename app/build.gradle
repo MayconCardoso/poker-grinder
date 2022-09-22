@@ -46,6 +46,10 @@ dependencies {
     implementation project(path: ':features:bankroll:domain')
     implementation project(path: ':features:bankroll:presentation')
 
+    // Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$GOOGLE_NAVIGATION_VERSION"
+    implementation "androidx.navigation:navigation-ui-ktx:$GOOGLE_NAVIGATION_VERSION"
+
     implementation "androidx.core:core-ktx:$ANDROID_CORE_VERSION"
     implementation "androidx.appcompat:appcompat:$ANDROID_APPCOMPAT_VERSION"
     implementation "com.google.android.material:material:$ANDROID_MATERIAL_VERSION"

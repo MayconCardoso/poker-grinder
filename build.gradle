@@ -24,6 +24,7 @@ buildscript {
         FRAGMENT_VERSION = "1.5.2"
         CONSTRAINT_LAYOUT_VERSION = "2.1.4"
         RECYCLER_VIEW_VERSION = "1.2.1"
+        GOOGLE_NAVIGATION_VERSION = '2.5.2'
 
         //==========================================================================================
         // Versions - Tests
@@ -45,6 +46,7 @@ buildscript {
         classpath "com.android.tools.build:gradle:$GRADLE_VERSION"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$DAGGER_VERSION"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$GOOGLE_NAVIGATION_VERSION"
     }
 }
 

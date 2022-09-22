@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/stock_trade_navigation_graph"
+    app:startDestination="@id/summary_fragment"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/summary_fragment"
+        android:name="com.mctech.pokergrinder.bankroll.presentation.list.BankrollFragment"
+        android:label="@string/summary"
+        tools:layout="@layout/fragment_bankroll" />
+
+    <fragment
+        android:id="@+id/session_fragment"
+        android:name="com.mctech.pokergrinder.bankroll.presentation.list.BankrollFragment"
+        android:label="@string/session"
+        tools:layout="@layout/fragment_bankroll" />
+
+    <fragment
+        android:id="@+id/statement_fragment"
+        android:name="com.mctech.pokergrinder.bankroll.presentation.list.BankrollFragment"
+        android:label="@string/statement"
+        tools:layout="@layout/fragment_bankroll" />
+
+    <fragment
+        android:id="@+id/tournament_fragment"
+        android:name="com.mctech.pokergrinder.tournament.presentation.list.TournamentsFragment"
+        android:label="@string/tournament"
+        tools:layout="@layout/fragment_tournaments" />
+
+</navigation>
