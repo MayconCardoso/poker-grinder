@@ -3,8 +3,10 @@ package com.mctech.pokergrinder.grind.presentation.list
 import androidx.lifecycle.viewModelScope
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.ComponentState
+import com.mctech.pokergrinder.architecture.OnInteraction
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.domain.usecase.ObserveAllGrindsUseCase
+import com.mctech.pokergrinder.grind.presentation.list.adapter.GrindAdapterConsumerEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -28,6 +30,15 @@ internal class GrindsViewModel @Inject constructor(
         _componentState.value = ComponentState.Success(sessions)
       }
       .launchIn(viewModelScope)
+  }
+
+  @OnInteraction(GrindsInteraction.OnGrindEvent::class)
+  private suspend fun onTournamentEventInteraction(interaction: GrindsInteraction.OnGrindEvent) {
+    when (interaction.event) {
+      is GrindAdapterConsumerEvent.SessionClicked -> {
+        sendCommand(GrindsCommand.NavigateToEditor(interaction.event.session))
+      }
+    }
   }
 
 }

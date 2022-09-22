@@ -18,6 +18,7 @@ import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.presentation.R
 import com.mctech.pokergrinder.grind.presentation.creation.NewGrindActivity
 import com.mctech.pokergrinder.grind.presentation.databinding.FragmentGrindsBinding
+import com.mctech.pokergrinder.grind.presentation.details.GrindDetailsActivity
 import com.mctech.pokergrinder.grind.presentation.list.adapter.GrindAdapter
 import com.mctech.pokergrinder.grind.presentation.list.adapter.GrindAdapterConsumer
 import com.mctech.pokergrinder.grind.presentation.list.adapter.GrindAdapterConsumerEvent
@@ -133,14 +134,17 @@ public class GrindsFragment : Fragment(R.layout.fragment_grinds) {
   // region Commands
 
   private fun consumeCommands(command: ViewCommand) {
-    Log.i("TournamentsFragment", "$command Error while loading screen.")
-//    when (command) {
-//      is TournamentsCommand.NavigateToEditor -> navigateToEditor(command.tournament)
-//    }
+    when (command) {
+      is GrindsCommand.NavigateToEditor -> navigateToSession(command.session)
+    }
   }
 
   private fun navigateToEditor() {
     NewGrindActivity.navigate(requireActivity())
+  }
+
+  private fun navigateToSession(session: Session) {
+    GrindDetailsActivity.navigate(requireActivity(), session)
   }
 
   // endregion

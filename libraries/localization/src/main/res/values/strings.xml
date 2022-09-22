@@ -24,4 +24,5 @@
     <string name="new_transaction">New transaction</string>
     <string name="new_session">New session</string>
     <string name="count_buy_in">%d buy-in</string>
+    <string name="register_tournament">Register tournament</string>
 </resources>

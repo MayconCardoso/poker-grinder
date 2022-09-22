@@ -4,6 +4,7 @@
 
     <application>
         <activity android:name=".creation.NewGrindActivity" />
+        <activity android:name=".details.GrindDetailsActivity" />
     </application>
 
 </manifest>
