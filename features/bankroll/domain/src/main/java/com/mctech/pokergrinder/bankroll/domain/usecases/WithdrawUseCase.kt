@@ -11,7 +11,7 @@ class WithdrawUseCase @Inject constructor(
   private val generateUniqueIdUseCase: GenerateUniqueIdUseCase,
 ) {
 
-  suspend fun invoke(amount: Double, description: String, type: BankrollTransactionType) {
+  suspend operator fun invoke(amount: Double, description: String, type: BankrollTransactionType) {
     // Gets current balance
     val balance = repository.loadBalance()
 

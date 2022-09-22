@@ -7,6 +7,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:tag="my_tag"
-        android:name="com.mctech.pokergrinder.tournament.presentation.list.TournamentsFragment"/>
+        android:name="com.mctech.pokergrinder.bankroll.presentation.list.BankrollFragment"/>
 
 </FrameLayout>

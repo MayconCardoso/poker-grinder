@@ -10,7 +10,7 @@ class DepositUseCase @Inject constructor(
   private val generateUniqueIdUseCase: GenerateUniqueIdUseCase,
 ) {
 
-  suspend fun invoke(amount: Double, description: String, type: BankrollTransactionType) {
+  suspend operator fun invoke(amount: Double, description: String, type: BankrollTransactionType) {
     // Creates transaction
     val bankrollTransaction = BankrollTransaction(
       id = generateUniqueIdUseCase(),

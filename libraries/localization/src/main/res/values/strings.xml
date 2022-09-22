@@ -5,10 +5,13 @@
     <string name="buy_in">Buyin</string>
     <string name="gtd">Gtd</string>
     <string name="average_buy_in">Average Buy In</string>
+    <string name="balance">Balance</string>
     <string name="investment_per_session">Investment Per Session</string>
     <string name="no_tournament">No tournament found</string>
+    <string name="no_transaction">No transaction found</string>
     <string name="tournament_management">Tournament Management</string>
     <string name="title">Title</string>
     <string name="save">Save</string>
     <string name="new_tournament">New tournament</string>
+    <string name="new_transaction">New transaction</string>
 </resources>
