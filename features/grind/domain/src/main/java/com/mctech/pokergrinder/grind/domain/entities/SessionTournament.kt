@@ -6,6 +6,8 @@ import java.text.DecimalFormat
 data class SessionTournament(
   val id: String,
   val idSession: String,
+  val idTransactionProfit: String?,
+  val idTransactionBuyIn: String,
   val title: String,
   val buyIn: Double,
   val profit: Double,

@@ -17,7 +17,7 @@ public interface GrindDao {
   @Query("SELECT * from grind_session WHERE id = :sessionId")
   public fun observeGrind(sessionId: String): Flow<SessionRoomEntity>
 
-  @Query("SELECT * from grind_session_tournament WHERE idSession = :sessionId")
+  @Query("SELECT * from grind_session_tournament WHERE idSession = :sessionId ORDER BY startTimeInMs DESC")
   public fun observeGrindTournaments(sessionId: String): Flow<List<SessionTournamentRoomEntity>>
 
   @Query("SELECT * from grind_session WHERE isOpened = 1")
@@ -25,6 +25,12 @@ public interface GrindDao {
 
   @Query("SELECT * from grind_session ORDER BY startTimeInMs DESC")
   public fun observeAllGrind(): Flow<List<SessionRoomEntity>>
+
+  @Query("SELECT * from grind_session WHERE id = :id")
+  public suspend fun loadGrind(id: String): SessionRoomEntity
+
+  @Query("SELECT * from grind_session_tournament WHERE id = :id")
+  public suspend fun loadGrindTournament(id: String): SessionTournamentRoomEntity
 
   @Query("SELECT * from grind_session WHERE isOpened = 1")
   public suspend fun loadCurrentGrind(): SessionRoomEntity?

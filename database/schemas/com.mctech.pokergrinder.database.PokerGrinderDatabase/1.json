@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "72397bfd3b13a44c10f28ce33bc1fc9a",
+    "identityHash": "4dfaef95764c2dc6427ddd1ed8229a23",
     "entities": [
       {
         "tableName": "grind_session",
@@ -66,7 +66,7 @@
       },
       {
         "tableName": "grind_session_tournament",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `idSession` TEXT NOT NULL, `title` TEXT NOT NULL, `buyIn` REAL NOT NULL, `profit` REAL NOT NULL, `startTimeInMs` INTEGER NOT NULL, PRIMARY KEY(`id`, `idSession`), FOREIGN KEY(`idSession`) REFERENCES `grind_session`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `idSession` TEXT NOT NULL, `idTransactionProfit` TEXT, `idTransactionBuyIn` TEXT NOT NULL, `title` TEXT NOT NULL, `buyIn` REAL NOT NULL, `profit` REAL NOT NULL, `startTimeInMs` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -77,6 +77,18 @@
           {
             "fieldPath": "idSession",
             "columnName": "idSession",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idTransactionProfit",
+            "columnName": "idTransactionProfit",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "idTransactionBuyIn",
+            "columnName": "idTransactionBuyIn",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -107,8 +119,7 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "id",
-            "idSession"
+            "id"
           ],
           "autoGenerate": false
         },
@@ -123,19 +134,7 @@
             "createSql": "CREATE INDEX IF NOT EXISTS `grind_session_tournament_session_index` ON `${TABLE_NAME}` (`idSession`)"
           }
         ],
-        "foreignKeys": [
-          {
-            "table": "grind_session",
-            "onDelete": "CASCADE",
-            "onUpdate": "CASCADE",
-            "columns": [
-              "idSession"
-            ],
-            "referencedColumns": [
-              "id"
-            ]
-          }
-        ]
+        "foreignKeys": []
       },
       {
         "tableName": "tournament",
@@ -266,7 +265,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '72397bfd3b13a44c10f28ce33bc1fc9a')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4dfaef95764c2dc6427ddd1ed8229a23')"
     ]
   }
 }

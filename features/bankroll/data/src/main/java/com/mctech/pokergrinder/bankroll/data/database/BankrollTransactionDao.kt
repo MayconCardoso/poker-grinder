@@ -14,9 +14,12 @@ public interface BankrollTransactionDao {
   @Query("SELECT * from bankroll_transaction ORDER BY dateInMs DESC")
   public fun observe(): Flow<List<BankrollTransactionRoomEntity>>
 
+  @Query("SELECT * from bankroll_transaction WHERE id = :id")
+  public suspend fun load(id: String): BankrollTransactionRoomEntity
+
   @Query("SELECT COALESCE(SUM(amount), 0) from bankroll_transaction")
   public fun observeBalance(): Flow<Double>
 
   @Query("SELECT COALESCE(SUM(amount), 0) from bankroll_transaction")
-  public fun loadBalance(): Double
+  public suspend fun loadBalance(): Double
 }

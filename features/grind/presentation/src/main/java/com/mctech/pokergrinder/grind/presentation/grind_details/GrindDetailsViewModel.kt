@@ -8,6 +8,7 @@ import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
 import com.mctech.pokergrinder.grind.domain.usecase.ObserveGrindTournamentUseCase
 import com.mctech.pokergrinder.grind.domain.usecase.ObserveGrindUseCase
+import com.mctech.pokergrinder.grind.presentation.grind_details.adapter.GrindDetailsConsumerEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,7 +22,6 @@ internal class GrindDetailsViewModel @Inject constructor(
   private val observeGrindUseCase: ObserveGrindUseCase,
   private val observeGrindTournamentUseCase: ObserveGrindTournamentUseCase,
 ) : BaseViewModel() {
-
   private val _detailsState by lazy {
     MutableStateFlow<ComponentState<Session>>(ComponentState.Loading.FromEmpty)
   }
@@ -38,6 +38,20 @@ internal class GrindDetailsViewModel @Inject constructor(
     viewModelScope.async { observeTournaments(interaction.session) }
   }
 
+  @OnInteraction(GrindDetailsInteraction.RegisterTournamentClicked::class)
+  private suspend fun registerTournamentClicked() {
+    openTournament(tournament = null)
+  }
+
+  @OnInteraction(GrindDetailsInteraction.OnTournamentEvent::class)
+  private suspend fun onTournamentEvent(interaction: GrindDetailsInteraction.OnTournamentEvent) {
+    when (interaction.event) {
+      is GrindDetailsConsumerEvent.TournamentClicked -> {
+        openTournament(tournament = interaction.event.tournament)
+      }
+    }
+  }
+
   private fun observeDetails(session: Session) {
     observeGrindUseCase(session.id)
       .onEach { state ->
@@ -52,5 +66,19 @@ internal class GrindDetailsViewModel @Inject constructor(
         _tournamentsState.value = ComponentState.Success(tournaments)
       }
       .launchIn(viewModelScope)
+  }
+
+  private suspend fun openTournament(tournament: SessionTournament?) {
+    // Gets state.
+    val state = _detailsState.value as? ComponentState.Success ?: return
+
+    // Gets command
+    val command = GrindDetailsCommand.GoToTournamentEditor(
+      session = state.result,
+      sessionTournament = tournament,
+    )
+
+    // Open register tournament
+    sendCommand(command)
   }
 }

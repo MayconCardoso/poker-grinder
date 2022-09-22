@@ -20,6 +20,7 @@ import com.mctech.pokergrinder.grind.presentation.databinding.ActivityGrindDetai
 import com.mctech.pokergrinder.grind.presentation.grind_details.adapter.GrindDetailsAdapter
 import com.mctech.pokergrinder.grind.presentation.grind_details.adapter.GrindDetailsConsumer
 import com.mctech.pokergrinder.grind.presentation.grind_details.adapter.GrindDetailsConsumerEvent
+import com.mctech.pokergrinder.grind.presentation.tournamnet_creation.RegisterTournamentActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -151,6 +152,7 @@ public class GrindDetailsActivity : AppCompatActivity() {
 
   private fun setupListeners() {
     binding.register.setOnClickListener {
+      viewModel.interact(GrindDetailsInteraction.RegisterTournamentClicked)
     }
   }
 
@@ -166,7 +168,16 @@ public class GrindDetailsActivity : AppCompatActivity() {
   private fun consumeCommand(command: ViewCommand) {
     when (command) {
       is GrindDetailsCommand.CloseScreen -> finish()
+      is GrindDetailsCommand.GoToTournamentEditor -> navigateToTournament(command)
     }
+  }
+
+  private fun navigateToTournament(command: GrindDetailsCommand.GoToTournamentEditor) {
+    RegisterTournamentActivity.navigate(
+      origin = this,
+      session = command.session,
+      sessionTournament = command.sessionTournament,
+    )
   }
 
   // endregion

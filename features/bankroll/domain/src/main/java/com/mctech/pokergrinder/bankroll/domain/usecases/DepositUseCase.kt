@@ -10,10 +10,17 @@ class DepositUseCase @Inject constructor(
   private val generateUniqueIdUseCase: GenerateUniqueIdUseCase,
 ) {
 
-  suspend operator fun invoke(amount: Double, description: String, type: BankrollTransactionType) {
+  suspend operator fun invoke(
+    amount: Double,
+    description: String,
+    type: BankrollTransactionType,
+  ): String {
+    // Generates transaction id
+    val transactionId = generateUniqueIdUseCase()
+
     // Creates transaction
     val bankrollTransaction = BankrollTransaction(
-      id = generateUniqueIdUseCase(),
+      id = transactionId,
       type = type,
       amount = amount,
       description = description,
@@ -22,5 +29,8 @@ class DepositUseCase @Inject constructor(
 
     // Saves
     repository.save(bankrollTransaction)
+
+    // Returns id
+    return transactionId
   }
 }

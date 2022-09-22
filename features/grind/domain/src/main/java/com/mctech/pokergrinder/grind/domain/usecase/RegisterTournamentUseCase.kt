@@ -14,7 +14,7 @@ class RegisterTournamentUseCase @Inject constructor(
 ) {
   suspend operator fun invoke(session: Session, title: String, buyIn: Double) {
     // Withdraw the money spent on the tournament
-    withdrawUseCase.invoke(
+    val transactionId = withdrawUseCase.invoke(
       amount = buyIn,
       description = title,
       type = BankrollTransactionType.BUY_IN,
@@ -23,9 +23,11 @@ class RegisterTournamentUseCase @Inject constructor(
     // Creates tournament
     val tournament = SessionTournament(
       id = generateUniqueIdUseCase(),
+      idSession = session.id,
+      idTransactionBuyIn = transactionId,
+      idTransactionProfit = null,
       buyIn = buyIn,
       title = title,
-      idSession = session.id,
       profit = 0.0,
       startTimeInMs = System.currentTimeMillis(),
     )

@@ -8,4 +8,6 @@ internal sealed class GrindDetailsInteraction : UserInteraction {
   data class ScreenFirstOpen(val session: Session) : GrindDetailsInteraction()
 
   data class OnTournamentEvent(val event: GrindDetailsConsumerEvent) : GrindDetailsInteraction()
+
+  object RegisterTournamentClicked : GrindDetailsInteraction()
 }

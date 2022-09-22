@@ -8,4 +8,5 @@ interface BankrollRepository {
   fun observeTransactions(): Flow<List<BankrollTransaction>>
   suspend fun save(transaction: BankrollTransaction)
   suspend fun loadBalance(): Double
+  suspend fun load(id: String): BankrollTransaction
 }

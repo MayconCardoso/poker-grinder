@@ -48,4 +48,13 @@ public class GrindRepositoryImpl @Inject constructor(
     grindDao.loadCurrentGrind()?.asBusinessSession()
   }
 
+  override suspend fun loadGrind(id: String): Session = withContext(dispatchers.io) {
+    grindDao.loadGrind(id).asBusinessSession()
+  }
+
+  override suspend fun loadGrindTournament(
+    id: String,
+  ): SessionTournament = withContext(dispatchers.io) {
+    grindDao.loadGrindTournament(id).asBusinessTournaments()
+  }
 }

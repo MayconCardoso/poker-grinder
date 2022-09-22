@@ -29,6 +29,8 @@ internal fun List<SessionRoomEntity>.asBusinessSessions(): List<Session> {
 internal fun SessionTournamentRoomEntity.asBusinessTournaments() = SessionTournament(
   id = id,
   idSession = idSession,
+  idTransactionBuyIn = idTransactionBuyIn,
+  idTransactionProfit = idTransactionProfit,
   title = title,
   buyIn = buyIn,
   profit = profit,
@@ -53,6 +55,8 @@ internal fun SessionRoomEntity.asBusinessSession() = Session(
 internal fun SessionTournament.asDatabaseTournaments() = SessionTournamentRoomEntity(
   id = id,
   idSession = idSession,
+  idTransactionBuyIn = idTransactionBuyIn,
+  idTransactionProfit = idTransactionProfit,
   title = title,
   buyIn = buyIn,
   profit = profit,
