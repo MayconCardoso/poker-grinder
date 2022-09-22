@@ -41,7 +41,7 @@ internal class BankrollViewModel @Inject constructor(
   private fun observeBalance() {
     observeBalanceUseCase()
       .onEach { balance ->
-        _balanceState.value = ComponentState.Success(DecimalFormat("#0.00").format(balance))
+        _balanceState.value = ComponentState.Success(DecimalFormat("$#0.00").format(balance))
       }
       .launchIn(viewModelScope)
   }

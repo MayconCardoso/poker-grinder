@@ -14,6 +14,7 @@ import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.architecture.utility.SimpleSpaceItemDecoration
 import com.mctech.pokergrinder.bankroll.domain.entities.BankrollTransaction
 import com.mctech.pokergrinder.bankroll.presentation.R
+import com.mctech.pokergrinder.bankroll.presentation.creation.DepositActivity
 import com.mctech.pokergrinder.bankroll.presentation.databinding.FragmentBankrollBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -126,7 +127,7 @@ public class BankrollFragment : Fragment(R.layout.fragment_bankroll) {
 
   private fun setupListeners() {
     binding.newTransaction.setOnClickListener {
-
+      navigateToEditor()
     }
   }
 
@@ -135,6 +136,7 @@ public class BankrollFragment : Fragment(R.layout.fragment_bankroll) {
   // region Commands
 
   private fun navigateToEditor() {
+    DepositActivity.navigate(requireActivity())
   }
 
   // endregion
