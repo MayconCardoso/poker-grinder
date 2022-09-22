@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Poker Grinder</string>
+    <string name="starts_at">Starts at</string>
+    <string name="re_buys">Rebuy</string>
+    <string name="buy_in">Buyin</string>
+    <string name="gtd">Gtd</string>
+    <string name="average_buy_in">Average Buy In</string>
+    <string name="investment_per_session">Investment Per Session</string>
+    <string name="no_tournament">No tournament found</string>
+    <string name="tournament_management">Tournament Management</string>
+    <string name="title">Title</string>
+    <string name="save">Save</string>
+    <string name="new_tournament">New tournament</string>
 </resources>

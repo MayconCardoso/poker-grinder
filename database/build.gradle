@@ -1,0 +1,28 @@
+apply from: "$rootDir/config/module/base-android.gradle"
+
+android {
+    defaultConfig {
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    sourceSets {
+        androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
+    }
+}
+
+dependencies {
+    // Internal Modules.
+    implementation project(path: ':features:tournaments:data')
+
+    // Database
+    implementation "androidx.room:room-runtime:$ROOM_VERSION"
+    implementation "androidx.room:room-ktx:$ROOM_VERSION"
+    kapt "androidx.room:room-compiler:$ROOM_VERSION"
+
+    // Testing
+    androidTestImplementation "androidx.room:room-testing:$ROOM_VERSION"
+}

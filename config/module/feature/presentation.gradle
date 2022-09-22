@@ -16,11 +16,13 @@ dependencies {
     implementation project(path: ':libraries:design')
     implementation project(path: ':libraries:threading')
     implementation project(path: ':libraries:architecture')
+    implementation project(path: ':libraries:localization')
 
     // Android platform
-    implementation "androidx.appcompat:appcompat:$appcompat_version"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_ext_version"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    implementation "androidx.fragment:fragment-ktx:$fragment_version"
+    implementation "androidx.fragment:fragment-ktx:$FRAGMENT_VERSION"
+    implementation "androidx.appcompat:appcompat:$ANDROID_APPCOMPAT_VERSION"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$LIFECYCLE_VERSION"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$LIFECYCLE_VERSION"
+    implementation "androidx.recyclerview:recyclerview:$RECYCLER_VIEW_VERSION"
+    implementation "androidx.constraintlayout:constraintlayout:$CONSTRAINT_LAYOUT_VERSION"
 }

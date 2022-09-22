@@ -17,8 +17,13 @@ buildscript {
         ANDROIDX_VIEWBINDING_VERSION = "7.2.2"
         APPCOMPAT_VERSION = "1.5.1"
         LIFECYCLE_VERSION = "2.5.1"
+        GSON_VERSION = "2.9.1"
         DAGGER_VERSION = "2.43.2"
         COROUTINES_VERSION = "1.6.4"
+        ROOM_VERSION = "2.4.3"
+        FRAGMENT_VERSION = "1.5.2"
+        CONSTRAINT_LAYOUT_VERSION = "2.1.4"
+        RECYCLER_VIEW_VERSION = "1.2.1"
 
         //==========================================================================================
         // Versions - Tests

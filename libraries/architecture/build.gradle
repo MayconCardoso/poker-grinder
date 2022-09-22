@@ -11,4 +11,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$LIFECYCLE_VERSION"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$LIFECYCLE_VERSION"
     implementation "androidx.databinding:viewbinding:$ANDROIDX_VIEWBINDING_VERSION"
+    implementation "androidx.recyclerview:recyclerview:$RECYCLER_VIEW_VERSION"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.7.10"
 }

@@ -1,5 +1,6 @@
-// Main App
+// Global modules
 include ':app'
+include ':database'
 
 // Internal Libraries
 include ':libraries:design'
@@ -10,3 +11,8 @@ include ':libraries:threading'
 // Testing
 include ':testing:common-test'
 include ':testing:architecture-testing'
+
+// Features
+include ':features:tournaments:domain'
+include ':features:tournaments:data'
+include ':features:tournaments:presentation'

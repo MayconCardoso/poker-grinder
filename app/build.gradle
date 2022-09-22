@@ -1,7 +1,8 @@
 apply from: "$rootDir/config/android_targets.gradle"
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdk targets.compileSdk
@@ -29,9 +30,18 @@ android {
 }
 
 dependencies {
+    // General libraries
+    implementation project(path: ':database')
+
     // Internal Libraries
     implementation project(path: ':libraries:design')
+    implementation project(path: ':libraries:threading')
     implementation project(path: ':libraries:localization')
+
+    // Features
+    implementation project(path: ':features:tournaments:data')
+    implementation project(path: ':features:tournaments:domain')
+    implementation project(path: ':features:tournaments:presentation')
 
     implementation "androidx.core:core-ktx:$ANDROID_CORE_VERSION"
     implementation "androidx.appcompat:appcompat:$ANDROID_APPCOMPAT_VERSION"
