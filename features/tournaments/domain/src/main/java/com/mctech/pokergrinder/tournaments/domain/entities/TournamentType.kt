@@ -1,6 +1,8 @@
 package com.mctech.pokergrinder.tournaments.domain.entities
 
-enum class TournamentType {
+import java.io.Serializable
+
+enum class TournamentType: Serializable {
   HYPER,
   TURBO,
   REGULAR,

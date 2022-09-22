@@ -77,10 +77,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
         android:orientation="vertical"
         android:overScrollMode="never"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/new_tournament"
         app:layout_constraintTop_toBottomOf="@+id/header_card"
         tools:itemCount="4"
         tools:listitem="@layout/fragment_tournaments_item" />
@@ -94,6 +95,7 @@
         android:text="@string/no_tournament"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textStyle="bold"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -108,4 +110,10 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="gone" />
 
+    <Button
+        android:id="@+id/new_tournament"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/new_tournament"
+        app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

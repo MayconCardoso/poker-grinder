@@ -8,10 +8,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.mctech.pokergrinder.architecture.ComponentState
+import com.mctech.pokergrinder.architecture.ViewCommand
+import com.mctech.pokergrinder.architecture.extensions.bindCommand
 import com.mctech.pokergrinder.architecture.extensions.bindState
+import com.mctech.pokergrinder.architecture.extensions.dp
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
+import com.mctech.pokergrinder.architecture.utility.SimpleSpaceItemDecoration
 import com.mctech.pokergrinder.tournament.presentation.R
+import com.mctech.pokergrinder.tournament.presentation.creation.TournamentActivity
 import com.mctech.pokergrinder.tournament.presentation.databinding.FragmentTournamentsBinding
+import com.mctech.pokergrinder.tournament.presentation.list.adapter.TournamentsAdapter
+import com.mctech.pokergrinder.tournament.presentation.list.adapter.TournamentsAdapterConsumer
+import com.mctech.pokergrinder.tournament.presentation.list.adapter.TournamentsAdapterConsumerEvent
+import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -30,6 +39,24 @@ public class TournamentsFragment : Fragment(R.layout.fragment_tournaments) {
    */
   private val binding by viewBinding(FragmentTournamentsBinding::bind)
 
+  /**
+   * Tournaments adapter event consumer.
+   */
+  private val tournamentAdapterConsumer by lazy {
+    object : TournamentsAdapterConsumer {
+      override fun consume(event: TournamentsAdapterConsumerEvent) {
+        viewModel.interact(TournamentsInteraction.OnTournamentEvent(event))
+      }
+    }
+  }
+
+  /**
+   * Tournaments adapter.
+   */
+  private val tournamentAdapter by lazy {
+    TournamentsAdapter(eventConsumer = tournamentAdapterConsumer)
+  }
+
   // endregion
 
   // region Lifecycle
@@ -42,6 +69,15 @@ public class TournamentsFragment : Fragment(R.layout.fragment_tournaments) {
 
       // Observers state changes
       bindState(viewModel.componentState, ::consumeState)
+
+      // Observers commands
+      bindCommand(viewModel, ::consumeCommands)
+
+      // Setup List
+      setupTournamentList()
+
+      // Setup Listeners
+      setupListeners()
     }
   }
 
@@ -64,20 +100,52 @@ public class TournamentsFragment : Fragment(R.layout.fragment_tournaments) {
     binding.tournamentsEmpty.isVisible = false
   }
 
-  private fun rendersSuccess(result: TournamentsState) {
+  private fun rendersSuccess(state: TournamentsState) {
     // Show containers.
     binding.progress.isVisible = false
-    binding.tournaments.isVisible = result.tournaments.isNotEmpty()
-    binding.headerCard.isVisible = result.tournaments.isNotEmpty()
-    binding.tournamentsEmpty.isVisible = result.tournaments.isEmpty()
+    binding.tournaments.isVisible = state.tournaments.isNotEmpty()
+    binding.headerCard.isVisible = state.tournaments.isNotEmpty()
+    binding.tournamentsEmpty.isVisible = state.tournaments.isEmpty()
 
     // Render data.
-    binding.averageBuyIn.text = result.averageBuyIn
-    binding.investment.text = result.investmentPerSession
+    binding.averageBuyIn.text = state.averageBuyIn
+    binding.investment.text = state.investmentPerSession
+
+    // Render list
+    tournamentAdapter.submitList(state.tournaments)
   }
 
   private fun rendersError() {
     Log.i("TournamentsFragment", "Error while loading screen.")
+  }
+
+  // endregion
+
+  // region Component Setup
+
+  private fun setupTournamentList() {
+    binding.tournaments.addItemDecoration(SimpleSpaceItemDecoration(bottomOffset = 12.dp()))
+    binding.tournaments.adapter = tournamentAdapter
+  }
+
+  private fun setupListeners() {
+    binding.newTournament.setOnClickListener {
+      navigateToEditor(tournament = null)
+    }
+  }
+
+  // endregion
+
+  // region Commands
+
+  private fun consumeCommands(command: ViewCommand) {
+    when (command) {
+      is TournamentsCommand.NavigateToEditor -> navigateToEditor(command.tournament)
+    }
+  }
+
+  private fun navigateToEditor(tournament: Tournament?) {
+    TournamentActivity.navigate(requireActivity(), tournament)
   }
 
   // endregion
