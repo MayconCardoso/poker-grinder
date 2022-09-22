@@ -1,5 +1,10 @@
 <resources>
+    <string name="summary">Summary</string>
+    <string name="session">Session</string>
+    <string name="statement">Statement</string>
+    <string name="tournament">Tournament</string>
     <string name="app_name">Poker Grinder</string>
+    <string name="current_session">Current session</string>
     <string name="starts_at">Starts at</string>
     <string name="re_buys">Rebuy</string>
     <string name="buy_in">Buyin</string>
