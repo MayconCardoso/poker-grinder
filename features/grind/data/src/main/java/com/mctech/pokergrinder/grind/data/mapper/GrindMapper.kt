@@ -15,6 +15,15 @@ internal fun List<SessionTournamentRoomEntity>.asBusinessTournaments(): List<Ses
 }
 
 /**
+ * Converts a list of tournament database entity onto a business one known by the modules.
+ */
+internal fun List<SessionRoomEntity>.asBusinessSessions(): List<Session> {
+  return this.map { dbEntity ->
+    dbEntity.asBusinessSession()
+  }
+}
+
+/**
  * Converts a tournament database entity onto a business one known by the modules.
  */
 internal fun SessionTournamentRoomEntity.asBusinessTournaments() = SessionTournament(
@@ -35,6 +44,7 @@ internal fun SessionRoomEntity.asBusinessSession() = Session(
   title = title,
   outcome = outcome,
   startTimeInMs = startTimeInMs,
+  countBuyIn = countBuyIn,
 )
 
 /**
@@ -59,4 +69,5 @@ internal fun Session.asDatabaseSession() = SessionRoomEntity(
   title = title,
   outcome = outcome,
   startTimeInMs = startTimeInMs,
+  countBuyIn = countBuyIn,
 )

@@ -14,9 +14,9 @@
 
     <fragment
         android:id="@+id/session_fragment"
-        android:name="com.mctech.pokergrinder.bankroll.presentation.list.BankrollFragment"
+        android:name="com.mctech.pokergrinder.grind.presentation.list.GrindsFragment"
         android:label="@string/session"
-        tools:layout="@layout/fragment_bankroll" />
+        tools:layout="@layout/fragment_grinds" />
 
     <fragment
         android:id="@+id/statement_fragment"

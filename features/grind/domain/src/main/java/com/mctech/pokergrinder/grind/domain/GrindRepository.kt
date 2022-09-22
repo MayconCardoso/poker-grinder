@@ -7,6 +7,8 @@ import kotlinx.coroutines.flow.Flow
 interface GrindRepository {
   fun observeCurrentGrind(): Flow<Session?>
 
+  fun observeAllGrinds(): Flow<List<Session>>
+
   fun observeGrind(sessionId: String): Flow<Session>
 
   fun observeGrindTournament(sessionId: String): Flow<List<SessionTournament>>

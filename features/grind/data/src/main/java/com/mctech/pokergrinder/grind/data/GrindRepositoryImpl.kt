@@ -3,6 +3,7 @@ package com.mctech.pokergrinder.grind.data
 import com.mctech.pokergrind.threading.CoroutineDispatchers
 import com.mctech.pokergrinder.grind.data.database.GrindDao
 import com.mctech.pokergrinder.grind.data.mapper.asBusinessSession
+import com.mctech.pokergrinder.grind.data.mapper.asBusinessSessions
 import com.mctech.pokergrinder.grind.data.mapper.asBusinessTournaments
 import com.mctech.pokergrinder.grind.data.mapper.asDatabaseSession
 import com.mctech.pokergrinder.grind.data.mapper.asDatabaseTournaments
@@ -18,6 +19,11 @@ public class GrindRepositoryImpl @Inject constructor(
   private val dispatchers: CoroutineDispatchers,
   private val grindDao: GrindDao,
 ) : GrindRepository {
+
+  override fun observeAllGrinds(): Flow<List<Session>> {
+    return grindDao.observeAllGrind().map { it.asBusinessSessions() }
+  }
+
   override fun observeCurrentGrind(): Flow<Session?> {
     return grindDao.observeCurrentGrind().map { it?.asBusinessSession() }
   }
@@ -41,6 +47,5 @@ public class GrindRepositoryImpl @Inject constructor(
   override suspend fun loadCurrentSession(): Session? = withContext(dispatchers.io) {
     grindDao.loadCurrentGrind()?.asBusinessSession()
   }
-
 
 }

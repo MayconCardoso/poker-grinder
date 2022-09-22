@@ -19,5 +19,6 @@ public data class SessionRoomEntity(
   val title: String,
   val outcome: Double,
   val isOpened: Boolean,
+  val countBuyIn: Int,
   val startTimeInMs: Long,
 )

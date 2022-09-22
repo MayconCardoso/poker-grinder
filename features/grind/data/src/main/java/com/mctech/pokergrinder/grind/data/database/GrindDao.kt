@@ -23,6 +23,9 @@ public interface GrindDao {
   @Query("SELECT * from grind_session WHERE isOpened = 1")
   public fun observeCurrentGrind(): Flow<SessionRoomEntity?>
 
+  @Query("SELECT * from grind_session ORDER BY startTimeInMs DESC")
+  public fun observeAllGrind(): Flow<List<SessionRoomEntity>>
+
   @Query("SELECT * from grind_session WHERE isOpened = 1")
   public suspend fun loadCurrentGrind(): SessionRoomEntity?
 

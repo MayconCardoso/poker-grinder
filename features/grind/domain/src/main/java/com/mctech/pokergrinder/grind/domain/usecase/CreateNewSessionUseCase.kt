@@ -22,6 +22,7 @@ class CreateNewSessionUseCase @Inject constructor(
       id = generateUniqueIdUseCase.invoke(),
       title = title,
       outcome = 0.0,
+      countBuyIn = 0,
       isOpened = true,
       startTimeInMs = System.currentTimeMillis(),
     )

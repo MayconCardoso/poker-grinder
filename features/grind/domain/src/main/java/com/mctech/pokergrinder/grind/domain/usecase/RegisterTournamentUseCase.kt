@@ -32,7 +32,8 @@ class RegisterTournamentUseCase @Inject constructor(
 
     // Updates session
     val updatedSession = session.copy(
-      outcome = session.outcome - buyIn
+      outcome = session.outcome - buyIn,
+      countBuyIn = session.countBuyIn + 1,
     )
 
     // Saves tournament
