@@ -23,10 +23,5 @@
     <string name="new_tournament">New tournament</string>
     <string name="new_transaction">New transaction</string>
     <string name="new_session">New session</string>
-
-    <plurals name="count_buy_in">
-        <item quantity="one">1 buy-in</item>
-        <item quantity="zero">No buy-in yet</item>
-        <item quantity="other">$d buy-ins</item>
-    </plurals>
+    <string name="count_buy_in">%d buy-in</string>
 </resources>

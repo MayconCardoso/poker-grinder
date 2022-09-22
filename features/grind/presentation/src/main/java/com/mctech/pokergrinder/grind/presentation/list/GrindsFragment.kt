@@ -16,6 +16,7 @@ import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.architecture.utility.SimpleSpaceItemDecoration
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.presentation.R
+import com.mctech.pokergrinder.grind.presentation.creation.NewGrindActivity
 import com.mctech.pokergrinder.grind.presentation.databinding.FragmentGrindsBinding
 import com.mctech.pokergrinder.grind.presentation.list.adapter.GrindAdapter
 import com.mctech.pokergrinder.grind.presentation.list.adapter.GrindAdapterConsumer
@@ -139,7 +140,7 @@ public class GrindsFragment : Fragment(R.layout.fragment_grinds) {
   }
 
   private fun navigateToEditor() {
-//    TournamentActivity.navigate(requireActivity(), tournament)
+    NewGrindActivity.navigate(requireActivity())
   }
 
   // endregion

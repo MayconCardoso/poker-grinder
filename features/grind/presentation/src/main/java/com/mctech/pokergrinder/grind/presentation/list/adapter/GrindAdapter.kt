@@ -37,13 +37,12 @@ internal class GrindAdapter(
 
 
     fun bind(session: Session) {
-      val resources = binding.root.context.resources
+      val context = binding.root.context
 
       binding.title.text = session.title
       binding.amount.text = session.formattedAmount()
-      binding.countBuyIn.text = resources.getQuantityString(
-        com.mctech.pokergrinder.localization.R.plurals.count_buy_in,
-        session.countBuyIn,
+      binding.countBuyIn.text = context.getString(
+        com.mctech.pokergrinder.localization.R.string.count_buy_in,
         session.countBuyIn,
       )
 

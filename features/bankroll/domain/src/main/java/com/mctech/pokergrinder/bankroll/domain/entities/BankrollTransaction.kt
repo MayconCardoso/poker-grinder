@@ -11,7 +11,7 @@ data class BankrollTransaction(
   val dateInMs: Long,
 ) {
   fun formattedDate(): String {
-    return DateFormat.getDateInstance().format(dateInMs);
+    return DateFormat.getDateInstance().format(dateInMs)
   }
 
   fun formattedAmount(): String = DecimalFormat("$#0.00").format(amount)

@@ -33,6 +33,9 @@ class HomeActivity : AppCompatActivity() {
     // Setup component
     setUpBottomNavigation()
 
+    // Starts observing changes on current session
+    currentGrindViewModel.initialize()
+
     // Observers current session change
     bindState(currentGrindViewModel.componentState, ::renderCurrentSession)
   }
