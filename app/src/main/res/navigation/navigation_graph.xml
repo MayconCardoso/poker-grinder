@@ -14,7 +14,7 @@
 
     <fragment
         android:id="@+id/session_fragment"
-        android:name="com.mctech.pokergrinder.grind.presentation.list.GrindsFragment"
+        android:name="com.mctech.pokergrinder.grind.presentation.grind_list.GrindsFragment"
         android:label="@string/session"
         tools:layout="@layout/fragment_grinds" />
 

@@ -1,4 +1,4 @@
-package com.mctech.pokergrinder.grind.presentation.list
+package com.mctech.pokergrinder.grind.presentation.grind_list
 
 import android.os.Bundle
 import android.util.Log
@@ -16,12 +16,12 @@ import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.architecture.utility.SimpleSpaceItemDecoration
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.presentation.R
-import com.mctech.pokergrinder.grind.presentation.creation.NewGrindActivity
+import com.mctech.pokergrinder.grind.presentation.grind_creation.NewGrindActivity
 import com.mctech.pokergrinder.grind.presentation.databinding.FragmentGrindsBinding
-import com.mctech.pokergrinder.grind.presentation.details.GrindDetailsActivity
-import com.mctech.pokergrinder.grind.presentation.list.adapter.GrindAdapter
-import com.mctech.pokergrinder.grind.presentation.list.adapter.GrindAdapterConsumer
-import com.mctech.pokergrinder.grind.presentation.list.adapter.GrindAdapterConsumerEvent
+import com.mctech.pokergrinder.grind.presentation.grind_details.GrindDetailsActivity
+import com.mctech.pokergrinder.grind.presentation.grind_list.adapter.GrindAdapter
+import com.mctech.pokergrinder.grind.presentation.grind_list.adapter.GrindAdapterConsumer
+import com.mctech.pokergrinder.grind.presentation.grind_list.adapter.GrindAdapterConsumerEvent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

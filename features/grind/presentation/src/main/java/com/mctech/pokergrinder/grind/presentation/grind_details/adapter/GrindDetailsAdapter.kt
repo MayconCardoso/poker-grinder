@@ -1,4 +1,4 @@
-package com.mctech.pokergrinder.grind.presentation.details.adapter
+package com.mctech.pokergrinder.grind.presentation.grind_details.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

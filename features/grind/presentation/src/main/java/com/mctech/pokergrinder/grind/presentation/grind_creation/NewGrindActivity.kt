@@ -1,4 +1,4 @@
-package com.mctech.pokergrinder.grind.presentation.creation
+package com.mctech.pokergrinder.grind.presentation.grind_creation
 
 import android.content.Intent
 import android.os.Bundle

@@ -1,7 +1,6 @@
-package com.mctech.pokergrinder.grind.presentation.creation
+package com.mctech.pokergrinder.grind.presentation.grind_creation
 
 import com.mctech.pokergrinder.architecture.UserInteraction
-import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
 
 internal sealed class NewGrindInteraction : UserInteraction {
 

@@ -3,8 +3,8 @@
     package="com.mctech.pokergrinder.grind.presentation">
 
     <application>
-        <activity android:name=".creation.NewGrindActivity" />
-        <activity android:name=".details.GrindDetailsActivity" />
+        <activity android:name=".grind_creation.NewGrindActivity" />
+        <activity android:name=".grind_details.GrindDetailsActivity" />
     </application>
 
 </manifest>

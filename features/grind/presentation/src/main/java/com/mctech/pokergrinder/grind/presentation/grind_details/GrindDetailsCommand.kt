@@ -1,4 +1,4 @@
-package com.mctech.pokergrinder.grind.presentation.details
+package com.mctech.pokergrinder.grind.presentation.grind_details
 
 import com.mctech.pokergrinder.architecture.ViewCommand
 

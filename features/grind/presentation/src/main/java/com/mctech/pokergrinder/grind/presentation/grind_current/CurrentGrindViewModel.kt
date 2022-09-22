@@ -1,4 +1,4 @@
-package com.mctech.pokergrinder.grind.presentation.current_grind
+package com.mctech.pokergrinder.grind.presentation.grind_current
 
 import androidx.lifecycle.viewModelScope
 import com.mctech.pokergrinder.architecture.BaseViewModel

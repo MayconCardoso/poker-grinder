@@ -1,4 +1,4 @@
-package com.mctech.pokergrinder.grind.presentation.details
+package com.mctech.pokergrinder.grind.presentation.grind_details
 
 import android.content.Intent
 import android.os.Bundle
@@ -17,9 +17,9 @@ import com.mctech.pokergrinder.architecture.utility.SimpleSpaceItemDecoration
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
 import com.mctech.pokergrinder.grind.presentation.databinding.ActivityGrindDetailsBinding
-import com.mctech.pokergrinder.grind.presentation.details.adapter.GrindDetailsAdapter
-import com.mctech.pokergrinder.grind.presentation.details.adapter.GrindDetailsConsumer
-import com.mctech.pokergrinder.grind.presentation.details.adapter.GrindDetailsConsumerEvent
+import com.mctech.pokergrinder.grind.presentation.grind_details.adapter.GrindDetailsAdapter
+import com.mctech.pokergrinder.grind.presentation.grind_details.adapter.GrindDetailsConsumer
+import com.mctech.pokergrinder.grind.presentation.grind_details.adapter.GrindDetailsConsumerEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

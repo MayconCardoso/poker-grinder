@@ -1,4 +1,4 @@
-package com.mctech.pokergrinder.grind.presentation.list
+package com.mctech.pokergrinder.grind.presentation.grind_list
 
 import com.mctech.pokergrinder.architecture.ViewCommand
 import com.mctech.pokergrinder.grind.domain.entities.Session

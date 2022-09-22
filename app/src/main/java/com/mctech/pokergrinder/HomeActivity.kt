@@ -10,7 +10,7 @@ import com.mctech.pokergrinder.architecture.extensions.bindState
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.databinding.ActivityHomeBinding
 import com.mctech.pokergrinder.grind.domain.entities.Session
-import com.mctech.pokergrinder.grind.presentation.current_grind.CurrentGrindViewModel
+import com.mctech.pokergrinder.grind.presentation.grind_current.CurrentGrindViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
