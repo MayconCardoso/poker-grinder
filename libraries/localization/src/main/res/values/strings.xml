@@ -3,6 +3,7 @@
     <string name="starts_at">Starts at</string>
     <string name="re_buys">Rebuy</string>
     <string name="buy_in">Buyin</string>
+    <string name="amount">Amount</string>
     <string name="gtd">Gtd</string>
     <string name="average_buy_in">Average Buy In</string>
     <string name="balance">Balance</string>
@@ -10,6 +11,7 @@
     <string name="no_tournament">No tournament found</string>
     <string name="no_transaction">No transaction found</string>
     <string name="tournament_management">Tournament Management</string>
+    <string name="bankroll_deposit">Bankroll Deposit</string>
     <string name="title">Title</string>
     <string name="save">Save</string>
     <string name="new_tournament">New tournament</string>
