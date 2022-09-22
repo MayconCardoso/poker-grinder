@@ -1,0 +1,44 @@
+package com.mctech.pokergrinder.grind.domain.usecase
+
+import com.mctech.pokergrinder.bankroll.domain.entities.BankrollTransactionType
+import com.mctech.pokergrinder.bankroll.domain.usecases.WithdrawUseCase
+import com.mctech.pokergrinder.grind.domain.GrindRepository
+import com.mctech.pokergrinder.grind.domain.entities.Session
+import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
+import javax.inject.Inject
+
+class RegisterTournamentUseCase @Inject constructor(
+  private val repository: GrindRepository,
+  private val withdrawUseCase: WithdrawUseCase,
+  private val generateUniqueIdUseCase: GenerateUniqueIdUseCase,
+) {
+  suspend operator fun invoke(session: Session, title: String, buyIn: Double) {
+    // Withdraw the money spent on the tournament
+    withdrawUseCase.invoke(
+      amount = buyIn,
+      description = title,
+      type = BankrollTransactionType.BUY_IN,
+    )
+
+    // Creates tournament
+    val tournament = SessionTournament(
+      id = generateUniqueIdUseCase(),
+      buyIn = buyIn,
+      title = title,
+      idSession = session.id,
+      profit = 0.0,
+      startTimeInMs = System.currentTimeMillis(),
+    )
+
+    // Updates session
+    val updatedSession = session.copy(
+      outcome = session.outcome - buyIn
+    )
+
+    // Saves tournament
+    repository.saveGrind(updatedSession)
+
+    // Saves updated session.
+    repository.saveGrindTournament(tournament)
+  }
+}

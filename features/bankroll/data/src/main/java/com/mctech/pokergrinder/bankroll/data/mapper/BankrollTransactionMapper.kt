@@ -7,7 +7,7 @@ import com.mctech.pokergrinder.bankroll.domain.entities.BankrollTransactionType
 /**
  * Converts a list of transaction database entity onto a business one known by the modules.
  */
-internal fun List<BankrollTransactionRoomEntity>.asBusinessTournaments(): List<BankrollTransaction> {
+internal fun List<BankrollTransactionRoomEntity>.asBusinessTransactions(): List<BankrollTransaction> {
   return this.map { dbEntity ->
     dbEntity.asBusinessTransaction()
   }

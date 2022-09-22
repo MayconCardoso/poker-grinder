@@ -2,7 +2,7 @@ package com.mctech.pokergrinder.bankroll.data
 
 import com.mctech.pokergrind.threading.CoroutineDispatchers
 import com.mctech.pokergrinder.bankroll.data.database.BankrollTransactionDao
-import com.mctech.pokergrinder.bankroll.data.mapper.asBusinessTournaments
+import com.mctech.pokergrinder.bankroll.data.mapper.asBusinessTransactions
 import com.mctech.pokergrinder.bankroll.data.mapper.asDatabaseTransaction
 import com.mctech.pokergrinder.bankroll.domain.BankrollRepository
 import com.mctech.pokergrinder.bankroll.domain.entities.BankrollTransaction
@@ -21,7 +21,7 @@ public class BankrollRepositoryImpl @Inject constructor(
   }
 
   override fun observeTransactions(): Flow<List<BankrollTransaction>> {
-    return bankrollDao.observe().map { it.asBusinessTournaments() }
+    return bankrollDao.observe().map { it.asBusinessTransactions() }
   }
 
   override suspend fun save(transaction: BankrollTransaction): Unit = withContext(dispatchers.io) {

@@ -45,6 +45,9 @@ dependencies {
     implementation project(path: ':features:bankroll:data')
     implementation project(path: ':features:bankroll:domain')
     implementation project(path: ':features:bankroll:presentation')
+    implementation project(path: ':features:grind:data')
+    implementation project(path: ':features:grind:domain')
+    implementation project(path: ':features:grind:presentation')
 
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$GOOGLE_NAVIGATION_VERSION"
