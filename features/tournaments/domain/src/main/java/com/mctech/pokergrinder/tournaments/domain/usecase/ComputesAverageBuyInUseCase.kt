@@ -13,7 +13,7 @@ class ComputesAverageBuyInUseCase @Inject constructor(
   suspend operator fun invoke(tournaments: List<Tournament>) = withContext(dispatchers.default) {
     // Format average.
     if (tournaments.isNotEmpty()) {
-      DecimalFormat("$#.00").format(tournaments.map { it.buyIn }.average())
+      DecimalFormat("$#0.00").format(tournaments.map { it.buyIn }.average())
     }
     // Returns regular default string.
     else {

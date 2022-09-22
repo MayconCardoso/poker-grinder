@@ -42,6 +42,9 @@ dependencies {
     implementation project(path: ':features:tournaments:data')
     implementation project(path: ':features:tournaments:domain')
     implementation project(path: ':features:tournaments:presentation')
+    implementation project(path: ':features:bankroll:data')
+    implementation project(path: ':features:bankroll:domain')
+    implementation project(path: ':features:bankroll:presentation')
 
     implementation "androidx.core:core-ktx:$ANDROID_CORE_VERSION"
     implementation "androidx.appcompat:appcompat:$ANDROID_APPCOMPAT_VERSION"

@@ -12,7 +12,7 @@ class ComputesInvestmentPerSessionUseCase @Inject constructor(
   suspend operator fun invoke(tournaments: List<Tournament>) = withContext(dispatchers.default) {
     // Format average.
     if (tournaments.isNotEmpty()) {
-      DecimalFormat("$#.00").format(tournaments.map { it.buyIn }.sum())
+      DecimalFormat("$#0.00").format(tournaments.map { it.buyIn }.sum())
     }
     // Returns regular default string.
     else {

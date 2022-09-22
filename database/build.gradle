@@ -16,6 +16,7 @@ android {
 
 dependencies {
     // Internal Modules.
+    implementation project(path: ':features:bankroll:data')
     implementation project(path: ':features:tournaments:data')
 
     // Database

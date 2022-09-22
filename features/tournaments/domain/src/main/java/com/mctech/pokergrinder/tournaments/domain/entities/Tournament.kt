@@ -20,7 +20,7 @@ data class Tournament(
     TimeUnit.MILLISECONDS.toMinutes(startTimeInMs) % TimeUnit.HOURS.toMinutes(1),
   )
 
-  fun formattedBuyIn(): String = DecimalFormat("$#.00").format(buyIn)
+  fun formattedBuyIn(): String = DecimalFormat("$#0.00").format(buyIn)
 
-  fun formattedGuaranteed(): String = DecimalFormat("$#.00").format(guaranteed)
+  fun formattedGuaranteed(): String = DecimalFormat("$#0.00").format(guaranteed)
 }
