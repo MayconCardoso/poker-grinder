@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "0ff0b198749d37fe7e804c2bcef22f35",
+    "identityHash": "34aa11933add84b16dc596b4355086a7",
     "entities": [
       {
         "tableName": "tournament",
@@ -65,12 +65,75 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "bankroll_transaction",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `type` TEXT NOT NULL, `amount` REAL NOT NULL, `description` TEXT NOT NULL, `dateInMs` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "amount",
+            "columnName": "amount",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateInMs",
+            "columnName": "dateInMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "bankroll_transaction_type_index",
+            "unique": false,
+            "columnNames": [
+              "type"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `bankroll_transaction_type_index` ON `${TABLE_NAME}` (`type`)"
+          },
+          {
+            "name": "bankroll_transaction_date_index",
+            "unique": false,
+            "columnNames": [
+              "dateInMs"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `bankroll_transaction_date_index` ON `${TABLE_NAME}` (`dateInMs`)"
+          }
+        ],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0ff0b198749d37fe7e804c2bcef22f35')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '34aa11933add84b16dc596b4355086a7')"
     ]
   }
 }
