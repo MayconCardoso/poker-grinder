@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
 import com.mctech.pokergrinder.architecture.ViewCommand
 import com.mctech.pokergrinder.architecture.extensions.bindCommand
@@ -58,10 +59,12 @@ public class RegisterTournamentActivity : AppCompatActivity() {
   // region State Manipulation
 
   private fun rendersState(tournament: SessionTournament?) {
-    val data = tournament ?: return
-    binding.tournamentTitle.setText(data.title)
-    binding.tournamentBuyIn.setText(data.buyIn.toString())
-    binding.tournamentProfit.setText(data.profit.toString())
+    binding.tournamentTitle.setText(tournament?.title)
+    binding.tournamentBuyIn.setText(tournament?.buyIn?.toString())
+
+    // Resolve profit
+    binding.tournamentProfit.isVisible = tournament != null
+    binding.tournamentProfit.setText(tournament?.profit?.toString() ?: "0")
   }
 
   // endregion
