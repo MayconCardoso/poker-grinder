@@ -19,6 +19,7 @@ dependencies {
     implementation project(path: ':features:grind:data')
     implementation project(path: ':features:bankroll:data')
     implementation project(path: ':features:tournaments:data')
+    implementation project(path: ':features:summary:data')
 
     // Database
     implementation "androidx.room:room-runtime:$ROOM_VERSION"

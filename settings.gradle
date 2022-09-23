@@ -26,3 +26,8 @@ include ':features:bankroll:presentation'
 include ':features:grind:domain'
 include ':features:grind:data'
 include ':features:grind:presentation'
+
+// Feature - Summary
+include ':features:summary:domain'
+include ':features:summary:data'
+include ':features:summary:presentation'

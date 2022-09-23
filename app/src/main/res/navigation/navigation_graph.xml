@@ -8,9 +8,9 @@
 
     <fragment
         android:id="@+id/summary_fragment"
-        android:name="com.mctech.pokergrinder.bankroll.presentation.list.BankrollFragment"
+        android:name="com.mctech.pokergrinder.summary.presentation.SummaryFragment"
         android:label="@string/summary"
-        tools:layout="@layout/fragment_bankroll" />
+        tools:layout="@layout/fragment_summary" />
 
     <fragment
         android:id="@+id/session_fragment"
