@@ -44,6 +44,7 @@
             android:text="@string/starts_at"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             android:textStyle="bold"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

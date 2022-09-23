@@ -18,13 +18,14 @@
     <string name="no_transaction">No transaction found</string>
     <string name="no_sessions">No sessions found</string>
     <string name="tournament_management">Tournament Management</string>
+    <string name="bankroll">Bankroll</string>
     <string name="bankroll_deposit">Bankroll Deposit</string>
     <string name="title">Title</string>
     <string name="save">Save</string>
     <string name="new_tournament">New tournament</string>
     <string name="new_transaction">New transaction</string>
     <string name="new_session">New session</string>
-    <string name="count_buy_in">%d buy-in</string>
+    <string name="count_buy_in">%d tournaments</string>
     <string name="register_tournament">Register tournament</string>
     <string name="insufficient_balance">Insufficient Balance</string>
 </resources>
