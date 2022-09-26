@@ -66,6 +66,8 @@ public class SummaryOverallPerformanceFragment :
 
   private fun rendersSuccess(state: List<MoneyVariationEntry>) {
     binding.progressPerformance.isVisible = false
+    binding.noData.isVisible = state.isEmpty()
+    binding.chart.isVisible = state.isNotEmpty()
     binding.chart.render(state)
     binding.chartContainer.isInvisible = false
   }
