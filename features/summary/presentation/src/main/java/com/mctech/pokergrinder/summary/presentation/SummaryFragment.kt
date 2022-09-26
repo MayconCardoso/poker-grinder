@@ -3,6 +3,7 @@ package com.mctech.pokergrinder.summary.presentation
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -98,9 +99,26 @@ public class SummaryFragment : Fragment(R.layout.fragment_summary) {
     binding.progressInvestment.isVisible = false
     binding.groupInvestment.isInvisible = false
 
-    // Render data
+    // Render profit
     binding.profit.text = state.formattedProfit()
+    binding.profit.setTextColor(
+      ContextCompat.getColor(
+        binding.root.context,
+        if (state.profit >= 0) com.mctech.pokergrinder.design.R.color.deposit
+        else com.mctech.pokergrinder.design.R.color.withdraw
+      )
+    )
+
+    // Render roi
     binding.roi.text = state.formattedRoi()
+    binding.roi.setTextColor(
+      ContextCompat.getColor(
+        binding.root.context,
+        if (state.computeRoi() >= 0) com.mctech.pokergrinder.design.R.color.deposit
+        else com.mctech.pokergrinder.design.R.color.withdraw
+      )
+    )
+
     binding.cash.text = state.formattedCash()
     binding.investment.text = state.formattedBuyIn()
   }

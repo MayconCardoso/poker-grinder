@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="12dp">
+    android:padding="20dp">
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group_investment"
@@ -22,14 +22,23 @@
         app:constraint_referenced_ids="card_count_session, card_positive_session, card_negative_session, card_count_tournaments"
         tools:visibility="visible" />
 
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/header_card"
+        android:name="com.mctech.pokergrinder.bankroll.balance.BankrollBalanceFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/investment_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:text="@string/investment"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/header_card" />
 
     <ProgressBar
         android:id="@+id/progress_investment"

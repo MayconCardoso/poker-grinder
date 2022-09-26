@@ -50,7 +50,6 @@ public class BankrollFragment : Fragment(R.layout.fragment_bankroll) {
       viewModel.initialize()
 
       // Observers state changes
-      bindState(viewModel.balanceState, ::consumeBalanceState)
       bindState(viewModel.transactionState, ::consumeTransactionState)
 
       // Setup List
@@ -70,14 +69,6 @@ public class BankrollFragment : Fragment(R.layout.fragment_bankroll) {
       is ComponentState.Error -> rendersTransactionError()
       is ComponentState.Loading -> rendersTransactionLoading()
       is ComponentState.Success -> rendersTransactionSuccess(state.result)
-    }
-  }
-
-  private fun consumeBalanceState(state: ComponentState<String>) {
-    when (state) {
-      is ComponentState.Error -> rendersBalanceError()
-      is ComponentState.Loading -> rendersBalanceLoading()
-      is ComponentState.Success -> rendersBalanceSuccess(state.result)
     }
   }
 
@@ -101,21 +92,6 @@ public class BankrollFragment : Fragment(R.layout.fragment_bankroll) {
     Log.i("TournamentsFragment", "Error while loading screen.")
   }
 
-  private fun rendersBalanceLoading() {
-    binding.balance.isVisible = false
-    binding.progressBalance.isVisible = true
-  }
-
-  private fun rendersBalanceSuccess(balance: String) {
-    binding.balance.text = balance
-    binding.balance.isVisible = true
-    binding.progressBalance.isVisible = false
-  }
-
-
-  private fun rendersBalanceError() {
-    TODO("Not yet implemented")
-  }
   // endregion
 
   // region Component Setup
