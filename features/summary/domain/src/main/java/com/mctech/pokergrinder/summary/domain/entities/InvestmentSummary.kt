@@ -8,6 +8,9 @@ data class InvestmentSummary(
   val buyIn: Double,
 ) {
   fun computeRoi(): Double {
+    if(buyIn == 0.0) {
+      return 0.0
+    }
     return (cash - buyIn) / buyIn * 100
   }
 
