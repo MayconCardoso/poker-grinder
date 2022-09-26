@@ -1,0 +1,9 @@
+apply from: "$rootDir/config/module/feature/presentation.gradle"
+
+dependencies {
+    // Internal modules
+    implementation project(path: ':features:summary:domain')
+
+    // Ui
+    implementation "androidx.cardview:cardview:1.0.0"
+}

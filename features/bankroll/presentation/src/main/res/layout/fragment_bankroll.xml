@@ -8,11 +8,12 @@
     android:padding="20dp">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/header_card"
+        android:id="@+id/component_balance"
         android:name="com.mctech.pokergrinder.bankroll.balance.BankrollBalanceFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/fragment_bankroll_balance" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/transactions"
@@ -24,7 +25,7 @@
         android:overScrollMode="never"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/new_transaction"
-        app:layout_constraintTop_toBottomOf="@+id/header_card"
+        app:layout_constraintTop_toBottomOf="@+id/component_balance"
         tools:itemCount="4"
         tools:listitem="@layout/fragment_bankroll_item" />
 
