@@ -31,7 +31,11 @@ internal class SummaryOverallPerformanceViewModel @Inject constructor(
   private fun observeInvestmentSummary() {
     observeAllGrindsUseCase()
       .map { sessions ->
-        sessions.reversed().map { MoneyVariationEntry(it.balance) }
+        var entryBalance = 0.0
+        sessions.reversed().map { session ->
+          entryBalance += session.balance
+          MoneyVariationEntry(entryBalance)
+        }
       }
       .onEach { chartEntities ->
         _performanceState.value = ComponentState.Success(chartEntities)
