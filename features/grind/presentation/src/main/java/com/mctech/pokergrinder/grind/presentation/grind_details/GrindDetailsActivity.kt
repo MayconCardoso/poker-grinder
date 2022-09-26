@@ -136,7 +136,7 @@ public class GrindDetailsActivity : AppCompatActivity() {
     binding.balance.isVisible = true
     binding.progressBalance.isVisible = false
 
-    binding.buyIn.text = session.countBuyIn.toString()
+    binding.buyIn.text = session.tournamentsPlayed.toString()
     binding.buyIn.isVisible = true
     binding.progressBuyIn.isVisible = false
   }

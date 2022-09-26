@@ -20,10 +20,11 @@ class CreateNewSessionUseCase @Inject constructor(
     // Create session
     val session = Session(
       id = generateUniqueIdUseCase.invoke(),
+      cash = 0.0,
+      buyIn = 0.0,
       title = title,
-      outcome = 0.0,
-      countBuyIn = 0,
       isOpened = true,
+      tournamentsPlayed = 0,
       startTimeInMs = System.currentTimeMillis(),
     )
 

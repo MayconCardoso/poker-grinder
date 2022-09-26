@@ -18,14 +18,6 @@ class UpdatesTournamentUseCase @Inject constructor(
       error("Session tournament does not exist.")
     }
 
-    // Loads saved tournament
-    val session = repository.loadGrind(sessionTournament.idSession)
-    val saveTournament = repository.loadGrindTournament(sessionTournament.id)
-
-    // Computes diff of profit
-    val diffProfit = sessionTournament.profit - saveTournament.profit
-    val diffBuyIn = sessionTournament.buyIn - saveTournament.buyIn
-
     // Updates buy in bankroll transaction with new value.
     updatesBuyInTransaction(sessionTournament)
 
@@ -38,9 +30,6 @@ class UpdatesTournamentUseCase @Inject constructor(
         idTransactionProfit = transactionId
       )
     )
-
-    // Updates Session
-    repository.saveGrind(session.copy(outcome = session.outcome + diffProfit + diffBuyIn))
   }
 
   private suspend fun updatesBuyInTransaction(item: SessionTournament) {

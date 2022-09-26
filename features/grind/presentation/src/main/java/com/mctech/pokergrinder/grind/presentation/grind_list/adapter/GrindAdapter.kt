@@ -42,7 +42,7 @@ internal class GrindAdapter(
       binding.amount.text = session.formattedAmount()
       binding.countBuyIn.text = context.getString(
         com.mctech.pokergrinder.localization.R.string.count_buy_in,
-        session.countBuyIn,
+        session.tournamentsPlayed,
       )
 
       // Change indicator color

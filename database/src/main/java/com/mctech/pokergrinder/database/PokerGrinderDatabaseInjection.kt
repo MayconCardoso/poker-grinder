@@ -19,11 +19,9 @@ public class PokerGrinderDatabaseInjection {
   @Provides
   @Singleton
   public fun providesVideoProjectDatabase(application: Application): PokerGrinderDatabase {
-    return Room.databaseBuilder(
-      application,
-      PokerGrinderDatabase::class.java,
-      "poker_grinder"
-    ).build()
+    return Room.databaseBuilder(application, PokerGrinderDatabase::class.java, "poker_grinder")
+      .addMigrations(*PokerGrinderDatabaseMigrations.all)
+      .build()
   }
 
   @Provides

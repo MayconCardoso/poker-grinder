@@ -32,15 +32,6 @@ class RegisterTournamentUseCase @Inject constructor(
       startTimeInMs = System.currentTimeMillis(),
     )
 
-    // Updates session
-    val updatedSession = session.copy(
-      outcome = session.outcome - buyIn,
-      countBuyIn = session.countBuyIn + 1,
-    )
-
-    // Saves tournament
-    repository.saveGrind(updatedSession)
-
     // Saves updated session.
     repository.saveGrindTournament(tournament)
   }

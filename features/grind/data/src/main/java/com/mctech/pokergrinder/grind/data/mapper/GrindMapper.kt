@@ -1,5 +1,6 @@
 package com.mctech.pokergrinder.grind.data.mapper
 
+import com.mctech.pokergrinder.grind.data.database.SessionDetailRoomEntity
 import com.mctech.pokergrinder.grind.data.database.SessionRoomEntity
 import com.mctech.pokergrinder.grind.data.database.SessionTournamentRoomEntity
 import com.mctech.pokergrinder.grind.domain.entities.Session
@@ -17,7 +18,7 @@ internal fun List<SessionTournamentRoomEntity>.asBusinessTournaments(): List<Ses
 /**
  * Converts a list of tournament database entity onto a business one known by the modules.
  */
-internal fun List<SessionRoomEntity>.asBusinessSessions(): List<Session> {
+internal fun List<SessionDetailRoomEntity>.asBusinessSessions(): List<Session> {
   return this.map { dbEntity ->
     dbEntity.asBusinessSession()
   }
@@ -40,13 +41,14 @@ internal fun SessionTournamentRoomEntity.asBusinessTournaments() = SessionTourna
 /**
  * Converts a tournament database entity onto a business one known by the modules.
  */
-internal fun SessionRoomEntity.asBusinessSession() = Session(
+internal fun SessionDetailRoomEntity.asBusinessSession() = Session(
   id = id,
+  cash = cash,
+  buyIn = buyIn,
   isOpened = isOpened,
   title = title,
-  outcome = outcome,
   startTimeInMs = startTimeInMs,
-  countBuyIn = countBuyIn,
+  tournamentsPlayed = tournaments,
 )
 
 /**
@@ -71,7 +73,5 @@ internal fun Session.asDatabaseSession() = SessionRoomEntity(
   id = id,
   isOpened = isOpened,
   title = title,
-  outcome = outcome,
   startTimeInMs = startTimeInMs,
-  countBuyIn = countBuyIn,
 )
