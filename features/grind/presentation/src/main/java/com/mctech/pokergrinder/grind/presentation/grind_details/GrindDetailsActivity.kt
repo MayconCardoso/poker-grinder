@@ -132,7 +132,7 @@ public class GrindDetailsActivity : AppCompatActivity() {
   private fun rendersSessionSuccess(session: Session) {
     binding.toolbar.title = session.title
 
-    binding.balance.text = session.formattedAmount()
+    binding.balance.text = session.formattedBalance()
     binding.balance.isVisible = true
     binding.progressBalance.isVisible = false
 

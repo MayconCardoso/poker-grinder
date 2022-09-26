@@ -56,7 +56,7 @@ class HomeActivity : AppCompatActivity() {
       if (session == null) com.mctech.pokergrinder.localization.R.string.app_name
       else com.mctech.pokergrinder.localization.R.string.current_session
     )
-    binding.toolbar.subtitle = session?.formattedAmount()
+    binding.toolbar.subtitle = session?.formattedBalance()
   }
 
 }

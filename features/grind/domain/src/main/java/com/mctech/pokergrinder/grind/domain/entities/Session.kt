@@ -7,6 +7,7 @@ data class Session(
   val id: String,
   val cash: Double,
   val buyIn: Double,
+  val avgBuyIn: Double,
   val title: String,
   val isOpened: Boolean,
   val startTimeInMs: Long,
@@ -16,10 +17,16 @@ data class Session(
   val roi: Double
     get() = (cash - buyIn) / buyIn * 100
 
-  val outcome: Double
+  val balance: Double
     get() = cash - buyIn
 
-  fun formattedAmount(): String = DecimalFormat("$#0.00").format(outcome)
+  fun formattedCash(): String = DecimalFormat("$#0.00").format(cash)
+
+  fun formattedBuyIn(): String = DecimalFormat("$#0.00").format(buyIn)
+
+  fun formattedBalance(): String = DecimalFormat("$#0.00").format(balance)
+
+  fun formattedAvgBuyIn(): String = DecimalFormat("$#0.00").format(avgBuyIn)
 
   fun formattedRoi(): String {
     return DecimalFormat("#0.00").format(roi) + "%"

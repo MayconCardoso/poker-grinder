@@ -46,6 +46,7 @@ internal fun SessionDetailRoomEntity.asBusinessSession() = Session(
   cash = cash,
   buyIn = buyIn,
   isOpened = isOpened,
+  avgBuyIn = avgBuyIn,
   title = title,
   startTimeInMs = startTimeInMs,
   tournamentsPlayed = tournaments,

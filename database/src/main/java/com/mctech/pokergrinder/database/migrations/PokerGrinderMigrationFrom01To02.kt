@@ -57,7 +57,7 @@ internal val POKER_GRINDER_DATABASE_MIGRATION_01_TO_02 by lazy {
       // Creates session grind view
       database.execSQL(
         """
-        CREATE VIEW `grind_session_detail` AS SELECT gs.id, gs.title, gs.isOpened, COUNT(1) tournaments, SUM(buyIn) buyIn, SUM(profit) cash, gs.startTimeInMs FROM grind_session_tournament gst INNER JOIN grind_session gs ON gs.id = gst.idSession GROUP  BY idSession
+        CREATE VIEW `grind_session_detail` AS SELECT gs.id, gs.title, gs.isOpened, COUNT(1) tournaments, SUM(buyIn) buyIn, SUM(profit) cash, AVG(buyIn) avgBuyIn, gs.startTimeInMs FROM grind_session_tournament gst INNER JOIN grind_session gs ON gs.id = gst.idSession GROUP  BY idSession
         """.trimIndent()
       )
     }

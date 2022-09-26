@@ -8,6 +8,7 @@
     <string name="starts_at">Starts at</string>
     <string name="re_buys">Rebuy</string>
     <string name="buy_in">Buy-in</string>
+    <string name="avg_buy_in">Avg Buy-in</string>
     <string name="amount">Amount</string>
     <string name="profit">Profit</string>
     <string name="gtd">Gtd</string>

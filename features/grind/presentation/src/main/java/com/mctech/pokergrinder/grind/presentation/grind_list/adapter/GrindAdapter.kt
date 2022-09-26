@@ -39,7 +39,11 @@ internal class GrindAdapter(
       val context = binding.root.context
 
       binding.title.text = session.title
-      binding.amount.text = session.formattedAmount()
+      binding.roi.text = session.formattedRoi()
+      binding.cash.text = session.formattedCash()
+      binding.buyIn.text = session.formattedBuyIn()
+      binding.avgBuyIn.text = session.formattedAvgBuyIn()
+      binding.balance.text = session.formattedBalance()
       binding.countBuyIn.text = context.getString(
         com.mctech.pokergrinder.localization.R.string.count_buy_in,
         session.tournamentsPlayed,
@@ -48,10 +52,10 @@ internal class GrindAdapter(
       // Change indicator color
       val color = ContextCompat.getColor(
         binding.root.context,
-        if (session.outcome >= 0) R.color.deposit else R.color.withdraw
+        if (session.balance >= 0) R.color.deposit else R.color.withdraw
       )
       binding.indicator.setBackgroundColor(color)
-      binding.amount.setTextColor(color)
+      binding.balance.setTextColor(color)
     }
   }
 

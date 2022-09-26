@@ -25,6 +25,7 @@ class CreateNewSessionUseCase @Inject constructor(
       title = title,
       isOpened = true,
       tournamentsPlayed = 0,
+      avgBuyIn = 0.0,
       startTimeInMs = System.currentTimeMillis(),
     )
 
