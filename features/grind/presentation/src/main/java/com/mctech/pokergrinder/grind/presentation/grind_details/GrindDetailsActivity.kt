@@ -127,6 +127,12 @@ public class GrindDetailsActivity : AppCompatActivity() {
 
     binding.buyIn.isVisible = false
     binding.progressBuyIn.isVisible = true
+
+    binding.tournaments.isVisible = false
+    binding.progressTournament.isVisible = true
+
+    binding.cash.isVisible = false
+    binding.progressCash.isVisible = true
   }
 
   private fun rendersSessionSuccess(session: Session) {
@@ -136,9 +142,17 @@ public class GrindDetailsActivity : AppCompatActivity() {
     binding.balance.isVisible = true
     binding.progressBalance.isVisible = false
 
-    binding.buyIn.text = session.tournamentsPlayed.toString()
+    binding.tournament.text = session.tournamentsPlayed.toString()
+    binding.tournament.isVisible = true
+    binding.progressTournament.isVisible = false
+
+    binding.buyIn.text = session.formattedBuyIn()
     binding.buyIn.isVisible = true
     binding.progressBuyIn.isVisible = false
+
+    binding.cash.text = session.formattedCash()
+    binding.cash.isVisible = true
+    binding.progressCash.isVisible = false
   }
 
 
