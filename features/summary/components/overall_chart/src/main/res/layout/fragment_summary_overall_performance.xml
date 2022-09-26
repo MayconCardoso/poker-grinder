@@ -41,6 +41,17 @@
             android:id="@+id/chart"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/no_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:text="@string/no_transaction"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textStyle="bold"
+            android:visibility="gone"/>
     </FrameLayout>
 
 
