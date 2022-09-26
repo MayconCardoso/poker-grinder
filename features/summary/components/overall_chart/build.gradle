@@ -2,7 +2,8 @@ apply from: "$rootDir/config/module/feature/presentation.gradle"
 
 dependencies {
     // Internal modules
-    implementation project(path: ':features:summary:domain')
+    implementation project(path: ':libraries:chart')
+    implementation project(path: ':features:grind:domain')
 
     // Ui
     implementation "androidx.cardview:cardview:1.0.0"

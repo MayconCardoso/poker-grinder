@@ -18,6 +18,7 @@
     <string name="cash">Cash</string>
     <string name="investment_per_session">Investment Per Session</string>
     <string name="investment">Investment</string>
+    <string name="overall_performance">Overall performance</string>
     <string name="no_tournament">No tournament found</string>
     <string name="no_transaction">No transaction found</string>
     <string name="no_sessions">No sessions found</string>

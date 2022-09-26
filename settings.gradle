@@ -3,6 +3,7 @@ include ':app'
 include ':database'
 
 // Internal Libraries
+include ':libraries:chart'
 include ':libraries:design'
 include ':libraries:localization'
 include ':libraries:architecture'

@@ -16,4 +16,5 @@
 
     <color name="withdraw">#F44336</color>
     <color name="deposit">#4CAF50</color>
+    <color name="colorCenterChartLine">#6E6E6E</color>
 </resources>

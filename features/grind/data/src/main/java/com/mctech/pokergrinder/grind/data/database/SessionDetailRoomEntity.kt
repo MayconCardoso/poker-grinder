@@ -6,10 +6,10 @@ import androidx.room.DatabaseView
   viewName = "grind_session_detail",
   value = "" +
     "SELECT " +
-    "gs.id, gs.title, gs.isOpened, COUNT(1) tournaments, SUM(buyIn) buyIn, SUM(profit) cash, AVG(buyIn) avgBuyIn, gs.startTimeInMs " +
-    "FROM grind_session_tournament gst " +
-    "INNER JOIN grind_session gs ON gs.id = gst.idSession " +
-    "GROUP  BY idSession" +
+    "gs.id, gs.title, gs.isOpened, COUNT(1) tournaments, COALESCE(SUM(buyIn), 0) buyIn, COALESCE(SUM(profit), 0) cash, COALESCE(AVG(buyIn), 0) avgBuyIn, gs.startTimeInMs " +
+    "FROM grind_session gs " +
+    "LEFT JOIN grind_session_tournament gst ON gs.id = gst.idSession " +
+    "GROUP BY gs.id" +
     "")
 public data class SessionDetailRoomEntity(
   val id: String,

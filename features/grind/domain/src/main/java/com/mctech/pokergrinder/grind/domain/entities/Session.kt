@@ -15,7 +15,7 @@ data class Session(
 ) : Serializable {
 
   val roi: Double
-    get() = (cash - buyIn) / buyIn * 100
+    get() = if (buyIn == 0.0) 0.0 else (cash - buyIn) / buyIn * 100
 
   val balance: Double
     get() = cash - buyIn

@@ -13,7 +13,7 @@ import com.mctech.pokergrinder.tournament.data.database.TournamentDao
 import com.mctech.pokergrinder.tournament.data.database.TournamentRoomEntity
 
 @Database(
-  version = 2,
+  version = 3,
   entities = [
     SessionRoomEntity::class,
     SessionTournamentRoomEntity::class,

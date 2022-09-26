@@ -15,12 +15,21 @@
         tools:layout="@layout/fragment_bankroll_balance" />
 
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/component_performance"
+        android:name="com.mctech.pokergrinder.summary.overall_chart.SummaryOverallPerformanceFragment"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/component_balance"
+        tools:layout="@layout/fragment_summary_overall_performance" />
+
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/component_investment"
         android:name="com.mctech.pokergrinder.summary.investment.SummaryInvestmentFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/component_balance"
+        app:layout_constraintTop_toBottomOf="@id/component_performance"
         tools:layout="@layout/fragment_summary_investment" />
 
     <androidx.fragment.app.FragmentContainerView
