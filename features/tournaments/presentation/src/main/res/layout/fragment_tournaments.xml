@@ -70,43 +70,17 @@
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/tournaments"
-        android:layout_width="match_parent"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/tournaments_component"
+        android:name="com.mctech.pokergrinder.tournaments.list.TournamentListFragment"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
-        android:orientation="vertical"
-        android:overScrollMode="never"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/new_tournament"
-        app:layout_constraintTop_toBottomOf="@+id/header_card"
-        tools:itemCount="4"
-        tools:listitem="@layout/fragment_tournaments_item" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tournaments_empty"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:text="@string/no_tournament"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textStyle="bold"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="gone" />
+        app:layout_constraintEnd_toEndOf="@id/header_card"
+        app:layout_constraintStart_toStartOf="@id/header_card"
+        app:layout_constraintTop_toBottomOf="@id/header_card" />
 
     <Button
         android:id="@+id/new_tournament"

@@ -1,19 +1,19 @@
-package com.mctech.pokergrinder.tournament.presentation.list.adapter
+package com.mctech.pokergrinder.tournaments.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mctech.pokergrinder.architecture.utility.SimpleItemDiffCallback
-import com.mctech.pokergrinder.tournament.presentation.databinding.FragmentTournamentsItemBinding
 import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
+import com.mctech.pokergrinder.tournaments.list.databinding.FragmentTournamentListItemBinding
 
-internal class TournamentsAdapter(
-  private val eventConsumer: TournamentsAdapterConsumer,
-) : ListAdapter<Tournament, TournamentsAdapter.ViewHolder>(SimpleItemDiffCallback()) {
+internal class TournamentListAdapter(
+  private val tournamentClicked: (Tournament) -> Unit,
+) : ListAdapter<Tournament, TournamentListAdapter.ViewHolder>(SimpleItemDiffCallback()) {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
-    FragmentTournamentsItemBinding.inflate(
+    FragmentTournamentListItemBinding.inflate(
       LayoutInflater.from(parent.context), parent, false
     )
   )
@@ -23,7 +23,7 @@ internal class TournamentsAdapter(
   }
 
   inner class ViewHolder(
-    private val binding: FragmentTournamentsItemBinding,
+    private val binding: FragmentTournamentListItemBinding,
   ) : RecyclerView.ViewHolder(binding.root) {
 
     init {
@@ -40,7 +40,7 @@ internal class TournamentsAdapter(
     }
 
     private fun onItemClicked(item: Tournament) {
-      eventConsumer.consume(TournamentsAdapterConsumerEvent.TournamentClicked(item))
+      tournamentClicked(item)
     }
   }
 }

@@ -4,7 +4,6 @@ import androidx.lifecycle.viewModelScope
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.architecture.OnInteraction
-import com.mctech.pokergrinder.tournament.presentation.list.adapter.TournamentsAdapterConsumerEvent
 import com.mctech.pokergrinder.tournaments.domain.usecase.ComputesAverageBuyInUseCase
 import com.mctech.pokergrinder.tournaments.domain.usecase.ComputesInvestmentPerSessionUseCase
 import com.mctech.pokergrinder.tournaments.domain.usecase.ObserveTournamentUseCase
@@ -43,13 +42,11 @@ internal class TournamentsViewModel @Inject constructor(
       .launchIn(viewModelScope)
   }
 
-  @OnInteraction(TournamentsInteraction.OnTournamentEvent::class)
-  private suspend fun onTournamentEventInteraction(interaction: TournamentsInteraction.OnTournamentEvent) {
-    when (interaction.event) {
-      is TournamentsAdapterConsumerEvent.TournamentClicked -> {
-        sendCommand(TournamentsCommand.NavigateToEditor(interaction.event.tournament))
-      }
-    }
+  @OnInteraction(TournamentsInteraction.OnTournamentClicked::class)
+  private suspend fun onTournamentEventInteraction(
+    interaction: TournamentsInteraction.OnTournamentClicked,
+  ) {
+    sendCommand(TournamentsCommand.NavigateToEditor(interaction.tournament))
   }
 
 }

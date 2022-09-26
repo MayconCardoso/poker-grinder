@@ -35,7 +35,6 @@ internal class GrindAdapter(
       }
     }
 
-
     fun bind(session: Session) {
       val context = binding.root.context
 
@@ -52,6 +51,7 @@ internal class GrindAdapter(
         if (session.outcome >= 0) R.color.deposit else R.color.withdraw
       )
       binding.indicator.setBackgroundColor(color)
+      binding.amount.setTextColor(color)
     }
   }
 

@@ -25,6 +25,8 @@
     <string name="up_days">Up days</string>
     <string name="down_days">Down days</string>
     <string name="tournament_management">Tournament Management</string>
+    <string name="manual_buy_in">Manual Buy-in</string>
+    <string name="select_tournament">Or select tournament</string>
     <string name="bankroll">Bankroll</string>
     <string name="bankroll_deposit">Bankroll Deposit</string>
     <string name="title">Title</string>

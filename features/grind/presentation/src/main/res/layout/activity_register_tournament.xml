@@ -1,50 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20dp">
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/primary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:subtitleTextColor="@color/white"
+        app:title="@string/tournament_management"
+        app:titleTextColor="@color/white" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/title"
+        android:id="@+id/manual"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/tournament_management"
+        android:layout_margin="12dp"
+        android:hint="@string/manual_buy_in"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/tournament_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
         android:hint="@string/title"
-        app:layout_constraintTop_toBottomOf="@id/title" />
+        app:layout_constraintTop_toBottomOf="@id/manual" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/tournament_buy_in"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:hint="@string/buy_in"
         android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="@+id/tournament_title"
+        app:layout_constraintStart_toStartOf="@+id/tournament_title"
         app:layout_constraintTop_toBottomOf="@id/tournament_title" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/tournament_profit"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:hint="@string/profit"
         android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="@+id/tournament_buy_in"
+        app:layout_constraintStart_toStartOf="@+id/tournament_buy_in"
         app:layout_constraintTop_toBottomOf="@id/tournament_buy_in" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/tournament_selection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="pre_select, tournaments"
+        tools:visibility="visible" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/pre_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:hint="@string/select_tournament"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/tournament_profit" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/tournaments"
+        android:name="com.mctech.pokergrinder.tournaments.list.TournamentListFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@id/save"
+        app:layout_constraintEnd_toEndOf="@id/pre_select"
+        app:layout_constraintStart_toStartOf="@id/pre_select"
+        app:layout_constraintTop_toBottomOf="@id/pre_select" />
 
     <Button
         android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="12dp"
         android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent" />
 

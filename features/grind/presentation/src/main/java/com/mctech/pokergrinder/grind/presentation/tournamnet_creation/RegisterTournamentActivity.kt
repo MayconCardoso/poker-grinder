@@ -14,10 +14,12 @@ import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
 import com.mctech.pokergrinder.grind.presentation.databinding.ActivityRegisterTournamentBinding
+import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
+import com.mctech.pokergrinder.tournaments.list.TournamentListCallback
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-public class RegisterTournamentActivity : AppCompatActivity() {
+public class RegisterTournamentActivity : AppCompatActivity(), TournamentListCallback {
 
   // region Variables
 
@@ -64,6 +66,7 @@ public class RegisterTournamentActivity : AppCompatActivity() {
 
     // Resolve profit
     binding.tournamentProfit.isVisible = tournament != null
+    binding.tournamentSelection.isVisible = tournament == null
     binding.tournamentProfit.setText(tournament?.profit?.toString() ?: "0")
   }
 
@@ -81,6 +84,11 @@ public class RegisterTournamentActivity : AppCompatActivity() {
         )
       )
     }
+  }
+
+  override fun onTournamentClicked(tournament: Tournament) {
+    binding.tournamentTitle.setText(tournament.title)
+    binding.tournamentBuyIn.setText(tournament.buyIn.toString())
   }
 
   // endregion
