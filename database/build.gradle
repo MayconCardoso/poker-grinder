@@ -24,8 +24,12 @@ dependencies {
     // Database
     implementation "androidx.room:room-runtime:$ROOM_VERSION"
     implementation "androidx.room:room-ktx:$ROOM_VERSION"
+    implementation 'androidx.test:monitor:1.5.0'
     kapt "androidx.room:room-compiler:$ROOM_VERSION"
 
     // Testing
+    androidTestImplementation "androidx.test.ext:junit:$ANDROIDX_TEST_EXT_JUNIT_VERSION"
+    androidTestImplementation "androidx.test:runner:$ANDROIDX_TEST_VERSION"
+    androidTestImplementation "androidx.test:rules:$ANDROIDX_TEST_VERSION"
     androidTestImplementation "androidx.room:room-testing:$ROOM_VERSION"
 }
