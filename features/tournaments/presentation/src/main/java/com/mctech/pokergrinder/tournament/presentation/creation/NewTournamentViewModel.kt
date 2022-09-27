@@ -12,20 +12,20 @@ import javax.inject.Inject
 import kotlin.time.Duration.Companion.hours
 
 @HiltViewModel
-internal class TournamentViewModel @Inject constructor(
+internal class NewTournamentViewModel @Inject constructor(
   private val savesTournamentUseCase: SavesTournamentUseCase,
 ) : BaseViewModel() {
 
   private val _componentState by lazy { MutableStateFlow<Tournament?>(null) }
   val componentState: StateFlow<Tournament?> by lazy { _componentState }
 
-  @OnInteraction(TournamentInteraction.ScreenFirstOpen::class)
-  private fun onScreenOpened(interaction: TournamentInteraction.ScreenFirstOpen) {
+  @OnInteraction(NewTournamentInteraction.ScreenFirstOpen::class)
+  private fun onScreenOpened(interaction: NewTournamentInteraction.ScreenFirstOpen) {
     _componentState.value = interaction.tournament
   }
 
-  @OnInteraction(TournamentInteraction.SaveTournament::class)
-  private suspend fun saveTournamentInteraction(interaction: TournamentInteraction.SaveTournament) {
+  @OnInteraction(NewTournamentInteraction.SaveTournament::class)
+  private suspend fun saveTournamentInteraction(interaction: NewTournamentInteraction.SaveTournament) {
     // Creates tournament
     val tournament = Tournament(
       id = _componentState.value?.id ?: "",
@@ -42,7 +42,7 @@ internal class TournamentViewModel @Inject constructor(
     savesTournamentUseCase(tournament)
 
     // Closes screen
-    sendCommand(TournamentCommand.CloseScreen)
+    sendCommand(NewTournamentCommand.CloseScreen)
   }
 
 }

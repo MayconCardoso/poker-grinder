@@ -86,7 +86,8 @@
         app:layout_constraintBottom_toTopOf="@id/save"
         app:layout_constraintEnd_toEndOf="@id/pre_select"
         app:layout_constraintStart_toStartOf="@id/pre_select"
-        app:layout_constraintTop_toBottomOf="@id/pre_select" />
+        app:layout_constraintTop_toBottomOf="@id/pre_select"
+        tools:layout="@layout/fragment_tournament_list" />
 
     <Button
         android:id="@+id/save"

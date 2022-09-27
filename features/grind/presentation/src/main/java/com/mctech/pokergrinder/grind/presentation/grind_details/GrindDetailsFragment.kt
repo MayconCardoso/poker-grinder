@@ -1,12 +1,11 @@
 package com.mctech.pokergrinder.grind.presentation.grind_details
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
+import android.view.View
 import androidx.core.view.isVisible
-import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.architecture.ViewCommand
 import com.mctech.pokergrinder.architecture.extensions.bindCommand
@@ -16,15 +15,17 @@ import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.architecture.utility.SimpleSpaceItemDecoration
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
-import com.mctech.pokergrinder.grind.presentation.databinding.ActivityGrindDetailsBinding
+import com.mctech.pokergrinder.grind.presentation.GrindNavigation
+import com.mctech.pokergrinder.grind.presentation.R
+import com.mctech.pokergrinder.grind.presentation.databinding.FragmentGrindDetailsBinding
 import com.mctech.pokergrinder.grind.presentation.grind_details.adapter.GrindDetailsAdapter
 import com.mctech.pokergrinder.grind.presentation.grind_details.adapter.GrindDetailsConsumer
 import com.mctech.pokergrinder.grind.presentation.grind_details.adapter.GrindDetailsConsumerEvent
-import com.mctech.pokergrinder.grind.presentation.tournamnet_creation.RegisterTournamentActivity
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-public class GrindDetailsActivity : AppCompatActivity() {
+public class GrindDetailsFragment : Fragment(R.layout.fragment_grind_details) {
 
   // region Variables
 
@@ -36,7 +37,7 @@ public class GrindDetailsActivity : AppCompatActivity() {
   /**
    * New Grind Ui Binding
    */
-  private val binding by viewBinding(ActivityGrindDetailsBinding::inflate)
+  private val binding by viewBinding(FragmentGrindDetailsBinding::bind)
 
   /**
    * Tournaments adapter event consumer.
@@ -55,16 +56,21 @@ public class GrindDetailsActivity : AppCompatActivity() {
   private val tournamentAdapter by lazy {
     GrindDetailsAdapter(eventConsumer = tournamentAdapterConsumer)
   }
+
+  /**
+   * Feature navigation
+   */
+  @Inject
+  public lateinit var navigation: GrindNavigation
+
   // endregion
 
   // region Lifecycle
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(binding.root)
-
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
     // Gets tournament
-    val session = intent.getSerializableExtra(SESSION_PARAM) as Session
+    val session = arguments?.getSerializable(SESSION_PARAM) as Session
     viewModel.interact(GrindDetailsInteraction.ScreenFirstOpen(session))
 
     // Setup Listeners
@@ -181,33 +187,21 @@ public class GrindDetailsActivity : AppCompatActivity() {
 
   private fun consumeCommand(command: ViewCommand) {
     when (command) {
-      is GrindDetailsCommand.CloseScreen -> finish()
+      is GrindDetailsCommand.CloseScreen -> navigation.navigateBack()
       is GrindDetailsCommand.GoToTournamentEditor -> navigateToTournament(command)
     }
   }
 
   private fun navigateToTournament(command: GrindDetailsCommand.GoToTournamentEditor) {
-    RegisterTournamentActivity.navigate(
-      origin = this,
-      session = command.session,
-      sessionTournament = command.sessionTournament,
-    )
+    navigation.goToSessionTournament(command.session, command.sessionTournament)
   }
 
   // endregion
 
   // region Builder
 
-  internal companion object {
-    private const val SESSION_PARAM = "SESSION_PARAM"
-
-    fun navigate(origin: FragmentActivity, session: Session) {
-      origin.startActivity(
-        Intent(origin, GrindDetailsActivity::class.java).apply {
-          putExtra(SESSION_PARAM, session)
-        }
-      )
-    }
+  public companion object {
+    public const val SESSION_PARAM: String = "SESSION_PARAM"
   }
 
   // endregion

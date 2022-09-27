@@ -1,11 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mctech.pokergrinder.grind.presentation">
-
-    <application>
-        <activity android:name=".grind_creation.NewGrindActivity" />
-        <activity android:name=".grind_details.GrindDetailsActivity" />
-        <activity android:name=".tournamnet_creation.RegisterTournamentActivity" />
-    </application>
-
-</manifest>
+<manifest package="com.mctech.pokergrinder.grind.presentation" />

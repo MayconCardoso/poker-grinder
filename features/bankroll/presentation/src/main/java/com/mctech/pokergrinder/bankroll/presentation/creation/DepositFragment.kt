@@ -1,18 +1,20 @@
 package com.mctech.pokergrinder.bankroll.presentation.creation
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentActivity
+import android.view.View
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.mctech.pokergrinder.architecture.ViewCommand
 import com.mctech.pokergrinder.architecture.extensions.bindCommand
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
-import com.mctech.pokergrinder.bankroll.presentation.databinding.ActivityDepositBinding
+import com.mctech.pokergrinder.bankroll.presentation.R
+import com.mctech.pokergrinder.bankroll.presentation.databinding.FragmentDepositBinding
+import com.mctech.pokergrinder.bankroll.presentation.list.BankrollNavigation
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-public class DepositActivity : AppCompatActivity() {
+public class DepositFragment : Fragment(R.layout.fragment_deposit) {
 
   // region Variables
 
@@ -24,16 +26,20 @@ public class DepositActivity : AppCompatActivity() {
   /**
    * Tournament Ui Binding
    */
-  private val binding by viewBinding(ActivityDepositBinding::inflate)
+  private val binding by viewBinding(FragmentDepositBinding::bind)
+
+  /**
+   * Feature navigation
+   */
+  @Inject
+  public lateinit var navigation: BankrollNavigation
 
   // endregion
 
   // region Lifecycle
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(binding.root)
-
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
     // Setup Listeners
     setupListeners()
 
@@ -62,17 +68,7 @@ public class DepositActivity : AppCompatActivity() {
 
   private fun consumeCommand(command: ViewCommand) {
     when (command) {
-      is TournamentCommand.CloseScreen -> finish()
-    }
-  }
-
-  // endregion
-
-  // region Builder
-
-  internal companion object {
-    fun navigate(origin: FragmentActivity) {
-      origin.startActivity(Intent(origin, DepositActivity::class.java))
+      is TournamentCommand.CloseScreen -> navigation.navigateBack()
     }
   }
 

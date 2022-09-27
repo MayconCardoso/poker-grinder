@@ -1,19 +1,21 @@
 package com.mctech.pokergrinder.grind.presentation.grind_creation
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentActivity
+import android.view.View
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.mctech.pokergrinder.architecture.ViewCommand
 import com.mctech.pokergrinder.architecture.extensions.bindCommand
 import com.mctech.pokergrinder.architecture.extensions.bindState
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
-import com.mctech.pokergrinder.grind.presentation.databinding.ActivityNewGrindBinding
+import com.mctech.pokergrinder.grind.presentation.GrindNavigation
+import com.mctech.pokergrinder.grind.presentation.R
+import com.mctech.pokergrinder.grind.presentation.databinding.FragmentNewGrindBinding
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-public class NewGrindActivity : AppCompatActivity() {
+public class NewGrindFragment : Fragment(R.layout.fragment_new_grind) {
 
   // region Variables
 
@@ -25,16 +27,20 @@ public class NewGrindActivity : AppCompatActivity() {
   /**
    * New Grind Ui Binding
    */
-  private val binding by viewBinding(ActivityNewGrindBinding::inflate)
+  private val binding by viewBinding(FragmentNewGrindBinding::bind)
+
+  /**
+   * Feature navigation
+   */
+  @Inject
+  public lateinit var navigation: GrindNavigation
 
   // endregion
 
   // region Lifecycle
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(binding.root)
-
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
     // Setup Listeners
     setupListeners()
 
@@ -73,17 +79,7 @@ public class NewGrindActivity : AppCompatActivity() {
 
   private fun consumeCommand(command: ViewCommand) {
     when (command) {
-      is NewGrindCommand.CloseScreen -> finish()
-    }
-  }
-
-  // endregion
-
-  // region Builder
-
-  internal companion object {
-    fun navigate(origin: FragmentActivity) {
-      origin.startActivity(Intent(origin, NewGrindActivity::class.java))
+      is NewGrindCommand.CloseScreen -> navigation.navigateBack()
     }
   }
 

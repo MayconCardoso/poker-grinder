@@ -1,44 +1,50 @@
 package com.mctech.pokergrinder.tournament.presentation.creation
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentActivity
+import android.view.View
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.mctech.pokergrinder.architecture.ViewCommand
 import com.mctech.pokergrinder.architecture.extensions.bindCommand
 import com.mctech.pokergrinder.architecture.extensions.bindState
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
-import com.mctech.pokergrinder.tournament.presentation.databinding.ActivityTournamentBinding
+import com.mctech.pokergrinder.tournament.presentation.R
+import com.mctech.pokergrinder.tournament.presentation.TournamentNavigation
+import com.mctech.pokergrinder.tournament.presentation.databinding.FragmentTournamentBinding
 import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-public class TournamentActivity : AppCompatActivity() {
+public class NewTournamentFragment : Fragment(R.layout.fragment_tournament) {
 
   // region Variables
 
   /**
    * Tournament View Model
    */
-  private val viewModel by viewModels<TournamentViewModel>()
+  private val viewModel by viewModels<NewTournamentViewModel>()
 
   /**
    * Tournament Ui Binding
    */
-  private val binding by viewBinding(ActivityTournamentBinding::inflate)
+  private val binding by viewBinding(FragmentTournamentBinding::bind)
+
+  /**
+   * Feature navigation
+   */
+  @Inject
+  public lateinit var navigation: TournamentNavigation
 
   // endregion
 
   // region Lifecycle
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(binding.root)
-
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
     // Gets tournament
-    val tournament = intent.getSerializableExtra(TOURNAMENT_PARAM) as? Tournament
-    viewModel.interact(TournamentInteraction.ScreenFirstOpen(tournament))
+    val tournament = arguments?.getSerializable(TOURNAMENT_PARAM) as? Tournament
+    viewModel.interact(NewTournamentInteraction.ScreenFirstOpen(tournament))
 
     // Setup Listeners
     setupListeners()
@@ -68,7 +74,7 @@ public class TournamentActivity : AppCompatActivity() {
   private fun setupListeners() {
     binding.save.setOnClickListener {
       viewModel.interact(
-        TournamentInteraction.SaveTournament(
+        NewTournamentInteraction.SaveTournament(
           title = binding.tournamentTitle.text.toString(),
           guaranteed = binding.tournamentGtd.text.toString().toInt(),
           countBuyIn = binding.tournamentReBuy.text.toString().toInt(),
@@ -84,7 +90,7 @@ public class TournamentActivity : AppCompatActivity() {
 
   private fun consumeCommand(command: ViewCommand) {
     when (command) {
-      is TournamentCommand.CloseScreen -> finish()
+      is NewTournamentCommand.CloseScreen -> navigation.navigateBack()
     }
   }
 
@@ -92,19 +98,8 @@ public class TournamentActivity : AppCompatActivity() {
 
   // region Builder
 
-  internal companion object {
-    private const val TOURNAMENT_PARAM = "TOURNAMENT_PARAM"
-
-    fun navigate(
-      origin: FragmentActivity,
-      tournament: Tournament?,
-    ) {
-      origin.startActivity(
-        Intent(origin, TournamentActivity::class.java).apply {
-          putExtra(TOURNAMENT_PARAM, tournament)
-        }
-      )
-    }
+  public companion object {
+    public const val TOURNAMENT_PARAM: String = "TOURNAMENT_PARAM"
   }
 
   // endregion

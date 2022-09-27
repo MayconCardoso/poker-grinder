@@ -15,15 +15,15 @@ import com.mctech.pokergrinder.architecture.extensions.dp
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.architecture.utility.SimpleSpaceItemDecoration
 import com.mctech.pokergrinder.grind.domain.entities.Session
+import com.mctech.pokergrinder.grind.presentation.GrindNavigation
 import com.mctech.pokergrinder.grind.presentation.R
-import com.mctech.pokergrinder.grind.presentation.grind_creation.NewGrindActivity
 import com.mctech.pokergrinder.grind.presentation.databinding.FragmentGrindsBinding
-import com.mctech.pokergrinder.grind.presentation.grind_details.GrindDetailsActivity
 import com.mctech.pokergrinder.grind.presentation.grind_list.adapter.GrindAdapter
 import com.mctech.pokergrinder.grind.presentation.grind_list.adapter.GrindAdapterConsumer
 import com.mctech.pokergrinder.grind.presentation.grind_list.adapter.GrindAdapterConsumerEvent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 public class GrindsFragment : Fragment(R.layout.fragment_grinds) {
@@ -57,6 +57,12 @@ public class GrindsFragment : Fragment(R.layout.fragment_grinds) {
   private val grindsAdapter by lazy {
     GrindAdapter(eventConsumer = grindsAdapterConsumer)
   }
+
+  /**
+   * Feature navigation
+   */
+  @Inject
+  public lateinit var navigation: GrindNavigation
 
   // endregion
 
@@ -140,11 +146,11 @@ public class GrindsFragment : Fragment(R.layout.fragment_grinds) {
   }
 
   private fun navigateToEditor() {
-    NewGrindActivity.navigate(requireActivity())
+    navigation.goToNewSession()
   }
 
   private fun navigateToSession(session: Session) {
-    GrindDetailsActivity.navigate(requireActivity(), session)
+    navigation.goToSessionDetails(session)
   }
 
   // endregion

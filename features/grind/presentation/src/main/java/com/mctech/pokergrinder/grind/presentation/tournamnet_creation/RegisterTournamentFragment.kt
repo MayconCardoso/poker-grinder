@@ -1,25 +1,27 @@
 package com.mctech.pokergrinder.grind.presentation.tournamnet_creation
 
-import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.mctech.pokergrinder.architecture.ViewCommand
 import com.mctech.pokergrinder.architecture.extensions.bindCommand
 import com.mctech.pokergrinder.architecture.extensions.bindState
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
-import com.mctech.pokergrinder.grind.presentation.databinding.ActivityRegisterTournamentBinding
+import com.mctech.pokergrinder.grind.presentation.GrindNavigation
+import com.mctech.pokergrinder.grind.presentation.R
+import com.mctech.pokergrinder.grind.presentation.databinding.FragmentRegisterTournamentBinding
 import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
 import com.mctech.pokergrinder.tournaments.list.TournamentListCallback
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-public class RegisterTournamentActivity : AppCompatActivity(), TournamentListCallback {
+public class RegisterTournamentFragment : Fragment(R.layout.fragment_register_tournament), TournamentListCallback {
 
   // region Variables
 
@@ -31,19 +33,23 @@ public class RegisterTournamentActivity : AppCompatActivity(), TournamentListCal
   /**
    * Tournament Ui Binding
    */
-  private val binding by viewBinding(ActivityRegisterTournamentBinding::inflate)
+  private val binding by viewBinding(FragmentRegisterTournamentBinding::bind)
+
+  /**
+   * Feature navigation
+   */
+  @Inject
+  public lateinit var navigation: GrindNavigation
 
   // endregion
 
   // region Lifecycle
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(binding.root)
-
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
     // Gets tournament
-    val session = intent.getSerializableExtra(SESSION_PARAM) as Session
-    val tournament = intent.getSerializableExtra(TOURNAMENT_PARAM) as? SessionTournament
+    val session = arguments?.getSerializable(SESSION_PARAM) as Session
+    val tournament = arguments?.getSerializable(TOURNAMENT_PARAM) as? SessionTournament
     viewModel.interact(RegisterTournamentInteraction.ScreenFirstOpen(session, tournament))
 
     // Setup Listeners
@@ -97,14 +103,14 @@ public class RegisterTournamentActivity : AppCompatActivity(), TournamentListCal
 
   private fun consumeCommand(command: ViewCommand) {
     when (command) {
-      is RegisterTournamentCommand.CloseScreen -> finish()
+      is RegisterTournamentCommand.CloseScreen -> navigation.navigateBack()
       is RegisterTournamentCommand.InsufficientBalanceError -> showError()
     }
   }
 
   private fun showError() {
     Toast.makeText(
-      this,
+      requireActivity(),
       com.mctech.pokergrinder.localization.R.string.insufficient_balance,
       Toast.LENGTH_SHORT,
     ).show()
@@ -114,22 +120,9 @@ public class RegisterTournamentActivity : AppCompatActivity(), TournamentListCal
 
   // region Builder
 
-  internal companion object {
-    private const val SESSION_PARAM = "SESSION_PARAM"
-    private const val TOURNAMENT_PARAM = "TOURNAMENT_PARAM"
-
-    fun navigate(
-      origin: FragmentActivity,
-      session: Session?,
-      sessionTournament: SessionTournament?,
-    ) {
-      origin.startActivity(
-        Intent(origin, RegisterTournamentActivity::class.java).apply {
-          putExtra(SESSION_PARAM, session)
-          putExtra(TOURNAMENT_PARAM, sessionTournament)
-        }
-      )
-    }
+  public companion object {
+    public const val SESSION_PARAM: String = "SESSION_PARAM"
+    public const val TOURNAMENT_PARAM: String = "TOURNAMENT_PARAM"
   }
 
   // endregion
