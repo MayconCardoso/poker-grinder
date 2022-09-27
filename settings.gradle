@@ -37,3 +37,7 @@ include ':features:summary:presentation'
 include ':features:summary:components:investment'
 include ':features:summary:components:session'
 include ':features:summary:components:overall_chart'
+
+// Feature - Deck
+include ':features:deck:domain'
+include ':features:deck:components:card_picker'
