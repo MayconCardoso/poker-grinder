@@ -1,6 +1,7 @@
 package com.mctech.pokergrinder.deck.components.card_picker
 
 import androidx.core.os.bundleOf
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
@@ -9,7 +10,7 @@ import com.mctech.pokergrinder.deck.domain.Card
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-public class CardPickerFragment : Fragment(R.layout.fragment_card_picker) {
+public class CardPickerFragment : DialogFragment(R.layout.fragment_card_picker) {
   // region Variables
 
   /**
