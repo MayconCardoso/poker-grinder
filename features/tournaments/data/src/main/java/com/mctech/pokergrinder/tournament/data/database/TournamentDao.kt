@@ -15,6 +15,6 @@ public interface TournamentDao {
   @Delete
   public fun delete(tournament: TournamentRoomEntity)
 
-  @Query("SELECT * from tournament ORDER BY start_time DESC")
+  @Query("SELECT * from tournament ORDER BY start_time")
   public fun observe(): Flow<List<TournamentRoomEntity>>
 }
