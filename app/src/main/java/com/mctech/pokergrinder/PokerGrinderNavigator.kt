@@ -56,6 +56,9 @@ class PokerGrinderNavigator : TournamentNavigation, BankrollNavigation, GrindNav
     navController?.navigateUp()
   }
 
+  override fun goToSettings() {
+    navController?.navigate(R.id.settings_fragment)
+  }
   // endregion
 
   // region Tournament navigation

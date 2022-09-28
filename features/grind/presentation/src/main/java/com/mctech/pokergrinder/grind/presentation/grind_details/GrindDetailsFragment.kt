@@ -69,6 +69,8 @@ public class GrindDetailsFragment : Fragment(R.layout.fragment_grind_details) {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    // Inflates menu
+    setupToolbarMenu()
 
     // Gets tournament
     val session = arguments?.getSerializable(SESSION_PARAM) as Session
@@ -180,6 +182,16 @@ public class GrindDetailsFragment : Fragment(R.layout.fragment_grind_details) {
   private fun setupTournamentList() {
     binding.tournaments.addItemDecoration(SimpleSpaceItemDecoration(bottomOffset = 12.dp()))
     binding.tournaments.adapter = tournamentAdapter
+  }
+
+  private fun setupToolbarMenu() {
+    binding.toolbar.inflateMenu(R.menu.session_menu)
+    binding.toolbar.setOnMenuItemClickListener {
+      if (it.itemId == R.id.settings_fragment) {
+        navigation.goToSettings()
+      }
+      true
+    }
   }
 
   // endregion
