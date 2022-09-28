@@ -20,4 +20,14 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!-- Full Screen Dialog. -->
+    <style name="Theme.PokerGrinder.FullScreen" parent="Theme.PokerGrinder">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
 </resources>

@@ -62,6 +62,36 @@
             app:layout_constraintTop_toBottomOf="@id/buy_in_title"
             tools:text="11.00" />
 
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/buy_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="buy_in, buy_in_title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/cash_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/cash"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/buy_barrier"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/cash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/cash_title"
+            app:layout_constraintTop_toBottomOf="@id/cash_title"
+            tools:text="11.00" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/profit"
             android:layout_width="wrap_content"

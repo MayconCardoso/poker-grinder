@@ -27,5 +27,5 @@ internal fun SettingsRoomEntity.asBusinessSetting() = Settings(
 internal fun Settings.asDatabaseTransaction() = SettingsRoomEntity(
   settingKey = key,
   settingValue = value,
-  settingTitle = value,
+  settingTitle = title,
 )

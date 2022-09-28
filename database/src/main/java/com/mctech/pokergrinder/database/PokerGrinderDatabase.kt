@@ -30,7 +30,7 @@ import com.mctech.pokergrinder.tournament.data.database.TournamentRoomEntity
 public abstract class PokerGrinderDatabase : RoomDatabase() {
   public abstract fun grindDao(): GrindDao
   public abstract fun summaryDao(): SummaryDao
-  public abstract fun SettingsDao(): SettingsDao
+  public abstract fun settingsDao(): SettingsDao
   public abstract fun tournamentDao(): TournamentDao
   public abstract fun bankrollTransactionDao(): BankrollTransactionDao
 }

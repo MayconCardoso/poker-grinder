@@ -41,3 +41,4 @@ include ':features:summary:components:overall_chart'
 // Feature - Settings
 include ':features:settings:domain'
 include ':features:settings:data'
+include ':features:settings:presentation'

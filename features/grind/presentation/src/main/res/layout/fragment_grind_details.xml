@@ -235,7 +235,7 @@
         app:layout_constraintBottom_toTopOf="@id/register"
         app:layout_constraintTop_toBottomOf="@+id/header_cash"
         tools:itemCount="4"
-        tools:listitem="@layout/activity_grind_details_tournament" />
+        tools:listitem="@layout/fragment_grind_details_tournament" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tournaments_empty"

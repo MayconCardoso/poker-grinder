@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mctech.pokergrinder.architecture.utility.SimpleItemDiffCallback
 import com.mctech.pokergrinder.design.R
 import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
-import com.mctech.pokergrinder.grind.presentation.databinding.ActivityGrindDetailsTournamentBinding
+import com.mctech.pokergrinder.grind.presentation.databinding.FragmentGrindDetailsTournamentBinding
 
 internal class GrindDetailsAdapter(
   private val eventConsumer: GrindDetailsConsumer,
@@ -16,7 +16,7 @@ internal class GrindDetailsAdapter(
   ListAdapter<SessionTournament, GrindDetailsAdapter.ViewHolder>(SimpleItemDiffCallback()) {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
-    ActivityGrindDetailsTournamentBinding.inflate(
+    FragmentGrindDetailsTournamentBinding.inflate(
       LayoutInflater.from(parent.context), parent, false
     )
   )
@@ -26,7 +26,7 @@ internal class GrindDetailsAdapter(
   }
 
   inner class ViewHolder(
-    private val binding: ActivityGrindDetailsTournamentBinding,
+    private val binding: FragmentGrindDetailsTournamentBinding,
   ) : RecyclerView.ViewHolder(binding.root) {
 
     init {
@@ -39,12 +39,13 @@ internal class GrindDetailsAdapter(
     fun bind(item: SessionTournament) {
       binding.title.text = item.title
       binding.buyIn.text = item.formattedBuyIn()
-      binding.profit.text = item.formattedProfit()
+      binding.profit.text = item.formattedBalance()
+      binding.cash.text = item.formattedProfit()
 
       // Change indicator color
       val color = ContextCompat.getColor(
         binding.root.context,
-        if (item.computesProfit() >= 0) R.color.deposit else R.color.withdraw
+        if (item.computesBalance() >= 0) R.color.deposit else R.color.withdraw
       )
       binding.indicator.setBackgroundColor(color)
       binding.profit.setTextColor(color)

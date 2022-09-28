@@ -69,6 +69,7 @@ public class GrindDetailsFragment : Fragment(R.layout.fragment_grind_details) {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+
     // Gets tournament
     val session = arguments?.getSerializable(SESSION_PARAM) as Session
     viewModel.interact(GrindDetailsInteraction.ScreenFirstOpen(session))
@@ -189,11 +190,16 @@ public class GrindDetailsFragment : Fragment(R.layout.fragment_grind_details) {
     when (command) {
       is GrindDetailsCommand.CloseScreen -> navigation.navigateBack()
       is GrindDetailsCommand.GoToTournamentEditor -> navigateToTournament(command)
+      is GrindDetailsCommand.ShowTournamentSelection -> showTournamentSelection()
     }
   }
 
   private fun navigateToTournament(command: GrindDetailsCommand.GoToTournamentEditor) {
     navigation.goToSessionTournament(command.session, command.sessionTournament)
+  }
+
+  private fun showTournamentSelection() {
+    TournamentSelectionDialog().show(childFragmentManager, "TournamentSelectionDialog")
   }
 
   // endregion

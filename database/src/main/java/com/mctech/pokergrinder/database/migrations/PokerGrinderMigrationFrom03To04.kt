@@ -16,7 +16,7 @@ internal val POKER_GRINDER_DATABASE_MIGRATION_03_TO_04 by lazy {
       // Insert default settings
       database.execSQL(
         """
-          INSERT INTO `settings` (`settingKey`, `settingValue`, `settingTitle`) VALUES ('group_session_tournaments', '0', 'Group similar session tournament')
+          INSERT INTO `settings` (`settingKey`, `settingValue`, `settingTitle`) VALUES ('group_session_tournaments', 'false', 'Group similar session tournament')
         """.trimIndent()
       )
     }

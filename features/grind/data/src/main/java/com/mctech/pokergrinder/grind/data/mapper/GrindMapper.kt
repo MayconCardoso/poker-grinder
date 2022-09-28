@@ -36,6 +36,7 @@ internal fun SessionTournamentRoomEntity.asBusinessTournaments() = SessionTourna
   buyIn = buyIn,
   profit = profit,
   startTimeInMs = startTimeInMs,
+  isGrouped = false,
 )
 
 /**

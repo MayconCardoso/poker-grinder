@@ -12,14 +12,19 @@ data class SessionTournament(
   val buyIn: Double,
   val profit: Double,
   val startTimeInMs: Long,
+  val isGrouped: Boolean,
 ) : Serializable {
 
-  fun computesProfit(): Double {
+  fun computesBalance(): Double {
     return profit - buyIn
   }
 
+  fun formattedBalance(): String {
+    return DecimalFormat("$#0.00").format(computesBalance())
+  }
+
   fun formattedProfit(): String {
-    return DecimalFormat("$#0.00").format(computesProfit())
+    return DecimalFormat("$#0.00").format(profit)
   }
 
   fun formattedBuyIn(): String {

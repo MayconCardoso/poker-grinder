@@ -3,6 +3,7 @@ apply from: "$rootDir/config/module/feature/presentation.gradle"
 dependencies {
     // Internal modules
     implementation project(path: ':features:grind:domain')
+    implementation project(path: ':features:settings:domain')
     implementation project(path: ':features:bankroll:domain')
     implementation project(path: ':features:tournaments:domain')
     implementation project(path: ':features:tournaments:components:list')

@@ -49,6 +49,13 @@
     </fragment>
 
     <fragment
+        android:id="@+id/settings_fragment"
+        android:name="com.mctech.pokergrinder.settings.presentation.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings" />
+
+
+    <fragment
         android:id="@+id/tournament_register"
         android:name="com.mctech.pokergrinder.tournament.presentation.creation.NewTournamentFragment"
         tools:layout="@layout/fragment_register_tournament">
