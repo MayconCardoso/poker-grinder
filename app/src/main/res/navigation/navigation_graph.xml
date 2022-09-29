@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/summary_fragment"
-        android:name="com.mctech.pokergrinder.summary.presentation.SummaryFragment"
+        android:name="com.mctech.pokergrinder.summary.presentation.SummaryContainerFragment"
         android:label="@string/summary"
         tools:layout="@layout/fragment_summary" />
 

@@ -11,4 +11,7 @@ public interface SummaryDao {
 
   @Query("SELECT SUM(profit - buyIn) AS profit, SUM(profit) AS cash, SUM(buyIn) AS buyIn FROM grind_session_tournament")
   public fun observeInvestmentSummary(): Flow<InvestmentSummaryRoomEntity>
+
+  @Query("SELECT title, COUNT(1) AS tournaments, SUM(profit) AS cash, SUM(buyIn) AS buyIn, SUM(profit - buyIn) AS profit FROM grind_session_tournament GROUP BY title ORDER BY profit DESC")
+  public fun observeTournamentSummary(): Flow<List<TournamentSummaryRoomEntity>>
 }

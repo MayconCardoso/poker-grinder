@@ -34,8 +34,9 @@ include ':features:grind:presentation'
 include ':features:summary:domain'
 include ':features:summary:data'
 include ':features:summary:presentation'
-include ':features:summary:components:investment'
 include ':features:summary:components:session'
+include ':features:summary:components:investment'
+include ':features:summary:components:tournaments'
 include ':features:summary:components:overall_chart'
 
 // Feature - Settings
