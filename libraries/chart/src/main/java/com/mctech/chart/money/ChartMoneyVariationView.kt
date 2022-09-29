@@ -46,7 +46,9 @@ public class ChartMoneyVariationView @JvmOverloads constructor(
   public fun render(data: List<MoneyVariationEntry>) {
     if(data.isEmpty()) return
     dataController.setData(data)
+    dataController.updateItemsDimensions(width, height)
     requestLayout()
+    invalidate()
   }
 
   override fun getSuggestedMinimumHeight(): Int {

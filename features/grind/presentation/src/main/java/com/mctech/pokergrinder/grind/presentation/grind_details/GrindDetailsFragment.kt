@@ -6,6 +6,7 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.mctech.chart.money.MoneyVariationEntry
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.architecture.ViewCommand
 import com.mctech.pokergrinder.architecture.extensions.bindCommand
@@ -83,6 +84,7 @@ public class GrindDetailsFragment : Fragment(R.layout.fragment_grind_details) {
     setupTournamentList()
 
     // Observes state.
+    bindState(viewModel.chartState, ::consumeChartState)
     bindState(viewModel.detailsState, ::consumeDetailState)
     bindState(viewModel.tournamentsState, ::consumeTournamentsState)
 
@@ -108,6 +110,10 @@ public class GrindDetailsFragment : Fragment(R.layout.fragment_grind_details) {
       is ComponentState.Loading -> rendersSessionLoading()
       is ComponentState.Success -> rendersSessionSuccess(state.result)
     }
+  }
+
+  private fun consumeChartState(data: List<MoneyVariationEntry>) {
+    binding.chart.render(data)
   }
 
   private fun rendersTournamentsLoading() {

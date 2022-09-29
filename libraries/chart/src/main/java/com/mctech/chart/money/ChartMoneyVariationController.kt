@@ -72,7 +72,9 @@ internal class ChartMoneyVariationController {
     viewWidth = width
 
     // The size of each column of the chart.
-    distanceBetweenElements = (width - circleMarkerRadius) / data.size
+    if (data.size > 0) {
+      distanceBetweenElements = (width - circleMarkerRadius) / data.size
+    }
 
     // Calculate the center of chart.
     centerZeroY = computeCenterZeroY()

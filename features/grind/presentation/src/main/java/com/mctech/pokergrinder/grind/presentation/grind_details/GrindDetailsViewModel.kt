@@ -1,6 +1,7 @@
 package com.mctech.pokergrinder.grind.presentation.grind_details
 
 import androidx.lifecycle.viewModelScope
+import com.mctech.chart.money.MoneyVariationEntry
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.architecture.OnInteraction
@@ -51,6 +52,12 @@ internal class GrindDetailsViewModel @Inject constructor(
     MutableStateFlow<ComponentState<List<SessionTournament>>>(ComponentState.Loading.FromEmpty)
   }
   val tournamentsState: StateFlow<ComponentState<List<SessionTournament>>> by lazy { _tournamentsState }
+
+  /**
+   * Holds the session chart.
+   */
+  private val _chartState by lazy { MutableStateFlow<List<MoneyVariationEntry>>(listOf()) }
+  val chartState: StateFlow<List<MoneyVariationEntry>> by lazy { _chartState }
 
   // endregion
 
@@ -108,6 +115,11 @@ internal class GrindDetailsViewModel @Inject constructor(
       }
       // Handle new state
       .onEach { tournaments ->
+        var balance = 0.0
+        _chartState.value = originalTemplateList.reversed().map {
+          balance += it.computesBalance()
+          MoneyVariationEntry(balance)
+        }
         _tournamentsState.value = ComponentState.Success(tournaments)
       }
       .launchIn(viewModelScope)

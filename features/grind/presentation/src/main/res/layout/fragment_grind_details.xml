@@ -16,6 +16,34 @@
         app:titleTextColor="@color/white"
         tools:title="Sep 12, 2022" />
 
+    <FrameLayout
+        android:id="@+id/chart_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/rounded_background_shape"
+        android:padding="4dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <com.mctech.chart.money.ChartMoneyVariationView
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/no_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:text="@string/no_transaction"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textStyle="bold"
+            android:visibility="gone" />
+    </FrameLayout>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/header_balance"
         android:layout_width="0dp"
@@ -24,19 +52,19 @@
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toStartOf="@+id/header_tournaments"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:layout_constraintTop_toBottomOf="@id/chart_container">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp">
+            android:layout_margin="8dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/balance_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/balance"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -47,6 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -81,14 +110,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp">
+            android:layout_margin="8dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tournament_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tournament"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -99,6 +128,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -133,14 +163,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp">
+            android:layout_margin="8dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/cash_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cash"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -151,6 +181,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -185,14 +216,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp">
+            android:layout_margin="8dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/buy_in_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/buy_in"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -203,6 +234,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
