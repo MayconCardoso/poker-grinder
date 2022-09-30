@@ -33,6 +33,7 @@
     <string name="bankroll">Bankroll</string>
     <string name="bankroll_deposit">Bankroll Deposit</string>
     <string name="title">Title</string>
+    <string name="new_profit_value">New profit value</string>
     <string name="save">Save</string>
     <string name="new_tournament">New tournament</string>
     <string name="new_transaction">New transaction</string>
@@ -42,4 +43,5 @@
     <string name="register_tournament">Register tournament</string>
     <string name="insufficient_balance">Insufficient Balance</string>
     <string name="group_similar_tournament">Group same tournament buy-in</string>
+    <string name="or_add_new_profit_manually">Or add new profit manually</string>
 </resources>

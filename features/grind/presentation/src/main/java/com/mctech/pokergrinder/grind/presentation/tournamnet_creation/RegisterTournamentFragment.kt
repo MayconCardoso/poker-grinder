@@ -21,7 +21,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-public class RegisterTournamentFragment : Fragment(R.layout.fragment_register_tournament), TournamentListCallback {
+public class RegisterTournamentFragment : Fragment(R.layout.fragment_register_tournament),
+  TournamentListCallback {
 
   // region Variables
 
@@ -74,6 +75,9 @@ public class RegisterTournamentFragment : Fragment(R.layout.fragment_register_to
     binding.tournamentProfit.isVisible = tournament != null
     binding.tournamentSelection.isVisible = tournament == null
     binding.tournamentProfit.setText(tournament?.profit?.toString() ?: "0")
+
+    // Resolve update profit container
+    binding.tournamentUpdateProfit.isVisible = tournament != null
   }
 
   // endregion
@@ -82,11 +86,13 @@ public class RegisterTournamentFragment : Fragment(R.layout.fragment_register_to
 
   private fun setupListeners() {
     binding.save.setOnClickListener {
+      val newProfitText = binding.newProfit.text.toString()
       viewModel.interact(
         RegisterTournamentInteraction.SaveTournament(
           title = binding.tournamentTitle.text.toString(),
           buyIn = binding.tournamentBuyIn.text.toString().toDouble(),
           profit = binding.tournamentProfit.text.toString().toDouble(),
+          addNewProfit = if (newProfitText.isBlank()) 0.0 else newProfitText.toDouble(),
         )
       )
     }

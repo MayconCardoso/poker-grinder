@@ -50,7 +50,7 @@ internal class RegisterTournamentViewModel @Inject constructor(
           tournament.copy(
             title = interaction.title,
             buyIn = interaction.buyIn,
-            profit = interaction.profit,
+            profit = interaction.profit + interaction.addNewProfit,
           )
         )
       }

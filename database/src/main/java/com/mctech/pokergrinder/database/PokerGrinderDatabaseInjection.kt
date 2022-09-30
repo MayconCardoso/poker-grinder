@@ -21,6 +21,7 @@ public class PokerGrinderDatabaseInjection {
   @Singleton
   public fun providesPokerGrinderDatabase(application: Application): PokerGrinderDatabase {
     return Room.databaseBuilder(application, PokerGrinderDatabase::class.java, "poker_grinder")
+      .addCallback(PokerGrinderDatabaseInitialization)
       .addMigrations(*PokerGrinderDatabaseMigrations.all)
       .build()
   }

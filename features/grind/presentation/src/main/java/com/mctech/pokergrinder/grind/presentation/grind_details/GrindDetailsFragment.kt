@@ -113,6 +113,7 @@ public class GrindDetailsFragment : Fragment(R.layout.fragment_grind_details) {
   }
 
   private fun consumeChartState(data: List<MoneyVariationEntry>) {
+    binding.noData.isVisible = data.isEmpty()
     binding.chart.render(data)
   }
 

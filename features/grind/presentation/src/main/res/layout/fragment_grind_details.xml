@@ -278,8 +278,8 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textStyle="bold"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/header_cash"
+        app:layout_constraintBottom_toTopOf="@id/register" />
 
     <ProgressBar
         android:id="@+id/progress"

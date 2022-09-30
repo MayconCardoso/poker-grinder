@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:constraint_referenced_ids="pre_select, tournaments"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/pre_select"
@@ -88,6 +88,35 @@
         app:layout_constraintStart_toStartOf="@id/pre_select"
         app:layout_constraintTop_toBottomOf="@id/pre_select"
         tools:layout="@layout/fragment_tournament_list" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/tournament_update_profit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="update_profit_title, new_profit"
+        tools:visibility="visible" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/update_profit_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:hint="@string/or_add_new_profit_manually"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/tournament_profit" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/new_profit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:hint="@string/new_profit_value"
+        android:inputType="numberDecimal"
+        app:layout_constraintTop_toBottomOf="@id/update_profit_title" />
 
     <Button
         android:id="@+id/save"

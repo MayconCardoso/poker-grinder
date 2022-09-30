@@ -15,6 +15,7 @@ internal sealed class RegisterTournamentInteraction : UserInteraction {
     val title: String,
     val buyIn: Double,
     val profit: Double,
+    val addNewProfit: Double,
   ) : RegisterTournamentInteraction()
 
 }
