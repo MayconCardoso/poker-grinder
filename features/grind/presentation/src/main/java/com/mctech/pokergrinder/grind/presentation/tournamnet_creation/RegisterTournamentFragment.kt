@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mctech.pokergrinder.architecture.ViewCommand
@@ -17,6 +18,8 @@ import com.mctech.pokergrinder.grind.presentation.R
 import com.mctech.pokergrinder.grind.presentation.databinding.FragmentRegisterTournamentBinding
 import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
 import com.mctech.pokergrinder.tournaments.list.TournamentListCallback
+import com.mctech.pokergrinder.tournaments.list.TournamentListInteraction
+import com.mctech.pokergrinder.tournaments.list.TournamentListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -30,6 +33,11 @@ public class RegisterTournamentFragment : Fragment(R.layout.fragment_register_to
    * Tournament View Model
    */
   private val viewModel by viewModels<RegisterTournamentViewModel>()
+
+  /**
+   * Tournament View Model
+   */
+  private val tournamentsViewModel by viewModels<TournamentListViewModel>()
 
   /**
    * Tournament Ui Binding
@@ -95,6 +103,10 @@ public class RegisterTournamentFragment : Fragment(R.layout.fragment_register_to
           addNewProfit = if (newProfitText.isBlank()) 0.0 else newProfitText.toDouble(),
         )
       )
+    }
+
+    binding.filter.doOnTextChanged { text, _, _, _ ->
+      tournamentsViewModel.interact(TournamentListInteraction.NewFilterQuery(text.toString()))
     }
   }
 

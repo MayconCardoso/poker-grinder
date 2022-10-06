@@ -63,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="pre_select, tournaments"
+        app:constraint_referenced_ids="pre_select, tournaments, filter"
         tools:visibility="gone" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -76,6 +76,15 @@
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/tournament_profit" />
 
+    <EditText
+        android:id="@+id/filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:hint="@string/filter_tournament"
+        app:layout_constraintTop_toBottomOf="@id/pre_select" />
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/tournaments"
         android:name="com.mctech.pokergrinder.tournaments.list.TournamentListFragment"
@@ -86,7 +95,7 @@
         app:layout_constraintBottom_toTopOf="@id/save"
         app:layout_constraintEnd_toEndOf="@id/pre_select"
         app:layout_constraintStart_toStartOf="@id/pre_select"
-        app:layout_constraintTop_toBottomOf="@id/pre_select"
+        app:layout_constraintTop_toBottomOf="@id/filter"
         tools:layout="@layout/fragment_tournament_list" />
 
     <androidx.constraintlayout.widget.Group
@@ -95,7 +104,7 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:constraint_referenced_ids="update_profit_title, new_profit"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/update_profit_title"

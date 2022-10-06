@@ -25,7 +25,9 @@ public class TournamentListFragment : Fragment(R.layout.fragment_tournament_list
   /**
    * Tournaments View Model
    */
-  private val viewModel by viewModels<TournamentListViewModel>()
+  private val viewModel by viewModels<TournamentListViewModel>(
+    ownerProducer = { requireParentFragment() }
+  )
 
   /**
    * Tournaments Ui Binding
