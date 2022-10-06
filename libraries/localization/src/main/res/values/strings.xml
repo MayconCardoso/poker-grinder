@@ -3,6 +3,7 @@
     <string name="session">Session</string>
     <string name="statement">Statement</string>
     <string name="tournament">Tournament</string>
+    <string name="settings">Settings</string>
     <string name="app_name">Poker Grinder</string>
     <string name="current_session">Current session</string>
     <string name="starts_at">Starts at</string>
@@ -29,14 +30,19 @@
     <string name="tournament_management">Tournament Management</string>
     <string name="manual_buy_in">Manual Buy-in</string>
     <string name="select_tournament">Or select tournament</string>
+    <string name="filter_tournament">Filter tournament</string>
     <string name="bankroll">Bankroll</string>
     <string name="bankroll_deposit">Bankroll Deposit</string>
     <string name="title">Title</string>
+    <string name="new_profit_value">New profit value</string>
     <string name="save">Save</string>
     <string name="new_tournament">New tournament</string>
     <string name="new_transaction">New transaction</string>
     <string name="new_session">New session</string>
+    <string name="select_tournament_wanna_open">Tournaments are grouped\n Selected the one you want to update</string>
     <string name="count_buy_in">%d tournaments</string>
     <string name="register_tournament">Register tournament</string>
     <string name="insufficient_balance">Insufficient Balance</string>
+    <string name="group_similar_tournament">Group same tournament buy-in</string>
+    <string name="or_add_new_profit_manually">Or add new profit manually</string>
 </resources>

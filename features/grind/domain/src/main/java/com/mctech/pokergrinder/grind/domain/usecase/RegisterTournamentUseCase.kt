@@ -30,6 +30,7 @@ class RegisterTournamentUseCase @Inject constructor(
       title = title,
       profit = 0.0,
       startTimeInMs = System.currentTimeMillis(),
+      isGrouped = false,
     )
 
     // Saves updated session.

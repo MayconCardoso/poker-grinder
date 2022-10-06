@@ -11,7 +11,7 @@ internal class PokerGrinderDatabaseMigrationFrom02To03Test {
   val helper = PokerGrinderMigrationTestHelperFactory.create()
 
   @Test
-  fun check_migration_01_02() {
+  fun check_migration_02_03() {
     // Create DB with version 1
     helper.createDatabase(DATABASE_NAME, 2)
 

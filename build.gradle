@@ -25,6 +25,7 @@ buildscript {
         CONSTRAINT_LAYOUT_VERSION = "2.1.4"
         RECYCLER_VIEW_VERSION = "1.2.1"
         GOOGLE_NAVIGATION_VERSION = '2.5.2'
+        VIEWPAGER2_VERSION = "1.0.0"
 
         //==========================================================================================
         // Versions - Tests

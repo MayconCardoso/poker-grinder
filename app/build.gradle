@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
 apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     compileSdk targets.compileSdk
@@ -55,6 +56,9 @@ dependencies {
     implementation project(path: ':features:summary:data')
     implementation project(path: ':features:summary:domain')
     implementation project(path: ':features:summary:presentation')
+    implementation project(path: ':features:settings:data')
+    implementation project(path: ':features:settings:domain')
+    implementation project(path: ':features:settings:presentation')
     implementation project(path: ':features:deck:components:card_picker')
 
     // Navigation

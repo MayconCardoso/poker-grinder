@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/summary_fragment"
-        android:name="com.mctech.pokergrinder.summary.presentation.SummaryFragment"
+        android:name="com.mctech.pokergrinder.summary.presentation.SummaryContainerFragment"
         android:label="@string/summary"
         tools:layout="@layout/fragment_summary" />
 
@@ -16,18 +16,92 @@
         android:id="@+id/session_fragment"
         android:name="com.mctech.pokergrinder.grind.presentation.grind_list.GrindsFragment"
         android:label="@string/session"
-        tools:layout="@layout/fragment_grinds" />
+        tools:layout="@layout/fragment_grinds">
+
+        <action
+            android:id="@+id/action_session_fragment_to_session_register"
+            app:destination="@id/session_register" />
+
+        <action
+            android:id="@+id/action_session_fragment_to_session_details"
+            app:destination="@id/session_details" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/statement_fragment"
         android:name="com.mctech.pokergrinder.bankroll.presentation.list.BankrollFragment"
         android:label="@string/statement"
-        tools:layout="@layout/fragment_bankroll" />
+        tools:layout="@layout/fragment_bankroll">
+        <action
+            android:id="@+id/action_statement_fragment_to_statement_register"
+            app:destination="@id/statement_register" />
+    </fragment>
 
     <fragment
         android:id="@+id/tournament_fragment"
         android:name="com.mctech.pokergrinder.tournament.presentation.list.TournamentsFragment"
         android:label="@string/tournament"
-        tools:layout="@layout/fragment_tournaments" />
+        tools:layout="@layout/fragment_tournaments">
+        <action
+            android:id="@+id/action_tournament_fragment_to_tournament_register"
+            app:destination="@id/tournament_register" />
+    </fragment>
 
+    <fragment
+        android:id="@+id/settings_fragment"
+        android:name="com.mctech.pokergrinder.settings.presentation.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings" />
+
+
+    <fragment
+        android:id="@+id/tournament_register"
+        android:name="com.mctech.pokergrinder.tournament.presentation.creation.NewTournamentFragment"
+        tools:layout="@layout/fragment_register_tournament">
+
+        <argument
+            android:name="TOURNAMENT_PARAM"
+            app:argType="com.mctech.pokergrinder.tournaments.domain.entities.Tournament"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/statement_register"
+        android:name="com.mctech.pokergrinder.bankroll.presentation.creation.DepositFragment"
+        tools:layout="@layout/fragment_deposit" />
+
+    <fragment
+        android:id="@+id/session_register"
+        android:name="com.mctech.pokergrinder.grind.presentation.grind_creation.NewGrindFragment"
+        tools:layout="@layout/fragment_new_grind" />
+
+    <fragment
+        android:id="@+id/session_details"
+        android:name="com.mctech.pokergrinder.grind.presentation.grind_details.GrindDetailsFragment"
+        tools:layout="@layout/fragment_grind_details">
+
+        <action
+            android:id="@+id/action_session_fragment_to_session_details_tournament"
+            app:destination="@id/session_details_tournament" />
+
+        <argument
+            android:name="SESSION_PARAM"
+            app:argType="com.mctech.pokergrinder.grind.domain.entities.Session" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/session_details_tournament"
+        android:name="com.mctech.pokergrinder.grind.presentation.tournamnet_creation.RegisterTournamentFragment"
+        tools:layout="@layout/fragment_register_tournament">
+
+        <argument
+            android:name="SESSION_PARAM"
+            app:argType="com.mctech.pokergrinder.grind.domain.entities.Session" />
+
+        <argument
+            android:name="TOURNAMENT_PARAM"
+            app:argType="com.mctech.pokergrinder.grind.domain.entities.SessionTournament"
+            app:nullable="true" />
+    </fragment>
 </navigation>

@@ -13,12 +13,13 @@ import com.mctech.pokergrinder.architecture.extensions.bindCommand
 import com.mctech.pokergrinder.architecture.extensions.bindState
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.tournament.presentation.R
-import com.mctech.pokergrinder.tournament.presentation.creation.TournamentActivity
+import com.mctech.pokergrinder.tournament.presentation.TournamentNavigation
 import com.mctech.pokergrinder.tournament.presentation.databinding.FragmentTournamentsBinding
 import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
 import com.mctech.pokergrinder.tournaments.list.TournamentListCallback
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 public class TournamentsFragment : Fragment(R.layout.fragment_tournaments), TournamentListCallback {
@@ -34,6 +35,12 @@ public class TournamentsFragment : Fragment(R.layout.fragment_tournaments), Tour
    * Tournaments Ui Binding
    */
   private val binding by viewBinding(FragmentTournamentsBinding::bind)
+
+  /**
+   * Feature navigation
+   */
+  @Inject
+  public lateinit var navigation: TournamentNavigation
 
   // endregion
 
@@ -110,7 +117,7 @@ public class TournamentsFragment : Fragment(R.layout.fragment_tournaments), Tour
   }
 
   private fun navigateToEditor(tournament: Tournament?) {
-    TournamentActivity.navigate(requireActivity(), tournament)
+    navigation.goToTournament(tournament)
   }
 
   // endregion

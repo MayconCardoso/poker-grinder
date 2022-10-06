@@ -14,10 +14,10 @@ import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.architecture.utility.SimpleSpaceItemDecoration
 import com.mctech.pokergrinder.bankroll.domain.entities.BankrollTransaction
 import com.mctech.pokergrinder.bankroll.presentation.R
-import com.mctech.pokergrinder.bankroll.presentation.creation.DepositActivity
 import com.mctech.pokergrinder.bankroll.presentation.databinding.FragmentBankrollBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 public class BankrollFragment : Fragment(R.layout.fragment_bankroll) {
@@ -38,6 +38,12 @@ public class BankrollFragment : Fragment(R.layout.fragment_bankroll) {
    * Bankroll adapter.
    */
   private val bankrollAdapter by lazy { BankrollAdapter() }
+
+  /**
+   * Feature navigation
+   */
+  @Inject
+  public lateinit var navigation: BankrollNavigation
 
   // endregion
 
@@ -112,7 +118,7 @@ public class BankrollFragment : Fragment(R.layout.fragment_bankroll) {
   // region Commands
 
   private fun navigateToEditor() {
-    DepositActivity.navigate(requireActivity())
+    navigation.goToBankrollDeposit()
   }
 
   // endregion

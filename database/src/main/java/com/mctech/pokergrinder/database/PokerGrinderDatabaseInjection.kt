@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.room.Room
 import com.mctech.pokergrinder.bankroll.data.database.BankrollTransactionDao
 import com.mctech.pokergrinder.grind.data.database.GrindDao
+import com.mctech.pokergrinder.settings.data.database.SettingsDao
 import com.mctech.pokergrinder.summary.data.database.SummaryDao
 import com.mctech.pokergrinder.tournament.data.database.TournamentDao
 import dagger.Module
@@ -18,8 +19,9 @@ public class PokerGrinderDatabaseInjection {
 
   @Provides
   @Singleton
-  public fun providesVideoProjectDatabase(application: Application): PokerGrinderDatabase {
+  public fun providesPokerGrinderDatabase(application: Application): PokerGrinderDatabase {
     return Room.databaseBuilder(application, PokerGrinderDatabase::class.java, "poker_grinder")
+      .addCallback(PokerGrinderDatabaseInitialization)
       .addMigrations(*PokerGrinderDatabaseMigrations.all)
       .build()
   }
@@ -46,6 +48,12 @@ public class PokerGrinderDatabaseInjection {
   @Singleton
   public fun providesSummaryDao(db: PokerGrinderDatabase): SummaryDao {
     return db.summaryDao()
+  }
+
+  @Provides
+  @Singleton
+  public fun providesSettingsDao(db: PokerGrinderDatabase): SettingsDao {
+    return db.settingsDao()
   }
 
 }

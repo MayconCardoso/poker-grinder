@@ -20,4 +20,28 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!-- Full Screen Dialog. -->
+    <style name="Theme.PokerGrinder.FullScreen" parent="Theme.PokerGrinder">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <style name="Widget.Design.TabLayout.Scrollable" parent="">
+        <item name="tabGravity">fill</item>
+        <item name="background">@color/primary</item>
+        <item name="tabSelectedTextColor">@color/white</item>
+        <item name="tabIndicatorColor">@color/white</item>
+        <item name="tabTextColor">@color/white</item>
+        <item name="tabIndicatorFullWidth">false</item>
+        <item name="tabMode">scrollable</item>
+    </style>
+
+    <style name="Widget.Design.TabLayout.Fixed" parent="Widget.Design.TabLayout.Scrollable">
+        <item name="tabMode">fixed</item>
+        <item name="tabIndicatorFullWidth">true</item>
+    </style>
 </resources>

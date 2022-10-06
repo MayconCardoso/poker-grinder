@@ -7,6 +7,7 @@ import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
 import com.mctech.pokergrinder.grind.domain.usecase.RegisterTournamentUseCase
 import com.mctech.pokergrinder.grind.domain.usecase.UpdatesTournamentUseCase
+import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -23,6 +24,9 @@ internal class RegisterTournamentViewModel @Inject constructor(
    */
   private lateinit var session: Session
 
+  /**
+   * Holds the component current rendered state.
+   */
   private val _componentState by lazy { MutableStateFlow<SessionTournament?>(null) }
   val componentState: StateFlow<SessionTournament?> by lazy { _componentState }
 
@@ -50,7 +54,7 @@ internal class RegisterTournamentViewModel @Inject constructor(
           tournament.copy(
             title = interaction.title,
             buyIn = interaction.buyIn,
-            profit = interaction.profit,
+            profit = interaction.profit + interaction.addNewProfit,
           )
         )
       }

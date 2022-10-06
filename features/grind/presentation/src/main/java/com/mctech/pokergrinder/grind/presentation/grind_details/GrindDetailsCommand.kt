@@ -6,6 +6,7 @@ import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
 
 internal sealed class GrindDetailsCommand : ViewCommand {
   object CloseScreen : GrindDetailsCommand()
+  data class ShowTournamentSelection(val options: List<SessionTournament>) : GrindDetailsCommand()
 
   data class GoToTournamentEditor(
     val session: Session,
