@@ -5,12 +5,15 @@ import com.mctech.chart.money.MoneyVariationEntry
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.architecture.OnInteraction
+import com.mctech.pokergrinder.bankroll.domain.error.BankrollException
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
 import com.mctech.pokergrinder.grind.domain.usecase.GroupGrindTournamentUseCase
 import com.mctech.pokergrinder.grind.domain.usecase.ObserveGrindTournamentUseCase
 import com.mctech.pokergrinder.grind.domain.usecase.ObserveGrindUseCase
+import com.mctech.pokergrinder.grind.domain.usecase.RegisterTournamentUseCase
 import com.mctech.pokergrinder.grind.presentation.grind_details.adapter.GrindDetailsConsumerEvent
+import com.mctech.pokergrinder.grind.presentation.tournamnet_creation.RegisterTournamentCommand
 import com.mctech.pokergrinder.settings.domain.entities.SettingsAvailable
 import com.mctech.pokergrinder.settings.domain.usecase.ObserveSettingsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,8 +29,9 @@ import javax.inject.Inject
 internal class GrindDetailsViewModel @Inject constructor(
   private val observeGrindUseCase: ObserveGrindUseCase,
   private val observeSettingsUseCase: ObserveSettingsUseCase,
-  private val observeGrindTournamentUseCase: ObserveGrindTournamentUseCase,
+  private val registerTournamentUseCase: RegisterTournamentUseCase,
   private val groupGrindTournamentUseCase: GroupGrindTournamentUseCase,
+  private val observeGrindTournamentUseCase: ObserveGrindTournamentUseCase,
 ) : BaseViewModel() {
 
   // region Variables
@@ -80,7 +84,29 @@ internal class GrindDetailsViewModel @Inject constructor(
       is GrindDetailsConsumerEvent.TournamentClicked -> {
         openTournament(tournament = interaction.event.tournament)
       }
+      is GrindDetailsConsumerEvent.DuplicateClicked -> {
+        duplicateTournament(tournament = interaction.event.tournament)
+      }
     }
+  }
+
+  private suspend fun duplicateTournament(tournament: SessionTournament) {
+    // Gets current session.
+    val session = (_detailsState.value as? ComponentState.Success)?.result ?: return
+
+    try {
+      // Register new item.
+      registerTournamentUseCase(
+        session = session,
+        title = tournament.title,
+        buyIn = originalTemplateList.first { it.title == tournament.title }.buyIn
+      )
+    } catch (exception: Exception) {
+      if(exception is BankrollException.InsufficientBalance) {
+        sendCommand(RegisterTournamentCommand.InsufficientBalanceError)
+      }
+    }
+
   }
 
   // endregion

@@ -105,7 +105,7 @@ public class RegisterTournamentFragment : Fragment(R.layout.fragment_register_to
       )
     }
 
-    binding.filter.doOnTextChanged { text, _, _, _ ->
+    binding.tournamentTitle.doOnTextChanged { text, _, _, _ ->
       tournamentsViewModel.interact(TournamentListInteraction.NewFilterQuery(text.toString()))
     }
   }
