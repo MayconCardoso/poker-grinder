@@ -1,9 +1,7 @@
 package com.mctech.pokergrinder.deck.components.card_picker
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mctech.pokergrinder.architecture.utility.SimpleItemDiffCallback
@@ -27,15 +25,9 @@ internal class CardPickerAdapter :
   ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(cardState: CardPickerState) {
-      val context = binding.root.context
-      val cardIdentifier = context.resolveCardId("card_${cardState.card.formattedName()}")
-
-      binding.card.setImageDrawable(ContextCompat.getDrawable(context, cardIdentifier))
+      binding.card.setImageDrawable(cardState.card.loadCardImage(binding.root.context))
       binding.card.alpha = if (cardState.disabled) 0.5F else 1F
     }
   }
 
-  private fun Context.resolveCardId(name: String) = resources.getIdentifier(
-    name, "drawable", packageName,
-  )
 }

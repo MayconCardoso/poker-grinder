@@ -54,4 +54,5 @@
     <string name="board">Board</string>
     <string name="hero">Hero</string>
     <string name="villain">Villain</string>
+    <string name="vs">vs</string>
 </resources>
