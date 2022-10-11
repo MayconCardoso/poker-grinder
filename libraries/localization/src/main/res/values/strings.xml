@@ -51,4 +51,7 @@
     <string name="gameplay">"Gameplay"</string>
     <string name="flips_won">Flips Won</string>
     <string name="flips_lost">Flips Lost</string>
+    <string name="board">Board</string>
+    <string name="hero">Hero</string>
+    <string name="villain">Villain</string>
 </resources>

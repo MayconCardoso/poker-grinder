@@ -2,9 +2,11 @@ package com.mctech.pokergrinder.grind.data.mapper
 
 import com.mctech.pokergrinder.grind.data.database.SessionDetailRoomEntity
 import com.mctech.pokergrinder.grind.data.database.SessionRoomEntity
+import com.mctech.pokergrinder.grind.data.database.SessionTournamentFlipRoomEntity
 import com.mctech.pokergrinder.grind.data.database.SessionTournamentRoomEntity
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
+import com.mctech.pokergrinder.grind.domain.entities.SessionTournamentFlip
 
 /**
  * Converts a list of tournament database entity onto a business one known by the modules.
@@ -12,6 +14,15 @@ import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
 internal fun List<SessionTournamentRoomEntity>.asBusinessTournaments(): List<SessionTournament> {
   return this.map { dbEntity ->
     dbEntity.asBusinessTournaments()
+  }
+}
+
+/**
+ * Converts a list of tournament flips database entity onto a business one known by the modules.
+ */
+internal fun List<SessionTournamentFlipRoomEntity>.asBusinessTournamentFlips(): List<SessionTournamentFlip> {
+  return this.map { dbEntity ->
+    dbEntity.asBusinessTournamentFlips()
   }
 }
 
@@ -37,6 +48,19 @@ internal fun SessionTournamentRoomEntity.asBusinessTournaments() = SessionTourna
   profit = profit,
   startTimeInMs = startTimeInMs,
   isGrouped = false,
+)
+
+/**
+ * Converts a tournament flip database entity onto a business one known by the modules.
+ */
+internal fun SessionTournamentFlipRoomEntity.asBusinessTournamentFlips() = SessionTournamentFlip(
+  id = id,
+  idSession = idSession,
+  tournament = tournament,
+  heroHand = heroHand,
+  villainHand = villainHand,
+  board = board,
+  won = won,
 )
 
 /**
@@ -76,4 +100,18 @@ internal fun Session.asDatabaseSession() = SessionRoomEntity(
   isOpened = isOpened,
   title = title,
   startTimeInMs = startTimeInMs,
+)
+
+
+/**
+ * Converts a tournament flip database entity onto a business one known by the modules.
+ */
+internal fun SessionTournamentFlip.asBusinessTournamentFlips() = SessionTournamentFlipRoomEntity(
+  id = id,
+  idSession = idSession,
+  tournament = tournament,
+  heroHand = heroHand,
+  villainHand = villainHand,
+  board = board,
+  won = won,
 )

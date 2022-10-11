@@ -8,6 +8,7 @@ dependencies {
     implementation project(path: ':features:bankroll:domain')
     implementation project(path: ':features:tournaments:domain')
     implementation project(path: ':features:tournaments:components:list')
+    implementation project(path: ':features:deck:components:card_picker')
 
     // Ui
     implementation "androidx.cardview:cardview:1.0.0"
