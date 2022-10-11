@@ -45,4 +45,5 @@
     <string name="insufficient_balance">Insufficient Balance</string>
     <string name="group_similar_tournament">Group same tournament buy-in</string>
     <string name="or_add_new_profit_manually">Or add new profit manually</string>
+    <string name="re_enter">"Re-enter"</string>
 </resources>

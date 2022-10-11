@@ -30,11 +30,8 @@ internal class GrindDetailsAdapter(
   ) : RecyclerView.ViewHolder(binding.root) {
 
     init {
-      binding.root.setOnClickListener {
-        onItemClicked(getItem(absoluteAdapterPosition))
-      }
+      setupViewListeners()
     }
-
 
     fun bind(item: SessionTournament) {
       binding.title.text = item.title
@@ -49,6 +46,32 @@ internal class GrindDetailsAdapter(
       )
       binding.indicator.setBackgroundColor(color)
       binding.profit.setTextColor(color)
+    }
+
+    private fun setupViewListeners() {
+      // Gets the context.
+      val context = binding.root.context
+
+      // Sets click on the item,
+      binding.root.setOnClickListener {
+        onItemClicked(getItem(absoluteAdapterPosition))
+      }
+
+      // Sets context menu on clicked item.
+      binding.root.setOnCreateContextMenuListener { menu, _, _ ->
+        // Gets clicked tournament.
+        val clickedTournament = getItem(absoluteAdapterPosition)
+
+        // Set title on the menu
+        menu.setHeaderTitle(clickedTournament.title)
+
+        // Creates re enter button.
+        val reEnter = menu.add(0, 1, 0, context.getString(com.mctech.pokergrinder.localization.R.string.re_enter))
+        reEnter.setOnMenuItemClickListener {
+          eventConsumer.consume(GrindDetailsConsumerEvent.DuplicateClicked(clickedTournament))
+          true
+        }
+      }
     }
   }
 
