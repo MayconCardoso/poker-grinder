@@ -20,6 +20,7 @@
     <string name="investment_per_session">Investment Per Session</string>
     <string name="investment">Investment</string>
     <string name="overall_performance">Overall performance</string>
+    <string name="performance">Performance</string>
     <string name="no_tournament">No tournament found</string>
     <string name="no_flip">No flip found</string>
     <string name="no_transaction">No transaction found</string>

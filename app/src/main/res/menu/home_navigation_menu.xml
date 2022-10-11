@@ -14,7 +14,7 @@
     <item
         android:id="@+id/summary_fragment"
         android:icon="@drawable/ic_bar_chart"
-        android:title="@string/summary" />
+        android:title="@string/performance" />
 
     <item
         android:id="@+id/tournament_fragment"
