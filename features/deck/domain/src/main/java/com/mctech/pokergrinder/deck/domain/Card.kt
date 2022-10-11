@@ -8,8 +8,8 @@ data class Card(
   val value: Int,
 ): Serializable {
 
-  fun cardName(): String {
-    return "${name}${suit.sufix}"
+  fun formattedName(): String {
+    return "${name}${suit.sufix}".lowercase()
   }
 
 }
