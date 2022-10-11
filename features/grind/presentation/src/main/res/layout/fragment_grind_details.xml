@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:background="@color/primary"
-        app:layout_constraintTop_toTopOf="parent"
-        app:subtitleTextColor="@color/white"
-        app:titleTextColor="@color/white"
-        tools:title="Sep 12, 2022" />
-
     <FrameLayout
         android:id="@+id/chart_container"
         android:layout_width="match_parent"
@@ -25,7 +15,7 @@
         android:layout_marginEnd="12dp"
         android:background="@drawable/rounded_background_shape"
         android:padding="4dp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.mctech.chart.money.ChartMoneyVariationView
             android:id="@+id/chart"
@@ -278,8 +268,8 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textStyle="bold"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/header_cash"
-        app:layout_constraintBottom_toTopOf="@id/register" />
+        app:layout_constraintBottom_toTopOf="@id/register"
+        app:layout_constraintTop_toBottomOf="@id/header_cash" />
 
     <ProgressBar
         android:id="@+id/progress"

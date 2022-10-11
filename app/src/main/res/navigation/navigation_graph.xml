@@ -78,7 +78,7 @@
 
     <fragment
         android:id="@+id/session_details"
-        android:name="com.mctech.pokergrinder.grind.presentation.grind_details.GrindDetailsFragment"
+        android:name="com.mctech.pokergrinder.grind.presentation.GrindDetailContainerFragment"
         tools:layout="@layout/fragment_grind_details">
 
         <action

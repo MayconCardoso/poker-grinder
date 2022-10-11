@@ -6,7 +6,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.mctech.pokergrinder.summary.tournaments.SummaryTournamentListFragment
 
-internal class SummaryContainerContainerAdapter(
+internal class SummaryContainerAdapter(
   fragmentManager: FragmentManager,
   lifecycle: Lifecycle,
 ) : FragmentStateAdapter(fragmentManager, lifecycle) {
@@ -21,7 +21,7 @@ internal class SummaryContainerContainerAdapter(
   override fun createFragment(position: Int) = when (position) {
     SummaryTab.PERFORMANCE.position -> SummaryFragment()
     SummaryTab.TOURNAMENT.position -> SummaryTournamentListFragment()
-    else -> error("Feature not supported on DiscoveryFeaturePageAdapter")
+    else -> error("Feature not supported on SummaryContainerAdapter")
   }
 
   enum class SummaryTab(val position: Int, @StringRes val titleRes: Int) {
