@@ -3,7 +3,7 @@ package com.mctech.pokergrinder
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
-import com.mctech.pokergrinder.bankroll.presentation.list.BankrollNavigation
+import com.mctech.pokergrinder.bankroll.presentation.navigation.BankrollNavigation
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
 import com.mctech.pokergrinder.grind.presentation.GrindNavigation

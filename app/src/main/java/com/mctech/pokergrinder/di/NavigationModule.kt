@@ -1,7 +1,7 @@
 package com.mctech.pokergrinder.di
 
 import com.mctech.pokergrinder.PokerGrinderNavigator
-import com.mctech.pokergrinder.bankroll.presentation.list.BankrollNavigation
+import com.mctech.pokergrinder.bankroll.presentation.navigation.BankrollNavigation
 import com.mctech.pokergrinder.grind.presentation.GrindNavigation
 import com.mctech.pokergrinder.tournament.presentation.TournamentNavigation
 import dagger.Binds

@@ -22,8 +22,10 @@ include ':features:tournaments:components:list'
 // Feature - Bankroll
 include ':features:bankroll:domain'
 include ':features:bankroll:data'
-include ':features:bankroll:presentation'
-include ':features:bankroll:components:balance'
+include ':features:bankroll:presentation:list'
+include ':features:bankroll:presentation:creation'
+include ':features:bankroll:presentation:navigation'
+include ':features:bankroll:presentation:balance-component'
 
 // Feature - Grind
 include ':features:grind:domain'
