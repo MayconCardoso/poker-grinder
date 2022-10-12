@@ -112,7 +112,7 @@ public class GrindDetailsGameplayFragment : Fragment(R.layout.fragment_grind_det
 
   private fun setupListeners() {
     binding.register.setOnClickListener {
-      viewModel.interact(GrindDetailsInteraction.RegisterTournamentClicked)
+      navigation.goToSessionTournamentGameplay(viewModel.session)
     }
   }
 

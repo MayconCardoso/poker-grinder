@@ -30,6 +30,7 @@
     <string name="up_days">Up days</string>
     <string name="down_days">Down days</string>
     <string name="tournament_management">Tournament Management</string>
+    <string name="flip_management">Flip management</string>
     <string name="manual_buy_in">Manual Buy-in</string>
     <string name="select_tournament">Or select tournament</string>
     <string name="filter_tournament">Filter tournament</string>
@@ -38,6 +39,7 @@
     <string name="title">Title</string>
     <string name="new_profit_value">New profit value</string>
     <string name="save">Save</string>
+    <string name="next">Next</string>
     <string name="new_tournament">New tournament</string>
     <string name="new_transaction">New transaction</string>
     <string name="new_session">New session</string>
@@ -56,4 +58,9 @@
     <string name="hero">Hero</string>
     <string name="villain">Villain</string>
     <string name="vs">vs</string>
+    <string name="select_the_tournament">Select the tournament</string>
+    <string name="select_hero_cards">Select hero cards</string>
+    <string name="select_villain_cards">Select villain cards</string>
+    <string name="select_board_cards">Select board cards</string>
+    <string name="select_the_winner">Select the winner</string>
 </resources>

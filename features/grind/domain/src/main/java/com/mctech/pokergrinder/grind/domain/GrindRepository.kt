@@ -20,6 +20,8 @@ interface GrindRepository {
 
   suspend fun saveGrindTournament(sessionTournament: SessionTournament)
 
+  suspend fun saveGrindTournamentFlip(flip: SessionTournamentFlip)
+
   suspend fun loadCurrentSession(): Session?
 
   suspend fun loadGrind(id: String): Session

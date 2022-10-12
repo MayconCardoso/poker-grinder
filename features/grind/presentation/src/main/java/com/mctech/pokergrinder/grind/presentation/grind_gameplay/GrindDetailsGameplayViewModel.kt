@@ -23,6 +23,11 @@ internal class GrindDetailsGameplayViewModel @Inject constructor(
   // region Variables
 
   /**
+   * Holds the opened session.
+   */
+  lateinit var session: Session
+
+  /**
    * Holds the tournament flips state.
    */
   private val _state by lazy {
@@ -36,6 +41,8 @@ internal class GrindDetailsGameplayViewModel @Inject constructor(
 
   @OnInteraction(GrindDetailsGameplayInteraction.ScreenFirstOpen::class)
   private fun onScreenFirstOpen(interaction: GrindDetailsGameplayInteraction.ScreenFirstOpen) {
+    this.session = interaction.session
+
     viewModelScope.async { observeTournamentsFlip(interaction.session) }
   }
 

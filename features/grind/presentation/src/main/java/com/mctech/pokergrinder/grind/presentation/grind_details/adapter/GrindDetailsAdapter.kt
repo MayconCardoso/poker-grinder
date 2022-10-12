@@ -12,6 +12,7 @@ import com.mctech.pokergrinder.grind.presentation.databinding.FragmentGrindDetai
 
 internal class GrindDetailsAdapter(
   private val eventConsumer: GrindDetailsConsumer,
+  private val enableContextMenu: Boolean = true,
 ) :
   ListAdapter<SessionTournament, GrindDetailsAdapter.ViewHolder>(SimpleItemDiffCallback()) {
 
@@ -58,18 +59,20 @@ internal class GrindDetailsAdapter(
       }
 
       // Sets context menu on clicked item.
-      binding.root.setOnCreateContextMenuListener { menu, _, _ ->
-        // Gets clicked tournament.
-        val clickedTournament = getItem(absoluteAdapterPosition)
+      if(enableContextMenu) {
+        binding.root.setOnCreateContextMenuListener { menu, _, _ ->
+          // Gets clicked tournament.
+          val clickedTournament = getItem(absoluteAdapterPosition)
 
-        // Set title on the menu
-        menu.setHeaderTitle(clickedTournament.title)
+          // Set title on the menu
+          menu.setHeaderTitle(clickedTournament.title)
 
-        // Creates re enter button.
-        val reEnter = menu.add(0, 1, 0, context.getString(com.mctech.pokergrinder.localization.R.string.re_enter))
-        reEnter.setOnMenuItemClickListener {
-          eventConsumer.consume(GrindDetailsConsumerEvent.DuplicateClicked(clickedTournament))
-          true
+          // Creates re enter button.
+          val reEnter = menu.add(0, 1, 0, context.getString(com.mctech.pokergrinder.localization.R.string.re_enter))
+          reEnter.setOnMenuItemClickListener {
+            eventConsumer.consume(GrindDetailsConsumerEvent.DuplicateClicked(clickedTournament))
+            true
+          }
         }
       }
     }

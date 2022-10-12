@@ -38,6 +38,7 @@ class HomeActivity : AppCompatActivity() {
       R.id.session_details_tournament,
       R.id.statement_register,
       R.id.tournament_register,
+      R.id.session_details_tournament_flip,
     )
   }
 

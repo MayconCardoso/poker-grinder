@@ -8,6 +8,7 @@ import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
 import com.mctech.pokergrinder.grind.presentation.GrindNavigation
 import com.mctech.pokergrinder.grind.presentation.grind_details.GrindDetailsFragment
+import com.mctech.pokergrinder.grind.presentation.grind_gameplay_register.RegisterFlipFragment
 import com.mctech.pokergrinder.grind.presentation.tournamnet_creation.RegisterTournamentFragment
 import com.mctech.pokergrinder.tournament.presentation.TournamentNavigation
 import com.mctech.pokergrinder.tournament.presentation.creation.NewTournamentFragment
@@ -103,6 +104,15 @@ class PokerGrinderNavigator : TournamentNavigation, BankrollNavigation, GrindNav
       Bundle().apply {
         putSerializable(RegisterTournamentFragment.SESSION_PARAM, session)
         putSerializable(RegisterTournamentFragment.TOURNAMENT_PARAM, sessionTournament)
+      },
+    )
+  }
+
+  override fun goToSessionTournamentGameplay(session: Session) {
+    navController?.navigate(
+      R.id.action_session_details_to_session_details_tournament_flip,
+      Bundle().apply {
+        putSerializable(RegisterFlipFragment.SESSION_PARAM, session)
       },
     )
   }

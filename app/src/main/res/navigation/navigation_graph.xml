@@ -88,6 +88,9 @@
         <argument
             android:name="SESSION_PARAM"
             app:argType="com.mctech.pokergrinder.grind.domain.entities.Session" />
+        <action
+            android:id="@+id/action_session_details_to_session_details_tournament_flip"
+            app:destination="@id/session_details_tournament_flip" />
     </fragment>
 
     <fragment
@@ -103,5 +106,16 @@
             android:name="TOURNAMENT_PARAM"
             app:argType="com.mctech.pokergrinder.grind.domain.entities.SessionTournament"
             app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/session_details_tournament_flip"
+        android:name="com.mctech.pokergrinder.grind.presentation.grind_gameplay_register.RegisterFlipFragment"
+        tools:layout="@layout/fragment_register_tournament_flip">
+
+        <argument
+            android:name="SESSION_PARAM"
+            app:argType="com.mctech.pokergrinder.grind.domain.entities.Session" />
+
     </fragment>
 </navigation>

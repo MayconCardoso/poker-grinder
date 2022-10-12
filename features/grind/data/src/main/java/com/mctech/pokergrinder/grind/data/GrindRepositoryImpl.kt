@@ -50,6 +50,10 @@ public class GrindRepositoryImpl @Inject constructor(
     grindDao.saveTournament(sessionTournament.asDatabaseTournaments())
   }
 
+  override suspend fun saveGrindTournamentFlip(flip: SessionTournamentFlip) {
+    grindDao.saveTournamentFlip(flip.asBusinessTournamentFlips())
+  }
+
   override suspend fun loadCurrentSession(): Session? = withContext(dispatchers.io) {
     grindDao.loadCurrentGrind()?.asBusinessSession()
   }

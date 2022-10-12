@@ -4,15 +4,19 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.mctech.pokergrinder.grind.domain.entities.SessionTournamentFlip
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 public interface GrindDao {
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  public suspend fun save(session: SessionRoomEntity)
+  public suspend fun save(item: SessionRoomEntity)
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  public suspend fun saveTournament(sessionTournament: SessionTournamentRoomEntity)
+  public suspend fun saveTournament(item: SessionTournamentRoomEntity)
+
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  public suspend fun saveTournamentFlip(item: SessionTournamentFlipRoomEntity)
 
   @Query("SELECT * from grind_session_detail WHERE id = :sessionId")
   public fun observeGrind(sessionId: String): Flow<SessionDetailRoomEntity>
