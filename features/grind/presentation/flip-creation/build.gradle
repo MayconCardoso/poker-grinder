@@ -1,0 +1,12 @@
+apply from: "$rootDir/config/module/feature/presentation.gradle"
+
+dependencies {
+    // Internal modules
+    implementation project(path: ':features:deck:domain')
+    implementation project(path: ':features:grind:domain')
+    implementation project(path: ':features:deck:presentation:card_picker')
+    implementation project(path: ':features:grind:presentation:navigation')
+
+    // Ui
+    implementation "androidx.cardview:cardview:1.0.0"
+}

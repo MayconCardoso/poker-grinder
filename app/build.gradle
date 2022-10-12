@@ -61,10 +61,19 @@ dependencies {
     // Features - Grind
     implementation project(path: ':features:grind:data')
     implementation project(path: ':features:grind:domain')
-    implementation project(path: ':features:grind:presentation')
+    implementation project(path: ':features:grind:presentation:list')
+    implementation project(path: ':features:grind:presentation:creation')
+    implementation project(path: ':features:grind:presentation:navigation')
+    implementation project(path: ':features:grind:presentation:flip-creation')
+    implementation project(path: ':features:grind:presentation:pager_container')
+    implementation project(path: ':features:grind:presentation:tournament-creation')
+
+    // Features - Summary
     implementation project(path: ':features:summary:data')
     implementation project(path: ':features:summary:domain')
     implementation project(path: ':features:summary:presentation:pager_container')
+
+    // Features - Settings
     implementation project(path: ':features:settings:data')
     implementation project(path: ':features:settings:domain')
     implementation project(path: ':features:settings:presentation')

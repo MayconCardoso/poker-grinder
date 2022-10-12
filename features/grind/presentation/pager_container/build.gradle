@@ -1,0 +1,16 @@
+apply from: "$rootDir/config/module/feature/presentation.gradle"
+
+dependencies {
+    // Internal modules
+    implementation project(path: ':features:grind:domain')
+    implementation project(path: ':features:grind:presentation:list')
+    implementation project(path: ':features:grind:presentation:summary')
+    implementation project(path: ':features:grind:presentation:flip-list')
+    implementation project(path: ':features:grind:presentation:navigation')
+    implementation project(path: ':features:grind:presentation:tournament-list')
+
+    // Ui
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.viewpager2:viewpager2:$VIEWPAGER2_VERSION"
+    implementation "com.google.android.material:material:$ANDROID_MATERIAL_VERSION"
+}

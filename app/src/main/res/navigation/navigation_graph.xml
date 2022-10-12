@@ -14,7 +14,7 @@
 
     <fragment
         android:id="@+id/session_fragment"
-        android:name="com.mctech.pokergrinder.grind.presentation.grind_list.GrindsFragment"
+        android:name="com.mctech.pokergrinder.grind.presentation.list.GrindsFragment"
         android:label="@string/session"
         tools:layout="@layout/fragment_grinds">
 
@@ -73,13 +73,13 @@
 
     <fragment
         android:id="@+id/session_register"
-        android:name="com.mctech.pokergrinder.grind.presentation.grind_creation.NewGrindFragment"
+        android:name="com.mctech.pokergrinder.grind.presentation.creation.NewGrindFragment"
         tools:layout="@layout/fragment_new_grind" />
 
     <fragment
         android:id="@+id/session_details"
-        android:name="com.mctech.pokergrinder.grind.presentation.GrindDetailContainerFragment"
-        tools:layout="@layout/fragment_grind_details">
+        android:name="com.mctech.pokergrinder.grind.presentation.pager_container.GrindDetailContainerFragment"
+        tools:layout="@layout/fragment_grind_tournaments">
 
         <action
             android:id="@+id/action_session_fragment_to_session_details_tournament"
@@ -110,7 +110,7 @@
 
     <fragment
         android:id="@+id/session_details_tournament_flip"
-        android:name="com.mctech.pokergrinder.grind.presentation.grind_gameplay_register.RegisterFlipFragment"
+        android:name="com.mctech.pokergrinder.grind.presentation.flip_creation.RegisterFlipFragment"
         tools:layout="@layout/fragment_register_tournament_flip">
 
         <argument

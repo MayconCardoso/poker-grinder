@@ -32,7 +32,15 @@ include ':features:bankroll:presentation:balance-component'
 // Feature - Grind
 include ':features:grind:domain'
 include ':features:grind:data'
-include ':features:grind:presentation'
+include ':features:grind:presentation:list'
+include ':features:grind:presentation:summary'
+include ':features:grind:presentation:creation'
+include ':features:grind:presentation:flip-list'
+include ':features:grind:presentation:navigation'
+include ':features:grind:presentation:flip-creation'
+include ':features:grind:presentation:pager_container'
+include ':features:grind:presentation:tournament-list'
+include ':features:grind:presentation:tournament-creation'
 
 // Feature - Summary
 include ':features:summary:domain'
