@@ -8,7 +8,7 @@ dependencies {
     implementation project(path: ':features:settings:domain')
     implementation project(path: ':features:bankroll:domain')
     implementation project(path: ':features:tournaments:domain')
-    implementation project(path: ':features:tournaments:components:list')
+    implementation project(path: ':features:tournaments:presentation:list-component')
     implementation project(path: ':features:deck:components:card_picker')
 
     // Ui

@@ -16,10 +16,10 @@ import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
 import com.mctech.pokergrinder.grind.presentation.GrindNavigation
 import com.mctech.pokergrinder.grind.presentation.R
 import com.mctech.pokergrinder.grind.presentation.databinding.FragmentRegisterTournamentBinding
+import com.mctech.pokergrinder.tournament.presentation.list_component.TournamentListCallback
+import com.mctech.pokergrinder.tournament.presentation.list_component.TournamentListInteraction
+import com.mctech.pokergrinder.tournament.presentation.list_component.TournamentListViewModel
 import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
-import com.mctech.pokergrinder.tournaments.list.TournamentListCallback
-import com.mctech.pokergrinder.tournaments.list.TournamentListInteraction
-import com.mctech.pokergrinder.tournaments.list.TournamentListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

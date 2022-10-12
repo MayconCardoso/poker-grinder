@@ -1,0 +1,11 @@
+apply from: "$rootDir/config/module/feature/presentation.gradle"
+
+dependencies {
+    // Internal modules
+    implementation project(path: ':features:tournaments:domain')
+    implementation project(path: ':features:tournaments:presentation:navigation')
+    implementation project(path: ':features:tournaments:presentation:list-component')
+
+    // Ui
+    implementation "androidx.cardview:cardview:1.0.0"
+}

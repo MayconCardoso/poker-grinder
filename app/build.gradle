@@ -43,15 +43,22 @@ dependencies {
     implementation project(path: ':libraries:architecture')
     implementation project(path: ':libraries:localization')
 
-    // Features
+    // Features - Tournaments
     implementation project(path: ':features:tournaments:data')
     implementation project(path: ':features:tournaments:domain')
-    implementation project(path: ':features:tournaments:presentation')
+    implementation project(path: ':features:tournaments:presentation:list')
+    implementation project(path: ':features:tournaments:presentation:creation')
+    implementation project(path: ':features:tournaments:presentation:navigation')
+    implementation project(path: ':features:tournaments:presentation:list-component')
+
+    // Features - Bankroll
     implementation project(path: ':features:bankroll:data')
     implementation project(path: ':features:bankroll:domain')
     implementation project(path: ':features:bankroll:presentation:creation')
     implementation project(path: ':features:bankroll:presentation:navigation')
     implementation project(path: ':features:bankroll:presentation:list')
+
+    // Features - Grind
     implementation project(path: ':features:grind:data')
     implementation project(path: ':features:grind:domain')
     implementation project(path: ':features:grind:presentation')

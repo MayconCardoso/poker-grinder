@@ -16,8 +16,10 @@ include ':testing:architecture-testing'
 // Feature - Tournament
 include ':features:tournaments:domain'
 include ':features:tournaments:data'
-include ':features:tournaments:presentation'
-include ':features:tournaments:components:list'
+include ':features:tournaments:presentation:list'
+include ':features:tournaments:presentation:creation'
+include ':features:tournaments:presentation:navigation'
+include ':features:tournaments:presentation:list-component'
 
 // Feature - Bankroll
 include ':features:bankroll:domain'

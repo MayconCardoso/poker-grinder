@@ -10,7 +10,7 @@ import com.mctech.pokergrinder.grind.presentation.GrindNavigation
 import com.mctech.pokergrinder.grind.presentation.grind_details.GrindDetailsFragment
 import com.mctech.pokergrinder.grind.presentation.grind_gameplay_register.RegisterFlipFragment
 import com.mctech.pokergrinder.grind.presentation.tournamnet_creation.RegisterTournamentFragment
-import com.mctech.pokergrinder.tournament.presentation.TournamentNavigation
+import com.mctech.pokergrinder.tournament.presentation.navigation.TournamentNavigation
 import com.mctech.pokergrinder.tournament.presentation.creation.NewTournamentFragment
 import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
 
