@@ -20,7 +20,7 @@ public class SummaryContainerFragment : Fragment(R.layout.fragment_summary_conta
   }
 
   private fun setupViewPager() = with(binding) {
-    containerPager.adapter = SummaryContainerContainerAdapter(childFragmentManager, lifecycle)
+    containerPager.adapter = SummaryContainerAdapter(childFragmentManager, lifecycle)
     containerPager.offscreenPageLimit = 2
     containerPager.isUserInputEnabled = false
   }
@@ -28,7 +28,7 @@ public class SummaryContainerFragment : Fragment(R.layout.fragment_summary_conta
   private fun setupTabLayout() {
     TabLayoutMediator(binding.containerTab, binding.containerPager) { tab, position ->
       tab.text = getString(
-        SummaryContainerContainerAdapter.SummaryTab.byPosition(position).titleRes
+        SummaryContainerAdapter.SummaryTab.byPosition(position).titleRes
       )
     }.attach()
   }

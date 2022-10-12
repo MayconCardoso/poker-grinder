@@ -6,7 +6,6 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.mctech.chart.money.MoneyVariationEntry
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.architecture.ViewCommand
 import com.mctech.pokergrinder.architecture.extensions.bindCommand
@@ -70,9 +69,6 @@ public class GrindDetailsFragment : Fragment(R.layout.fragment_grind_details) {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    // Inflates menu
-    setupToolbarMenu()
-
     // Gets tournament
     val session = arguments?.getSerializable(SESSION_PARAM) as Session
     viewModel.interact(GrindDetailsInteraction.ScreenFirstOpen(session))
@@ -84,8 +80,6 @@ public class GrindDetailsFragment : Fragment(R.layout.fragment_grind_details) {
     setupTournamentList()
 
     // Observes state.
-    bindState(viewModel.chartState, ::consumeChartState)
-    bindState(viewModel.detailsState, ::consumeDetailState)
     bindState(viewModel.tournamentsState, ::consumeTournamentsState)
 
     // Observes commands
@@ -102,19 +96,6 @@ public class GrindDetailsFragment : Fragment(R.layout.fragment_grind_details) {
       is ComponentState.Loading -> rendersTournamentsLoading()
       is ComponentState.Success -> rendersTournamentsSuccess(state.result)
     }
-  }
-
-  private fun consumeDetailState(state: ComponentState<Session>) {
-    when (state) {
-      is ComponentState.Error -> rendersSessionError()
-      is ComponentState.Loading -> rendersSessionLoading()
-      is ComponentState.Success -> rendersSessionSuccess(state.result)
-    }
-  }
-
-  private fun consumeChartState(data: List<MoneyVariationEntry>) {
-    binding.noData.isVisible = data.isEmpty()
-    binding.chart.render(data)
   }
 
   private fun rendersTournamentsLoading() {
@@ -137,45 +118,6 @@ public class GrindDetailsFragment : Fragment(R.layout.fragment_grind_details) {
     Log.i("TournamentsFragment", "Error while loading screen.")
   }
 
-  private fun rendersSessionLoading() {
-    binding.balance.isVisible = false
-    binding.progressBalance.isVisible = true
-
-    binding.buyIn.isVisible = false
-    binding.progressBuyIn.isVisible = true
-
-    binding.tournaments.isVisible = false
-    binding.progressTournament.isVisible = true
-
-    binding.cash.isVisible = false
-    binding.progressCash.isVisible = true
-  }
-
-  private fun rendersSessionSuccess(session: Session) {
-    binding.toolbar.title = session.title
-
-    binding.balance.text = session.formattedBalance()
-    binding.balance.isVisible = true
-    binding.progressBalance.isVisible = false
-
-    binding.tournament.text = session.tournamentsPlayed.toString()
-    binding.tournament.isVisible = true
-    binding.progressTournament.isVisible = false
-
-    binding.buyIn.text = session.formattedBuyIn()
-    binding.buyIn.isVisible = true
-    binding.progressBuyIn.isVisible = false
-
-    binding.cash.text = session.formattedCash()
-    binding.cash.isVisible = true
-    binding.progressCash.isVisible = false
-  }
-
-
-  private fun rendersSessionError() {
-    TODO("Not yet implemented")
-  }
-
   // endregion
 
   // region Component Setup
@@ -189,16 +131,6 @@ public class GrindDetailsFragment : Fragment(R.layout.fragment_grind_details) {
   private fun setupTournamentList() {
     binding.tournaments.addItemDecoration(SimpleSpaceItemDecoration(bottomOffset = 12.dp()))
     binding.tournaments.adapter = tournamentAdapter
-  }
-
-  private fun setupToolbarMenu() {
-    binding.toolbar.inflateMenu(R.menu.session_menu)
-    binding.toolbar.setOnMenuItemClickListener {
-      if (it.itemId == R.id.settings_fragment) {
-        navigation.goToSettings()
-      }
-      true
-    }
   }
 
   // endregion

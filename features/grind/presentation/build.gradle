@@ -3,12 +3,16 @@ apply from: "$rootDir/config/module/feature/presentation.gradle"
 dependencies {
     // Internal modules
     implementation project(path: ':libraries:chart')
+    implementation project(path: ':features:deck:domain')
     implementation project(path: ':features:grind:domain')
     implementation project(path: ':features:settings:domain')
     implementation project(path: ':features:bankroll:domain')
     implementation project(path: ':features:tournaments:domain')
     implementation project(path: ':features:tournaments:components:list')
+    implementation project(path: ':features:deck:components:card_picker')
 
     // Ui
     implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.viewpager2:viewpager2:$VIEWPAGER2_VERSION"
+    implementation "com.google.android.material:material:$ANDROID_MATERIAL_VERSION"
 }

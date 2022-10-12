@@ -7,6 +7,7 @@ import com.mctech.pokergrinder.bankroll.data.database.BankrollTransactionRoomEnt
 import com.mctech.pokergrinder.grind.data.database.GrindDao
 import com.mctech.pokergrinder.grind.data.database.SessionDetailRoomEntity
 import com.mctech.pokergrinder.grind.data.database.SessionRoomEntity
+import com.mctech.pokergrinder.grind.data.database.SessionTournamentFlipRoomEntity
 import com.mctech.pokergrinder.grind.data.database.SessionTournamentRoomEntity
 import com.mctech.pokergrinder.settings.data.database.SettingsDao
 import com.mctech.pokergrinder.settings.data.database.SettingsRoomEntity
@@ -15,12 +16,20 @@ import com.mctech.pokergrinder.tournament.data.database.TournamentDao
 import com.mctech.pokergrinder.tournament.data.database.TournamentRoomEntity
 
 @Database(
-  version = 4,
+  version = 5,
   entities = [
-    SessionRoomEntity::class,
+    // Settings
     SettingsRoomEntity::class,
+
+    // Session
+    SessionRoomEntity::class,
     SessionTournamentRoomEntity::class,
+    SessionTournamentFlipRoomEntity::class,
+
+    // Tournaments
     TournamentRoomEntity::class,
+
+    // Bankroll
     BankrollTransactionRoomEntity::class,
   ],
   views = [

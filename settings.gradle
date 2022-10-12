@@ -22,8 +22,10 @@ include ':features:tournaments:components:list'
 // Feature - Bankroll
 include ':features:bankroll:domain'
 include ':features:bankroll:data'
-include ':features:bankroll:presentation'
-include ':features:bankroll:components:balance'
+include ':features:bankroll:presentation:list'
+include ':features:bankroll:presentation:creation'
+include ':features:bankroll:presentation:navigation'
+include ':features:bankroll:presentation:balance-component'
 
 // Feature - Grind
 include ':features:grind:domain'
@@ -43,3 +45,7 @@ include ':features:summary:components:overall_chart'
 include ':features:settings:domain'
 include ':features:settings:data'
 include ':features:settings:presentation'
+
+// Feature - Deck
+include ':features:deck:domain'
+include ':features:deck:components:card_picker'

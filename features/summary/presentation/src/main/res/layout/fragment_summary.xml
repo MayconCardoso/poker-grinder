@@ -8,7 +8,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/component_balance"
-        android:name="com.mctech.pokergrinder.bankroll.balance.BankrollBalanceFragment"
+        android:name="com.mctech.pokergrinder.bankroll.presentation.balance_component.BankrollBalanceFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"

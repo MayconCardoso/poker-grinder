@@ -1,7 +1,6 @@
 package com.mctech.pokergrinder
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -12,14 +11,9 @@ import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mctech.pokergrinder.architecture.extensions.bindState
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
-import com.mctech.pokergrinder.bankroll.presentation.creation.DepositFragment
 import com.mctech.pokergrinder.databinding.ActivityHomeBinding
 import com.mctech.pokergrinder.grind.domain.entities.Session
-import com.mctech.pokergrinder.grind.presentation.grind_creation.NewGrindFragment
 import com.mctech.pokergrinder.grind.presentation.grind_current.CurrentGrindViewModel
-import com.mctech.pokergrinder.grind.presentation.grind_details.GrindDetailsFragment
-import com.mctech.pokergrinder.grind.presentation.tournamnet_creation.RegisterTournamentFragment
-import com.mctech.pokergrinder.tournament.presentation.creation.NewTournamentFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -38,6 +32,7 @@ class HomeActivity : AppCompatActivity() {
       R.id.session_details_tournament,
       R.id.statement_register,
       R.id.tournament_register,
+      R.id.session_details_tournament_flip,
     )
   }
 
