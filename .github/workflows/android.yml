@@ -1,31 +1,24 @@
-name: Android CI
+name: build
 
 on:
   push:
-    branches: [ "development" ]
+    branches:
+      - '**'
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
+
     steps:
-      - name: git clone
-        uses: actions/checkout@v3
-      - name: Setup Android Build
-        uses: ./.github/actions/setup-android-build
-        timeout-minutes: 5
-      - name: Build with Gradle
+      - uses: actions/checkout@v3
+      - uses: gradle/wrapper-validation-action@v1.0.4
+      - uses: actions/setup-java@v3
+          with:
+            distribution: 'zulu'
+            java-version: 11
+
+      - name: Build project
         run: ./gradlew build
 
-  test-unit:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: git clone
-        uses: actions/checkout@v3
-
-      - name: Setup Android Build
-        uses: ./.github/actions/setup-android-build
-        timeout-minutes: 5
-
-      - name: Build with Gradle
-        run: ./gradlew test
+      - name: Check project
+        run: ./gradlew check

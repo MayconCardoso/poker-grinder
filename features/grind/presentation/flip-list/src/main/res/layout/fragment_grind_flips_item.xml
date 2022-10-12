@@ -64,14 +64,14 @@
             app:layout_constraintStart_toStartOf="@+id/title"
             app:layout_constraintTop_toBottomOf="@id/title">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/hero_1"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 tools:src="@drawable/card_as" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/hero_2"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -90,14 +90,14 @@
             app:layout_constraintStart_toEndOf="@id/vs"
             app:layout_constraintTop_toTopOf="@+id/container_hero">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/villain_1"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 tools:src="@drawable/card_ac" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/villain_2"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -120,14 +120,14 @@
             app:layout_constraintStart_toStartOf="@id/title"
             app:layout_constraintTop_toBottomOf="@id/container_hero">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/board_1"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 tools:src="@drawable/card_2c" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/board_2"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
                 android:adjustViewBounds="true"
                 tools:src="@drawable/card_kd" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/board_3"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -143,7 +143,7 @@
                 android:adjustViewBounds="true"
                 tools:src="@drawable/card_ad" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/board_4"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -151,7 +151,7 @@
                 android:adjustViewBounds="true"
                 tools:src="@drawable/card_7s" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/board_5"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"

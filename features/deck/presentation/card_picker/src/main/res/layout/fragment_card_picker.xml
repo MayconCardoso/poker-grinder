@@ -8,6 +8,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/suits_container"
         android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_height="wrap_content">
 
         <Button
