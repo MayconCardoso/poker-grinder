@@ -22,7 +22,7 @@ class HomeActivity : AppCompatActivity() {
   // region Variables
 
   /**
-   * Indicates which features  that main app toolbar will be hidden
+   * Indicates which features  that main app toolbar will be hidden.
    */
   private val mainAppContainerHiddenFragments by lazy {
     listOf(
