@@ -1,0 +1,16 @@
+apply from: "$rootDir/config/module/feature/presentation.gradle"
+
+dependencies {
+    // Internal modules
+    implementation project(path: ':features:summary:domain')
+    implementation project(path: ':features:summary:presentation:session')
+    implementation project(path: ':features:summary:presentation:investment')
+    implementation project(path: ':features:summary:presentation:tournaments')
+    implementation project(path: ':features:summary:presentation:overall_chart')
+    implementation project(path: ':features:bankroll:presentation:balance-component')
+
+    // Ui
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.viewpager2:viewpager2:$VIEWPAGER2_VERSION"
+    implementation "com.google.android.material:material:$ANDROID_MATERIAL_VERSION"
+}

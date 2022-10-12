@@ -37,11 +37,11 @@ include ':features:grind:presentation'
 // Feature - Summary
 include ':features:summary:domain'
 include ':features:summary:data'
-include ':features:summary:presentation'
-include ':features:summary:components:session'
-include ':features:summary:components:investment'
-include ':features:summary:components:tournaments'
-include ':features:summary:components:overall_chart'
+include ':features:summary:presentation:session'
+include ':features:summary:presentation:investment'
+include ':features:summary:presentation:tournaments'
+include ':features:summary:presentation:overall_chart'
+include ':features:summary:presentation:pager_container'
 
 // Feature - Settings
 include ':features:settings:domain'
