@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            app:constraint_referenced_ids="grind_title, cbGroup, save"
+            app:constraint_referenced_ids="grind_title, cbGroup"
             tools:visibility="visible" />
 
         <ProgressBar
@@ -33,7 +33,7 @@
             android:id="@+id/grind_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Grind settings"
+            tools:text="Grind settings"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent" />
