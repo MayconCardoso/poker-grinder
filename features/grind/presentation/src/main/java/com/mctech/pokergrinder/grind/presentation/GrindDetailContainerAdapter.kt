@@ -8,6 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.presentation.grind_details.GrindDetailsFragment
 import com.mctech.pokergrinder.grind.presentation.grind_gameplay.GrindDetailsGameplayFragment
+import com.mctech.pokergrinder.grind.presentation.grind_summary.GrindSummaryFragment
 
 internal class GrindDetailContainerAdapter(
   fragmentManager: FragmentManager,
@@ -18,11 +19,16 @@ internal class GrindDetailContainerAdapter(
   /**
    * Holds the current shown tabs on grind details feature.
    */
-  private val discoverTabs by lazy { listOf(GrindTab.TOURNAMENT, GrindTab.GAMEPLAY) }
+  private val discoverTabs by lazy { listOf(GrindTab.SUMMARY, GrindTab.TOURNAMENT, GrindTab.GAMEPLAY) }
 
   override fun getItemCount() = discoverTabs.size
 
   override fun createFragment(position: Int) = when (position) {
+    // Creates summary fragment.
+    GrindTab.SUMMARY.position -> GrindSummaryFragment().apply {
+      arguments = bundleOf(GrindSummaryFragment.SESSION_PARAM to session)
+    }
+
     // Creates tournament fragment.
     GrindTab.TOURNAMENT.position -> GrindDetailsFragment().apply {
       arguments = bundleOf(GrindDetailsFragment.SESSION_PARAM to session)
@@ -38,8 +44,9 @@ internal class GrindDetailContainerAdapter(
   }
 
   enum class GrindTab(val position: Int, @StringRes val titleRes: Int) {
-    TOURNAMENT(0, com.mctech.pokergrinder.localization.R.string.tournament),
-    GAMEPLAY(1, com.mctech.pokergrinder.localization.R.string.gameplay),
+    SUMMARY(0, com.mctech.pokergrinder.localization.R.string.summary),
+    TOURNAMENT(1, com.mctech.pokergrinder.localization.R.string.tournament),
+    GAMEPLAY(2, com.mctech.pokergrinder.localization.R.string.gameplay),
     ;
 
     companion object {

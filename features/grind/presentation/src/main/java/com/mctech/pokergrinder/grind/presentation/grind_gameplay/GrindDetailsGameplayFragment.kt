@@ -94,10 +94,6 @@ public class GrindDetailsGameplayFragment : Fragment(R.layout.fragment_grind_det
     binding.tournaments.isVisible = state.isNotEmpty()
     binding.tournamentsEmpty.isVisible = state.isEmpty()
 
-    // Flips text
-    binding.flipsWon.text = state.count { it.won }.toString()
-    binding.flipsLost.text = state.count { !it.won }.toString()
-
     // Render list
     adapter.submitList(state)
   }

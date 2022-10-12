@@ -27,7 +27,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class GrindDetailsViewModel @Inject constructor(
-  private val observeGrindUseCase: ObserveGrindUseCase,
   private val observeSettingsUseCase: ObserveSettingsUseCase,
   private val registerTournamentUseCase: RegisterTournamentUseCase,
   private val groupGrindTournamentUseCase: GroupGrindTournamentUseCase,
@@ -37,17 +36,14 @@ internal class GrindDetailsViewModel @Inject constructor(
   // region Variables
 
   /**
+   * Holds the opened session.
+   */
+  lateinit var session: Session
+
+  /**
    * Holds the original tournament list.
    */
   private var originalTemplateList = listOf<SessionTournament>()
-
-  /**
-   * Holds the session summary state.
-   */
-  private val _detailsState by lazy {
-    MutableStateFlow<ComponentState<Session>>(ComponentState.Loading.FromEmpty)
-  }
-  val detailsState: StateFlow<ComponentState<Session>> by lazy { _detailsState }
 
   /**
    * Holds the session registered tournaments.
@@ -57,19 +53,16 @@ internal class GrindDetailsViewModel @Inject constructor(
   }
   val tournamentsState: StateFlow<ComponentState<List<SessionTournament>>> by lazy { _tournamentsState }
 
-  /**
-   * Holds the session chart.
-   */
-  private val _chartState by lazy { MutableStateFlow<List<MoneyVariationEntry>>(listOf()) }
-  val chartState: StateFlow<List<MoneyVariationEntry>> by lazy { _chartState }
-
   // endregion
 
   // region Interactions
 
   @OnInteraction(GrindDetailsInteraction.ScreenFirstOpen::class)
   private fun onScreenFirstOpen(interaction: GrindDetailsInteraction.ScreenFirstOpen) {
-    viewModelScope.async { observeDetails(interaction.session) }
+    // Holds session to future usage.
+    this.session = interaction.session
+
+    // Observe changes.
     viewModelScope.async { observeTournaments(interaction.session) }
   }
 
@@ -91,9 +84,6 @@ internal class GrindDetailsViewModel @Inject constructor(
   }
 
   private suspend fun duplicateTournament(tournament: SessionTournament) {
-    // Gets current session.
-    val session = (_detailsState.value as? ComponentState.Success)?.result ?: return
-
     try {
       // Register new item.
       registerTournamentUseCase(
@@ -112,14 +102,6 @@ internal class GrindDetailsViewModel @Inject constructor(
   // endregion
 
   // region Session Actions
-
-  private fun observeDetails(session: Session) {
-    observeGrindUseCase(session.id)
-      .onEach { state ->
-        _detailsState.value = ComponentState.Success(state)
-      }
-      .launchIn(viewModelScope)
-  }
 
   private fun observeTournaments(session: Session) {
     // Observe tournaments
@@ -141,20 +123,12 @@ internal class GrindDetailsViewModel @Inject constructor(
       }
       // Handle new state
       .onEach { tournaments ->
-        var balance = 0.0
-        _chartState.value = originalTemplateList.reversed().map {
-          balance += it.computesBalance()
-          MoneyVariationEntry(balance)
-        }
         _tournamentsState.value = ComponentState.Success(tournaments)
       }
       .launchIn(viewModelScope)
   }
 
   private suspend fun openTournament(tournament: SessionTournament?) {
-    // Gets state.
-    val state = _detailsState.value as? ComponentState.Success ?: return
-
     // Checks if tournament is grouped, if so, ask user to pick which tournament they wanna change.
     if (tournament?.isGrouped == true) {
       // Filter tournaments.
@@ -167,11 +141,13 @@ internal class GrindDetailsViewModel @Inject constructor(
 
     // Gets command
     val command = GrindDetailsCommand.GoToTournamentEditor(
-      session = state.result,
+      session = session,
       sessionTournament = tournament,
     )
 
     // Open register tournament
     sendCommand(command)
   }
+
+  // endregion
 }

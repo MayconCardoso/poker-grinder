@@ -6,94 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/header_flips_won"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toStartOf="@+id/header_flips_lost"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/balance_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/flips_won"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/flips_won"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/balance_title"
-                tools:text="3" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/header_flips_lost"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/header_flips_won"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tournament_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/flips_lost"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/flips_lost"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tournament_title"
-                tools:text="0" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tournaments"
         android:layout_width="match_parent"
@@ -102,7 +14,7 @@
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/register"
-        app:layout_constraintTop_toBottomOf="@id/header_flips_won"
+        app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="4"
         tools:listitem="@layout/fragment_grind_details_tournament_flip" />
 
@@ -117,7 +29,7 @@
         android:textStyle="bold"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/register"
-        app:layout_constraintTop_toBottomOf="@id/header_flips_won" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/progress"
