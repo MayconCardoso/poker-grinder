@@ -12,9 +12,9 @@ import com.mctech.pokergrinder.architecture.extensions.bindState
 import com.mctech.pokergrinder.architecture.extensions.dp
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.architecture.utility.SimpleSpaceItemDecoration
-import com.mctech.pokergrinder.deck.components.card_picker.CardPickerCommand
-import com.mctech.pokergrinder.deck.components.card_picker.CardPickerInteraction
-import com.mctech.pokergrinder.deck.components.card_picker.CardPickerViewModel
+import com.mctech.pokergrinder.deck.presentation.card_picker.CardPickerCommand
+import com.mctech.pokergrinder.deck.presentation.card_picker.CardPickerInteraction
+import com.mctech.pokergrinder.deck.presentation.card_picker.CardPickerViewModel
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.presentation.GrindNavigation
 import com.mctech.pokergrinder.grind.presentation.R

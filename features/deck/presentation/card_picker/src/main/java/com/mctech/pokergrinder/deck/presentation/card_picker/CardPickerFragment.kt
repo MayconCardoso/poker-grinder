@@ -1,4 +1,4 @@
-package com.mctech.pokergrinder.deck.components.card_picker
+package com.mctech.pokergrinder.deck.presentation.card_picker
 
 import android.os.Bundle
 import android.view.View
@@ -6,10 +6,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mctech.pokergrinder.architecture.extensions.bindState
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
-import com.mctech.pokergrinder.deck.components.card_picker.adapter.CardPickerAdapter
-import com.mctech.pokergrinder.deck.components.card_picker.adapter.CardPickerConsumer
-import com.mctech.pokergrinder.deck.components.card_picker.adapter.CardPickerConsumerEvent
-import com.mctech.pokergrinder.deck.components.card_picker.databinding.FragmentCardPickerBinding
+import com.mctech.pokergrinder.deck.presentation.card_picker.adapter.CardPickerAdapter
+import com.mctech.pokergrinder.deck.presentation.card_picker.adapter.CardPickerConsumer
+import com.mctech.pokergrinder.deck.presentation.card_picker.adapter.CardPickerConsumerEvent
+import com.mctech.pokergrinder.deck.presentation.card_picker.databinding.FragmentCardPickerBinding
 import com.mctech.pokergrinder.deck.domain.CardSuit
 import dagger.hilt.android.AndroidEntryPoint
 

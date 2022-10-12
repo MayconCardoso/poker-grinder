@@ -1,13 +1,13 @@
-package com.mctech.pokergrinder.deck.components.card_picker.adapter
+package com.mctech.pokergrinder.deck.presentation.card_picker.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mctech.pokergrinder.architecture.utility.SimpleItemDiffCallback
-import com.mctech.pokergrinder.deck.components.card_picker.CardPickerState
-import com.mctech.pokergrinder.deck.components.card_picker.databinding.FragmentCardPickerItemBinding
-import com.mctech.pokergrinder.deck.components.card_picker.loadCardImage
+import com.mctech.pokergrinder.deck.presentation.card_picker.CardPickerState
+import com.mctech.pokergrinder.deck.presentation.card_picker.databinding.FragmentCardPickerItemBinding
+import com.mctech.pokergrinder.deck.presentation.card_picker.loadCardImage
 
 internal class CardPickerAdapter(
   private val consumer: CardPickerConsumer,

@@ -1,9 +1,9 @@
-package com.mctech.pokergrinder.deck.components.card_picker
+package com.mctech.pokergrinder.deck.presentation.card_picker
 
 import com.mctech.pokergrind.threading.CoroutineDispatchers
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.OnInteraction
-import com.mctech.pokergrinder.deck.components.card_picker.adapter.CardPickerConsumerEvent
+import com.mctech.pokergrinder.deck.presentation.card_picker.adapter.CardPickerConsumerEvent
 import com.mctech.pokergrinder.deck.domain.Card
 import com.mctech.pokergrinder.deck.domain.CardSuit
 import com.mctech.pokergrinder.deck.domain.Deck

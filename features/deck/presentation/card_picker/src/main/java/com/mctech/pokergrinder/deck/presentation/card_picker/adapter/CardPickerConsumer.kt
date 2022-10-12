@@ -1,4 +1,4 @@
-package com.mctech.pokergrinder.deck.components.card_picker.adapter
+package com.mctech.pokergrinder.deck.presentation.card_picker.adapter
 
 internal interface CardPickerConsumer {
   fun consume(event: CardPickerConsumerEvent)

@@ -50,4 +50,4 @@ include ':features:settings:presentation'
 
 // Feature - Deck
 include ':features:deck:domain'
-include ':features:deck:components:card_picker'
+include ':features:deck:presentation:card_picker'

@@ -6,7 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mctech.pokergrinder.architecture.utility.SimpleItemDiffCallback
-import com.mctech.pokergrinder.deck.components.card_picker.loadCardImage
+import com.mctech.pokergrinder.deck.presentation.card_picker.loadCardImage
 import com.mctech.pokergrinder.design.R
 import com.mctech.pokergrinder.grind.domain.entities.SessionTournamentFlip
 import com.mctech.pokergrinder.grind.presentation.databinding.FragmentGrindDetailsTournamentFlipBinding
