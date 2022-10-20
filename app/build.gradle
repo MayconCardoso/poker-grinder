@@ -54,9 +54,10 @@ dependencies {
     // Features - Bankroll
     implementation project(path: ':features:bankroll:data')
     implementation project(path: ':features:bankroll:domain')
-    implementation project(path: ':features:bankroll:presentation:creation')
+    implementation project(path: ':features:bankroll:presentation:deposit')
+    implementation project(path: ':features:bankroll:presentation:withdraw')
     implementation project(path: ':features:bankroll:presentation:navigation')
-    implementation project(path: ':features:bankroll:presentation:list')
+    implementation project(path: ':features:bankroll:presentation:statement')
 
     // Features - Grind
     implementation project(path: ':features:grind:data')

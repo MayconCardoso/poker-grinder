@@ -80,6 +80,10 @@ class PokerGrinderNavigator : TournamentNavigation, BankrollNavigation, GrindNav
     navController?.navigate(R.id.action_statement_fragment_to_statement_register)
   }
 
+  override fun goToBankrollWithdraw() {
+    navController?.navigate(R.id.action_statement_fragment_to_statement_withdraw)
+  }
+
   // endregion
 
   // region Grind navigation
