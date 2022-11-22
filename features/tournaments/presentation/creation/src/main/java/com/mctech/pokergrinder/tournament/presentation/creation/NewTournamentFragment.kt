@@ -62,8 +62,6 @@ public class NewTournamentFragment : Fragment(R.layout.fragment_tournament) {
     val data = tournament ?: return
     binding.tournamentTitle.setText(data.title)
     binding.tournamentBuyIn.setText(data.buyIn.toString())
-    binding.tournamentGtd.setText(data.guaranteed.toString())
-    binding.tournamentReBuy.setText(data.countReBuy.toString())
   }
 
   // endregion
@@ -75,8 +73,6 @@ public class NewTournamentFragment : Fragment(R.layout.fragment_tournament) {
       viewModel.interact(
         NewTournamentInteraction.SaveTournament(
           title = binding.tournamentTitle.text.toString(),
-          guaranteed = binding.tournamentGtd.text.toString().toInt(),
-          countBuyIn = binding.tournamentReBuy.text.toString().toInt(),
           buyIn = binding.tournamentBuyIn.text.toString().toFloat(),
         )
       )

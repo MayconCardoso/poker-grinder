@@ -9,8 +9,6 @@ internal sealed class NewTournamentInteraction : UserInteraction {
 
   data class SaveTournament(
     val title: String,
-    val guaranteed: Int,
-    val countBuyIn: Int,
     val buyIn: Float,
   ): NewTournamentInteraction()
 }

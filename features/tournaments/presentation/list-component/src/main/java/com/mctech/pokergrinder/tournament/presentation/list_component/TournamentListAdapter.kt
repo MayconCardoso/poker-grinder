@@ -35,8 +35,6 @@ internal class TournamentListAdapter(
     fun bind(tournament: Tournament) {
       binding.title.text = tournament.title
       binding.buyIn.text = tournament.formattedBuyIn()
-      binding.gtd.text = tournament.formattedGuaranteed()
-      binding.startsAt.text = tournament.formattedTime()
     }
 
     private fun onItemClicked(item: Tournament) {

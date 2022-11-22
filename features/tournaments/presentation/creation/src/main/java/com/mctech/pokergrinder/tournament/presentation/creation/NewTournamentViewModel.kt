@@ -28,13 +28,13 @@ internal class NewTournamentViewModel @Inject constructor(
   private suspend fun saveTournamentInteraction(interaction: NewTournamentInteraction.SaveTournament) {
     // Creates tournament
     val tournament = Tournament(
-      id = _componentState.value?.id ?: "",
+      id = _componentState.value?.id.orEmpty(),
       isBounty = false,
+      guaranteed = 0,
+      countReBuy = 0,
       buyIn = interaction.buyIn,
       title = interaction.title,
       type = TournamentType.REGULAR,
-      guaranteed = interaction.guaranteed,
-      countReBuy = interaction.countBuyIn,
       startTimeInMs = 10.hours.inWholeMilliseconds
     )
 
