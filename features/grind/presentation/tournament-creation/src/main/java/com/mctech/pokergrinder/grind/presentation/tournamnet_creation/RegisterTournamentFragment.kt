@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import com.mctech.pokergrinder.architecture.ViewCommand
 import com.mctech.pokergrinder.architecture.extensions.bindCommand
 import com.mctech.pokergrinder.architecture.extensions.bindState
+import com.mctech.pokergrinder.architecture.extensions.onDataFormFilled
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
@@ -107,6 +108,14 @@ public class RegisterTournamentFragment : Fragment(R.layout.fragment_register_to
 
     binding.tournamentTitle.doOnTextChanged { text, _, _, _ ->
       tournamentsViewModel.interact(TournamentListInteraction.NewFilterQuery(text.toString()))
+    }
+
+    listOf(
+      binding.tournamentTitle,
+      binding.tournamentBuyIn,
+      binding.tournamentProfit,
+    ).onDataFormFilled { allSet ->
+      binding.save.isEnabled = allSet
     }
   }
 
