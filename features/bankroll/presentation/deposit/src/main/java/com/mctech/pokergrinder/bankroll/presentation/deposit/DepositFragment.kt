@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mctech.pokergrinder.architecture.ViewCommand
 import com.mctech.pokergrinder.architecture.extensions.bindCommand
+import com.mctech.pokergrinder.architecture.extensions.onDataFormFilled
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.bankroll.presentation.deposit.R
 import com.mctech.pokergrinder.bankroll.presentation.deposit.databinding.FragmentDepositBinding
@@ -59,6 +60,10 @@ public class DepositFragment : Fragment(R.layout.fragment_deposit) {
           amount = binding.amount.text.toString().toDouble(),
         )
       )
+    }
+
+    listOf(binding.depositTitle, binding.amount).onDataFormFilled { allSet ->
+      binding.save.isEnabled = allSet
     }
   }
 

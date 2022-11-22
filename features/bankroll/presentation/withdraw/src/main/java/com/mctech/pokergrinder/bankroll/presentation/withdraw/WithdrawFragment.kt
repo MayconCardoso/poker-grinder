@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mctech.pokergrinder.architecture.ViewCommand
 import com.mctech.pokergrinder.architecture.extensions.bindCommand
+import com.mctech.pokergrinder.architecture.extensions.onDataFormFilled
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.bankroll.presentation.navigation.BankrollNavigation
 import com.mctech.pokergrinder.bankroll.presentation.withdraw.databinding.FragmentWithdrawBinding
@@ -59,6 +60,10 @@ public class WithdrawFragment : Fragment(R.layout.fragment_withdraw) {
           amount = binding.amount.text.toString().toDouble(),
         )
       )
+    }
+
+    listOf(binding.depositTitle, binding.amount).onDataFormFilled { allSet ->
+      binding.save.isEnabled = allSet
     }
   }
 
