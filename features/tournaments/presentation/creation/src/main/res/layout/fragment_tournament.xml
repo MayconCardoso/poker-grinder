@@ -20,6 +20,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:lines="1"
+        android:maxLines="1"
+        android:inputType="text"
         android:hint="@string/title"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
@@ -37,6 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/save"
+        android:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

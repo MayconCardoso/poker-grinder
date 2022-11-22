@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import com.mctech.pokergrinder.architecture.ViewCommand
 import com.mctech.pokergrinder.architecture.extensions.bindCommand
 import com.mctech.pokergrinder.architecture.extensions.bindState
+import com.mctech.pokergrinder.architecture.extensions.onDataFormFilled
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.tournament.presentation.creation.databinding.FragmentTournamentBinding
 import com.mctech.pokergrinder.tournament.presentation.navigation.TournamentNavigation
@@ -69,6 +70,7 @@ public class NewTournamentFragment : Fragment(R.layout.fragment_tournament) {
   // region Component Setup
 
   private fun setupListeners() {
+    // Click on save button.
     binding.save.setOnClickListener {
       viewModel.interact(
         NewTournamentInteraction.SaveTournament(
@@ -76,6 +78,11 @@ public class NewTournamentFragment : Fragment(R.layout.fragment_tournament) {
           buyIn = binding.tournamentBuyIn.text.toString().toFloat(),
         )
       )
+    }
+
+    // Observe fields content to enable/disable save button.
+    listOf(binding.tournamentTitle, binding.tournamentBuyIn).onDataFormFilled { allSet ->
+      binding.save.isEnabled = allSet
     }
   }
 
