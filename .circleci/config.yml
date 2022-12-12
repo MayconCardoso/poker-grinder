@@ -14,8 +14,11 @@ jobs:
       - android/run-tests:
           test-command: ./gradlew check
       - android/save-gradle-cache
+      - store_artifacts:
+          path: /test-results/results.xml
+          destination: /test-results
       - store_test_results:
-          path: test-results
+          path: /test-results
 workflows:
   build-workflow:
     jobs:
