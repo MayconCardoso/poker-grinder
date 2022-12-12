@@ -1,6 +1,6 @@
-package com.mctech.pokergrinder.tournaments.domain.entities
+package com.mctech.pokergrinder.tournament.domain.entities
 
-import com.mctech.pokergrinder.tournaments.domain.newTournament
+import com.mctech.pokergrinder.tournament.domain.newTournament
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 

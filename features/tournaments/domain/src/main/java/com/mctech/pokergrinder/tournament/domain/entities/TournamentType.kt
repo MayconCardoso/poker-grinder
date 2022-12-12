@@ -1,4 +1,4 @@
-package com.mctech.pokergrinder.tournaments.domain.entities
+package com.mctech.pokergrinder.tournament.domain.entities
 
 import java.io.Serializable
 

@@ -1,8 +1,8 @@
-package com.mctech.pokergrinder.tournaments.domain.usecase
+package com.mctech.pokergrinder.tournament.domain.usecase
 
 import com.mctech.common_test.TestScenario.Companion.simpleScenario
-import com.mctech.pokergrinder.tournaments.domain.TournamentRepository
-import com.mctech.pokergrinder.tournaments.domain.newTournament
+import com.mctech.pokergrinder.tournament.domain.TournamentRepository
+import com.mctech.pokergrinder.tournament.domain.newTournament
 import io.mockk.coVerifyOrder
 import io.mockk.confirmVerified
 import io.mockk.every

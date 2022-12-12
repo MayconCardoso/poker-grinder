@@ -1,4 +1,4 @@
-package com.mctech.pokergrinder.tournaments.domain.usecase
+package com.mctech.pokergrinder.tournament.domain.usecase
 
 import java.util.UUID
 import javax.inject.Inject

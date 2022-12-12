@@ -2,9 +2,9 @@ package com.mctech.pokergrinder.tournament.presentation.creation
 
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.OnInteraction
-import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
-import com.mctech.pokergrinder.tournaments.domain.entities.TournamentType
-import com.mctech.pokergrinder.tournaments.domain.usecase.SavesTournamentUseCase
+import com.mctech.pokergrinder.tournament.domain.entities.Tournament
+import com.mctech.pokergrinder.tournament.domain.entities.TournamentType
+import com.mctech.pokergrinder.tournament.domain.usecase.SavesTournamentUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

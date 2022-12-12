@@ -8,7 +8,7 @@ import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.tournament.presentation.list.databinding.FragmentTournamentsBinding
 import com.mctech.pokergrinder.tournament.presentation.list_component.TournamentListCallback
 import com.mctech.pokergrinder.tournament.presentation.navigation.TournamentNavigation
-import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
+import com.mctech.pokergrinder.tournament.domain.entities.Tournament
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject

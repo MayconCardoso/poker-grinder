@@ -1,7 +1,7 @@
-package com.mctech.pokergrinder.tournaments.domain.usecase
+package com.mctech.pokergrinder.tournament.domain.usecase
 
-import com.mctech.pokergrinder.tournaments.domain.TournamentRepository
-import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
+import com.mctech.pokergrinder.tournament.domain.TournamentRepository
+import com.mctech.pokergrinder.tournament.domain.entities.Tournament
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

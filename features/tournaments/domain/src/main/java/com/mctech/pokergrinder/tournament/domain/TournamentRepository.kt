@@ -1,6 +1,6 @@
-package com.mctech.pokergrinder.tournaments.domain
+package com.mctech.pokergrinder.tournament.domain
 
-import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
+import com.mctech.pokergrinder.tournament.domain.entities.Tournament
 import kotlinx.coroutines.flow.Flow
 
 /**

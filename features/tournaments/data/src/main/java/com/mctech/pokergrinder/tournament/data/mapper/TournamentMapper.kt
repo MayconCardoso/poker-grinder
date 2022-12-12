@@ -1,8 +1,8 @@
 package com.mctech.pokergrinder.tournament.data.mapper
 
 import com.mctech.pokergrinder.tournament.data.database.TournamentRoomEntity
-import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
-import com.mctech.pokergrinder.tournaments.domain.entities.TournamentType
+import com.mctech.pokergrinder.tournament.domain.entities.Tournament
+import com.mctech.pokergrinder.tournament.domain.entities.TournamentType
 
 /**
  * Converts a list of tournament database entity onto a business one known by the modules.

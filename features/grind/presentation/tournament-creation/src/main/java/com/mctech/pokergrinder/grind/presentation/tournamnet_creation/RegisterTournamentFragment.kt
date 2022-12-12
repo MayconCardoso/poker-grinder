@@ -20,7 +20,7 @@ import com.mctech.pokergrinder.grind.presentation.tournament_creation.databindin
 import com.mctech.pokergrinder.tournament.presentation.list_component.TournamentListCallback
 import com.mctech.pokergrinder.tournament.presentation.list_component.TournamentListInteraction
 import com.mctech.pokergrinder.tournament.presentation.list_component.TournamentListViewModel
-import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
+import com.mctech.pokergrinder.tournament.domain.entities.Tournament
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

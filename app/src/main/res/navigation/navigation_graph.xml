@@ -65,7 +65,7 @@
 
         <argument
             android:name="TOURNAMENT_PARAM"
-            app:argType="com.mctech.pokergrinder.tournaments.domain.entities.Tournament"
+            app:argType="com.mctech.pokergrinder.tournament.domain.entities.Tournament"
             app:nullable="true" />
     </fragment>
 

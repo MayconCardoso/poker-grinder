@@ -13,7 +13,7 @@ import com.mctech.pokergrinder.architecture.extensions.dp
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.architecture.utility.SimpleSpaceItemDecoration
 import com.mctech.pokergrinder.tournament.presentation.list_component.databinding.FragmentTournamentListBinding
-import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
+import com.mctech.pokergrinder.tournament.domain.entities.Tournament
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

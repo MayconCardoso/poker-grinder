@@ -1,7 +1,7 @@
 package com.mctech.pokergrinder.tournament.presentation.creation
 
 import com.mctech.pokergrinder.architecture.UserInteraction
-import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
+import com.mctech.pokergrinder.tournament.domain.entities.Tournament
 
 internal sealed class NewTournamentInteraction : UserInteraction {
 

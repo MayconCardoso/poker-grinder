@@ -11,7 +11,7 @@ import com.mctech.pokergrinder.grind.presentation.pager_container.GrindDetailCon
 import com.mctech.pokergrinder.grind.presentation.tournamnet_creation.RegisterTournamentFragment
 import com.mctech.pokergrinder.tournament.presentation.navigation.TournamentNavigation
 import com.mctech.pokergrinder.tournament.presentation.creation.NewTournamentFragment
-import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
+import com.mctech.pokergrinder.tournament.domain.entities.Tournament
 
 class PokerGrinderNavigator : TournamentNavigation, BankrollNavigation, GrindNavigation {
 
