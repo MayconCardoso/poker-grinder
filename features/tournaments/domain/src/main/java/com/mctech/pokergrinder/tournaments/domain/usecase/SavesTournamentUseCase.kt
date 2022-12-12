@@ -4,6 +4,12 @@ import com.mctech.pokergrinder.tournaments.domain.TournamentRepository
 import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
 import javax.inject.Inject
 
+/**
+ * Responsible for saving a [Tournament].
+ *
+ * @property repository tournament data repository.
+ * @property generateUniqueIdUseCase use case responsible for generating a unique id.
+ */
 class SavesTournamentUseCase @Inject constructor(
   private val repository: TournamentRepository,
   private val generateUniqueIdUseCase: GenerateUniqueIdUseCase,

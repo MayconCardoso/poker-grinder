@@ -2,8 +2,21 @@ package com.mctech.pokergrinder.tournaments.domain.entities
 
 import java.io.Serializable
 import java.text.DecimalFormat
-import java.util.concurrent.TimeUnit
+import java.text.DecimalFormatSymbols
+import java.util.Locale
 
+/**
+ * Declares a tournament instance.
+ *
+ * @property id UUID tournament.
+ * @property type tournament type.
+ * @property buyIn tournament buy-in in dollar.
+ * @property title tournament title.
+ * @property countReBuy count of re-buy allowed in the tournament.
+ * @property guaranteed the guaranteed prize pool.
+ * @property isBounty indicates if tournament is a bounty format.
+ * @property startTimeInMs the time the tournament starts.
+ */
 data class Tournament(
   val id: String,
   val type: TournamentType,
@@ -14,13 +27,13 @@ data class Tournament(
   val isBounty: Boolean,
   val startTimeInMs: Long,
 ) : Serializable {
-  fun formattedTime() = String.format(
-    "%02d:%02d",
-    TimeUnit.MILLISECONDS.toHours(startTimeInMs),
-    TimeUnit.MILLISECONDS.toMinutes(startTimeInMs) % TimeUnit.HOURS.toMinutes(1),
-  )
 
-  fun formattedBuyIn(): String = DecimalFormat("$#0.00").format(buyIn)
+  /**
+   * Formats the tournament [buyIn] in a american dollar string.
+   */
+  fun formattedBuyIn(): String = DecimalFormat(
+    "$#0.00",
+    DecimalFormatSymbols(Locale.ENGLISH)
+  ).format(buyIn)
 
-  fun formattedGuaranteed(): String = DecimalFormat("$#0.00").format(guaranteed)
 }
