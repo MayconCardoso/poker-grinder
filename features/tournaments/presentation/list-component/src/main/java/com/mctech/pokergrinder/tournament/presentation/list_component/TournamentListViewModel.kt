@@ -56,6 +56,11 @@ public class TournamentListViewModel @Inject constructor(
   private suspend fun onFilterQueryChanged(
     interaction: TournamentListInteraction.NewFilterQuery,
   ) = withContext(dispatchers.default) {
+    // Same query, don't perform any addition action.
+    if (interaction.text.equals(currentFilterQuery, ignoreCase = true)) {
+      return@withContext
+    }
+
     // Holds the current query
     currentFilterQuery = interaction.text
 
@@ -64,8 +69,6 @@ public class TournamentListViewModel @Inject constructor(
   }
 
   private suspend fun updateTournamentListBasedOnCurrentQuery() = withContext(dispatchers.default) {
-    if (shownTournaments.isEmpty()) return@withContext
-
     // Filter tournaments
     val tournaments = if (currentFilterQuery.isBlank()) {
       shownTournaments
