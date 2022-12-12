@@ -1,7 +1,7 @@
 package com.mctech.pokergrinder.grind.presentation.flip_creation
 
 import androidx.lifecycle.viewModelScope
-import com.mctech.pokergrind.threading.CoroutineDispatchers
+import com.mctech.pokergrinder.threading.CoroutineDispatchers
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.OnInteraction
 import com.mctech.pokergrinder.deck.domain.Card

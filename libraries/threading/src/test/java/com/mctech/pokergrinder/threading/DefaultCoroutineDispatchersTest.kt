@@ -1,7 +1,6 @@
-package com.mctech.pokergrind.threading
+package com.mctech.pokergrinder.threading
 
 import com.mctech.common_test.TestScenario.Companion.responseScenario
-import com.mctech.pokergrind.threading.DefaultCoroutineDispatchers
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import org.assertj.core.api.Assertions.assertThat

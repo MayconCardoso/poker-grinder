@@ -1,4 +1,4 @@
-package com.mctech.pokergrind.threading
+package com.mctech.pokergrinder.threading
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

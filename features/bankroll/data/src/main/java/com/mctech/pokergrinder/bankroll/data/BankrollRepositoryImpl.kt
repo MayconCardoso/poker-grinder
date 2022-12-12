@@ -1,6 +1,6 @@
 package com.mctech.pokergrinder.bankroll.data
 
-import com.mctech.pokergrind.threading.CoroutineDispatchers
+import com.mctech.pokergrinder.threading.CoroutineDispatchers
 import com.mctech.pokergrinder.bankroll.data.database.BankrollTransactionDao
 import com.mctech.pokergrinder.bankroll.data.mapper.asBusinessTransaction
 import com.mctech.pokergrinder.bankroll.data.mapper.asBusinessTransactions

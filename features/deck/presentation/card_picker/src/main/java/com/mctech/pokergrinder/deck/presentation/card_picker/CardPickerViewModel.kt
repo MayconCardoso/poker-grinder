@@ -1,6 +1,6 @@
 package com.mctech.pokergrinder.deck.presentation.card_picker
 
-import com.mctech.pokergrind.threading.CoroutineDispatchers
+import com.mctech.pokergrinder.threading.CoroutineDispatchers
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.OnInteraction
 import com.mctech.pokergrinder.deck.presentation.card_picker.adapter.CardPickerConsumerEvent

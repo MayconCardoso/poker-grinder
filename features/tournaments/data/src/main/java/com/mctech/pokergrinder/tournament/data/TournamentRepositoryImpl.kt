@@ -1,6 +1,6 @@
 package com.mctech.pokergrinder.tournament.data
 
-import com.mctech.pokergrind.threading.CoroutineDispatchers
+import com.mctech.pokergrinder.threading.CoroutineDispatchers
 import com.mctech.pokergrinder.tournament.data.database.TournamentDao
 import com.mctech.pokergrinder.tournament.data.mapper.asBusinessTournaments
 import com.mctech.pokergrinder.tournament.data.mapper.asDatabaseTournament

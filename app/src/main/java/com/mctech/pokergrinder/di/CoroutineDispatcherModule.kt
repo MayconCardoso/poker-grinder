@@ -1,7 +1,7 @@
 package com.mctech.pokergrinder.di
 
-import com.mctech.pokergrind.threading.CoroutineDispatchers
-import com.mctech.pokergrind.threading.DefaultCoroutineDispatchers
+import com.mctech.pokergrinder.threading.CoroutineDispatchers
+import com.mctech.pokergrinder.threading.DefaultCoroutineDispatchers
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

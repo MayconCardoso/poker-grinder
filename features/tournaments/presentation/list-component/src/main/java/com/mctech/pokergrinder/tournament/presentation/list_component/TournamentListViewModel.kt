@@ -1,7 +1,7 @@
 package com.mctech.pokergrinder.tournament.presentation.list_component
 
 import androidx.lifecycle.viewModelScope
-import com.mctech.pokergrind.threading.CoroutineDispatchers
+import com.mctech.pokergrinder.threading.CoroutineDispatchers
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.architecture.OnInteraction
