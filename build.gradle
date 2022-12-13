@@ -30,6 +30,8 @@ buildscript {
         //==========================================================================================
         // Versions - Tests
         //==========================================================================================
+
+        JACOCO_VERSION = "0.8.7"
         JUNIT_VERSION = "4.13.2"
         MOCKK_VERSION = "1.12.8"
         ASSERTJ_VERSION = "3.23.1"
@@ -61,6 +63,7 @@ allprojects {
 subprojects {
     afterEvaluate { project ->
         if (project.hasProperty('android')) {
+            project.apply from: "$rootDir/config/jacoco.gradle"
             android {
                 compileSdk targets.compileSdk
                 defaultConfig {
@@ -70,6 +73,10 @@ subprojects {
                 }
                 buildTypes {
                     release { }
+                    debug {
+                        // JaCoCo + Hilt issue  https://github.com/google/dagger/issues/1982#issuecomment-726829952
+                        testCoverageEnabled false
+                    }
                 }
                 compileOptions {
                     sourceCompatibility JavaVersion.VERSION_11

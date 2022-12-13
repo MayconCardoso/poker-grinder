@@ -1,0 +1,60 @@
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = rootProject.ext.JACOCO_VERSION
+}
+
+afterEvaluate { project ->
+    tasks.withType(Test) {
+        // JaCoCo + Robolectric + Espresso issue https://github.com/gradle/gradle/issues/5184#issuecomment-457865951
+        jacoco.includeNoLocationClasses true
+        jacoco.excludes = ['jdk.internal.*']
+    }
+
+    task jacocoTestReport(
+            type: JacocoReport,
+            dependsOn: ['testDebugUnitTest']
+    ) {
+        reports {
+            csv.enabled false
+            xml.enabled true
+            html {
+                enabled true
+                destination file("${buildDir}/coverage-report-jacoco")
+            }
+        }
+        def fileFilter = [
+                '**/*App.*',
+                '**/*Application.*',
+                '**/*Activity.*',
+                '**/*Fragment.*',
+                '**/R.class',
+                '**/R$*.class',
+                '**/BuildConfig.*',
+                '**/Manifest*.*',
+                '**/*Test*.*',
+                'android/**/*.*',
+                '**/di/**',
+                '**/*Dagger.*',
+        ]
+        def debugTreeUnfoldDebug = fileTree(
+                dir: "$buildDir/tmp/kotlin-classes/unfoldDebug",
+                excludes: fileFilter
+        )
+        def debugTreeDebug = fileTree(
+                dir: "$buildDir/tmp/kotlin-classes/debug",
+                excludes: fileFilter
+        )
+        def mainSrc = "$projectDir/src/main/java"
+        sourceDirectories.from = files([mainSrc])
+        classDirectories.from = files([debugTreeUnfoldDebug, debugTreeDebug])
+        executionData.from = fileTree(
+                dir: project.buildDir,
+                includes: [
+                        'jacoco/testDebugUnitTest.exec',
+                        'jacoco/testUnfoldDebugUnitTest.exec',
+                        'outputs/code-coverage/connected/*coverage.ec'
+                ]
+        )
+    }
+}
