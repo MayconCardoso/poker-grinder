@@ -33,4 +33,5 @@ dependencies {
 
     // Testing
     testImplementation project(path: ':testing:common-test')
+    testImplementation project(path: ':testing:architecture-testing')
 }

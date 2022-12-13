@@ -12,6 +12,9 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+/**
+ * Implementation of [BankrollRepository] responsible for saving data on database.
+ */
 public class BankrollRepositoryImpl @Inject constructor(
   private val dispatchers: CoroutineDispatchers,
   private val bankrollDao: BankrollTransactionDao,
