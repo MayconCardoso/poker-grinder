@@ -2,36 +2,20 @@ version: 2.1
 
 orbs:
   android: circleci/android@2.1.2
-  ruby: circleci/ruby@2.0.0
+  codecov: codecov/codecov@3.2.3
 
 jobs:
-  unit_test:
+  unit-test:
     executor:
       name: android/android-docker
-      tag: 2022.09.1
+      tag: 2022.08.1
     steps:
       - checkout
-
       - android/restore-gradle-cache
-
       - run: ./gradlew testDebugUnitTest
-
       - android/save-gradle-cache
-
-      - run:
-          name: Save test results
-          command: |
-            mkdir -p ~/test-results/junit/
-            find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/test-results/junit/ \;
-          when: always
-
-      - store_test_results:
-          path: ~/test-results
-
-      - store_artifacts:
-          path: ~/test-results/junit
-
+      - codecov/upload
 workflows:
-  main:
+  build-workflow:
     jobs:
-      - unit_test
+      - unit-test
