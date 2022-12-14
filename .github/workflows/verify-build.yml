@@ -12,21 +12,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - name: git clone
-      uses: actions/checkout@v3
-    - name: Setup Android Build
-      uses: ./.github/actions/setup-android-build
-      # This shouldn't take more than a minute, but it can get stuck if dependencies bug out
-      # See https://github.com/actions/runner/issues/1979
-      timeout-minutes: 5
-    - name: Build with Gradle
-      run: ./gradlew build
-
   test-unit:
-    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: git clone
@@ -39,4 +25,4 @@ jobs:
       # See https://github.com/actions/runner/issues/1979
       timeout-minutes: 5
     - name: Build with Gradle
-      run: ./gradlew test
+      run: ./gradlew check
