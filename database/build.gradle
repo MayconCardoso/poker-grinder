@@ -27,7 +27,7 @@ dependencies {
     // Database
     implementation "androidx.room:room-runtime:$ROOM_VERSION"
     implementation "androidx.room:room-ktx:$ROOM_VERSION"
-    implementation 'androidx.test:monitor:1.6.0'
+    implementation 'androidx.test:monitor:1.5.0'
     kapt "androidx.room:room-compiler:$ROOM_VERSION"
 
     // DI
