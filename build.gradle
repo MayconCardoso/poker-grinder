@@ -63,6 +63,14 @@ allprojects {
 
 subprojects {
     afterEvaluate { project ->
+        tasks.withType(Test) {
+            testLogging {
+                exceptionFormat "full"
+                events "passed", "failed"
+                showStandardStreams true
+            }
+        }
+
         if (project.hasProperty('android')) {
             android {
                 compileSdk targets.compileSdk
