@@ -81,6 +81,9 @@ subprojects {
                 }
                 buildTypes {
                     release { }
+                    debug {
+                        testCoverageEnabled false
+                    }
                 }
                 compileOptions {
                     sourceCompatibility JavaVersion.VERSION_11
