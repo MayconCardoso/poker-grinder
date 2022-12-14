@@ -14,7 +14,7 @@ jobs:
 
       - android/restore-gradle-cache
 
-      - run: ./gradlew testDebugUnitTest
+      - run: ./gradlew test --no-deamon
 
       - android/save-gradle-cache
 
