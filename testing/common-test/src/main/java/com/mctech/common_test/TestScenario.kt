@@ -2,6 +2,7 @@ package com.mctech.common_test
 
 import com.mctech.common_test.TestScenario.Companion.responseScenario
 import com.mctech.common_test.TestScenario.Companion.simpleScenario
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 
@@ -14,6 +15,7 @@ import kotlinx.coroutines.test.runTest
  *    - Declare variables inside
  *    - Create and call your own functions to be executed inside the test scope.
  */
+@OptIn(ExperimentalCoroutinesApi::class)
 class TestScenario<T> {
   private var action: (suspend () -> T)? = null
   private var scenario: (suspend () -> Unit)? = null
@@ -76,10 +78,10 @@ class TestScenario<T> {
     scenario?.invoke()
 
     // Call the action trigger
-    val actionResult = action?.invoke() as T
+    val actionResult = action?.invoke()
 
     // Assertions
-    assertion?.invoke(actionResult)
+    assertion?.invoke(requireNotNull(actionResult))
   }
 
   companion object {
