@@ -11,26 +11,9 @@ jobs:
       tag: 2022.09.1
     steps:
       - checkout
-
       - android/restore-gradle-cache
-
       - run: ./gradlew testDebugUnitTest
-
       - android/save-gradle-cache
-
-      - run:
-          name: Save test results
-          command: |
-            mkdir -p ~/test-results/test/
-            find . -type f -regex ".*/build/test-results/test/.*xml" -exec cp {} ~/test-results/test/ \;
-          when: always
-
-            - store_test_results:
-                path: ~/test-results
-
-            - store_artifacts:
-                path: ~/test-results/test
-
 workflows:
   build-workflow:
     jobs:
