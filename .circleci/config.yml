@@ -12,7 +12,7 @@ jobs:
     steps:
       - checkout
       - android/restore-gradle-cache
-      - run: ./gradlew jacocoTestReport
+      - run: ./gradlew jacocoTestReport --stacktrace --debug
       - android/save-gradle-cache
       - codecov/upload
 workflows:
