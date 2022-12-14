@@ -72,6 +72,7 @@ subprojects {
         }
 
         if (project.hasProperty('android')) {
+            project.apply from: "$rootDir/config/jacoco.gradle"
             android {
                 compileSdk targets.compileSdk
                 defaultConfig {
