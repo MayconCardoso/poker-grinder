@@ -5,24 +5,65 @@ on:
     branches:
       - development
 
-concurrency:
-  # Cancels only outdated pull request runs; Run all builds on development
-  # See https://docs.github.com/en/actions/using-jobs/using-concurrency#example-using-a-fallback-value
-  group: ${{ github.head_ref || github.run_id }}
-  cancel-in-progress: true
-
 jobs:
-  test-unit:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-    - name: git clone
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 100 # Workaround to avoid https://github.com/danger/danger/issues/768
-    - name: Setup Android Build
-      uses: ./.github/actions/setup-android-build
-      # This shouldn't take more than a minute, but it can get stuck if dependencies bug out
-      # See https://github.com/actions/runner/issues/1979
-      timeout-minutes: 5
-    - name: Build with Gradle
-      run: ./gradlew check
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
+
+      - name: Copy gradle properties file
+        run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Build the app
+        run: ./gradlew assembleDebug
+
+  test:
+    runs-on: macos-latest
+    needs: build
+    strategy:
+      matrix:
+        api-level: [21, 23, 29]
+        target: [default]
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
+
+      - name: Copy  gradle properties file
+        run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Run unit tests
+        run: ./gradlew test --stacktrace
+
+      - name: Upload Reports
+        uses: actions/upload-artifact@v2
+        with:
+          name: Test-Reports
+          path: app/build/reports
+        if: always()
