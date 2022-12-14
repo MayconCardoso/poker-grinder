@@ -13,8 +13,19 @@ android {
     }
 
     kotlinOptions {
+        jvmTarget = "11"
         allWarningsAsErrors = true
         freeCompilerArgs += '-Xexplicit-api=strict'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    java {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 
