@@ -1,4 +1,4 @@
-apply from: "$rootDir/config/module/feature/presentation.gradle"
+apply from: "$rootDir/config/module/base-android.gradle"
 
 dependencies {
     // Internal modules
