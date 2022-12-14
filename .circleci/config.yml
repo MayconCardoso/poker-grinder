@@ -2,7 +2,6 @@ version: 2.1
 
 orbs:
   android: circleci/android@2.1.2
-  codecov: codecov/codecov@3.2.3
 
 jobs:
   unit-test:
@@ -12,9 +11,9 @@ jobs:
     steps:
       - checkout
       - android/restore-gradle-cache
-      - run: ./gradlew testDebugUnitTest
+      - android/run-tests:
+          test-command: ./gradlew check --no-daemon
       - android/save-gradle-cache
-      - codecov/upload
 workflows:
   build-workflow:
     jobs:
