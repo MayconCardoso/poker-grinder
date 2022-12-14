@@ -6,14 +6,13 @@ jacoco {
 
 afterEvaluate { project ->
     tasks.withType(Test) {
-        // JaCoCo + Robolectric + Espresso issue https://github.com/gradle/gradle/issues/5184#issuecomment-457865951
         jacoco.includeNoLocationClasses true
         jacoco.excludes = ['jdk.internal.*']
     }
 
     task jacocoTestReport(
             type: JacocoReport,
-            dependsOn: ['testDebugUnitTest']
+            dependsOn: ['test']
     ) {
         reports {
             csv.enabled false
@@ -37,17 +36,14 @@ afterEvaluate { project ->
                 '**/di/**',
                 '**/*Dagger.*',
         ]
-        def debugTreeUnfoldDebug = fileTree(
-                dir: "$buildDir/tmp/kotlin-classes/unfoldDebug",
-                excludes: fileFilter
-        )
         def debugTreeDebug = fileTree(
                 dir: "$buildDir/tmp/kotlin-classes/debug",
                 excludes: fileFilter
         )
         def mainSrc = "$projectDir/src/main/java"
-        sourceDirectories.from = files([mainSrc])
-        classDirectories.from = files([debugTreeUnfoldDebug, debugTreeDebug])
+        def kotlinMainSrc = "$projectDir/src/main/kotlin"
+        sourceDirectories.from = files([mainSrc, kotlinMainSrc])
+        classDirectories.from = files([debugTreeDebug])
         executionData.from = fileTree(
                 dir: project.buildDir,
                 includes: [

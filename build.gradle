@@ -74,7 +74,6 @@ subprojects {
                 buildTypes {
                     release { }
                     debug {
-                        // JaCoCo + Hilt issue  https://github.com/google/dagger/issues/1982#issuecomment-726829952
                         testCoverageEnabled false
                     }
                 }
