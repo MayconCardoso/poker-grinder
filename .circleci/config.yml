@@ -11,7 +11,7 @@ jobs:
     steps:
       - checkout
       - android/restore-gradle-cache
-      - run: ./gradlew test
+      - run: ./gradlew test --no-daemon
       - android/save-gradle-cache
 workflows:
   build-workflow:
