@@ -1,7 +1,19 @@
 apply from: "$rootDir/config/module/base-android.gradle"
 
+android {
+    buildFeatures {
+        viewBinding true
+    }
+
+    kotlinOptions {
+        jvmTarget = targets.kotlinJvmTarget
+    }
+}
+
 dependencies {
     // Internal modules
+    implementation project(path: ':libraries:architecture')
+    implementation project(path: ':libraries:localization')
     implementation project(path: ':features:summary:domain')
     implementation project(path: ':features:summary:presentation:session')
     implementation project(path: ':features:summary:presentation:investment')
