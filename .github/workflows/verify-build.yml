@@ -57,8 +57,8 @@ jobs:
         run: ./gradlew test --stacktrace
 
       - name: Upload Reports
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Test-Reports
-          path: app/build/reports
+          path: /**/build/reports/tests
         if: always()
