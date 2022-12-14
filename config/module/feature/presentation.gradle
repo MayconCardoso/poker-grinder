@@ -1,4 +1,6 @@
 apply from: "$rootDir/config/module/base-android.gradle"
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     buildFeatures {
@@ -25,4 +27,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$LIFECYCLE_VERSION"
     implementation "androidx.recyclerview:recyclerview:$RECYCLER_VIEW_VERSION"
     implementation "androidx.constraintlayout:constraintlayout:$CONSTRAINT_LAYOUT_VERSION"
+
+    // DI
+    implementation "com.google.dagger:hilt-android:$DAGGER_VERSION"
+    kapt "com.google.dagger:hilt-compiler:$DAGGER_VERSION"
 }

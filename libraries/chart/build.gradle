@@ -1,1 +1,21 @@
-apply from: "$rootDir/config/module/feature/presentation.gradle"
+apply from: "$rootDir/config/module/base-android.gradle"
+
+android {
+    buildFeatures {
+        viewBinding true
+    }
+
+    kotlinOptions {
+        jvmTarget = targets.kotlinJvmTarget
+    }
+}
+
+dependencies {
+    // Internal
+    implementation project(path: ':libraries:design')
+    implementation project(path: ':libraries:architecture')
+
+    // Android platform
+    implementation "androidx.appcompat:appcompat:$ANDROID_APPCOMPAT_VERSION"
+    implementation "androidx.constraintlayout:constraintlayout:$CONSTRAINT_LAYOUT_VERSION"
+}

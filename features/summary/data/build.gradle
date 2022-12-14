@@ -1,16 +1,7 @@
-apply from: "$rootDir/config/module/base-android.gradle"
+apply from: "$rootDir/config/module/feature/data.gradle"
 
 dependencies {
     // Internal Modules.
-    implementation project(path: ':libraries:threading')
     implementation project(path: ':features:grind:data')
     implementation project(path: ':features:summary:domain')
-
-    // Database
-    implementation "androidx.room:room-runtime:$ROOM_VERSION"
-    implementation "androidx.room:room-ktx:$ROOM_VERSION"
-    kapt "androidx.room:room-compiler:$ROOM_VERSION"
-
-    // Testing
-    androidTestImplementation "androidx.room:room-testing:$ROOM_VERSION"
 }

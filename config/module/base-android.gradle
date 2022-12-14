@@ -1,7 +1,5 @@
 apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
-apply plugin: 'kotlin-kapt'
-apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     defaultConfig {
@@ -37,10 +35,6 @@ dependencies {
 
     // Standard
     implementation "com.google.code.gson:gson:$GSON_VERSION"
-
-    // DI
-    implementation "com.google.dagger:hilt-android:$DAGGER_VERSION"
-    kapt "com.google.dagger:hilt-compiler:$DAGGER_VERSION"
 
     // Testing
     testImplementation project(path: ':testing:common-test')

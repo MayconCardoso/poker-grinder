@@ -36,7 +36,8 @@ buildscript {
         MOCKK_VERSION = "1.12.8"
         ASSERTJ_VERSION = "3.23.1"
         ANDROIDX_TEST_EXT_JUNIT_VERSION = "1.1.3"
-        ANDROIDX_TEST_VERSION = "1.4.0"
+        ANDROIDX_TEST_VERSION_RUNNER = "1.4.0"
+        ANDROIDX_TEST_VERSION_RULES = "1.4.0"
         ARCH_CORE_TESTING_VERSION = "2.1.0"
     }
 
@@ -80,6 +81,9 @@ subprojects {
                 compileOptions {
                     sourceCompatibility JavaVersion.VERSION_11
                     targetCompatibility JavaVersion.VERSION_11
+                }
+                kotlinOptions {
+                    jvmTarget = targets.kotlinJvmTarget
                 }
             }
         }
