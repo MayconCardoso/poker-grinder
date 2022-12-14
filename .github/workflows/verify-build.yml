@@ -34,11 +34,6 @@ jobs:
   test:
     runs-on: macos-latest
     needs: build
-    strategy:
-      matrix:
-        api-level: [21, 23, 29]
-        target: [default]
-
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
