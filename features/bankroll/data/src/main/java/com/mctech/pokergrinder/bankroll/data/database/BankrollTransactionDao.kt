@@ -6,6 +6,9 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * Room DAO responsible for saving bankroll transaction data on database.
+ */
 @Dao
 public interface BankrollTransactionDao {
   @Insert(onConflict = OnConflictStrategy.REPLACE)

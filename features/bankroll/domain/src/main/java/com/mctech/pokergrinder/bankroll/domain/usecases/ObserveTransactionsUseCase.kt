@@ -5,6 +5,11 @@ import com.mctech.pokergrinder.bankroll.domain.entities.BankrollTransaction
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
+/**
+ * Used to observe bankroll transactions.
+ *
+ * @property repository bankroll data repository.
+ */
 class ObserveTransactionsUseCase @Inject constructor(
   private val repository: BankrollRepository,
 ) {

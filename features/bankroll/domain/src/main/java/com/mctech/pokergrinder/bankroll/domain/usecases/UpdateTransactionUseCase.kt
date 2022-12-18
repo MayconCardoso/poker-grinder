@@ -4,6 +4,11 @@ import com.mctech.pokergrinder.bankroll.domain.BankrollRepository
 import com.mctech.pokergrinder.bankroll.domain.entities.BankrollTransactionType
 import javax.inject.Inject
 
+/**
+ * Used to update a bankroll transactions.
+ *
+ * @property repository bankroll data repository.
+ */
 class UpdateTransactionUseCase @Inject constructor(
   private val repository: BankrollRepository,
 ) {

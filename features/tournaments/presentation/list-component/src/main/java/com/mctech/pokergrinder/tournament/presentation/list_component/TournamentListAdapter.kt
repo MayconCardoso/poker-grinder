@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mctech.pokergrinder.architecture.utility.SimpleItemDiffCallback
 import com.mctech.pokergrinder.tournament.presentation.list_component.databinding.FragmentTournamentListItemBinding
-import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
+import com.mctech.pokergrinder.tournament.domain.entities.Tournament
 
 internal class TournamentListAdapter(
   private val tournamentClicked: (Tournament) -> Unit,
@@ -35,8 +35,6 @@ internal class TournamentListAdapter(
     fun bind(tournament: Tournament) {
       binding.title.text = tournament.title
       binding.buyIn.text = tournament.formattedBuyIn()
-      binding.gtd.text = tournament.formattedGuaranteed()
-      binding.startsAt.text = tournament.formattedTime()
     }
 
     private fun onItemClicked(item: Tournament) {

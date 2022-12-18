@@ -36,6 +36,9 @@
     <string name="filter_tournament">Filter tournament</string>
     <string name="bankroll">Bankroll</string>
     <string name="bankroll_deposit">Bankroll Deposit</string>
+    <string name="bankroll_withdraw">Bankroll Withdraw</string>
+    <string name="deposit">Deposit</string>
+    <string name="withdraw">Withdraw</string>
     <string name="title">Title</string>
     <string name="new_profit_value">New profit value</string>
     <string name="save">Save</string>

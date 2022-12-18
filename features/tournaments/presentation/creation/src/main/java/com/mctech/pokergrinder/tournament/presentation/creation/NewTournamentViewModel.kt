@@ -2,9 +2,9 @@ package com.mctech.pokergrinder.tournament.presentation.creation
 
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.OnInteraction
-import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
-import com.mctech.pokergrinder.tournaments.domain.entities.TournamentType
-import com.mctech.pokergrinder.tournaments.domain.usecase.SavesTournamentUseCase
+import com.mctech.pokergrinder.tournament.domain.entities.Tournament
+import com.mctech.pokergrinder.tournament.domain.entities.TournamentType
+import com.mctech.pokergrinder.tournament.domain.usecase.SavesTournamentUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -28,13 +28,13 @@ internal class NewTournamentViewModel @Inject constructor(
   private suspend fun saveTournamentInteraction(interaction: NewTournamentInteraction.SaveTournament) {
     // Creates tournament
     val tournament = Tournament(
-      id = _componentState.value?.id ?: "",
+      id = _componentState.value?.id.orEmpty(),
       isBounty = false,
+      guaranteed = 0,
+      countReBuy = 0,
       buyIn = interaction.buyIn,
       title = interaction.title,
       type = TournamentType.REGULAR,
-      guaranteed = interaction.guaranteed,
-      countReBuy = interaction.countBuyIn,
       startTimeInMs = 10.hours.inWholeMilliseconds
     )
 

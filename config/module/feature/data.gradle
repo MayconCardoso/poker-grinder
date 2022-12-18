@@ -1,0 +1,20 @@
+apply from: "$rootDir/config/module/base-android.gradle"
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+dependencies {
+    // Internal Modules.
+    implementation project(path: ':libraries:threading')
+
+    // Database
+    implementation "androidx.room:room-runtime:$ROOM_VERSION"
+    implementation "androidx.room:room-ktx:$ROOM_VERSION"
+    kapt "androidx.room:room-compiler:$ROOM_VERSION"
+
+    // DI
+    implementation "com.google.dagger:hilt-android:$DAGGER_VERSION"
+    kapt "com.google.dagger:hilt-compiler:$DAGGER_VERSION"
+
+    // Testing
+    androidTestImplementation "androidx.room:room-testing:$ROOM_VERSION"
+}

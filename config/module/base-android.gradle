@@ -1,7 +1,5 @@
 apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
-apply plugin: 'kotlin-kapt'
-apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     defaultConfig {
@@ -13,8 +11,19 @@ android {
     }
 
     kotlinOptions {
+        jvmTarget = "11"
         allWarningsAsErrors = true
         freeCompilerArgs += '-Xexplicit-api=strict'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    java {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 
@@ -27,10 +36,7 @@ dependencies {
     // Standard
     implementation "com.google.code.gson:gson:$GSON_VERSION"
 
-    // DI
-    implementation "com.google.dagger:hilt-android:$DAGGER_VERSION"
-    kapt "com.google.dagger:hilt-compiler:$DAGGER_VERSION"
-
     // Testing
     testImplementation project(path: ':testing:common-test')
+    testImplementation project(path: ':testing:architecture-testing')
 }

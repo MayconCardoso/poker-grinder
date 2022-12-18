@@ -1,7 +1,7 @@
 package com.mctech.pokergrinder.tournament.data.di
 
 import com.mctech.pokergrinder.tournament.data.TournamentRepositoryImpl
-import com.mctech.pokergrinder.tournaments.domain.TournamentRepository
+import com.mctech.pokergrinder.tournament.domain.TournamentRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

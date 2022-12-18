@@ -6,7 +6,7 @@ dependencies {
     implementation project(path: ':libraries:architecture')
     implementation project(path: ':libraries:threading')
 
-    implementation "androidx.test:runner:$ANDROIDX_TEST_VERSION"
+    implementation "androidx.test:runner:$ANDROIDX_TEST_VERSION_RUNNER"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$LIFECYCLE_VERSION"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$COROUTINES_VERSION"
     implementation "androidx.arch.core:core-testing:$ARCH_CORE_TESTING_VERSION"

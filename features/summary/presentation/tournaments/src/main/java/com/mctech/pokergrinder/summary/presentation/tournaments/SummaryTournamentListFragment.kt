@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -50,6 +51,7 @@ public class SummaryTournamentListFragment : Fragment(R.layout.fragment_summary_
 
       // Setup List
       setupTournamentList()
+      setupListeners()
 
       // Observers state changes
       bindState(viewModel.state, ::consumeState)
@@ -95,6 +97,12 @@ public class SummaryTournamentListFragment : Fragment(R.layout.fragment_summary_
   private fun setupTournamentList() {
     binding.tournaments.addItemDecoration(SimpleSpaceItemDecoration(bottomOffset = 12.dp()))
     binding.tournaments.adapter = tournamentAdapter
+  }
+
+  private fun setupListeners() {
+    binding.search.doOnTextChanged { text, _, _, _ ->
+      viewModel.interact(SummaryTournamentListInteraction.NewFilterQuery(text.toString()))
+    }
   }
 
   // endregion

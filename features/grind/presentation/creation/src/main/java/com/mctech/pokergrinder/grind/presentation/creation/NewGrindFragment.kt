@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import com.mctech.pokergrinder.architecture.ViewCommand
 import com.mctech.pokergrinder.architecture.extensions.bindCommand
 import com.mctech.pokergrinder.architecture.extensions.bindState
+import com.mctech.pokergrinder.architecture.extensions.onDataFormFilled
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.grind.presentation.creation.databinding.FragmentNewGrindBinding
 import com.mctech.pokergrinder.grind.presentation.navigation.GrindNavigation
@@ -69,6 +70,10 @@ public class NewGrindFragment : Fragment(R.layout.fragment_new_grind) {
           title = binding.sessionTitle.text.toString(),
         )
       )
+    }
+
+    listOf(binding.sessionTitle).onDataFormFilled { allSet ->
+      binding.save.isEnabled = allSet
     }
   }
 

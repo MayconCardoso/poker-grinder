@@ -1,12 +1,12 @@
 package com.mctech.pokergrinder.tournament.presentation.list_component
 
 import androidx.lifecycle.viewModelScope
-import com.mctech.pokergrind.threading.CoroutineDispatchers
+import com.mctech.pokergrinder.threading.CoroutineDispatchers
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.architecture.OnInteraction
-import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
-import com.mctech.pokergrinder.tournaments.domain.usecase.ObserveTournamentUseCase
+import com.mctech.pokergrinder.tournament.domain.entities.Tournament
+import com.mctech.pokergrinder.tournament.domain.usecase.ObserveTournamentUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -56,6 +56,11 @@ public class TournamentListViewModel @Inject constructor(
   private suspend fun onFilterQueryChanged(
     interaction: TournamentListInteraction.NewFilterQuery,
   ) = withContext(dispatchers.default) {
+    // Same query, don't perform any addition action.
+    if (interaction.text.equals(currentFilterQuery, ignoreCase = true)) {
+      return@withContext
+    }
+
     // Holds the current query
     currentFilterQuery = interaction.text
 
@@ -64,8 +69,6 @@ public class TournamentListViewModel @Inject constructor(
   }
 
   private suspend fun updateTournamentListBasedOnCurrentQuery() = withContext(dispatchers.default) {
-    if (shownTournaments.isEmpty()) return@withContext
-
     // Filter tournaments
     val tournaments = if (currentFilterQuery.isBlank()) {
       shownTournaments

@@ -20,17 +20,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:lines="1"
+        android:maxLines="1"
+        android:inputType="text"
         android:hint="@string/title"
         app:layout_constraintTop_toBottomOf="@id/title" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/tournament_gtd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:hint="@string/gtd"
-        android:inputType="number"
-        app:layout_constraintTop_toBottomOf="@id/tournament_title" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/tournament_buy_in"
@@ -39,22 +33,14 @@
         android:layout_marginTop="12dp"
         android:hint="@string/buy_in"
         android:inputType="numberDecimal"
-        app:layout_constraintTop_toBottomOf="@id/tournament_gtd" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/tournament_re_buy"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:hint="@string/re_buys"
-        android:inputType="number"
-        app:layout_constraintTop_toBottomOf="@id/tournament_buy_in" />
+        app:layout_constraintTop_toBottomOf="@id/tournament_title" />
 
     <Button
         android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/save"
+        android:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

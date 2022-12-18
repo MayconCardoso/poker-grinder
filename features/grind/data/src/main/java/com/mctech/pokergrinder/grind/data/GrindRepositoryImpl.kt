@@ -1,6 +1,6 @@
 package com.mctech.pokergrinder.grind.data
 
-import com.mctech.pokergrind.threading.CoroutineDispatchers
+import com.mctech.pokergrinder.threading.CoroutineDispatchers
 import com.mctech.pokergrinder.grind.data.database.GrindDao
 import com.mctech.pokergrinder.grind.data.mapper.asBusinessSession
 import com.mctech.pokergrinder.grind.data.mapper.asBusinessSessions

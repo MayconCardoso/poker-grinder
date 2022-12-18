@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_statement_fragment_to_statement_register"
             app:destination="@id/statement_register" />
+        <action
+            android:id="@+id/action_statement_fragment_to_statement_withdraw"
+            app:destination="@id/statement_withdraw" />
     </fragment>
 
     <fragment
@@ -62,14 +65,19 @@
 
         <argument
             android:name="TOURNAMENT_PARAM"
-            app:argType="com.mctech.pokergrinder.tournaments.domain.entities.Tournament"
+            app:argType="com.mctech.pokergrinder.tournament.domain.entities.Tournament"
             app:nullable="true" />
     </fragment>
 
     <fragment
         android:id="@+id/statement_register"
-        android:name="com.mctech.pokergrinder.bankroll.presentation.creation.DepositFragment"
+        android:name="com.mctech.pokergrinder.bankroll.presentation.deposit.DepositFragment"
         tools:layout="@layout/fragment_deposit" />
+
+    <fragment
+        android:id="@+id/statement_withdraw"
+        android:name="com.mctech.pokergrinder.bankroll.presentation.withdraw.WithdrawFragment"
+        tools:layout="@layout/fragment_withdraw" />
 
     <fragment
         android:id="@+id/session_register"

@@ -7,10 +7,11 @@ import androidx.fragment.app.viewModels
 import com.mctech.pokergrinder.architecture.ViewCommand
 import com.mctech.pokergrinder.architecture.extensions.bindCommand
 import com.mctech.pokergrinder.architecture.extensions.bindState
+import com.mctech.pokergrinder.architecture.extensions.onDataFormFilled
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.tournament.presentation.creation.databinding.FragmentTournamentBinding
 import com.mctech.pokergrinder.tournament.presentation.navigation.TournamentNavigation
-import com.mctech.pokergrinder.tournaments.domain.entities.Tournament
+import com.mctech.pokergrinder.tournament.domain.entities.Tournament
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -62,8 +63,6 @@ public class NewTournamentFragment : Fragment(R.layout.fragment_tournament) {
     val data = tournament ?: return
     binding.tournamentTitle.setText(data.title)
     binding.tournamentBuyIn.setText(data.buyIn.toString())
-    binding.tournamentGtd.setText(data.guaranteed.toString())
-    binding.tournamentReBuy.setText(data.countReBuy.toString())
   }
 
   // endregion
@@ -71,15 +70,19 @@ public class NewTournamentFragment : Fragment(R.layout.fragment_tournament) {
   // region Component Setup
 
   private fun setupListeners() {
+    // Click on save button.
     binding.save.setOnClickListener {
       viewModel.interact(
         NewTournamentInteraction.SaveTournament(
           title = binding.tournamentTitle.text.toString(),
-          guaranteed = binding.tournamentGtd.text.toString().toInt(),
-          countBuyIn = binding.tournamentReBuy.text.toString().toInt(),
           buyIn = binding.tournamentBuyIn.text.toString().toFloat(),
         )
       )
+    }
+
+    // Observe fields content to enable/disable save button.
+    listOf(binding.tournamentTitle, binding.tournamentBuyIn).onDataFormFilled { allSet ->
+      binding.save.isEnabled = allSet
     }
   }
 

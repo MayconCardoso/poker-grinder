@@ -1,0 +1,14 @@
+apply from: "$rootDir/config/module/feature/presentation.gradle"
+
+dependencies {
+    // Internal modules
+    implementation project(path: ':features:bankroll:domain')
+    implementation project(path: ':features:bankroll:presentation:balance-component')
+    implementation project(path: ':features:bankroll:presentation:navigation')
+
+    // Ui
+    implementation "androidx.cardview:cardview:1.0.0"
+
+    // Testing
+    testImplementation project(path: ':features:bankroll:testing')
+}

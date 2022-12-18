@@ -1,11 +1,11 @@
 package com.mctech.architecture_testing.threading
 
-import com.mctech.pokergrind.threading.CoroutineDispatchers
+import com.mctech.pokergrinder.threading.CoroutineDispatchers
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 
-@ExperimentalCoroutinesApi
+@OptIn(ExperimentalCoroutinesApi::class)
 object TestCoroutineDispatcher : CoroutineDispatchers {
   override val io
     get() = UnconfinedTestDispatcher()

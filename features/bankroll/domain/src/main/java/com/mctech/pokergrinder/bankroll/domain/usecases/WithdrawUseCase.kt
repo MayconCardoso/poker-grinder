@@ -4,14 +4,24 @@ import com.mctech.pokergrinder.bankroll.domain.BankrollRepository
 import com.mctech.pokergrinder.bankroll.domain.entities.BankrollTransaction
 import com.mctech.pokergrinder.bankroll.domain.entities.BankrollTransactionType
 import com.mctech.pokergrinder.bankroll.domain.error.BankrollException
+import java.util.Calendar
 import javax.inject.Inject
 import kotlin.math.absoluteValue
 
+/**
+ * Responsible for making a bankroll withdraw.
+ *
+ * @property repository bankroll data repository.
+ * @property generateUniqueIdUseCase use case responsible for generating a unique id.
+ */
 class WithdrawUseCase @Inject constructor(
   private val repository: BankrollRepository,
   private val generateUniqueIdUseCase: GenerateUniqueIdUseCase,
 ) {
 
+  /**
+   * Creates a deposit transaction and return it's id.
+   */
   suspend operator fun invoke(
     amount: Double,
     description: String,
@@ -37,7 +47,7 @@ class WithdrawUseCase @Inject constructor(
       type = type,
       amount = resolvedAmount,
       description = description,
-      dateInMs = System.currentTimeMillis(),
+      dateInMs = Calendar.getInstance().timeInMillis,
     )
 
     // Saves

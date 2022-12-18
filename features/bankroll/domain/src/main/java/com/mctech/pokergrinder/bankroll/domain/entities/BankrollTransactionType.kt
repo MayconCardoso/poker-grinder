@@ -1,5 +1,8 @@
 package com.mctech.pokergrinder.bankroll.domain.entities
 
+/**
+ * Declares the available transaction types.
+ */
 enum class BankrollTransactionType {
   DEPOSIT,
   WITHDRAW,

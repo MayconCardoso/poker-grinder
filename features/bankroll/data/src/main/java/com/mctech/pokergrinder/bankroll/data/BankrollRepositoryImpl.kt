@@ -1,6 +1,6 @@
 package com.mctech.pokergrinder.bankroll.data
 
-import com.mctech.pokergrind.threading.CoroutineDispatchers
+import com.mctech.pokergrinder.threading.CoroutineDispatchers
 import com.mctech.pokergrinder.bankroll.data.database.BankrollTransactionDao
 import com.mctech.pokergrinder.bankroll.data.mapper.asBusinessTransaction
 import com.mctech.pokergrinder.bankroll.data.mapper.asBusinessTransactions
@@ -12,6 +12,9 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+/**
+ * Implementation of [BankrollRepository] responsible for saving data on database.
+ */
 public class BankrollRepositoryImpl @Inject constructor(
   private val dispatchers: CoroutineDispatchers,
   private val bankrollDao: BankrollTransactionDao,

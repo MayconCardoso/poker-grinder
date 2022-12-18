@@ -1,4 +1,6 @@
 apply from: "$rootDir/config/module/base-android.gradle"
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     defaultConfig {
@@ -28,9 +30,13 @@ dependencies {
     implementation 'androidx.test:monitor:1.5.0'
     kapt "androidx.room:room-compiler:$ROOM_VERSION"
 
+    // DI
+    implementation "com.google.dagger:hilt-android:$DAGGER_VERSION"
+    kapt "com.google.dagger:hilt-compiler:$DAGGER_VERSION"
+
     // Testing
     androidTestImplementation "androidx.test.ext:junit:$ANDROIDX_TEST_EXT_JUNIT_VERSION"
-    androidTestImplementation "androidx.test:runner:$ANDROIDX_TEST_VERSION"
-    androidTestImplementation "androidx.test:rules:$ANDROIDX_TEST_VERSION"
+    androidTestImplementation "androidx.test:runner:$ANDROIDX_TEST_VERSION_RUNNER"
+    androidTestImplementation "androidx.test:rules:$ANDROIDX_TEST_VERSION_RULES"
     androidTestImplementation "androidx.room:room-testing:$ROOM_VERSION"
 }
