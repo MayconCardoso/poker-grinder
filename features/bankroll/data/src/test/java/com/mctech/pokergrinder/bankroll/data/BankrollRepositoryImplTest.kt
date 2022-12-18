@@ -9,6 +9,7 @@ import com.mctech.pokergrinder.bankroll.data.mapper.asBusinessTransaction
 import com.mctech.pokergrinder.bankroll.data.mapper.asBusinessTransactions
 import com.mctech.pokergrinder.bankroll.data.mapper.asDatabaseTransaction
 import com.mctech.pokergrinder.bankroll.domain.entities.BankrollTransaction
+import com.mctech.pokergrinder.bankroll.testing.newTransaction
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.coVerifyOrder

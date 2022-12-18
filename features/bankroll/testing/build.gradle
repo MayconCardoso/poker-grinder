@@ -1,5 +1,5 @@
 apply from: "$rootDir/config/module/base-kotlin.gradle"
 
 dependencies {
-    testImplementation project(path: ':features:bankroll:testing')
+    implementation project(path: ':features:bankroll:domain')
 }

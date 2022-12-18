@@ -1,6 +1,6 @@
 package com.mctech.pokergrinder.bankroll.domain.entities
 
-import com.mctech.pokergrinder.bankroll.domain.newTransaction
+import com.mctech.pokergrinder.bankroll.testing.newTransaction
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 

@@ -8,6 +8,8 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
+import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 
@@ -53,6 +55,18 @@ class TestObserverScenario {
     liveDataAgents.add(
       LiveDataObserverAgent(liveData, assert),
     )
+  }
+
+  fun <T> thenAssertLiveDataContainsExactly(liveData: LiveData<T>, vararg values: T) {
+    thenAssertLiveData(liveData) { data ->
+      assertThat(data).containsExactly(*values)
+    }
+  }
+
+  fun <T> thenAssertLiveDataFlowIsEmpty(liveData: LiveData<T>) {
+    thenAssertLiveData(liveData) { data ->
+      assertThat(data).isEmpty()
+    }
   }
 
   private fun execute(context: CoroutineContext) {

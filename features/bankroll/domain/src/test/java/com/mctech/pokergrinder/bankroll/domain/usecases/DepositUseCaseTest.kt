@@ -5,7 +5,7 @@ import com.mctech.common_test.TestScenario.Companion.responseScenario
 import com.mctech.pokergrinder.bankroll.domain.BankrollRepository
 import com.mctech.pokergrinder.bankroll.domain.entities.BankrollTransaction
 import com.mctech.pokergrinder.bankroll.domain.entities.BankrollTransactionType
-import com.mctech.pokergrinder.bankroll.domain.newTransaction
+import com.mctech.pokergrinder.bankroll.testing.newTransaction
 import io.mockk.coVerifyOrder
 import io.mockk.every
 import io.mockk.mockk

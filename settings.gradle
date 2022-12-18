@@ -24,8 +24,10 @@ include ':features:tournaments:presentation:list-component'
 // Feature - Bankroll
 include ':features:bankroll:domain'
 include ':features:bankroll:data'
-include ':features:bankroll:presentation:statement'
+include ':features:bankroll:testing'
 include ':features:bankroll:presentation:deposit'
+include ':features:bankroll:presentation:withdraw'
+include ':features:bankroll:presentation:statement'
 include ':features:bankroll:presentation:navigation'
 include ':features:bankroll:presentation:balance-component'
 
@@ -59,4 +61,3 @@ include ':features:settings:presentation'
 // Feature - Deck
 include ':features:deck:domain'
 include ':features:deck:presentation:card_picker'
-include ':features:bankroll:presentation:withdraw'

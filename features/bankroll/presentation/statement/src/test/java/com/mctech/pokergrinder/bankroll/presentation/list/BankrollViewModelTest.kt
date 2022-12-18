@@ -5,7 +5,7 @@ import com.mctech.architecture_testing.extensions.TestObserverScenario.Companion
 import com.mctech.architecture_testing.extensions.assertFlow
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.bankroll.domain.usecases.ObserveTransactionsUseCase
-import com.mctech.pokergrinder.bankroll.presentation.newTransaction
+import com.mctech.pokergrinder.bankroll.testing.newTransaction
 import io.mockk.confirmVerified
 import io.mockk.every
 import io.mockk.mockk
@@ -57,7 +57,9 @@ internal class BankrollViewModelTest: BaseViewModelTest() {
         ComponentState.Loading.FromEmpty,
         ComponentState.Success(transactions)
       )
+    }
 
+    thenAssert {
       // Assert expected calling functions.
       verifyOrder {
         observeTransactionsUseCase()
