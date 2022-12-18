@@ -1,7 +1,13 @@
 package com.mctech.pokergrinder.deck.domain
 
+/**
+ * Holds a deck of cards.
+ */
 object Deck {
 
+  /**
+   * Holds deck cards.
+   */
   val cards = buildList {
     addAll(createCardsBySuit(CardSuit.CLUBS))
     addAll(createCardsBySuit(CardSuit.SPADES))
