@@ -1,5 +1,6 @@
 package com.mctech.pokergrinder.deck.presentation.card_picker
 
+import androidx.annotation.VisibleForTesting
 import com.mctech.pokergrinder.threading.CoroutineDispatchers
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.OnInteraction
@@ -23,12 +24,14 @@ public class CardPickerViewModel @Inject constructor(
   /**
    * Holds all disabled cards.
    */
-  private var disabledCards = mutableListOf<Card>()
+  @VisibleForTesting
+  internal var disabledCards = mutableListOf<Card>()
 
   /**
    * Holds the selected suit.
    */
-  private var selectedSuit: CardSuit = CardSuit.CLUBS
+  @VisibleForTesting
+  internal var selectedSuit: CardSuit = CardSuit.CLUBS
 
   /**
    * Holds the screen state.s
@@ -62,7 +65,7 @@ public class CardPickerViewModel @Inject constructor(
   }
 
   @OnInteraction(CardPickerInteraction.CardEvent::class)
-  private suspend fun onCardSuitChanged(interaction: CardPickerInteraction.CardEvent) {
+  private suspend fun onCardPickerInteraction(interaction: CardPickerInteraction.CardEvent) {
     when (interaction.event) {
       is CardPickerConsumerEvent.CardClicked -> {
         handleCardClicked(interaction.event.card)
