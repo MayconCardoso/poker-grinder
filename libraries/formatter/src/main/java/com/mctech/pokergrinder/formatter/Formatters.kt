@@ -23,6 +23,11 @@ internal object Formatters {
 fun Double.asFormattedCurrency() = Formatters.decimal.format(this)
 
 /**
+ * Formats a double onto a formatted currency string.
+ */
+fun Float.asFormattedCurrency() = Formatters.decimal.format(this)
+
+/**
  * Formats a Long onto a formatted date string.
  */
 fun Long.asFormattedDate() = Formatters.date.format(this)
