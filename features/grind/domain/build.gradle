@@ -4,4 +4,6 @@ dependencies {
     implementation project(path: ':features:deck:domain')
     implementation project(path: ':libraries:formatter')
     implementation project(path: ':features:bankroll:domain')
+
+    testImplementation project(path: ':features:grind:testing')
 }

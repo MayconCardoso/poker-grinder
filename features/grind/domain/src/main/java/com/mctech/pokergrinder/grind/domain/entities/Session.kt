@@ -6,15 +6,14 @@ import java.io.Serializable
 /**
  * Declares a grind session instance.
  *
- * @property id UUID transaction.
- * @property cash transaction type.
- * @property buyIn transaction amount in dollar.
- * @property avgBuyIn transaction description.
- * @property title the time the transaction has occurred.
- * @property isOpened the time the transaction has occurred.
- * @property startTimeInMs the time the transaction has occurred.
- * @property tournamentsPlayed the time the transaction has occurred.
- * @property balance the time the transaction has occurred.
+ * @property id UUID session id.
+ * @property cash amount of cash in the session in dollar.
+ * @property buyIn amount of buy-in in the session in dollar.
+ * @property avgBuyIn avg of buy-in in the session in dollar.
+ * @property title session title.
+ * @property isOpened indicates if session is still in play.
+ * @property startTimeInMs the time the session has started.
+ * @property tournamentsPlayed the amount of played tournaments.
  */
 data class Session(
   val id: String,
@@ -27,19 +26,41 @@ data class Session(
   val tournamentsPlayed: Int,
 ) : Serializable {
 
-  val balance: Double
-    get() = cash - buyIn
+  /**
+   * Computes the session balance.
+   * The balance is basically the cashed amount minus buy-ins.
+   */
+  fun computesBalance(): Double = cash - buyIn
 
+  /**
+   * Indicates if session is in profit or not.
+   * A profitable session is where player has cashed more than spent in buy-in.
+   */
   fun isInProfit(): Boolean = cash - buyIn > 0
 
+  /**
+   * Formats the amount of cash in a currency string.
+   */
   fun formattedCash(): String = cash.asFormattedCurrency()
 
+  /**
+   * Formats the spent cash in buy-in in a currency string.
+   */
   fun formattedBuyIn(): String = buyIn.asFormattedCurrency()
 
-  fun formattedBalance(): String = balance.asFormattedCurrency()
+  /**
+   * Formats the session balance in a currency string.
+   */
+  fun formattedBalance(): String = computesBalance().asFormattedCurrency()
 
+  /**
+   * Formats the session average of buy-in in a currency string.
+   */
   fun formattedAvgBuyIn(): String = avgBuyIn.asFormattedCurrency()
 
+  /**
+   * Formats the return of investment of the session in a percentage string.
+   */
   fun formattedRoi(): String {
     val roi = if (buyIn == 0.0) 0.0 else (cash - buyIn) / buyIn * 100
     return roi.asFormattedCurrency() + "%"

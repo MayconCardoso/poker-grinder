@@ -33,7 +33,7 @@ internal class SummaryOverallPerformanceViewModel @Inject constructor(
       .map { sessions ->
         var entryBalance = 0.0
         sessions.reversed().map { session ->
-          entryBalance += session.balance
+          entryBalance += session.computesBalance()
           MoneyVariationEntry(entryBalance)
         }
       }
