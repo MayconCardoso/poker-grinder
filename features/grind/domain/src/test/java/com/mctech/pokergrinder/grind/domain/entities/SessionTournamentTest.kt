@@ -1,16 +1,16 @@
 package com.mctech.pokergrinder.grind.domain.entities
 
-import com.mctech.pokergrinder.grind.testing.newSessionTournament
+import com.mctech.pokergrinder.grind.testing.newTournament
 import org.assertj.core.api.Assertions
 import org.junit.Test
 
 class SessionTournamentTest {
 
   private val sessionTournaments = listOf(
-    newSessionTournament(profit = 11.50, buyIn = 2.00),
-    newSessionTournament(profit = 345.0, buyIn = 111.00),
-    newSessionTournament(profit = 2750.0, buyIn = 995.0),
-    newSessionTournament(profit = 170.98, buyIn = 451.25),
+    newTournament(profit = 11.50, buyIn = 2.00),
+    newTournament(profit = 345.0, buyIn = 111.00),
+    newTournament(profit = 2750.0, buyIn = 995.0),
+    newTournament(profit = 170.98, buyIn = 451.25),
   )
 
 

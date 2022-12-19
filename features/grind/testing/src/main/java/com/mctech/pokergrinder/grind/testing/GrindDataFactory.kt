@@ -2,6 +2,7 @@ package com.mctech.pokergrinder.grind.testing
 
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
+import com.mctech.pokergrinder.grind.domain.entities.SessionTournamentFlip
 
 /**
  * Creates a new Session for test purpose.
@@ -29,10 +30,10 @@ fun newSession(
 /**
  * Creates a new Session tournament for test purpose.
  */
-fun newSessionTournament(
+fun newTournament(
   id: String = "0",
   idSession: String = "0",
-  idTransactionProfit: String = "0",
+  idTransactionProfit: String? = "0",
   idTransactionBuyIn: String = "0",
   title: String = "",
   buyIn: Double = 0.0,
@@ -49,4 +50,25 @@ fun newSessionTournament(
   profit = profit,
   isGrouped = isGrouped,
   startTimeInMs = startTimeInMs,
+)
+
+/**
+ * Creates a new Session tournament flip for test purpose.
+ */
+fun newSessionFlip(
+  id: String = "0",
+  won: Boolean = false,
+  idSession: String = "0",
+  tournament: String = "",
+  board: String = "",
+  heroHand: String = "",
+  villainHand: String = "",
+) = SessionTournamentFlip(
+  id = id,
+  won = won,
+  idSession = idSession,
+  tournament = tournament,
+  board = board,
+  heroHand = heroHand,
+  villainHand = villainHand,
 )
