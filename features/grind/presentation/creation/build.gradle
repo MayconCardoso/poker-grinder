@@ -2,6 +2,7 @@ apply from: "$rootDir/config/module/feature/presentation.gradle"
 
 dependencies {
     // Internal modules
+    implementation project(path: ':libraries:formatter')
     implementation project(path: ':features:grind:domain')
     implementation project(path: ':features:grind:presentation:navigation')
 }
