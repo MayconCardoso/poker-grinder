@@ -52,7 +52,7 @@ internal class GrindAdapter(
       // Change indicator color
       val color = ContextCompat.getColor(
         binding.root.context,
-        if (session.balance >= 0) R.color.deposit else R.color.withdraw
+        if (session.isInProfit()) R.color.deposit else R.color.withdraw
       )
       binding.indicator.setBackgroundColor(color)
       binding.balance.setTextColor(color)

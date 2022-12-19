@@ -1,10 +1,8 @@
 package com.mctech.pokergrinder.bankroll.domain.usecases
 
+import com.mctech.pokergrinder.formatter.asFormattedCurrency
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import java.text.DecimalFormat
-import java.text.DecimalFormatSymbols
-import java.util.Locale
 import javax.inject.Inject
 
 /**
@@ -15,17 +13,9 @@ import javax.inject.Inject
 class ObserveFormattedBalanceUseCase @Inject constructor(
   private val observeBalanceUseCase: ObserveBalanceUseCase,
 ) {
-
-  private val formatter by lazy {
-    DecimalFormat(
-      "$#0.00",
-      DecimalFormatSymbols(Locale.ENGLISH)
-    )
-  }
-
   operator fun invoke(): Flow<String> {
     return observeBalanceUseCase().map { balance ->
-      formatter.format(balance)
+      balance.asFormattedCurrency()
     }
   }
 }

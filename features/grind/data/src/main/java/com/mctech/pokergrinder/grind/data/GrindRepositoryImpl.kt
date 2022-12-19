@@ -17,6 +17,12 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+/**
+ * Grind repository implementation.
+ *
+ * @property dispatchers used to handle coroutine threads.
+ * @property grindDao used to persist all grind related data.
+ */
 public class GrindRepositoryImpl @Inject constructor(
   private val dispatchers: CoroutineDispatchers,
   private val grindDao: GrindDao,
@@ -56,15 +62,5 @@ public class GrindRepositoryImpl @Inject constructor(
 
   override suspend fun loadCurrentSession(): Session? = withContext(dispatchers.io) {
     grindDao.loadCurrentGrind()?.asBusinessSession()
-  }
-
-  override suspend fun loadGrind(id: String): Session = withContext(dispatchers.io) {
-    grindDao.loadGrind(id).asBusinessSession()
-  }
-
-  override suspend fun loadGrindTournament(
-    id: String,
-  ): SessionTournament = withContext(dispatchers.io) {
-    grindDao.loadGrindTournament(id).asBusinessTournaments()
   }
 }

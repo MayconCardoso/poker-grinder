@@ -5,6 +5,7 @@ include ':database'
 // Internal Libraries
 include ':libraries:chart'
 include ':libraries:design'
+include ':libraries:formatter'
 include ':libraries:localization'
 include ':libraries:architecture'
 include ':libraries:threading'
