@@ -106,6 +106,9 @@ apply plugin: "com.vanniktech.android.junit.jacoco"
 
 junitJacoco {
     jacocoVersion = '0.8.7'
+    ignoreProjects = [
+            "architecture_testing"
+    ]
     excludes = [
             '**/*App.*',
             '**/*Application.*',
