@@ -112,9 +112,9 @@ junitJacoco {
     excludes = [
             '**/*App.*',
             '**/*Application.*',
+            '**/*Adapter.*',
             '**/*Activity.*',
             '**/*Fragment.*',
-            '**/*Adapter.*',
             '**/R.class',
             '**/R$*.class',
             '**/BuildConfig.*',
@@ -123,5 +123,6 @@ junitJacoco {
             'android/**/*.*',
             '**/di/**',
             '**/*Dagger.*',
+            '**/architecture_testing/agent/*.*',
     ]
 }
