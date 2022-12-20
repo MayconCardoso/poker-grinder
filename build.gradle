@@ -106,4 +106,19 @@ apply plugin: "com.vanniktech.android.junit.jacoco"
 
 junitJacoco {
     jacocoVersion = '0.8.7'
+    excludes = [
+            '**/*App.*',
+            '**/*Application.*',
+            '**/*Activity.*',
+            '**/*Fragment.*',
+            '**/*Adapter.*',
+            '**/R.class',
+            '**/R$*.class',
+            '**/BuildConfig.*',
+            '**/Manifest*.*',
+            '**/*Test*.*',
+            'android/**/*.*',
+            '**/di/**',
+            '**/*Dagger.*',
+    ]
 }
