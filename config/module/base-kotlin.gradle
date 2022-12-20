@@ -1,25 +1,4 @@
 apply plugin: 'kotlin'
-apply plugin: 'jacoco'
-
-jacoco {
-    toolVersion = rootProject.ext.JACOCO_VERSION
-}
-
-test {
-    finalizedBy jacocoTestReport // report is always generated after tests run
-}
-
-jacocoTestReport {
-    dependsOn test // tests are required to run before generating the report
-    reports {
-        csv.enabled false
-        xml.enabled true
-        html {
-            enabled true
-            destination file("${buildDir}/coverage-report-jacoco")
-        }
-    }
-}
 
 dependencies {
     implementation project(path: ':libraries:threading')
