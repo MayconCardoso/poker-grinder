@@ -1,6 +1,7 @@
 package com.mctech.pokergrinder.grind.domain.entities
 
 import com.mctech.pokergrinder.formatter.asFormattedCurrency
+import com.mctech.pokergrinder.formatter.asFormattedPercentage
 import java.io.Serializable
 
 /**
@@ -33,6 +34,13 @@ data class Session(
   fun computesBalance(): Double = cash - buyIn
 
   /**
+   * Computes the session roi.
+   */
+  fun computesRoi(): Double {
+    return if (buyIn == 0.0) 0.0 else (cash - buyIn) / buyIn
+  }
+
+  /**
    * Indicates if session is in profit or not.
    * A profitable session is where player has cashed more than spent in buy-in.
    */
@@ -61,8 +69,5 @@ data class Session(
   /**
    * Formats the return of investment of the session in a percentage string.
    */
-  fun formattedRoi(): String {
-    val roi = if (buyIn == 0.0) 0.0 else (cash - buyIn) / buyIn * 100
-    return roi.asFormattedCurrency() + "%"
-  }
+  fun formattedRoi(): String = computesRoi().asFormattedPercentage()
 }

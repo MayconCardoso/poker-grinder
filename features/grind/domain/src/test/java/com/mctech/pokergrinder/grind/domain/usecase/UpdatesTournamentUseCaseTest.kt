@@ -26,7 +26,7 @@ class UpdatesTournamentUseCaseTest {
 
   @Test(expected = RuntimeException::class)
   fun `should throw error when session not found`() = simpleScenario {
-    val tournament = newTournament(idSession = "")
+    val tournament = newTournament(id = "")
 
     whenAction {
       target(tournament)

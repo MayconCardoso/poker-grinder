@@ -1,6 +1,5 @@
 package com.mctech.pokergrinder.grind.data
 
-import com.mctech.architecture_testing.threading.TestCoroutineDispatcher
 import com.mctech.common_test.TestScenario.Companion.responseScenario
 import com.mctech.common_test.TestScenario.Companion.simpleScenario
 import com.mctech.pokergrinder.grind.data.database.GrindDao
@@ -36,7 +35,6 @@ internal class GrindRepositoryImplTest {
 
   private val dao = mockk<GrindDao>(relaxed = true)
   private val target = GrindRepositoryImpl(
-    dispatchers = TestCoroutineDispatcher,
     grindDao = dao,
   )
 
@@ -98,6 +96,23 @@ internal class GrindRepositoryImplTest {
 
     thenAssert { result ->
       assertThat(result).isEqualTo(newDatabaseSessionDetail(id = "1").asBusinessSession())
+      coVerifyOrder { dao.loadCurrentGrind() }
+      confirmVerified(dao)
+    }
+  }
+
+  @Test
+  fun `should delegate load current grind when it is null`() = responseScenario<Session?> {
+    givenScenario {
+      coEvery{ dao.loadCurrentGrind() } returns null
+    }
+
+    whenAction {
+      target.loadCurrentSession()
+    }
+
+    thenAssert { result ->
+      assertThat(result).isNull()
       coVerifyOrder { dao.loadCurrentGrind() }
       confirmVerified(dao)
     }
