@@ -114,6 +114,7 @@ junitJacoco {
             '**/*ViewHolder.*',
             '**/*Activity.*',
             '**/*Fragment.*',
+            '**/*Dialog.*',
             '**/R.class',
             '**/R$*.class',
             '**/BuildConfig.*',

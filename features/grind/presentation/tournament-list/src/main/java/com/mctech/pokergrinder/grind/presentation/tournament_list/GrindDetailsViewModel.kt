@@ -1,5 +1,6 @@
 package com.mctech.pokergrinder.grind.presentation.tournament_list
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.viewModelScope
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.ComponentState
@@ -35,7 +36,8 @@ internal class GrindDetailsViewModel @Inject constructor(
   /**
    * Holds the opened session.
    */
-  lateinit var session: Session
+  @VisibleForTesting
+  var session: Session? = null
 
   /**
    * Holds the original tournament list.
@@ -60,7 +62,7 @@ internal class GrindDetailsViewModel @Inject constructor(
     this.session = interaction.session
 
     // Observe changes.
-    viewModelScope.async { observeTournaments(interaction.session) }
+    observeTournaments(interaction.session)
   }
 
   @OnInteraction(GrindDetailsInteraction.RegisterTournamentClicked::class)
@@ -84,7 +86,7 @@ internal class GrindDetailsViewModel @Inject constructor(
     try {
       // Register new item.
       registerTournamentUseCase(
-        session = session,
+        session = requireNotNull(session),
         title = tournament.title,
         buyIn = originalTemplateList.first { it.title == tournament.title }.buyIn
       )
@@ -138,7 +140,7 @@ internal class GrindDetailsViewModel @Inject constructor(
 
     // Gets command
     val command = GrindDetailsCommand.GoToTournamentEditor(
-      session = session,
+      session = requireNotNull(session),
       sessionTournament = tournament,
     )
 
