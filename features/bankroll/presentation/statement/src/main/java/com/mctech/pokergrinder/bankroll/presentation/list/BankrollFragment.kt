@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.mctech.pokergrinder.architecture.ComponentState
+import com.mctech.pokergrinder.architecture.extensions.avoidFrozenFrames
 import com.mctech.pokergrinder.architecture.extensions.bindState
 import com.mctech.pokergrinder.architecture.extensions.dp
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
@@ -51,7 +52,7 @@ public class BankrollFragment : Fragment(R.layout.fragment_bankroll) {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    viewLifecycleOwner.lifecycleScope.launch {
+    avoidFrozenFrames {
       // Initialize view model
       viewModel.initialize()
 

@@ -110,6 +110,7 @@ junitJacoco {
             '**/*App.*',
             '**/*Application.*',
             '**/*Adapter.*',
+            '**/*ViewHolder.*',
             '**/*Activity.*',
             '**/*Fragment.*',
             '**/R.class',

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.mctech.pokergrinder.architecture.extensions.avoidFrozenFrames
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.tournament.presentation.list.databinding.FragmentTournamentsBinding
 import com.mctech.pokergrinder.tournament.presentation.list_component.TournamentListCallback
@@ -35,7 +36,7 @@ public class TournamentsFragment : Fragment(R.layout.fragment_tournaments), Tour
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    viewLifecycleOwner.lifecycleScope.launch {
+    avoidFrozenFrames {
       setupListeners()
     }
   }

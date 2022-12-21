@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.mctech.pokergrinder.architecture.ComponentState
+import com.mctech.pokergrinder.architecture.extensions.avoidFrozenFrames
 import com.mctech.pokergrinder.architecture.extensions.bindState
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.settings.domain.entities.Settings
@@ -38,7 +39,7 @@ public class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    viewLifecycleOwner.lifecycleScope.launch {
+    avoidFrozenFrames {
       // Initialize view model
       viewModel.initialize()
 
