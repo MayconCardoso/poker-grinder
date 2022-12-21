@@ -105,7 +105,6 @@ task clean(type: Delete) {
 apply plugin: "com.vanniktech.android.junit.jacoco"
 
 junitJacoco {
-    jacocoVersion = '0.8.7'
     excludes = [
             '**/*App.*',
             '**/*Application.*',
@@ -122,5 +121,7 @@ junitJacoco {
             '**/di/**',
             '**/*Dagger.*',
             '**/architecture_testing/agent/*.*',
+            'hilt_*/**',
+            '**/databinding/**',
     ]
 }
