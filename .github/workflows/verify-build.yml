@@ -13,7 +13,8 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v3
 
-      - uses: actions/cache@v2
+      - name: Loading Cache
+        uses: actions/cache@v3
         with:
           path: |
             ~/.gradle/caches
@@ -24,7 +25,7 @@ jobs:
         run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
 
       - name: Set up JDK 11
-        uses: actions/setup-java@v3.9.0
+        uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: 11
