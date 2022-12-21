@@ -42,8 +42,7 @@ internal class GrindDetailsGameplayViewModel @Inject constructor(
   @OnInteraction(GrindDetailsGameplayInteraction.ScreenFirstOpen::class)
   private fun onScreenFirstOpen(interaction: GrindDetailsGameplayInteraction.ScreenFirstOpen) {
     this.session = interaction.session
-
-    viewModelScope.async { observeTournamentsFlip(interaction.session) }
+    observeTournamentsFlip(interaction.session)
   }
 
   // endregion
