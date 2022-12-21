@@ -6,9 +6,9 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.architecture.ViewCommand
+import com.mctech.pokergrinder.architecture.extensions.avoidFrozenFrames
 import com.mctech.pokergrinder.architecture.extensions.bindCommand
 import com.mctech.pokergrinder.architecture.extensions.bindState
 import com.mctech.pokergrinder.architecture.extensions.dp
@@ -21,7 +21,6 @@ import com.mctech.pokergrinder.grind.presentation.list.adapter.GrindAdapterConsu
 import com.mctech.pokergrinder.grind.presentation.list.databinding.FragmentGrindsBinding
 import com.mctech.pokergrinder.grind.presentation.navigation.GrindNavigation
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -69,7 +68,7 @@ public class GrindsFragment : Fragment(R.layout.fragment_grinds) {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    viewLifecycleOwner.lifecycleScope.launch {
+    avoidFrozenFrames {
       // Initialize view model
       viewModel.initialize()
 

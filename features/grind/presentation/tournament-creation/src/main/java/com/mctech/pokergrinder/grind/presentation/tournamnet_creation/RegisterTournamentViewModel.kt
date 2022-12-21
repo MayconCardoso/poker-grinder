@@ -1,5 +1,6 @@
 package com.mctech.pokergrinder.grind.presentation.tournamnet_creation
 
+import androidx.annotation.VisibleForTesting
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.OnInteraction
 import com.mctech.pokergrinder.bankroll.domain.error.BankrollException
@@ -21,7 +22,8 @@ internal class RegisterTournamentViewModel @Inject constructor(
   /**
    * Holds the grind session
    */
-  private lateinit var session: Session
+  @VisibleForTesting
+  var session: Session? = null
 
   /**
    * Holds the component current rendered state.
@@ -42,11 +44,13 @@ internal class RegisterTournamentViewModel @Inject constructor(
   private suspend fun saveTournamentInteraction(
     interaction: RegisterTournamentInteraction.SaveTournament,
   ) {
+    // Doesn't do anything without a session
+    val session = this.session ?: return
+
     // Checks if session tournament exists
     val tournament = _componentState.value
 
     try {
-
       // Updates if already exists
       if (tournament != null) {
         updatesTournamentUseCase(

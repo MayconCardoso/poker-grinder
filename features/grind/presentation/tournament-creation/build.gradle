@@ -7,4 +7,7 @@ dependencies {
     implementation project(path: ':features:tournaments:domain')
     implementation project(path: ':features:tournaments:presentation:list-component')
     implementation project(path: ':features:grind:presentation:navigation')
+
+    // Testing
+    testImplementation project(path: ':features:grind:testing')
 }
