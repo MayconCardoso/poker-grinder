@@ -29,7 +29,7 @@ jobs:
           java-version: 11
 
       - name: Run unit tests
-        run: ./gradlew clean jacocoTestReport jacocoTestReportDebug
+        run: ./gradlew jacocoTestReport jacocoTestReportDebug
 
       - name: Codecov
         uses: codecov/codecov-action@v3.1.1
