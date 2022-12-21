@@ -5,6 +5,11 @@ import com.mctech.pokergrinder.grind.domain.entities.SessionTournamentFlip
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
+/**
+ * Used to observe grind flips.
+ *
+ * @property repository grind data repository.
+ */
 class ObserveGrindTournamentFlipsUseCase @Inject constructor(
   private val repository: GrindRepository,
 ) {

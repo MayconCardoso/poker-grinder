@@ -78,10 +78,10 @@ class TestScenario<T> {
     scenario?.invoke()
 
     // Call the action trigger
-    val actionResult = action?.invoke()
+    val actionResult = action?.invoke() as T
 
     // Assertions
-    assertion?.invoke(requireNotNull(actionResult))
+    assertion?.invoke(actionResult)
   }
 
   companion object {

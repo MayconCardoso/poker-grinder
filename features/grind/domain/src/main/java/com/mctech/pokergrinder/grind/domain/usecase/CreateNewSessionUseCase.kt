@@ -2,8 +2,15 @@ package com.mctech.pokergrinder.grind.domain.usecase
 
 import com.mctech.pokergrinder.grind.domain.GrindRepository
 import com.mctech.pokergrinder.grind.domain.entities.Session
+import java.util.Calendar
 import javax.inject.Inject
 
+/**
+ * Responsible for creating a new grind session.
+ *
+ * @property repository grind data repository.
+ * @property generateUniqueIdUseCase use case responsible for generating a unique id.
+ */
 class CreateNewSessionUseCase @Inject constructor(
   private val repository: GrindRepository,
   private val generateUniqueIdUseCase: GenerateUniqueIdUseCase,
@@ -26,7 +33,7 @@ class CreateNewSessionUseCase @Inject constructor(
       isOpened = true,
       tournamentsPlayed = 0,
       avgBuyIn = 0.0,
-      startTimeInMs = System.currentTimeMillis(),
+      startTimeInMs = Calendar.getInstance().timeInMillis,
     )
 
     // Saves it

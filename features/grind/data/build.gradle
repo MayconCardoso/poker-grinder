@@ -3,4 +3,5 @@ apply from: "$rootDir/config/module/feature/data.gradle"
 dependencies {
     // Internal Modules.
     implementation project(path: ':features:grind:domain')
+    testImplementation project(path: ':features:grind:testing')
 }

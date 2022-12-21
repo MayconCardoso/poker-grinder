@@ -1,9 +1,7 @@
 package com.mctech.pokergrinder.bankroll.domain.entities
 
-import java.text.DateFormat
-import java.text.DecimalFormat
-import java.text.DecimalFormatSymbols
-import java.util.Locale
+import com.mctech.pokergrinder.formatter.asFormattedCurrency
+import com.mctech.pokergrinder.formatter.asFormattedDate
 
 /**
  * Declares a bankroll transaction instance.
@@ -25,15 +23,10 @@ data class BankrollTransaction(
   /**
    * Formats the transaction date.
    */
-  fun formattedDate(): String {
-    return DateFormat.getDateInstance().format(dateInMs)
-  }
+  fun formattedDate(): String = dateInMs.asFormattedDate()
 
   /**
    * Formats the transaction amount.
    */
-  fun formattedAmount(): String = DecimalFormat(
-    "$#0.00",
-    DecimalFormatSymbols(Locale.ENGLISH)
-  ).format(amount)
+  fun formattedAmount(): String = amount.asFormattedCurrency()
 }

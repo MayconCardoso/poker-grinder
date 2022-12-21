@@ -5,8 +5,15 @@ import com.mctech.pokergrinder.bankroll.domain.usecases.WithdrawUseCase
 import com.mctech.pokergrinder.grind.domain.GrindRepository
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
+import java.util.Calendar
 import javax.inject.Inject
 
+/**
+ * Used save a grind tournament.
+ *
+ * @property repository grind data repository.
+ * @property generateUniqueIdUseCase unique id generator.
+ */
 class RegisterTournamentUseCase @Inject constructor(
   private val repository: GrindRepository,
   private val withdrawUseCase: WithdrawUseCase,
@@ -29,7 +36,7 @@ class RegisterTournamentUseCase @Inject constructor(
       buyIn = buyIn,
       title = title,
       profit = 0.0,
-      startTimeInMs = System.currentTimeMillis(),
+      startTimeInMs = Calendar.getInstance().timeInMillis,
       isGrouped = false,
     )
 

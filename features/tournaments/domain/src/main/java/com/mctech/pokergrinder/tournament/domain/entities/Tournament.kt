@@ -1,5 +1,6 @@
 package com.mctech.pokergrinder.tournament.domain.entities
 
+import com.mctech.pokergrinder.formatter.asFormattedCurrency
 import java.io.Serializable
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -31,9 +32,6 @@ data class Tournament(
   /**
    * Formats the tournament [buyIn] in a american dollar string.
    */
-  fun formattedBuyIn(): String = DecimalFormat(
-    "$#0.00",
-    DecimalFormatSymbols(Locale.ENGLISH)
-  ).format(buyIn)
+  fun formattedBuyIn(): String = buyIn.asFormattedCurrency()
 
 }

@@ -17,7 +17,7 @@ class CalendarTestRule : TestRule {
   /**
    * Available calendar that can be mocked.
    */
-  val calendar = mockk<Calendar>()
+  val calendar = mockk<Calendar>(relaxed = true)
 
   /**
    * Runs the rule behaviour.

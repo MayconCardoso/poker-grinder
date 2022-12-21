@@ -14,11 +14,15 @@ import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
 import com.mctech.pokergrinder.grind.domain.entities.SessionTournamentFlip
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+/**
+ * Grind repository implementation.
+ *
+ * @property dispatchers used to handle coroutine threads.
+ * @property grindDao used to persist all grind related data.
+ */
 public class GrindRepositoryImpl @Inject constructor(
-  private val dispatchers: CoroutineDispatchers,
   private val grindDao: GrindDao,
 ) : GrindRepository {
 
@@ -54,17 +58,7 @@ public class GrindRepositoryImpl @Inject constructor(
     grindDao.saveTournamentFlip(flip.asBusinessTournamentFlips())
   }
 
-  override suspend fun loadCurrentSession(): Session? = withContext(dispatchers.io) {
-    grindDao.loadCurrentGrind()?.asBusinessSession()
-  }
-
-  override suspend fun loadGrind(id: String): Session = withContext(dispatchers.io) {
-    grindDao.loadGrind(id).asBusinessSession()
-  }
-
-  override suspend fun loadGrindTournament(
-    id: String,
-  ): SessionTournament = withContext(dispatchers.io) {
-    grindDao.loadGrindTournament(id).asBusinessTournaments()
+  override suspend fun loadCurrentSession(): Session? {
+    return grindDao.loadCurrentGrind()?.asBusinessSession()
   }
 }

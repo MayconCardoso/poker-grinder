@@ -4,23 +4,26 @@ import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
 import javax.inject.Inject
 import kotlin.math.min
 
+/**
+ * Used to group same tournament statistics.
+ */
 class GroupGrindTournamentUseCase @Inject constructor() {
 
   operator fun invoke(tournaments: List<SessionTournament>) = tournaments
     .groupBy { it.title }
     .values
     .map {
-      it.reduce { acc, stockShare ->
+      it.reduce { acc, reduced ->
         SessionTournament(
           id = "",
           idSession = acc.idSession,
           idTransactionProfit = null,
           idTransactionBuyIn = "",
           title = acc.title,
-          buyIn = acc.buyIn + stockShare.buyIn,
-          profit = acc.profit + stockShare.profit,
+          buyIn = acc.buyIn + reduced.buyIn,
+          profit = acc.profit + reduced.profit,
           isGrouped = true,
-          startTimeInMs = min(acc.startTimeInMs, stockShare.startTimeInMs)
+          startTimeInMs = min(acc.startTimeInMs, reduced.startTimeInMs)
         )
       }
     }

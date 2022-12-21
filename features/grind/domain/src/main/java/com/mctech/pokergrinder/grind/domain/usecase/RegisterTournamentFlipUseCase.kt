@@ -6,6 +6,12 @@ import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.domain.entities.SessionTournamentFlip
 import javax.inject.Inject
 
+/**
+ * Used save a tournament flip.
+ *
+ * @property repository grind data repository.
+ * @property generateUniqueIdUseCase unique id generator.
+ */
 class RegisterTournamentFlipUseCase @Inject constructor(
   private val repository: GrindRepository,
   private val generateUniqueIdUseCase: GenerateUniqueIdUseCase,

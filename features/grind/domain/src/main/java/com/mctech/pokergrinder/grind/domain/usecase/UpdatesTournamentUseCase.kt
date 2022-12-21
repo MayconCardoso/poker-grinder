@@ -7,11 +7,19 @@ import com.mctech.pokergrinder.grind.domain.GrindRepository
 import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
 import javax.inject.Inject
 
+/**
+ * Used update a grind tournament.
+ *
+ * @property repository grind data repository.
+ * @property depositUseCase used to make a deposit.
+ * @property updateTransactionUseCase used to update a bankroll transaction.
+ */
 class UpdatesTournamentUseCase @Inject constructor(
   private val repository: GrindRepository,
   private val depositUseCase: DepositUseCase,
   private val updateTransactionUseCase: UpdateTransactionUseCase,
 ) {
+
   suspend operator fun invoke(sessionTournament: SessionTournament) {
     // Checks if session tournament exists
     if (sessionTournament.id.isBlank()) {
