@@ -95,6 +95,47 @@ internal class RegisterTournamentViewModelTest : BaseViewModelTest() {
     }
   }
 
+
+  @Test
+  fun `should update existent tournament`() = observerScenario {
+    val session = newSession(id = "1")
+    val tournament = newTournament(id = "1", buyIn = 10.0, profit = 50.0)
+    val expected = tournament.copy(
+      title = "Hey", buyIn = 1.0, profit = 7.0
+    )
+
+    givenScenario {
+      target.session = session
+    }
+
+    whenAction {
+      target.interact(
+        RegisterTournamentInteraction.ScreenFirstOpen(session = session, tournament = tournament)
+      )
+
+      target.interact(
+        RegisterTournamentInteraction.SaveTournament(
+          title = "Hey",
+          buyIn = 1.0,
+          profit = 2.0,
+          addNewProfit = 5.0,
+        )
+      )
+    }
+
+    thenAssertLiveDataContainsExactly(
+      target.commandObservable,
+      RegisterTournamentCommand.CloseScreen,
+    )
+
+    thenAssert {
+      coVerifyOrder {
+        updatesTournamentUseCase(expected)
+      }
+      confirmVerified(updatesTournamentUseCase, registerTournamentUseCase)
+    }
+  }
+
   @Test
   fun `should show error when out of balance`() = observerScenario {
     val session = newSession(id = "1")
