@@ -42,7 +42,8 @@ internal class GrindDetailsViewModel @Inject constructor(
   /**
    * Holds the original tournament list.
    */
-  private var originalTemplateList = listOf<SessionTournament>()
+  @VisibleForTesting
+  var originalTemplateList = listOf<SessionTournament>()
 
   /**
    * Holds the session registered tournaments.
@@ -95,7 +96,6 @@ internal class GrindDetailsViewModel @Inject constructor(
         sendCommand(GrindDetailsCommand.InsufficientBalanceError)
       }
     }
-
   }
 
   // endregion
