@@ -42,20 +42,16 @@ public class GrindDetailsFragment : Fragment(R.layout.fragment_grind_tournaments
   /**
    * Tournaments adapter event consumer.
    */
-  private val tournamentAdapterConsumer by lazy {
-    object : GrindDetailsConsumer {
-      override fun consume(event: GrindDetailsConsumerEvent) {
-        viewModel.interact(GrindDetailsInteraction.OnTournamentEvent(event))
-      }
+  private val tournamentAdapterConsumer = object : GrindDetailsConsumer {
+    override fun consume(event: GrindDetailsConsumerEvent) {
+      viewModel.interact(GrindDetailsInteraction.OnTournamentEvent(event))
     }
   }
 
   /**
    * Tournaments adapter.
    */
-  private val tournamentAdapter by lazy {
-    GrindDetailsAdapter(eventConsumer = tournamentAdapterConsumer)
-  }
+  private val tournamentAdapter = GrindDetailsAdapter(eventConsumer = tournamentAdapterConsumer)
 
   /**
    * Feature navigation
