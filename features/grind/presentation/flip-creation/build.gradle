@@ -9,4 +9,7 @@ dependencies {
 
     // Ui
     implementation "androidx.cardview:cardview:1.0.0"
+
+    // Testing
+    testImplementation project(path: ':features:grind:testing')
 }

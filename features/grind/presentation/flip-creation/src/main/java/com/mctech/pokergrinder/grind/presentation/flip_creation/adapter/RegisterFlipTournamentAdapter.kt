@@ -12,7 +12,6 @@ import com.mctech.pokergrinder.grind.presentation.flip_creation.databinding.Frag
 
 internal class RegisterFlipTournamentAdapter(
   private val eventConsumer: RegisterFlipTournamentConsumer,
-  private val enableContextMenu: Boolean = true,
 ) :
   ListAdapter<SessionTournament, RegisterFlipTournamentAdapter.ViewHolder>(SimpleItemDiffCallback()) {
 
@@ -50,33 +49,9 @@ internal class RegisterFlipTournamentAdapter(
     }
 
     private fun setupViewListeners() {
-      // Gets the context.
-      val context = binding.root.context
-
       // Sets click on the item,
       binding.root.setOnClickListener {
         onItemClicked(getItem(absoluteAdapterPosition))
-      }
-
-      // Sets context menu on clicked item.
-      if (enableContextMenu) {
-        binding.root.setOnCreateContextMenuListener { menu, _, _ ->
-          // Gets clicked tournament.
-          val clickedTournament = getItem(absoluteAdapterPosition)
-
-          // Set title on the menu
-          menu.setHeaderTitle(clickedTournament.title)
-
-          // Creates re enter button.
-          val reEnter = menu.add(0,
-            1,
-            0,
-            context.getString(com.mctech.pokergrinder.localization.R.string.re_enter))
-          reEnter.setOnMenuItemClickListener {
-            eventConsumer.consume(RegisterFlipTournamentConsumerEvent.DuplicateClicked(clickedTournament))
-            true
-          }
-        }
       }
     }
   }

@@ -49,7 +49,7 @@ public class RegisterFlipFragment : Fragment(R.layout.fragment_register_tourname
   private val tournamentAdapterConsumer by lazy {
     object : RegisterFlipTournamentConsumer {
       override fun consume(event: RegisterFlipTournamentConsumerEvent) {
-        viewModel.interact(RegisterFlipInteraction.OnTournamentEvent(event))
+        consumeTournamentEvent(event)
       }
     }
   }
@@ -135,6 +135,13 @@ public class RegisterFlipFragment : Fragment(R.layout.fragment_register_tourname
     binding.tournaments.isVisible = state.currentFlow.isOneOf(RegisterFlipFlow.TOURNAMENT_PICKER)
   }
 
+  private fun consumeTournamentEvent(event: RegisterFlipTournamentConsumerEvent) {
+    when (event) {
+      is RegisterFlipTournamentConsumerEvent.TournamentClicked -> {
+        viewModel.interact(RegisterFlipInteraction.TournamentSelected(event.tournament))
+      }
+    }
+  }
   // endregion
 
   // region Component Setup

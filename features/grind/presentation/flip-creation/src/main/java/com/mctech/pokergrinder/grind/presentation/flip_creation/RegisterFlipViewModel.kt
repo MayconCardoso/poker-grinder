@@ -1,7 +1,7 @@
 package com.mctech.pokergrinder.grind.presentation.flip_creation
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.viewModelScope
-import com.mctech.pokergrinder.threading.CoroutineDispatchers
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.OnInteraction
 import com.mctech.pokergrinder.deck.domain.Card
@@ -17,12 +17,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 internal class RegisterFlipViewModel @Inject constructor(
-  private val dispatchers: CoroutineDispatchers,
   private val observeGrindTournamentUseCase: ObserveGrindTournamentUseCase,
   private val registerTournamentFlipUseCase: RegisterTournamentFlipUseCase,
 ) : BaseViewModel() {
@@ -32,27 +30,32 @@ internal class RegisterFlipViewModel @Inject constructor(
   /**
    * Holds the grind session
    */
-  private lateinit var session: Session
+  @VisibleForTesting
+  var session: Session? = null
 
   /**
    * Holds the selected tournament
    */
-  private var selectedTournament: SessionTournament? = null
+  @VisibleForTesting
+  var selectedTournament: SessionTournament? = null
 
   /**
    * Holds the hero cards.
    */
-  private var heroCards = mutableListOf<Card>()
+  @VisibleForTesting
+  var heroCards = mutableListOf<Card>()
 
   /**
    * Holds the villain cards.
    */
-  private var villainCards = mutableListOf<Card>()
+  @VisibleForTesting
+  var villainCards = mutableListOf<Card>()
 
   /**
    * Holds the board cards.
    */
-  private var boardCards = mutableListOf<Card>()
+  @VisibleForTesting
+  var boardCards = mutableListOf<Card>()
 
   /**
    * Holds the component current rendered state.
@@ -70,7 +73,7 @@ internal class RegisterFlipViewModel @Inject constructor(
     this.session = interaction.session
 
     // Start observing tournaments
-    observeGrindTournamentUseCase(session.id)
+    observeGrindTournamentUseCase(interaction.session.id)
       .map { it -> it.distinctBy { it.title } }
       .onEach { tournaments ->
         _componentState.value = RegisterFlipState(
@@ -81,12 +84,10 @@ internal class RegisterFlipViewModel @Inject constructor(
       .launchIn(viewModelScope)
   }
 
-  @OnInteraction(RegisterFlipInteraction.OnTournamentEvent::class)
-  private fun onTournamentEvent(interaction: RegisterFlipInteraction.OnTournamentEvent) {
+  @OnInteraction(RegisterFlipInteraction.TournamentSelected::class)
+  private fun onTournamentEvent(interaction: RegisterFlipInteraction.TournamentSelected) {
     // Holds the selected tournament
-    val event =
-      interaction.event as? RegisterFlipTournamentConsumerEvent.TournamentClicked ?: return
-    this.selectedTournament = event.tournament
+    this.selectedTournament = interaction.tournament
 
     // Changes the flow
     _componentState.value = _componentState.value.copy(
@@ -124,12 +125,13 @@ internal class RegisterFlipViewModel @Inject constructor(
   }
 
   @OnInteraction(RegisterFlipInteraction.OnBackPressed::class)
-  private suspend fun onBackPressed() = withContext(dispatchers.default) {
+  private fun onBackPressed() {
     // Gets new flow
     val newFlow = when (componentState.value.currentFlow) {
       RegisterFlipFlow.HERO_CARD_PICKER -> RegisterFlipFlow.TOURNAMENT_PICKER
       RegisterFlipFlow.VILLAIN_CARD_PICKER -> RegisterFlipFlow.HERO_CARD_PICKER
       RegisterFlipFlow.BOARD_PICKER -> RegisterFlipFlow.VILLAIN_CARD_PICKER
+      RegisterFlipFlow.WHO_WON -> RegisterFlipFlow.BOARD_PICKER
       else -> RegisterFlipFlow.TOURNAMENT_PICKER
     }
 
@@ -138,6 +140,7 @@ internal class RegisterFlipViewModel @Inject constructor(
       RegisterFlipFlow.HERO_CARD_PICKER -> R.string.select_the_tournament
       RegisterFlipFlow.VILLAIN_CARD_PICKER -> R.string.select_hero_cards
       RegisterFlipFlow.BOARD_PICKER -> R.string.select_villain_cards
+      RegisterFlipFlow.WHO_WON -> R.string.select_board_cards
       else -> R.string.select_the_tournament
     }
 
@@ -149,10 +152,10 @@ internal class RegisterFlipViewModel @Inject constructor(
   }
 
   @OnInteraction(RegisterFlipInteraction.HeroWonFlip::class)
-  private suspend fun onHeroWonClicked() = withContext(dispatchers.default) {
+  private suspend fun onHeroWonClicked() {
     // Save flip
     registerTournamentFlipUseCase(
-      session = session,
+      session = requireNotNull(session),
       title = selectedTournament?.title.orEmpty(),
       heroCards = heroCards,
       villainCards = villainCards,
@@ -165,10 +168,10 @@ internal class RegisterFlipViewModel @Inject constructor(
   }
 
   @OnInteraction(RegisterFlipInteraction.VillainWonFlip::class)
-  private suspend fun onVillainWonClicked() = withContext(dispatchers.default) {
+  private suspend fun onVillainWonClicked() {
     // Save flip
     registerTournamentFlipUseCase(
-      session = session,
+      session = requireNotNull(session),
       title = selectedTournament?.title.orEmpty(),
       heroCards = heroCards,
       villainCards = villainCards,
