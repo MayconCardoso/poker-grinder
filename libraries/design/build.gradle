@@ -2,5 +2,5 @@ apply plugin: 'com.android.library'
 apply plugin: "kotlin-android"
 
 dependencies {
-    implementation "com.google.android.material:material:$ANDROID_MATERIAL_VERSION"
+    implementation libraries.googleMaterialDesign
 }

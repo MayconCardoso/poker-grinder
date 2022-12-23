@@ -16,6 +16,6 @@ dependencies {
     implementation project(path: ':libraries:architecture')
 
     // Android platform
-    implementation "androidx.appcompat:appcompat:$ANDROID_APPCOMPAT_VERSION"
-    implementation "androidx.constraintlayout:constraintlayout:$CONSTRAINT_LAYOUT_VERSION"
+    implementation libraries.androidAppCompat
+    implementation libraries.androidConstraintLayout
 }

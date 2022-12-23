@@ -1,0 +1,28 @@
+apply plugin: "com.vanniktech.android.junit.jacoco"
+
+junitJacoco {
+    jacocoVersion = "0.8.8"
+    excludes = [
+            '**/*App.*',
+            '**/*Application.*',
+            '**/*Adapter.*',
+            '**/adapter/**',
+            '**/*ViewHolder.*',
+            '**/*Activity.*',
+            '**/*Fragment.*',
+            '**/*Dialog.*',
+            '**/R.class',
+            '**/R$*.class',
+            '**/BuildConfig.*',
+            '**/Manifest*.*',
+            'android/**/*.*',
+            '**/*Test*.*',
+            '**/testing/**',
+            '**/di/**',
+            '**/*Dagger.*',
+            '**/architecture_testing/agent/*.*',
+            'hilt_*/**',
+            '**/databinding/**',
+            '**/*inlined*.class'
+    ]
+}

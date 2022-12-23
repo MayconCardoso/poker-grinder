@@ -22,7 +22,7 @@ dependencies {
     implementation project(path: ':features:bankroll:presentation:balance-component')
 
     // Ui
-    implementation "androidx.cardview:cardview:1.0.0"
-    implementation "androidx.viewpager2:viewpager2:$VIEWPAGER2_VERSION"
-    implementation "com.google.android.material:material:$ANDROID_MATERIAL_VERSION"
+    implementation libraries.androidCardView
+    implementation libraries.androidViewPager2
+    implementation libraries.googleMaterialDesign
 }

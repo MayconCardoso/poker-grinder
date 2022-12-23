@@ -4,14 +4,14 @@ dependencies {
     implementation project(path: ':libraries:threading')
 
     // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$KOTLIN_VERSION"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$COROUTINES_VERSION"
+    implementation libraries.kotlinJdk
+    implementation libraries.kotlinCoroutineCore
 
     // Standard
-    implementation "com.google.code.gson:gson:$GSON_VERSION"
+    implementation libraries.googleGson
 
     // DI
-    implementation "com.google.dagger:dagger:$DAGGER_VERSION"
+    implementation libraries.googleDagger
 
     // Testing
     testImplementation project(path: ':testing:common-test')

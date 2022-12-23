@@ -6,5 +6,5 @@ dependencies {
     implementation project(path: ':features:grind:domain')
 
     // Ui
-    implementation "androidx.cardview:cardview:1.0.0"
+    implementation libraries.androidCardView
 }

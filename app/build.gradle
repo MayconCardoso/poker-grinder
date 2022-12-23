@@ -1,4 +1,4 @@
-apply from: "$rootDir/buildSrc/android_targets.gradle"
+apply from: "$rootDir/buildSrc/setup.gradle"
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
@@ -6,25 +6,12 @@ apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
-    compileSdk targets.compileSdk
-
     defaultConfig {
-        applicationId targets.aplicationId
-        minSdk targets.minSdk
-        targetSdk targets.targetSdk
-
+        applicationId = "com.mctech.pokergrinder"
         versionCode 1
         versionName "1.0"
+    }
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = targets.kotlinJvmTarget
-    }
     buildFeatures {
         viewBinding true
     }
@@ -77,14 +64,14 @@ dependencies {
     implementation project(path: ':features:settings:presentation')
 
     // Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:$GOOGLE_NAVIGATION_VERSION"
-    implementation "androidx.navigation:navigation-ui-ktx:$GOOGLE_NAVIGATION_VERSION"
+    implementation libraries.androidNavigationFragmentKtx
+    implementation libraries.androidNavigationUiKtx
 
-    implementation "androidx.core:core-ktx:$ANDROID_CORE_VERSION"
-    implementation "androidx.appcompat:appcompat:$ANDROID_APPCOMPAT_VERSION"
-    implementation "com.google.android.material:material:$ANDROID_MATERIAL_VERSION"
+    implementation libraries.androidCodeKtx
+    implementation libraries.androidAppCompat
+    implementation libraries.googleMaterialDesign
 
     // dagger
-    implementation "com.google.dagger:hilt-android:$DAGGER_VERSION"
-    kapt "com.google.dagger:hilt-compiler:$DAGGER_VERSION"
+    implementation libraries.googleHiltAndroid
+    kapt libraries.googleHiltCompiler
 }
