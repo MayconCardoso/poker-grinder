@@ -127,5 +127,6 @@ junitJacoco {
             '**/architecture_testing/agent/*.*',
             'hilt_*/**',
             '**/databinding/**',
+            '**/*inlined*.class'
     ]
 }
