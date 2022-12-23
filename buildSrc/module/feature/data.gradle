@@ -7,9 +7,9 @@ dependencies {
     implementation project(path: ':libraries:threading')
 
     // Database
-    implementation "androidx.room:room-runtime:$ROOM_VERSION"
+    implementation libraries.androidRoomCompiler
     implementation libraries.androidRoomKtx
-    kapt "androidx.room:room-compiler:$ROOM_VERSION"
+    kapt libraries.androidRoomRuntime
 
     // DI
     implementation libraries.googleHiltAndroid

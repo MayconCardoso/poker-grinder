@@ -2,9 +2,9 @@ apply plugin: 'kotlin'
 
 dependencies {
     implementation libraries.kotlinJdk
-    api "junit:junit:$JUNIT_VERSION"
-    api "androidx.test.ext:junit:$ANDROIDX_TEST_EXT_JUNIT_VERSION"
+    api libraries.androidTestingJunit
     api libraries.kotlinCoroutineTest
-    api "org.assertj:assertj-core:$ASSERTJ_VERSION"
-    api "io.mockk:mockk:$MOCKK_VERSION"
+    api libraries.androidTestingMockk
+    api libraries.androidTestingExtJunit
+    api libraries.androidTestingAssertj
 }

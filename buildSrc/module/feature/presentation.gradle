@@ -23,10 +23,10 @@ dependencies {
     // Android platform
     implementation libraries.androidFragmentKtx
     implementation libraries.androidAppCompat
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$LIFECYCLE_VERSION"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$LIFECYCLE_VERSION"
-    implementation "androidx.recyclerview:recyclerview:$RECYCLER_VIEW_VERSION"
-    implementation "androidx.constraintlayout:constraintlayout:$CONSTRAINT_LAYOUT_VERSION"
+    implementation libraries.androidLifecycleRuntimeKtx
+    implementation libraries.androidLifecycleViewModelKtx
+    implementation libraries.androidRecyclerView
+    implementation libraries.androidConstraintLayout
 
     // DI
     implementation libraries.googleHiltAndroid

@@ -64,8 +64,8 @@ dependencies {
     implementation project(path: ':features:settings:presentation')
 
     // Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:$GOOGLE_NAVIGATION_VERSION"
-    implementation "androidx.navigation:navigation-ui-ktx:$GOOGLE_NAVIGATION_VERSION"
+    implementation libraries.androidNavigationFragmentKtx
+    implementation libraries.androidNavigationUiKtx
 
     implementation libraries.androidCodeKtx
     implementation libraries.androidAppCompat

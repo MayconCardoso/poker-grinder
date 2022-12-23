@@ -4,13 +4,13 @@ apply plugin: 'kotlin-android'
 dependencies {
     // Kotlin Platform
     implementation libraries.kotlinJdk
+    implementation libraries.kotlinReflection
 
     // Android Core Libs
     implementation libraries.androidCodeKtx
     implementation libraries.androidAppCompat
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$LIFECYCLE_VERSION"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$LIFECYCLE_VERSION"
     implementation libraries.androidViewBinding
-    implementation "androidx.recyclerview:recyclerview:$RECYCLER_VIEW_VERSION"
-    implementation libraries.kotlinReflection
+    implementation libraries.androidRecyclerView
+    implementation libraries.androidLifecycleRuntimeKtx
+    implementation libraries.androidLifecycleViewModelKtx
 }
