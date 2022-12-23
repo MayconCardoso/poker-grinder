@@ -1,0 +1,45 @@
+subprojects {
+    afterEvaluate { project ->
+        // Enables test logger.
+        tasks.withType(Test) {
+            testLogging {
+                exceptionFormat "full"
+                events "passed", "failed"
+                showStandardStreams true
+            }
+        }
+
+        // Sets common android attributes
+        if (project.hasProperty('android')) {
+            android {
+                compileSdk targets.compileSdk
+                defaultConfig {
+                    minSdk targets.minSdk
+                    targetSdk targets.targetSdk
+                    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+                }
+                buildTypes {
+                    release {}
+                    debug {
+                        testCoverageEnabled false
+                    }
+                }
+                java {
+                    sourceCompatibility = JavaVersion.VERSION_11
+                    targetCompatibility = JavaVersion.VERSION_11
+                }
+                compileOptions {
+                    sourceCompatibility JavaVersion.VERSION_11
+                    targetCompatibility JavaVersion.VERSION_11
+                }
+                kotlinOptions {
+                    jvmTarget = targets.kotlinJvmTarget
+                    allWarningsAsErrors = true
+                }
+                packagingOptions {
+                    exclude 'META-INF/*'
+                }
+            }
+        }
+    }
+}

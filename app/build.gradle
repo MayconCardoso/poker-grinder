@@ -1,4 +1,4 @@
-apply from: "$rootDir/buildSrc/android_targets.gradle"
+apply from: "$rootDir/buildSrc/setup.gradle"
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
@@ -9,7 +9,7 @@ android {
     compileSdk targets.compileSdk
 
     defaultConfig {
-        applicationId targets.aplicationId
+        applicationId = "com.mctech.pokergrinder"
         minSdk targets.minSdk
         targetSdk targets.targetSdk
 

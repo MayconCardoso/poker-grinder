@@ -1,4 +1,5 @@
-apply from: "$rootDir/buildSrc/android_targets.gradle"
+// Setup SDK versions.
+apply from: "$rootDir/buildSrc/setup.gradle"
 
 buildscript {
     ext {
@@ -47,14 +48,15 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.android.tools.build:gradle:$GRADLE_VERSION"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
-        classpath "com.google.dagger:hilt-android-gradle-plugin:$DAGGER_VERSION"
+        classpath "com.android.tools.build:gradle:7.2.2"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:2.44"
         classpath "com.vanniktech:gradle-android-junit-jacoco-plugin:0.16.0"
-        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$GOOGLE_NAVIGATION_VERSION"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3"
     }
 }
 
+// Setup all supported repositories
 allprojects {
     repositories {
         google()
@@ -62,71 +64,13 @@ allprojects {
     }
 }
 
-subprojects {
-    afterEvaluate { project ->
-        tasks.withType(Test) {
-            testLogging {
-                exceptionFormat "full"
-                events "passed", "failed"
-                showStandardStreams true
-            }
-        }
+// Setup subprojects dependencies
+apply from: "$rootDir/buildSrc/subprojects.gradle"
 
-        if (project.hasProperty('android')) {
-            android {
-                compileSdk targets.compileSdk
-                defaultConfig {
-                    minSdk targets.minSdk
-                    targetSdk targets.targetSdk
-                    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-                }
-                buildTypes {
-                    release {}
-                    debug {
-                        testCoverageEnabled false
-                    }
-                }
-                compileOptions {
-                    sourceCompatibility JavaVersion.VERSION_11
-                    targetCompatibility JavaVersion.VERSION_11
-                }
-                kotlinOptions {
-                    jvmTarget = targets.kotlinJvmTarget
-                }
-            }
-        }
-    }
-}
+// Setup JaCoCo plugin
+apply from: "$rootDir/buildSrc/jacoco.gradle"
 
+// Setup project tasks.
 task clean(type: Delete) {
     delete rootProject.buildDir
-}
-
-apply plugin: "com.vanniktech.android.junit.jacoco"
-
-junitJacoco {
-    jacocoVersion = "0.8.8"
-    excludes = [
-            '**/*App.*',
-            '**/*Application.*',
-            '**/*Adapter.*',
-            '**/adapter/**',
-            '**/*ViewHolder.*',
-            '**/*Activity.*',
-            '**/*Fragment.*',
-            '**/*Dialog.*',
-            '**/R.class',
-            '**/R$*.class',
-            '**/BuildConfig.*',
-            '**/Manifest*.*',
-            'android/**/*.*',
-            '**/*Test*.*',
-            '**/testing/**',
-            '**/di/**',
-            '**/*Dagger.*',
-            '**/architecture_testing/agent/*.*',
-            'hilt_*/**',
-            '**/databinding/**',
-            '**/*inlined*.class'
-    ]
 }
