@@ -21,8 +21,8 @@ dependencies {
     implementation project(path: ':libraries:localization')
 
     // Android platform
-    implementation "androidx.fragment:fragment-ktx:$FRAGMENT_VERSION"
-    implementation "androidx.appcompat:appcompat:$ANDROID_APPCOMPAT_VERSION"
+    implementation libraries.androidFragmentKtx
+    implementation libraries.androidAppCompat
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$LIFECYCLE_VERSION"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$LIFECYCLE_VERSION"
     implementation "androidx.recyclerview:recyclerview:$RECYCLER_VIEW_VERSION"

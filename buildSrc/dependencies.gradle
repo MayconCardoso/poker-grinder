@@ -4,9 +4,9 @@ ext.libraries = [
         //==========================================================================================
         "androidToolsBuild": "com.android.tools.build:gradle:7.2.2",
         "androidHiltPlugin": "com.google.dagger:hilt-android-gradle-plugin:2.44",
+        "kotlinGradlePlugin": "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10",
         "androidJaCoCoPlugin": "com.vanniktech:gradle-android-junit-jacoco-plugin:0.16.0",
         "androidNavigationPlugin": "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3",
-        "kotlinGradlePlugin": "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10",
 
         //==========================================================================================
         // Platform - Kotlin
@@ -37,8 +37,8 @@ ext.libraries = [
         "androidRoomRuntime": "androidx.room:room-compiler:2.4.3",
         "androidRoomTesting": "androidx.room:room-testing:2.4.3",
         "androidFragmentKtx": "androidx.fragment:fragment-ktx:1.5.2",
-        "androidRoomCompiler": "androidx.room:room-runtime:2.4.3",
         "androidViewBinding": "androidx.databinding:viewbinding:7.3.1",
+        "androidRoomCompiler": "androidx.room:room-runtime:2.4.3",
         "androidRecyclerView": "androidx.recyclerview:recyclerview:1.2.1",
         "androidNavigationUiKtx": "androidx.navigation:navigation-ui-ktx:2.5.3",
         "androidConstraintLayout": "androidx.constraintlayout:constraintlayout:2.1.4",

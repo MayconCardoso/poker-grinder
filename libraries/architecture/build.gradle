@@ -6,11 +6,11 @@ dependencies {
     implementation libraries.kotlinJdk
 
     // Android Core Libs
-    implementation "androidx.core:core-ktx:$ANDROID_CORE_VERSION"
-    implementation "androidx.appcompat:appcompat:$ANDROID_APPCOMPAT_VERSION"
+    implementation libraries.androidCodeKtx
+    implementation libraries.androidAppCompat
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$LIFECYCLE_VERSION"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$LIFECYCLE_VERSION"
-    implementation "androidx.databinding:viewbinding:$ANDROIDX_VIEWBINDING_VERSION"
+    implementation libraries.androidViewBinding
     implementation "androidx.recyclerview:recyclerview:$RECYCLER_VIEW_VERSION"
     implementation libraries.kotlinReflection
 }

@@ -5,7 +5,7 @@ dependencies {
     // Kotlin
     implementation libraries.kotlinJdk
     implementation libraries.kotlinCoroutineCore
-    implementation "androidx.core:core-ktx:$ANDROID_CORE_VERSION"
+    implementation libraries.androidCodeKtx
 
     // Standard
     implementation libraries.googleGson

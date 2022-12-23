@@ -8,7 +8,7 @@ dependencies {
 
     // Database
     implementation "androidx.room:room-runtime:$ROOM_VERSION"
-    implementation "androidx.room:room-ktx:$ROOM_VERSION"
+    implementation libraries.androidRoomKtx
     kapt "androidx.room:room-compiler:$ROOM_VERSION"
 
     // DI
@@ -16,5 +16,5 @@ dependencies {
     kapt libraries.googleHiltCompiler
 
     // Testing
-    androidTestImplementation "androidx.room:room-testing:$ROOM_VERSION"
+    androidTestImplementation libraries.androidRoomRuntime
 }

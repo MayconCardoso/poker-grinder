@@ -67,8 +67,8 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$GOOGLE_NAVIGATION_VERSION"
     implementation "androidx.navigation:navigation-ui-ktx:$GOOGLE_NAVIGATION_VERSION"
 
-    implementation "androidx.core:core-ktx:$ANDROID_CORE_VERSION"
-    implementation "androidx.appcompat:appcompat:$ANDROID_APPCOMPAT_VERSION"
+    implementation libraries.androidCodeKtx
+    implementation libraries.androidAppCompat
     implementation libraries.googleMaterialDesign
 
     // dagger
