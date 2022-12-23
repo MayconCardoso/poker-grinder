@@ -6,25 +6,12 @@ apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
-    compileSdk targets.compileSdk
-
     defaultConfig {
         applicationId = "com.mctech.pokergrinder"
-        minSdk targets.minSdk
-        targetSdk targets.targetSdk
-
         versionCode 1
         versionName "1.0"
+    }
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = targets.kotlinJvmTarget
-    }
     buildFeatures {
         viewBinding true
     }

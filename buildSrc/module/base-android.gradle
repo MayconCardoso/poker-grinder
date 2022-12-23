@@ -1,32 +1,6 @@
 apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
 
-android {
-    defaultConfig {
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    packagingOptions {
-        exclude 'META-INF/*'
-    }
-
-    kotlinOptions {
-        jvmTarget = "11"
-        allWarningsAsErrors = true
-        freeCompilerArgs += '-Xexplicit-api=strict'
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
-    }
-
-    java {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-}
-
 dependencies {
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$KOTLIN_VERSION"
