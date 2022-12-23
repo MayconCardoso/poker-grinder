@@ -1,4 +1,4 @@
-apply from: "$rootDir/config/module/base-android.gradle"
+apply from: "$rootDir/buildSrc/module/base-android.gradle"
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 

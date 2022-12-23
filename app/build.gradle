@@ -1,4 +1,4 @@
-apply from: "$rootDir/config/android_targets.gradle"
+apply from: "$rootDir/buildSrc/android_targets.gradle"
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'

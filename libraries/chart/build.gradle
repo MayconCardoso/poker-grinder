@@ -1,4 +1,4 @@
-apply from: "$rootDir/config/module/base-android.gradle"
+apply from: "$rootDir/buildSrc/module/base-android.gradle"
 
 android {
     buildFeatures {

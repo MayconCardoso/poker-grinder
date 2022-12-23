@@ -1,4 +1,4 @@
-apply from: "$rootDir/config/module/feature/data.gradle"
+apply from: "$rootDir/buildSrc/module/feature/data.gradle"
 
 dependencies {
     // Internal Modules.
