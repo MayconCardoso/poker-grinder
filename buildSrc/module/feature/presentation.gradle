@@ -29,6 +29,6 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$CONSTRAINT_LAYOUT_VERSION"
 
     // DI
-    implementation "com.google.dagger:hilt-android:$DAGGER_VERSION"
-    kapt "com.google.dagger:hilt-compiler:$DAGGER_VERSION"
+    implementation libraries.googleHiltAndroid
+    kapt libraries.googleHiltCompiler
 }

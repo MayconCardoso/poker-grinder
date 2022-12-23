@@ -1,11 +1,11 @@
 apply plugin: 'kotlin'
 
 dependencies {
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$COROUTINES_VERSION"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$COROUTINES_VERSION"
+    implementation libraries.kotlinCoroutineCore
+    implementation libraries.kotlinCoroutineAndroid
 
     // dagger
-    implementation "com.google.dagger:dagger:$DAGGER_VERSION"
+    implementation libraries.googleDagger
 
     // Testing
     testImplementation project(path: ':testing:common-test')

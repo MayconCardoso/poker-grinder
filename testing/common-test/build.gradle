@@ -1,10 +1,10 @@
 apply plugin: 'kotlin'
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$KOTLIN_VERSION"
+    implementation libraries.kotlinJdk
     api "junit:junit:$JUNIT_VERSION"
     api "androidx.test.ext:junit:$ANDROIDX_TEST_EXT_JUNIT_VERSION"
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-test:$COROUTINES_VERSION"
+    api libraries.kotlinCoroutineTest
     api "org.assertj:assertj-core:$ASSERTJ_VERSION"
     api "io.mockk:mockk:$MOCKK_VERSION"
 }

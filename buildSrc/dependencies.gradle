@@ -11,7 +11,7 @@ ext.libraries = [
         //==========================================================================================
         // Platform - Kotlin
         //==========================================================================================
-        "kotlnJdk": "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.10",
+        "kotlinJdk": "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.10",
         "kotlinReflection": "org.jetbrains.kotlin:kotlin-reflect:1.7.10",
         "kotlinCoroutineCore": "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4",
         "kotlinCoroutineTest": "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4",

@@ -1,6 +1,9 @@
 // Setup SDK versions.
 apply from: "$rootDir/buildSrc/setup.gradle"
 
+// Setup project dependencies.
+apply from: "$rootDir/buildSrc/dependencies.gradle"
+
 buildscript {
     ext {
         //==========================================================================================

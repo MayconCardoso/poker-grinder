@@ -31,8 +31,8 @@ dependencies {
     kapt "androidx.room:room-compiler:$ROOM_VERSION"
 
     // DI
-    implementation "com.google.dagger:hilt-android:$DAGGER_VERSION"
-    kapt "com.google.dagger:hilt-compiler:$DAGGER_VERSION"
+    implementation libraries.googleHiltAndroid
+    kapt libraries.googleHiltCompiler
 
     // Testing
     androidTestImplementation "androidx.test.ext:junit:$ANDROIDX_TEST_EXT_JUNIT_VERSION"

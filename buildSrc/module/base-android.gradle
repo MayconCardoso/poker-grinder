@@ -3,12 +3,12 @@ apply plugin: "kotlin-android"
 
 dependencies {
     // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$KOTLIN_VERSION"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$COROUTINES_VERSION"
+    implementation libraries.kotlinJdk
+    implementation libraries.kotlinCoroutineCore
     implementation "androidx.core:core-ktx:$ANDROID_CORE_VERSION"
 
     // Standard
-    implementation "com.google.code.gson:gson:$GSON_VERSION"
+    implementation libraries.googleGson
 
     // Testing
     testImplementation project(path: ':testing:common-test')
