@@ -1,6 +1,6 @@
 # Poker Grinder
-[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg?style=for-the-badge)](https://ktlint.github.io/) 
 [![Codecov](https://img.shields.io/codecov/c/github/mayconcardoso/poker-grinder/master.svg?style=for-the-badge)](https://codecov.io/gh/MayconCardoso/poker-grinder) 
+[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg?style=for-the-badge)](https://ktlint.github.io/) 
 [![kotlin](https://img.shields.io/github/languages/top/MayconCardoso/poker-grinder.svg?style=for-the-badge)](https://kotlinlang.org/)
 [![License Apache-2.0](https://img.shields.io/github/license/MayconCardoso/poker-grinder.svg?style=for-the-badge&color=yellow)](https://opensource.org/licenses/Apache-2.0) 
 
