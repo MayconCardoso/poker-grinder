@@ -17,7 +17,7 @@ class SessionTest {
   @Test
   fun `should check session is in profit`() {
     val data = sessions.map { it.isInProfit() }
-    val expected = listOf(false, true, true, true, false)
+    val expected = listOf(true, true, true, true, false)
     assertThat(data).isEqualTo(expected)
   }
 

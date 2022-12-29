@@ -44,7 +44,7 @@ data class Session(
    * Indicates if session is in profit or not.
    * A profitable session is where player has cashed more than spent in buy-in.
    */
-  fun isInProfit(): Boolean = cash - buyIn > 0
+  fun isInProfit(): Boolean = cash - buyIn >= 0
 
   /**
    * Formats the amount of cash in a currency string.
