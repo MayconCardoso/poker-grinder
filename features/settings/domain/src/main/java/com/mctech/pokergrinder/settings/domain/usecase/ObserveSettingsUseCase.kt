@@ -6,6 +6,11 @@ import com.mctech.pokergrinder.settings.domain.entities.SettingsAvailable
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
+/**
+ * Used to observe a specific settings.
+ *
+ * @property repository settings data repository.
+ */
 class ObserveSettingsUseCase @Inject constructor(private val repository: SettingsRepository) {
   operator fun invoke(settings: SettingsAvailable): Flow<Settings> {
     return repository.observeSetting(settings.key)
