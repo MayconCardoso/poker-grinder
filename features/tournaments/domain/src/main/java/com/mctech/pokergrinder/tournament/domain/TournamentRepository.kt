@@ -17,4 +17,9 @@ interface TournamentRepository {
    * Used to save a [tournament].
    */
   suspend fun save(tournament: Tournament)
+
+  /**
+   * Load tournament by its title
+   */
+  suspend fun load(title: String): Tournament?
 }

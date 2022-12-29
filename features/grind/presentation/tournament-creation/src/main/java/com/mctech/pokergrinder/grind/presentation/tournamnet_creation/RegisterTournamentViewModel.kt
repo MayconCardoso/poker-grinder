@@ -8,15 +8,25 @@ import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
 import com.mctech.pokergrinder.grind.domain.usecase.RegisterTournamentUseCase
 import com.mctech.pokergrinder.grind.domain.usecase.UpdatesTournamentUseCase
+import com.mctech.pokergrinder.tournament.domain.entities.Tournament
+import com.mctech.pokergrinder.tournament.domain.entities.TournamentType
+import com.mctech.pokergrinder.tournament.domain.usecase.LoadTournamentUseCase
+import com.mctech.pokergrinder.tournament.domain.usecase.SavesTournamentUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
+import kotlin.time.Duration.Companion.hours
 
 @HiltViewModel
 internal class RegisterTournamentViewModel @Inject constructor(
+  // Session tournaments.
   private val updatesTournamentUseCase: UpdatesTournamentUseCase,
   private val registerTournamentUseCase: RegisterTournamentUseCase,
+
+  // Tournaments
+  private val loadTournamentUseCase: LoadTournamentUseCase,
+  private val savesTournamentUseCase: SavesTournamentUseCase,
 ) : BaseViewModel() {
 
   /**
@@ -44,40 +54,71 @@ internal class RegisterTournamentViewModel @Inject constructor(
   private suspend fun saveTournamentInteraction(
     interaction: RegisterTournamentInteraction.SaveTournament,
   ) {
+    try {
+      // Handles tournament registration.
+      handleSessionTournamentRegistration(interaction)
+
+      // Handles tournament creation.
+      handlesTournamentCreation(interaction.buyIn, interaction.title)
+
+      // Closes screen
+      sendCommand(RegisterTournamentCommand.CloseScreen)
+    } catch (exception: Exception) {
+      if (exception is BankrollException.InsufficientBalance) {
+        sendCommand(RegisterTournamentCommand.InsufficientBalanceError)
+      }
+    }
+  }
+
+  private suspend fun handleSessionTournamentRegistration(
+    interaction: RegisterTournamentInteraction.SaveTournament,
+  ) {
     // Doesn't do anything without a session
     val session = this.session ?: return
 
     // Checks if session tournament exists
     val tournament = _componentState.value
 
-    try {
-      // Updates if already exists
-      if (tournament != null) {
-        updatesTournamentUseCase(
-          tournament.copy(
-            title = interaction.title,
-            buyIn = interaction.buyIn,
-            profit = interaction.profit + interaction.addNewProfit,
-          )
-        )
-      }
-
-      // Tournament does not exist.
-      else {
-        registerTournamentUseCase(
-          session = session,
+    // Updates if already exists
+    if (tournament != null) {
+      updatesTournamentUseCase(
+        tournament.copy(
           title = interaction.title,
           buyIn = interaction.buyIn,
+          profit = interaction.profit + interaction.addNewProfit,
         )
-      }
-
-      // Closes screen
-      sendCommand(RegisterTournamentCommand.CloseScreen)
-    } catch (exception: Exception) {
-      if(exception is BankrollException.InsufficientBalance) {
-        sendCommand(RegisterTournamentCommand.InsufficientBalanceError)
-      }
+      )
     }
+
+    // Tournament does not exist.
+    else {
+      registerTournamentUseCase(
+        session = session,
+        title = interaction.title,
+        buyIn = interaction.buyIn,
+      )
+    }
+  }
+
+  private suspend fun handlesTournamentCreation(buyIn: Double, title: String) {
+    // Tournament already exists, so nothing had to be done.
+    if (loadTournamentUseCase(title) != null) {
+      return
+    }
+
+    // Creates new tournament.
+    savesTournamentUseCase(
+      tournament = Tournament(
+        id = "",
+        isBounty = false,
+        guaranteed = 0,
+        countReBuy = 0,
+        buyIn = buyIn.toFloat(),
+        title = title,
+        type = TournamentType.REGULAR,
+        startTimeInMs = 10.hours.inWholeMilliseconds
+      )
+    )
   }
 
 }

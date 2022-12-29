@@ -2,6 +2,7 @@ package com.mctech.pokergrinder.tournament.data
 
 import com.mctech.pokergrinder.threading.CoroutineDispatchers
 import com.mctech.pokergrinder.tournament.data.database.TournamentDao
+import com.mctech.pokergrinder.tournament.data.mapper.asBusinessTournament
 import com.mctech.pokergrinder.tournament.data.mapper.asBusinessTournaments
 import com.mctech.pokergrinder.tournament.data.mapper.asDatabaseTournament
 import com.mctech.pokergrinder.tournament.domain.TournamentRepository
@@ -11,7 +12,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-public class TournamentRepositoryImpl @Inject constructor(
+class TournamentRepositoryImpl @Inject constructor(
   private val dispatchers: CoroutineDispatchers,
   private val tournamentDao: TournamentDao,
 ) : TournamentRepository {
@@ -24,4 +25,7 @@ public class TournamentRepositoryImpl @Inject constructor(
     tournamentDao.save(tournament.asDatabaseTournament())
   }
 
+  override suspend fun load(title: String): Tournament? = withContext(dispatchers.io) {
+    tournamentDao.loadByTitle(title)?.asBusinessTournament()
+  }
 }

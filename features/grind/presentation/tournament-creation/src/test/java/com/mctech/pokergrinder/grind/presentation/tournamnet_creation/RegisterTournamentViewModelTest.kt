@@ -7,19 +7,27 @@ import com.mctech.pokergrinder.grind.domain.usecase.RegisterTournamentUseCase
 import com.mctech.pokergrinder.grind.domain.usecase.UpdatesTournamentUseCase
 import com.mctech.pokergrinder.grind.testing.newSession
 import com.mctech.pokergrinder.grind.testing.newTournament
+import com.mctech.pokergrinder.tournament.domain.entities.Tournament
+import com.mctech.pokergrinder.tournament.domain.usecase.LoadTournamentUseCase
+import com.mctech.pokergrinder.tournament.domain.usecase.SavesTournamentUseCase
 import io.mockk.coEvery
 import io.mockk.coVerifyOrder
 import io.mockk.confirmVerified
 import io.mockk.mockk
+import io.mockk.slot
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
 internal class RegisterTournamentViewModelTest : BaseViewModelTest() {
   private val updatesTournamentUseCase = mockk<UpdatesTournamentUseCase>(relaxed = true)
   private val registerTournamentUseCase = mockk<RegisterTournamentUseCase>(relaxed = true)
+  private val loadTournamentUseCase = mockk<LoadTournamentUseCase>(relaxed = true)
+  private val savesTournamentUseCase = mockk<SavesTournamentUseCase>(relaxed = true)
   private val target = RegisterTournamentViewModel(
     updatesTournamentUseCase = updatesTournamentUseCase,
     registerTournamentUseCase = registerTournamentUseCase,
+    loadTournamentUseCase = loadTournamentUseCase,
+    savesTournamentUseCase = savesTournamentUseCase,
   )
 
   @Test
@@ -36,7 +44,7 @@ internal class RegisterTournamentViewModelTest : BaseViewModelTest() {
 
     thenAssert {
       assertThat(target.session).isNull()
-      confirmVerified(updatesTournamentUseCase, registerTournamentUseCase)
+      confirmAll()
     }
   }
 
@@ -59,7 +67,7 @@ internal class RegisterTournamentViewModelTest : BaseViewModelTest() {
 
     thenAssert {
       assertThat(target.session).isEqualTo(session)
-      confirmVerified(updatesTournamentUseCase, registerTournamentUseCase)
+      confirmAll()
     }
   }
 
@@ -69,6 +77,7 @@ internal class RegisterTournamentViewModelTest : BaseViewModelTest() {
 
     givenScenario {
       target.session = session
+      coEvery { loadTournamentUseCase(title = "Hey") } returns null
     }
 
     whenAction {
@@ -88,10 +97,18 @@ internal class RegisterTournamentViewModelTest : BaseViewModelTest() {
     )
 
     thenAssert {
+      val tournamentSlot = slot<Tournament>()
+
       coVerifyOrder {
         registerTournamentUseCase(session = session, title = "Hey", buyIn = 1.0)
+        loadTournamentUseCase(title = "Hey")
+        savesTournamentUseCase(capture(tournamentSlot))
       }
-      confirmVerified(updatesTournamentUseCase, registerTournamentUseCase)
+
+      assertThat(tournamentSlot.captured.buyIn).isEqualTo(1.0F)
+      assertThat(tournamentSlot.captured.title).isEqualTo("Hey")
+
+      confirmAll()
     }
   }
 
@@ -103,9 +120,11 @@ internal class RegisterTournamentViewModelTest : BaseViewModelTest() {
     val expected = tournament.copy(
       title = "Hey", buyIn = 1.0, profit = 7.0
     )
+    val savedTournament = mockk<Tournament>(relaxed = true)
 
     givenScenario {
       target.session = session
+      coEvery { loadTournamentUseCase(title = "Hey") } returns savedTournament
     }
 
     whenAction {
@@ -131,8 +150,9 @@ internal class RegisterTournamentViewModelTest : BaseViewModelTest() {
     thenAssert {
       coVerifyOrder {
         updatesTournamentUseCase(expected)
+        loadTournamentUseCase(title = "Hey")
       }
-      confirmVerified(updatesTournamentUseCase, registerTournamentUseCase)
+      confirmAll()
     }
   }
 
@@ -167,7 +187,16 @@ internal class RegisterTournamentViewModelTest : BaseViewModelTest() {
       coVerifyOrder {
         registerTournamentUseCase(session = session, title = "Hey", buyIn = 1.0)
       }
-      confirmVerified(updatesTournamentUseCase, registerTournamentUseCase)
+      confirmAll()
     }
+  }
+
+  private fun confirmAll() {
+    confirmVerified(
+      updatesTournamentUseCase,
+      registerTournamentUseCase,
+      loadTournamentUseCase,
+      savesTournamentUseCase,
+    )
   }
 }

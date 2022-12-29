@@ -8,13 +8,16 @@ import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-public interface TournamentDao {
+interface TournamentDao {
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  public suspend fun save(tournament: TournamentRoomEntity)
+  suspend fun save(tournament: TournamentRoomEntity)
 
   @Delete
-  public fun delete(tournament: TournamentRoomEntity)
+  fun delete(tournament: TournamentRoomEntity)
 
   @Query("SELECT * from tournament ORDER BY start_time")
-  public fun observe(): Flow<List<TournamentRoomEntity>>
+  fun observe(): Flow<List<TournamentRoomEntity>>
+
+  @Query("SELECT * from tournament where title = :title LIMIT 1")
+  fun loadByTitle(title: String): TournamentRoomEntity?
 }
