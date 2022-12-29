@@ -6,7 +6,9 @@ For those who don't know, apart from a software engineer, I am also a recreative
 # About the app
 Poker grinder was built with the goal of helping players to manage their game bankroll and also to track the performance of all sessions. You can check the [project roadmap](https://github.com/users/MayconCardoso/projects/2) to see what is coming, now those are the supported features:
 
-<img src=".art/performance.png" alt="with-internet" width="200px"/> <img src=".art/bankroll.png" alt="with-internet" width="200px"/> <img src=".art/sessions.png" alt="with-internet" width="200px"/> <img src=".art/session_details.png" alt="with-internet" width="200px"/> <img src=".art/flips.png" alt="with-internet" width="200px"/> <img src=".art/breakeven.png" alt="with-internet" width="200px"/>
+<img src=".art/performance.png" alt="with-internet" width="200px"/> <img src=".art/bankroll.png" alt="with-internet" width="200px"/> <img src=".art/breakeven.png" alt="with-internet" width="200px"/>
+
+<img src=".art/sessions.png" alt="with-internet" width="200px"/> <img src=".art/session_details.png" alt="with-internet" width="200px"/> <img src=".art/flips.png" alt="with-internet" width="200px"/>
 
 
 ### Bankroll Management
