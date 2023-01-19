@@ -42,6 +42,7 @@ dependencies {
     implementation project(path: ':features:bankroll:presentation:withdraw')
     implementation project(path: ':features:bankroll:presentation:navigation')
     implementation project(path: ':features:bankroll:presentation:statement')
+    implementation project(path: ':features:bankroll:presentation:balance-component')
 
     // Features - Grind
     implementation project(path: ':features:grind:data')
