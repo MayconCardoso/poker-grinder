@@ -41,11 +41,6 @@ class HomeActivity : AppCompatActivity() {
   private val binding by viewBinding(ActivityHomeBinding::inflate)
 
   /**
-   * Holds the current grind view model.
-   */
-  private val currentGrindViewModel by viewModels<CurrentGrindViewModel>()
-
-  /**
    * Holds the navigator callback used to handle toolbar and bottom navigator.
    */
   private val navigatorCallback by lazy {
@@ -83,12 +78,6 @@ class HomeActivity : AppCompatActivity() {
 
     // Setup component
     setUpBottomNavigation()
-
-    // Starts observing changes on current session
-    currentGrindViewModel.initialize()
-
-    // Observers current session change
-    bindState(currentGrindViewModel.componentState, ::renderCurrentSession)
   }
 
   override fun onDestroy() {
@@ -127,14 +116,6 @@ class HomeActivity : AppCompatActivity() {
 
   // region UI Manipulation
 
-  private fun renderCurrentSession(session: Session?) {
-    binding.toolbar.title = getString(
-      if (session == null) com.mctech.pokergrinder.localization.R.string.app_name
-      else com.mctech.pokergrinder.localization.R.string.current_session
-    )
-    binding.toolbar.subtitle = session?.formattedBalance()
-  }
-
   private fun renderToolbarBasedOnDestination(destination: NavDestination) {
     binding.toolbar.isVisible = !mainAppContainerHiddenFragments.contains(destination.id)
   }
@@ -144,5 +125,4 @@ class HomeActivity : AppCompatActivity() {
   }
 
   // endregion
-
 }

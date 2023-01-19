@@ -58,18 +58,15 @@ public class BankrollBalanceFragment : Fragment(R.layout.fragment_bankroll_balan
   }
 
   private fun rendersBalanceLoading() {
-    binding.balance.isVisible = false
-    binding.progressBalance.isVisible = true
+    // TODO("Not yet implemented")
   }
 
   private fun rendersBalanceSuccess(balance: String) {
-    binding.balance.text = balance
-    binding.balance.isVisible = true
-    binding.progressBalance.isVisible = false
+    binding.balanceToolbar.subtitle = balance
   }
 
   private fun rendersBalanceError() {
-    TODO("Not yet implemented")
+    // TODO("Not yet implemented")
   }
 
   // endregion

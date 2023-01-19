@@ -10,10 +10,6 @@ import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
-@Retention(AnnotationRetention.BINARY)
-@Qualifier
-annotation class IoDispatcher
-
 @InstallIn(SingletonComponent::class)
 @Module
 object CoroutineDispatcherModule {
@@ -22,8 +18,4 @@ object CoroutineDispatcherModule {
   @Provides
   fun providesCoroutineDispatchers(): CoroutineDispatchers = DefaultCoroutineDispatchers
 
-  @Singleton
-  @Provides
-  @IoDispatcher
-  fun providesIoDispatcher(dispatchers: CoroutineDispatchers): CoroutineDispatcher = dispatchers.io
 }

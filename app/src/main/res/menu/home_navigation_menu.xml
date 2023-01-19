@@ -4,7 +4,7 @@
     <item
         android:id="@+id/statement_fragment"
         android:icon="@drawable/ic_account_balance"
-        android:title="@string/statement" />
+        android:title="@string/bankroll" />
 
     <item
         android:id="@+id/session_fragment"

@@ -7,24 +7,15 @@
     android:orientation="vertical"
     android:padding="12dp">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/component_balance"
-        android:name="com.mctech.pokergrinder.bankroll.presentation.balance_component.BankrollBalanceFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/fragment_bankroll_balance" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/transactions"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/deposit"
-        app:layout_constraintTop_toBottomOf="@+id/component_balance"
+        app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="4"
         tools:listitem="@layout/fragment_bankroll_item" />
 

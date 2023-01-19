@@ -99,7 +99,7 @@ public class GrindSummaryFragment : Fragment(R.layout.fragment_grind_details_sum
   }
 
   private fun rendersSessionError() {
-    TODO("Not yet implemented")
+    // TODO("Not yet implemented")
   }
 
   // endregion
