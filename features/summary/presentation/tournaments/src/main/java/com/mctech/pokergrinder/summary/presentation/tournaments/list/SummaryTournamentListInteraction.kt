@@ -1,4 +1,4 @@
-package com.mctech.pokergrinder.summary.presentation.tournaments
+package com.mctech.pokergrinder.summary.presentation.tournaments.list
 
 import com.mctech.pokergrinder.architecture.UserInteraction
 

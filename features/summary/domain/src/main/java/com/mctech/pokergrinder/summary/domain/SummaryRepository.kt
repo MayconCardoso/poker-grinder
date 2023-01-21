@@ -9,4 +9,5 @@ interface SummaryRepository {
   fun observeSessionSummary(): Flow<SessionSummary>
   fun observeInvestmentSummary(): Flow<InvestmentSummary>
   fun observeTournamentsSummary(): Flow<List<TournamentSummary>>
+  fun observeTournamentDetails(tournamentSummary: TournamentSummary): Flow<List<TournamentSummary>>
 }

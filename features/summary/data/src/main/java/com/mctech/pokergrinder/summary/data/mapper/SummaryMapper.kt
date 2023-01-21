@@ -29,12 +29,13 @@ internal fun SessionSummaryRoomEntity.asBusinessSession() = SessionSummary(
 /**
  * Converts a tournament summary database entity onto a business one known by the modules.
  */
-internal fun List<TournamentSummaryRoomEntity>.asBusinessTournament() = this.map { it ->
+internal fun List<TournamentSummaryRoomEntity>.asBusinessTournament() = this.map {
   TournamentSummary(
     title = it.title,
     tournaments = it.tournaments,
     cash = it.cash,
     buyIn = it.buyIn,
     profit = it.profit,
+    playedTimeInMs = it.playedTimeInMs,
   )
 }

@@ -41,7 +41,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="@string/starts_at"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             android:textSize="18sp"
             android:textStyle="bold"

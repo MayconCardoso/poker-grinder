@@ -57,7 +57,9 @@ dependencies {
     // Features - Summary
     implementation project(path: ':features:summary:data')
     implementation project(path: ':features:summary:domain')
+    implementation project(path: ':features:summary:presentation:navigation')
     implementation project(path: ':features:summary:presentation:pager_container')
+    implementation project(path: ':features:summary:presentation:tournaments')
 
     // Features - Settings
     implementation project(path: ':features:settings:data')
