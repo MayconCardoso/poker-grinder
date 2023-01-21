@@ -2,7 +2,9 @@ apply from: "$rootDir/buildSrc/module/feature/presentation.gradle"
 
 dependencies {
     // Internal modules
+    implementation project(path: ':libraries:chart')
     implementation project(path: ':features:summary:domain')
+    implementation project(path: ':features:summary:presentation:navigation')
 
     // Ui
     implementation libraries.androidCardView

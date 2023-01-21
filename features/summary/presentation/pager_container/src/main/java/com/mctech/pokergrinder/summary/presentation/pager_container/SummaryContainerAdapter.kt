@@ -4,7 +4,7 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.mctech.pokergrinder.summary.presentation.tournaments.SummaryTournamentListFragment
+import com.mctech.pokergrinder.summary.presentation.tournaments.list.SummaryTournamentListFragment
 
 internal class SummaryContainerAdapter(
   fragmentManager: FragmentManager,

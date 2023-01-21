@@ -1,4 +1,4 @@
-package com.mctech.pokergrinder.summary.presentation.tournaments
+package com.mctech.pokergrinder.summary.presentation.tournaments.list
 
 import android.os.Bundle
 import android.util.Log
@@ -14,13 +14,15 @@ import com.mctech.pokergrinder.architecture.extensions.dp
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.architecture.utility.SimpleSpaceItemDecoration
 import com.mctech.pokergrinder.summary.domain.entities.TournamentSummary
+import com.mctech.pokergrinder.summary.presentation.navigation.SummaryNavigation
 import com.mctech.pokergrinder.summary.presentation.tournament.R
 import com.mctech.pokergrinder.summary.presentation.tournament.databinding.FragmentSummaryTournamentListBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
-public class SummaryTournamentListFragment : Fragment(R.layout.fragment_summary_tournament_list) {
+class SummaryTournamentListFragment : Fragment(R.layout.fragment_summary_tournament_list) {
 
   // region Variables
 
@@ -37,7 +39,15 @@ public class SummaryTournamentListFragment : Fragment(R.layout.fragment_summary_
   /**
    * Tournaments adapter.
    */
-  private val tournamentAdapter by lazy { SummaryTournamentListAdapter() }
+  private val tournamentAdapter by lazy {
+    SummaryTournamentListAdapter(onTournamentClick = ::onTournamentClicked)
+  }
+
+  /**
+   * Feature navigation
+   */
+  @Inject
+  lateinit var navigation: SummaryNavigation
 
   // endregion
 
@@ -50,8 +60,8 @@ public class SummaryTournamentListFragment : Fragment(R.layout.fragment_summary_
       viewModel.initialize()
 
       // Setup List
-      setupTournamentList()
       setupListeners()
+      setupTournamentList()
 
       // Observers state changes
       bindState(viewModel.state, ::consumeState)
@@ -103,6 +113,10 @@ public class SummaryTournamentListFragment : Fragment(R.layout.fragment_summary_
     binding.search.doOnTextChanged { text, _, _, _ ->
       viewModel.interact(SummaryTournamentListInteraction.NewFilterQuery(text.toString()))
     }
+  }
+
+  private fun onTournamentClicked(tournamentSummary: TournamentSummary) {
+    navigation.goToTournamentSummaryDetail(tournamentSummary)
   }
 
   // endregion

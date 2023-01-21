@@ -6,11 +6,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class ObserveTournamentSummaryUseCase @Inject constructor(
+class ObserveTournamentSummaryDetailsUseCase @Inject constructor(
   private val repository: SummaryRepository,
 ) {
-  operator fun invoke(): Flow<List<TournamentSummary>> {
-    return repository.observeTournamentsSummary()
-      .map { it -> it.sortedByDescending { it.computeRoi() } }
+  operator fun invoke(tournamentSummary: TournamentSummary): Flow<List<TournamentSummary>> {
+    return repository.observeTournamentDetails(tournamentSummary)
   }
 }

@@ -1,4 +1,4 @@
-package com.mctech.pokergrinder.summary.presentation.tournaments
+package com.mctech.pokergrinder.summary.presentation.tournaments.list
 
 import androidx.lifecycle.viewModelScope
 import com.mctech.pokergrinder.threading.CoroutineDispatchers
@@ -6,7 +6,7 @@ import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.architecture.OnInteraction
 import com.mctech.pokergrinder.summary.domain.entities.TournamentSummary
-import com.mctech.pokergrinder.summary.domain.usecases.ObserveTournamentSummaryUseCase
+import com.mctech.pokergrinder.summary.domain.usecases.ObserveTournamentsSummaryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 internal class SummaryTournamentsViewModel @Inject constructor(
   private val dispatchers: CoroutineDispatchers,
-  private val observeTournamentSummaryUseCase: ObserveTournamentSummaryUseCase,
+  private val observeTournamentSummaryUseCase: ObserveTournamentsSummaryUseCase,
 ) : BaseViewModel() {
 
   // region Variables

@@ -10,7 +10,23 @@
         android:id="@+id/summary_fragment"
         android:name="com.mctech.pokergrinder.summary.presentation.pager_container.SummaryContainerFragment"
         android:label="@string/summary"
-        tools:layout="@layout/fragment_summary" />
+        tools:layout="@layout/fragment_summary" >
+        <action
+            android:id="@+id/action_summary_fragment_to_summary_tournament_details_fragment"
+            app:destination="@id/summary_tournament_details_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/summary_tournament_details_fragment"
+        android:name="com.mctech.pokergrinder.summary.presentation.tournaments.details.SummaryTournamentDetailsFragment"
+        android:label="@string/summary"
+        tools:layout="@layout/fragment_summary_tournament_detail">
+
+        <argument
+            android:name="TOURNAMENT_PARAM"
+            app:argType="com.mctech.pokergrinder.summary.domain.entities.TournamentSummary"
+            app:nullable="false" />
+    </fragment>
 
     <fragment
         android:id="@+id/session_fragment"

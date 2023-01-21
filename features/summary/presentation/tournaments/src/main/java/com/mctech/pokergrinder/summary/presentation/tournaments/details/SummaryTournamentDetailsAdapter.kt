@@ -1,4 +1,4 @@
-package com.mctech.pokergrinder.summary.presentation.tournaments
+package com.mctech.pokergrinder.summary.presentation.tournaments.details
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,13 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mctech.pokergrinder.architecture.utility.SimpleItemDiffCallback
 import com.mctech.pokergrinder.design.R
 import com.mctech.pokergrinder.summary.domain.entities.TournamentSummary
-import com.mctech.pokergrinder.summary.presentation.tournament.databinding.FragmentSummaryTournamentItemBinding
+import com.mctech.pokergrinder.summary.presentation.tournament.databinding.FragmentSummaryTournamentDetailItemBinding
 
-internal class SummaryTournamentListAdapter :
-  ListAdapter<TournamentSummary, SummaryTournamentListAdapter.ViewHolder>(SimpleItemDiffCallback()) {
+internal class SummaryTournamentDetailsAdapter(
+  val onTournamentClick: (tournament: TournamentSummary) -> Unit,
+) : ListAdapter<TournamentSummary, SummaryTournamentDetailsAdapter.ViewHolder>(
+  SimpleItemDiffCallback()
+) {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
-    FragmentSummaryTournamentItemBinding.inflate(
+    FragmentSummaryTournamentDetailItemBinding.inflate(
       LayoutInflater.from(parent.context), parent, false
     )
   )
@@ -24,18 +27,17 @@ internal class SummaryTournamentListAdapter :
   }
 
   inner class ViewHolder(
-    private val binding: FragmentSummaryTournamentItemBinding,
+    private val binding: FragmentSummaryTournamentDetailItemBinding,
   ) : RecyclerView.ViewHolder(binding.root) {
 
+    init {
+      binding.root.setOnClickListener {
+        onTournamentClick(getItem(absoluteAdapterPosition))
+      }
+    }
+
     fun bind(tournament: TournamentSummary) {
-      binding.title.text = tournament.title
-      binding.countBuyIn.text = binding.root.context.getString(
-        com.mctech.pokergrinder.localization.R.string.count_buy_in,
-        tournament.tournaments,
-      )
-      binding.roi.text = tournament.formattedRoi()
-      binding.cash.text = tournament.formattedCash()
-      binding.buyIn.text = tournament.formattedBuyIn()
+      binding.title.text = tournament.formattedDate()
       binding.balance.text = tournament.formattedProfit()
 
       // Change indicator color
@@ -43,7 +45,6 @@ internal class SummaryTournamentListAdapter :
         binding.root.context,
         if (tournament.profit >= 0) R.color.deposit else R.color.withdraw
       )
-      binding.indicator.setBackgroundColor(color)
       binding.balance.setTextColor(color)
     }
   }

@@ -20,11 +20,12 @@ import com.mctech.pokergrinder.grind.presentation.flip_creation.adapter.Register
 import com.mctech.pokergrinder.grind.presentation.flip_creation.adapter.RegisterFlipTournamentConsumer
 import com.mctech.pokergrinder.grind.presentation.flip_creation.adapter.RegisterFlipTournamentConsumerEvent
 import com.mctech.pokergrinder.grind.presentation.flip_creation.databinding.FragmentRegisterTournamentFlipBinding
+import com.mctech.pokergrinder.grind.presentation.navigation.GrindNavigation
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-public class RegisterFlipFragment : Fragment(R.layout.fragment_register_tournament_flip) {
+class RegisterFlipFragment : Fragment(R.layout.fragment_register_tournament_flip) {
 
   // region Variables
 
@@ -70,7 +71,7 @@ public class RegisterFlipFragment : Fragment(R.layout.fragment_register_tourname
    * Feature navigation
    */
   @Inject
-  public lateinit var navigation: com.mctech.pokergrinder.grind.presentation.navigation.GrindNavigation
+  lateinit var navigation: GrindNavigation
 
   // endregion
 
@@ -193,8 +194,8 @@ public class RegisterFlipFragment : Fragment(R.layout.fragment_register_tourname
 
   // region Builder
 
-  public companion object {
-    public const val SESSION_PARAM: String = "SESSION_PARAM"
+  companion object {
+    const val SESSION_PARAM: String = "SESSION_PARAM"
   }
 
   // endregion

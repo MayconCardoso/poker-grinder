@@ -13,4 +13,6 @@ public data class TournamentSummaryRoomEntity(
   val profit: Double,
   @ColumnInfo(name = "tournaments")
   val tournaments: Int,
+  @ColumnInfo(name = "startTimeInMs")
+  val playedTimeInMs: Long,
 )

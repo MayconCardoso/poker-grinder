@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-public class SummaryRepositoryImpl @Inject constructor(
+class SummaryRepositoryImpl @Inject constructor(
   private val summaryDao: SummaryDao,
 ) : SummaryRepository {
 
@@ -26,5 +26,10 @@ public class SummaryRepositoryImpl @Inject constructor(
 
   override fun observeTournamentsSummary(): Flow<List<TournamentSummary>> {
     return summaryDao.observeTournamentSummary().map { it.asBusinessTournament() }
+  }
+
+  override fun observeTournamentDetails(tournamentSummary: TournamentSummary): Flow<List<TournamentSummary>> {
+    return summaryDao.observeTournamentSummary(tournamentSummary.title)
+      .map { it.asBusinessTournament() }
   }
 }

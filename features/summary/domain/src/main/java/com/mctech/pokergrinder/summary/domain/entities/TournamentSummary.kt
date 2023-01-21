@@ -1,5 +1,7 @@
 package com.mctech.pokergrinder.summary.domain.entities
 
+import com.mctech.pokergrinder.formatter.asFormattedDate
+import java.io.Serializable
 import java.text.DecimalFormat
 
 data class TournamentSummary(
@@ -8,7 +10,8 @@ data class TournamentSummary(
   val buyIn: Double,
   val profit: Double,
   val tournaments: Int,
-) {
+  val playedTimeInMs: Long,
+): Serializable {
 
   fun computeRoi(): Double {
     if (buyIn == 0.0) {
@@ -31,5 +34,9 @@ data class TournamentSummary(
 
   fun formattedBuyIn(): String {
     return DecimalFormat("$#0.00").format(buyIn)
+  }
+
+  fun formattedDate(): String {
+    return playedTimeInMs.asFormattedDate()
   }
 }

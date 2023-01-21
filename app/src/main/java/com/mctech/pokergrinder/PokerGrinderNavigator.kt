@@ -6,14 +6,22 @@ import androidx.navigation.NavDestination
 import com.mctech.pokergrinder.bankroll.presentation.navigation.BankrollNavigation
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
+import com.mctech.pokergrinder.grind.presentation.flip_creation.RegisterFlipFragment
 import com.mctech.pokergrinder.grind.presentation.navigation.GrindNavigation
 import com.mctech.pokergrinder.grind.presentation.pager_container.GrindDetailContainerFragment
 import com.mctech.pokergrinder.grind.presentation.tournamnet_creation.RegisterTournamentFragment
+import com.mctech.pokergrinder.summary.domain.entities.TournamentSummary
+import com.mctech.pokergrinder.summary.presentation.navigation.SummaryNavigation
+import com.mctech.pokergrinder.summary.presentation.tournaments.details.SummaryTournamentDetailsFragment
 import com.mctech.pokergrinder.tournament.presentation.navigation.TournamentNavigation
 import com.mctech.pokergrinder.tournament.presentation.creation.NewTournamentFragment
 import com.mctech.pokergrinder.tournament.domain.entities.Tournament
 
-class PokerGrinderNavigator : TournamentNavigation, BankrollNavigation, GrindNavigation {
+class PokerGrinderNavigator :
+  GrindNavigation,
+  SummaryNavigation,
+  BankrollNavigation,
+  TournamentNavigation {
 
   // region Navigator setup
 
@@ -115,13 +123,25 @@ class PokerGrinderNavigator : TournamentNavigation, BankrollNavigation, GrindNav
     navController?.navigate(
       R.id.action_session_details_to_session_details_tournament_flip,
       Bundle().apply {
-        putSerializable(com.mctech.pokergrinder.grind.presentation.flip_creation.RegisterFlipFragment.SESSION_PARAM, session)
+        putSerializable(RegisterFlipFragment.SESSION_PARAM, session)
       },
     )
   }
 
   // endregion
 
+  // region Summary
+
+  override fun goToTournamentSummaryDetail(tournamentSummary: TournamentSummary) {
+    navController?.navigate(
+      R.id.action_summary_fragment_to_summary_tournament_details_fragment,
+      Bundle().apply {
+        putSerializable(SummaryTournamentDetailsFragment.TOURNAMENT_PARAM, tournamentSummary)
+      },
+    )
+  }
+
+  // endregion
   interface Callback {
     fun onDestinationChanged(destination: NavDestination)
   }

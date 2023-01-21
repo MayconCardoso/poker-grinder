@@ -3,20 +3,20 @@ package com.mctech.pokergrinder.bankroll.presentation.navigation
 /**
  * Used to navigate through bankroll feature components.
  */
-public interface BankrollNavigation {
+interface BankrollNavigation {
 
   /**
    * Goes to deposit screen.
    */
-  public fun goToBankrollDeposit()
+  fun goToBankrollDeposit()
 
   /**
    * Goes to withdraw screen.
    */
-  public fun goToBankrollWithdraw()
+  fun goToBankrollWithdraw()
 
   /**
    * Navigates back.
    */
-  public fun navigateBack()
+  fun navigateBack()
 }
