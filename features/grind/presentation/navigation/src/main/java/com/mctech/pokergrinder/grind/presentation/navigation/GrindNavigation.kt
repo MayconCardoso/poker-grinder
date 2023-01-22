@@ -1,7 +1,7 @@
 package com.mctech.pokergrinder.grind.presentation.navigation
 
 import com.mctech.pokergrinder.grind.domain.entities.Session
-import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
+import com.mctech.pokergrinder.grind_tournament.domain.entities.SessionTournament
 
 /**
  * Used to navigate through grind feature components.

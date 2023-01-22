@@ -19,6 +19,7 @@ android {
 dependencies {
     // Internal Modules.
     implementation project(path: ':features:grind:data')
+    implementation project(path: ':features:grind-tournament:data')
     implementation project(path: ':features:bankroll:data')
     implementation project(path: ':features:tournaments:data')
     implementation project(path: ':features:summary:data')

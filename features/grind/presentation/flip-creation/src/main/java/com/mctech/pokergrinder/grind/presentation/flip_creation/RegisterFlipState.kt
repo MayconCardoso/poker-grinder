@@ -1,7 +1,7 @@
 package com.mctech.pokergrinder.grind.presentation.flip_creation
 
 import com.mctech.pokergrinder.deck.domain.Card
-import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
+import com.mctech.pokergrinder.grind_tournament.domain.entities.SessionTournament
 import com.mctech.pokergrinder.localization.R
 
 /**

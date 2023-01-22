@@ -3,5 +3,8 @@ apply from: "$rootDir/buildSrc/module/feature/data.gradle"
 dependencies {
     // Internal Modules.
     implementation project(path: ':features:grind:domain')
+    implementation project(path: ':features:grind-tournament:data')
+
+    // Internal test Modules
     testImplementation project(path: ':features:grind:testing')
 }

@@ -3,9 +3,7 @@ package com.mctech.pokergrinder.grind.data.mapper
 import com.mctech.pokergrinder.grind.data.database.SessionDetailRoomEntity
 import com.mctech.pokergrinder.grind.data.database.SessionRoomEntity
 import com.mctech.pokergrinder.grind.data.database.SessionTournamentFlipRoomEntity
-import com.mctech.pokergrinder.grind.data.database.SessionTournamentRoomEntity
 import com.mctech.pokergrinder.grind.domain.entities.Session
-import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
 import com.mctech.pokergrinder.grind.domain.entities.SessionTournamentFlip
 
 // region Session
@@ -40,48 +38,6 @@ internal fun Session.asDatabaseSession() = SessionRoomEntity(
   id = id,
   isOpened = isOpened,
   title = title,
-  startTimeInMs = startTimeInMs,
-)
-
-// endregion
-
-// region Session Tournament
-
-/**
- * Converts a list of tournament database entity onto a business one known by the modules.
- */
-internal fun List<SessionTournamentRoomEntity>.asBusinessTournaments(): List<SessionTournament> {
-  return this.map { dbEntity ->
-    dbEntity.asBusinessTournaments()
-  }
-}
-
-/**
- * Converts a tournament database entity onto a business one known by the modules.
- */
-internal fun SessionTournamentRoomEntity.asBusinessTournaments() = SessionTournament(
-  id = id,
-  idSession = idSession,
-  idTransactionBuyIn = idTransactionBuyIn,
-  idTransactionProfit = idTransactionProfit,
-  title = title,
-  buyIn = buyIn,
-  profit = profit,
-  startTimeInMs = startTimeInMs,
-  isGrouped = false,
-)
-
-/**
- * Converts a business tournament onto a database one.
- */
-internal fun SessionTournament.asDatabaseTournaments() = SessionTournamentRoomEntity(
-  id = id,
-  idSession = idSession,
-  idTransactionBuyIn = idTransactionBuyIn,
-  idTransactionProfit = idTransactionProfit,
-  title = title,
-  buyIn = buyIn,
-  profit = profit,
   startTimeInMs = startTimeInMs,
 )
 

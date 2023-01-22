@@ -119,7 +119,7 @@
 
     <fragment
         android:id="@+id/session_details_tournament"
-        android:name="com.mctech.pokergrinder.grind.presentation.tournamnet_creation.RegisterTournamentFragment"
+        android:name="com.mctech.pokergrinder.grind_tournament.presentation.creation.RegisterTournamentFragment"
         tools:layout="@layout/fragment_register_tournament">
 
         <argument
@@ -128,7 +128,7 @@
 
         <argument
             android:name="TOURNAMENT_PARAM"
-            app:argType="com.mctech.pokergrinder.grind.domain.entities.SessionTournament"
+            app:argType="com.mctech.pokergrinder.grind_tournament.domain.entities.SessionTournament"
             app:nullable="true" />
     </fragment>
 

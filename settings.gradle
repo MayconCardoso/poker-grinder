@@ -37,14 +37,21 @@ include ':features:grind:domain'
 include ':features:grind:data'
 include ':features:grind:testing'
 include ':features:grind:presentation:list'
-include ':features:grind:presentation:summary'
 include ':features:grind:presentation:creation'
 include ':features:grind:presentation:flip-list'
 include ':features:grind:presentation:navigation'
 include ':features:grind:presentation:flip-creation'
 include ':features:grind:presentation:pager_container'
-include ':features:grind:presentation:tournament-list'
-include ':features:grind:presentation:tournament-creation'
+
+// Feature - Grind Tournament
+include ':features:grind-tournament:data'
+include ':features:grind-tournament:domain'
+include ':features:grind-tournament:testing'
+include ':features:grind-tournament:presentation:list'
+include ':features:grind-tournament:presentation:creation'
+
+// Feature - Grind Summary
+include ':features:grind-summary:presentation'
 
 // Feature - Summary
 include ':features:summary:domain'

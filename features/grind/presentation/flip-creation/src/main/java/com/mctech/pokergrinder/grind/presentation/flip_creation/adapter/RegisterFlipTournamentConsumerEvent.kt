@@ -1,6 +1,6 @@
 package com.mctech.pokergrinder.grind.presentation.flip_creation.adapter
 
-import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
+import com.mctech.pokergrinder.grind_tournament.domain.entities.SessionTournament
 
 /**
  * Available events that can be sent from new flip flow.

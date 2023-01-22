@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.room.Room
 import com.mctech.pokergrinder.bankroll.data.database.BankrollTransactionDao
 import com.mctech.pokergrinder.grind.data.database.GrindDao
+import com.mctech.pokergrinder.grind_tournament.data.database.GrindTournamentDao
 import com.mctech.pokergrinder.settings.data.database.SettingsDao
 import com.mctech.pokergrinder.summary.data.database.SummaryDao
 import com.mctech.pokergrinder.tournament.data.database.TournamentDao
@@ -15,11 +16,11 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-public class PokerGrinderDatabaseInjection {
+class PokerGrinderDatabaseInjection {
 
   @Provides
   @Singleton
-  public fun providesPokerGrinderDatabase(application: Application): PokerGrinderDatabase {
+  fun providesPokerGrinderDatabase(application: Application): PokerGrinderDatabase {
     return Room.databaseBuilder(application, PokerGrinderDatabase::class.java, "poker_grinder")
       .addCallback(PokerGrinderDatabaseInitialization)
       .addMigrations(*PokerGrinderDatabaseMigrations.all)
@@ -28,31 +29,37 @@ public class PokerGrinderDatabaseInjection {
 
   @Provides
   @Singleton
-  public fun providesTournamentDao(db: PokerGrinderDatabase): TournamentDao {
+  fun providesTournamentDao(db: PokerGrinderDatabase): TournamentDao {
     return db.tournamentDao()
   }
 
   @Provides
   @Singleton
-  public fun providesBankrollTransactionDao(db: PokerGrinderDatabase): BankrollTransactionDao {
+  fun providesBankrollTransactionDao(db: PokerGrinderDatabase): BankrollTransactionDao {
     return db.bankrollTransactionDao()
   }
 
   @Provides
   @Singleton
-  public fun providesGrindDao(db: PokerGrinderDatabase): GrindDao {
+  fun providesGrindDao(db: PokerGrinderDatabase): GrindDao {
     return db.grindDao()
   }
 
   @Provides
   @Singleton
-  public fun providesSummaryDao(db: PokerGrinderDatabase): SummaryDao {
+  fun providesGrindTournamentDao(db: PokerGrinderDatabase): GrindTournamentDao {
+    return db.grindTournamentDao()
+  }
+
+  @Provides
+  @Singleton
+  fun providesSummaryDao(db: PokerGrinderDatabase): SummaryDao {
     return db.summaryDao()
   }
 
   @Provides
   @Singleton
-  public fun providesSettingsDao(db: PokerGrinderDatabase): SettingsDao {
+  fun providesSettingsDao(db: PokerGrinderDatabase): SettingsDao {
     return db.settingsDao()
   }
 

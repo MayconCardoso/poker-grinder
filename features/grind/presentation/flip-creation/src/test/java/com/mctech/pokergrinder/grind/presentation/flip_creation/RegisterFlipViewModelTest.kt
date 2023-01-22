@@ -4,10 +4,10 @@ import com.mctech.architecture_testing.BaseViewModelTest
 import com.mctech.architecture_testing.extensions.TestObserverScenario.Companion.observerScenario
 import com.mctech.pokergrinder.deck.domain.Card
 import com.mctech.pokergrinder.deck.domain.CardSuit
-import com.mctech.pokergrinder.grind.domain.usecase.ObserveGrindTournamentUseCase
 import com.mctech.pokergrinder.grind.domain.usecase.RegisterTournamentFlipUseCase
 import com.mctech.pokergrinder.grind.testing.newSession
-import com.mctech.pokergrinder.grind.testing.newTournament
+import com.mctech.pokergrinder.grind_tournament.domain.usecase.ObserveGrindTournamentUseCase
+import com.mctech.pokergrinder.grind_tournament.testing.newTournament
 import com.mctech.pokergrinder.localization.R
 import io.mockk.coVerifyOrder
 import io.mockk.confirmVerified
@@ -489,7 +489,7 @@ internal class RegisterFlipViewModelTest : BaseViewModelTest() {
   private fun winnerSelectionFlow(
     interaction: RegisterFlipInteraction,
     hasHeroWon: Boolean,
-  ) = observerScenario{
+  ) = observerScenario {
     val session = newSession(id = "100")
     val tournament = newTournament(title = "Bounty Builder $11")
     val heroCards = mutableListOf(

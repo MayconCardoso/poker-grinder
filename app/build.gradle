@@ -52,7 +52,11 @@ dependencies {
     implementation project(path: ':features:grind:presentation:navigation')
     implementation project(path: ':features:grind:presentation:flip-creation')
     implementation project(path: ':features:grind:presentation:pager_container')
-    implementation project(path: ':features:grind:presentation:tournament-creation')
+    implementation project(path: ':features:grind-summary:presentation')
+
+    // Feature - Grind Tournament
+    implementation project(path: ':features:grind-tournament:domain')
+    implementation project(path: ':features:grind-tournament:presentation:creation')
 
     // Features - Summary
     implementation project(path: ':features:summary:data')

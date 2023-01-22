@@ -1,0 +1,15 @@
+apply from: "$rootDir/buildSrc/module/feature/presentation.gradle"
+
+dependencies {
+    // Internal modules
+    implementation project(path: ':libraries:chart')
+    implementation project(path: ':features:grind:domain')
+    implementation project(path: ':features:grind-tournament:domain')
+
+    // Ui
+    implementation libraries.androidCardView
+
+    // Testing
+    testImplementation project(path: ':features:grind:testing')
+    testImplementation project(path: ':features:grind-tournament:testing')
+}

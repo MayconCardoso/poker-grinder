@@ -1,9 +1,10 @@
 apply from: "$rootDir/buildSrc/module/base-kotlin.gradle"
 
 dependencies {
+    // Internal Modules.
     implementation project(path: ':features:deck:domain')
     implementation project(path: ':libraries:formatter')
-    implementation project(path: ':features:bankroll:domain')
 
+    // Internal test Modules
     testImplementation project(path: ':features:grind:testing')
 }

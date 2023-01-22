@@ -6,10 +6,9 @@ import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.OnInteraction
 import com.mctech.pokergrinder.deck.domain.Card
 import com.mctech.pokergrinder.grind.domain.entities.Session
-import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
-import com.mctech.pokergrinder.grind.domain.usecase.ObserveGrindTournamentUseCase
 import com.mctech.pokergrinder.grind.domain.usecase.RegisterTournamentFlipUseCase
-import com.mctech.pokergrinder.grind.presentation.flip_creation.adapter.RegisterFlipTournamentConsumerEvent
+import com.mctech.pokergrinder.grind_tournament.domain.entities.SessionTournament
+import com.mctech.pokergrinder.grind_tournament.domain.usecase.ObserveGrindTournamentUseCase
 import com.mctech.pokergrinder.localization.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

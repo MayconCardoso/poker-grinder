@@ -1,0 +1,7 @@
+apply from: "$rootDir/buildSrc/module/feature/data.gradle"
+
+dependencies {
+    // Internal Modules.
+    implementation project(path: ':features:grind-tournament:domain')
+    testImplementation project(path: ':features:grind-tournament:testing')
+}

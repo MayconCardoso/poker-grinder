@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mctech.pokergrinder.architecture.utility.SimpleItemDiffCallback
 import com.mctech.pokergrinder.design.R
-import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
 import com.mctech.pokergrinder.grind.presentation.flip_creation.databinding.FragmentGrindTournamentsItemBinding
+import com.mctech.pokergrinder.grind_tournament.domain.entities.SessionTournament
 
 internal class RegisterFlipTournamentAdapter(
   private val eventConsumer: RegisterFlipTournamentConsumer,

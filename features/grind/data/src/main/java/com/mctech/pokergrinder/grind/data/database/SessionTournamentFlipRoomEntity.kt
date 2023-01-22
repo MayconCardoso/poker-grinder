@@ -13,7 +13,7 @@ import androidx.room.PrimaryKey
     ),
   ],
 )
-public data class SessionTournamentFlipRoomEntity(
+data class SessionTournamentFlipRoomEntity(
   @PrimaryKey
   val id: String,
   val idSession: String,

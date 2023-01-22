@@ -7,8 +7,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.presentation.flip_list.GrindDetailsGameplayFragment
-import com.mctech.pokergrinder.grind.presentation.summary.GrindSummaryFragment
-import com.mctech.pokergrinder.grind.presentation.tournament_list.GrindDetailsFragment
+import com.mctech.pokergrinder.grind_summary.presentation.GrindSummaryFragment
+import com.mctech.pokergrinder.grind_tournament.presentation.list.GrindDetailsFragment
 
 internal class GrindDetailContainerAdapter(
   fragmentManager: FragmentManager,
@@ -19,9 +19,11 @@ internal class GrindDetailContainerAdapter(
   /**
    * Holds the current shown tabs on grind details feature.
    */
-  private val discoverTabs by lazy { listOf(GrindTab.SUMMARY,
-    GrindTab.TOURNAMENT,
-    GrindTab.GAMEPLAY) }
+  private val discoverTabs by lazy {
+    listOf(GrindTab.SUMMARY,
+      GrindTab.TOURNAMENT,
+      GrindTab.GAMEPLAY)
+  }
 
   override fun getItemCount() = discoverTabs.size
 
@@ -29,20 +31,20 @@ internal class GrindDetailContainerAdapter(
     // Creates summary fragment.
     GrindTab.SUMMARY.position -> GrindSummaryFragment()
       .apply {
-      arguments = bundleOf(GrindSummaryFragment.SESSION_PARAM to session)
-    }
+        arguments = bundleOf(GrindSummaryFragment.SESSION_PARAM to session)
+      }
 
     // Creates tournament fragment.
     GrindTab.TOURNAMENT.position -> GrindDetailsFragment()
       .apply {
-      arguments = bundleOf(GrindDetailsFragment.SESSION_PARAM to session)
-    }
+        arguments = bundleOf(GrindDetailsFragment.SESSION_PARAM to session)
+      }
 
     // Creates gameplay fragment
     GrindTab.GAMEPLAY.position -> GrindDetailsGameplayFragment()
       .apply {
-      arguments = bundleOf(GrindDetailsGameplayFragment.SESSION_PARAM to session)
-    }
+        arguments = bundleOf(GrindDetailsGameplayFragment.SESSION_PARAM to session)
+      }
 
     // Fragment not found.
     else -> error("Feature not supported on GrindDetailContainerAdapter")

@@ -4,6 +4,7 @@ dependencies {
     // Internal modules
     implementation project(path: ':features:deck:domain')
     implementation project(path: ':features:grind:domain')
+    implementation project(path: ':features:grind-tournament:domain')
     implementation project(path: ':features:deck:presentation:card_picker')
     implementation project(path: ':features:grind:presentation:navigation')
 
@@ -12,4 +13,5 @@ dependencies {
 
     // Testing
     testImplementation project(path: ':features:grind:testing')
+    testImplementation project(path: ':features:grind-tournament:testing')
 }
