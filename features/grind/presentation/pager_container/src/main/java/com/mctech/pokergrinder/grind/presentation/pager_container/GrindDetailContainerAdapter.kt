@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.mctech.pokergrinder.grind.domain.entities.Session
-import com.mctech.pokergrinder.grind.presentation.flip_list.GrindDetailsGameplayFragment
+import com.mctech.pokergrinder.grind_gameplay.presentation.list.GrindDetailsGameplayFragment
 import com.mctech.pokergrinder.grind_summary.presentation.GrindSummaryFragment
 import com.mctech.pokergrinder.grind_tournament.presentation.list.GrindDetailsFragment
 

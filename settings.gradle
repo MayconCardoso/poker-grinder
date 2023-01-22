@@ -38,9 +38,7 @@ include ':features:grind:data'
 include ':features:grind:testing'
 include ':features:grind:presentation:list'
 include ':features:grind:presentation:creation'
-include ':features:grind:presentation:flip-list'
 include ':features:grind:presentation:navigation'
-include ':features:grind:presentation:flip-creation'
 include ':features:grind:presentation:pager_container'
 
 // Feature - Grind Tournament
@@ -49,6 +47,13 @@ include ':features:grind-tournament:domain'
 include ':features:grind-tournament:testing'
 include ':features:grind-tournament:presentation:list'
 include ':features:grind-tournament:presentation:creation'
+
+// Feature - Grind Gameplay
+include ':features:grind-gameplay:data'
+include ':features:grind-gameplay:domain'
+include ':features:grind-gameplay:testing'
+include ':features:grind-gameplay:presentation:list'
+include ':features:grind-gameplay:presentation:creation'
 
 // Feature - Grind Summary
 include ':features:grind-summary:presentation'

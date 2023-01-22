@@ -10,12 +10,12 @@ import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.architecture.extensions.bindState
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.grind.domain.entities.Session
-import com.mctech.pokergrinder.grind.domain.entities.SessionTournamentFlip
+import com.mctech.pokergrinder.grind_gameplay.domain.entities.SessionTournamentFlip
 import com.mctech.pokergrinder.grind_summary.presentation.databinding.FragmentGrindDetailsSummaryBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-public class GrindSummaryFragment : Fragment(R.layout.fragment_grind_details_summary) {
+class GrindSummaryFragment : Fragment(R.layout.fragment_grind_details_summary) {
 
   // region Variables
 
@@ -106,8 +106,8 @@ public class GrindSummaryFragment : Fragment(R.layout.fragment_grind_details_sum
 
   // region Builder
 
-  public companion object {
-    public const val SESSION_PARAM: String = "SESSION_PARAM"
+  companion object {
+    const val SESSION_PARAM: String = "SESSION_PARAM"
   }
 
   // endregion

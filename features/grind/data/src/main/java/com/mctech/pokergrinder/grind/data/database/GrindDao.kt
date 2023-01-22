@@ -12,14 +12,8 @@ interface GrindDao {
   @Insert(onConflict = OnConflictStrategy.REPLACE)
   suspend fun save(item: SessionRoomEntity)
 
-  @Insert(onConflict = OnConflictStrategy.REPLACE)
-  suspend fun saveTournamentFlip(item: SessionTournamentFlipRoomEntity)
-
   @Query("SELECT * from grind_session_detail WHERE id = :sessionId")
   fun observeGrind(sessionId: String): Flow<SessionDetailRoomEntity>
-
-  @Query("SELECT * from grind_session_tournament_flip WHERE idSession = :sessionId")
-  fun observeGrindTournamentFlips(sessionId: String): Flow<List<SessionTournamentFlipRoomEntity>>
 
   @Query("SELECT * from grind_session_detail WHERE isOpened = 1")
   fun observeCurrentGrind(): Flow<SessionDetailRoomEntity?>

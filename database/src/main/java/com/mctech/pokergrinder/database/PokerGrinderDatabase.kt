@@ -7,7 +7,8 @@ import com.mctech.pokergrinder.bankroll.data.database.BankrollTransactionRoomEnt
 import com.mctech.pokergrinder.grind.data.database.GrindDao
 import com.mctech.pokergrinder.grind.data.database.SessionDetailRoomEntity
 import com.mctech.pokergrinder.grind.data.database.SessionRoomEntity
-import com.mctech.pokergrinder.grind.data.database.SessionTournamentFlipRoomEntity
+import com.mctech.pokergrinder.grind_gameplay.data.database.GrindGameplayDao
+import com.mctech.pokergrinder.grind_gameplay.data.database.SessionTournamentFlipRoomEntity
 import com.mctech.pokergrinder.grind_tournament.data.database.GrindTournamentDao
 import com.mctech.pokergrinder.grind_tournament.data.database.SessionTournamentRoomEntity
 import com.mctech.pokergrinder.settings.data.database.SettingsDao
@@ -39,6 +40,7 @@ import com.mctech.pokergrinder.tournament.data.database.TournamentRoomEntity
 )
 abstract class PokerGrinderDatabase : RoomDatabase() {
   abstract fun grindDao(): GrindDao
+  abstract fun grindGameplayDao(): GrindGameplayDao
   abstract fun grindTournamentDao(): GrindTournamentDao
   abstract fun summaryDao(): SummaryDao
   abstract fun settingsDao(): SettingsDao

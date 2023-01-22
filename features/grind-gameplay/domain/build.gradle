@@ -1,0 +1,11 @@
+apply from: "$rootDir/buildSrc/module/base-kotlin.gradle"
+
+dependencies {
+    // Internal Modules.
+    implementation project(path: ':features:deck:domain')
+    implementation project(path: ':features:grind:domain')
+
+    // Internal test Modules
+    testImplementation project(path: ':features:grind:testing')
+    testImplementation project(path: ':features:grind-gameplay:testing')
+}

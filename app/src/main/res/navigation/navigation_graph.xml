@@ -134,7 +134,7 @@
 
     <fragment
         android:id="@+id/session_details_tournament_flip"
-        android:name="com.mctech.pokergrinder.grind.presentation.flip_creation.RegisterFlipFragment"
+        android:name="com.mctech.pokergrinder.grind_gameplay.presentation.creation.RegisterFlipFragment"
         tools:layout="@layout/fragment_register_tournament_flip">
 
         <argument

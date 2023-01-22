@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.room.Room
 import com.mctech.pokergrinder.bankroll.data.database.BankrollTransactionDao
 import com.mctech.pokergrinder.grind.data.database.GrindDao
+import com.mctech.pokergrinder.grind_gameplay.data.database.GrindGameplayDao
 import com.mctech.pokergrinder.grind_tournament.data.database.GrindTournamentDao
 import com.mctech.pokergrinder.settings.data.database.SettingsDao
 import com.mctech.pokergrinder.summary.data.database.SummaryDao
@@ -43,6 +44,12 @@ class PokerGrinderDatabaseInjection {
   @Singleton
   fun providesGrindDao(db: PokerGrinderDatabase): GrindDao {
     return db.grindDao()
+  }
+
+  @Provides
+  @Singleton
+  fun providesGrindGameplay(db: PokerGrinderDatabase): GrindGameplayDao {
+    return db.grindGameplayDao()
   }
 
   @Provides

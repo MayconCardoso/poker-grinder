@@ -4,6 +4,7 @@ dependencies {
     // Internal modules
     implementation project(path: ':libraries:chart')
     implementation project(path: ':features:grind:domain')
+    implementation project(path: ':features:grind-gameplay::domain')
     implementation project(path: ':features:grind-tournament:domain')
 
     // Ui
@@ -11,5 +12,6 @@ dependencies {
 
     // Testing
     testImplementation project(path: ':features:grind:testing')
+    testImplementation project(path: ':features:grind-gameplay:testing')
     testImplementation project(path: ':features:grind-tournament:testing')
 }

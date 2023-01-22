@@ -5,11 +5,11 @@ import com.mctech.architecture_testing.extensions.TestObserverScenario.Companion
 import com.mctech.architecture_testing.extensions.assertFlow
 import com.mctech.chart.money.MoneyVariationEntry
 import com.mctech.pokergrinder.architecture.ComponentState
-import com.mctech.pokergrinder.grind.domain.entities.SessionTournamentFlip
-import com.mctech.pokergrinder.grind.domain.usecase.ObserveGrindTournamentFlipsUseCase
 import com.mctech.pokergrinder.grind.domain.usecase.ObserveGrindUseCase
 import com.mctech.pokergrinder.grind.testing.newSession
-import com.mctech.pokergrinder.grind.testing.newSessionFlip
+import com.mctech.pokergrinder.grind_gameplay.domain.entities.SessionTournamentFlip
+import com.mctech.pokergrinder.grind_gameplay.domain.usecase.ObserveGrindTournamentFlipsUseCase
+import com.mctech.pokergrinder.grind_gameplay.testing.newSessionFlip
 import com.mctech.pokergrinder.grind_tournament.domain.usecase.ObserveGrindTournamentUseCase
 import com.mctech.pokergrinder.grind_tournament.testing.newTournament
 import io.mockk.coVerifyOrder

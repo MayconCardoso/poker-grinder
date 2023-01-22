@@ -6,9 +6,9 @@ import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.architecture.OnInteraction
 import com.mctech.pokergrinder.grind.domain.entities.Session
-import com.mctech.pokergrinder.grind.domain.entities.SessionTournamentFlip
-import com.mctech.pokergrinder.grind.domain.usecase.ObserveGrindTournamentFlipsUseCase
 import com.mctech.pokergrinder.grind.domain.usecase.ObserveGrindUseCase
+import com.mctech.pokergrinder.grind_gameplay.domain.entities.SessionTournamentFlip
+import com.mctech.pokergrinder.grind_gameplay.domain.usecase.ObserveGrindTournamentFlipsUseCase
 import com.mctech.pokergrinder.grind_tournament.domain.usecase.ObserveGrindTournamentUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
