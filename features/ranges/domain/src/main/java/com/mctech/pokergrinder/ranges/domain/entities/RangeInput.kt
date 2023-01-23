@@ -6,5 +6,5 @@ package com.mctech.pokergrinder.ranges.domain.entities
 data class RangeInput(
   val hand: EmptyRangeHand,
   val frequency: Float = 1.0F,
-  val filledColor: String,
+  val filledColor: String = "#FF7045",
 )
