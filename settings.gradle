@@ -77,3 +77,4 @@ include ':features:settings:presentation'
 // Feature - Deck
 include ':features:deck:domain'
 include ':features:deck:presentation:card_picker'
+include ':features:ranges:domain'
