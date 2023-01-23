@@ -3,7 +3,7 @@ package com.mctech.pokergrinder.ranges.domain.entities
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
-class EmptyRangeHandTest {
+class RangeHandTest {
   @Test
   fun `should not show off suit marker for pocket pairs`() {
     assertHand(firstCard = "A", secondCard = "A", expected = "AA")
@@ -32,7 +32,7 @@ class EmptyRangeHandTest {
     expected: String
   ) {
     assertThat(
-      EmptyRangeHand(firstCard = firstCard, secondCard = secondCard, suited = suited).formattedName()
+      RangeHand(firstCard = firstCard, secondCard = secondCard, suited = suited).formattedName()
     ).isEqualTo(expected)
   }
 }

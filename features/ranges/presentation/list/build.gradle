@@ -1,0 +1,10 @@
+apply from: "$rootDir/buildSrc/module/feature/presentation.gradle"
+
+dependencies {
+    // Internal modules
+    implementation project(path: ':features:ranges:domain')
+    implementation project(path: ':features:ranges:presentation:navigation')
+
+    // Ui
+    implementation libraries.androidCardView
+}

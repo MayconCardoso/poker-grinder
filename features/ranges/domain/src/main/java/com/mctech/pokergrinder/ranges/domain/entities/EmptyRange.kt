@@ -23,7 +23,7 @@ object EmptyRange {
         val secondCard = cardValues[Math.max(firstCardIndex, secondCardIndex)]
 
         // Create hand.
-        val hand = EmptyRangeHand(
+        val hand = RangeHand(
           firstCard = firstCard,
           secondCard = secondCard,
           suited = secondCardIndex > firstCardIndex,

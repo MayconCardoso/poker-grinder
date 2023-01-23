@@ -3,7 +3,7 @@ package com.mctech.pokergrinder.ranges.domain.entities
 /**
  * Defines player position
  */
-enum class PlayerPosition {
+enum class RangePlayerPosition {
   UTG,
   UTG1,
   LJ,

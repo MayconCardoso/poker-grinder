@@ -10,6 +10,8 @@ import com.mctech.pokergrinder.grind.presentation.navigation.GrindNavigation
 import com.mctech.pokergrinder.grind.presentation.pager_container.GrindDetailContainerFragment
 import com.mctech.pokergrinder.grind_tournament.domain.entities.SessionTournament
 import com.mctech.pokergrinder.grind_tournament.presentation.creation.RegisterTournamentFragment
+import com.mctech.pokergrinder.ranges.domain.entities.Range
+import com.mctech.pokergrinder.ranges.presentation.navigation.RangeNavigation
 import com.mctech.pokergrinder.summary.domain.entities.TournamentSummary
 import com.mctech.pokergrinder.summary.presentation.navigation.SummaryNavigation
 import com.mctech.pokergrinder.summary.presentation.tournaments.details.SummaryTournamentDetailsFragment
@@ -19,6 +21,7 @@ import com.mctech.pokergrinder.tournament.domain.entities.Tournament
 
 class PokerGrinderNavigator :
   GrindNavigation,
+  RangeNavigation,
   SummaryNavigation,
   BankrollNavigation,
   TournamentNavigation {
@@ -142,6 +145,16 @@ class PokerGrinderNavigator :
   }
 
   // endregion
+
+
+  // region Ranges
+
+  override fun goToRangeDetails(range: Range) {
+   //  TODO("Not yet implemented")
+  }
+
+  // endregion
+
   interface Callback {
     fun onDestinationChanged(destination: NavDestination)
   }

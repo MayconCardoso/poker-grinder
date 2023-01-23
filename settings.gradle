@@ -81,3 +81,5 @@ include ':features:deck:presentation:card_picker'
 // Feature - Ranges
 include ':features:ranges:domain'
 include ':features:ranges:data'
+include ':features:ranges:presentation:list'
+include ':features:ranges:presentation:navigation'

@@ -13,19 +13,18 @@
 
     <item
         android:id="@+id/summary_fragment"
-        android:icon="@drawable/ic_bar_chart"
+        android:icon="@drawable/ic_chart"
         android:title="@string/performance" />
+
+    <item
+        android:id="@+id/ranges_fragment"
+        android:checked="true"
+        android:icon="@drawable/ic_ranges"
+        android:title="@string/ranges" />
 
     <item
         android:id="@+id/tournament_fragment"
         android:checked="true"
         android:icon="@drawable/ic_tournament"
         android:title="@string/tournament" />
-
-    <item
-        android:id="@+id/settings_fragment"
-        android:checked="true"
-        android:icon="@drawable/ic_settings"
-        android:title="@string/settings" />
-
 </menu>

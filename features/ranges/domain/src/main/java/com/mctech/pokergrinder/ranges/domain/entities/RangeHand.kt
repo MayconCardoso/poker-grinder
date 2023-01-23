@@ -6,7 +6,7 @@ package com.mctech.pokergrinder.ranges.domain.entities
  * @property secondCard hols the first card.
  * @property suited indicates if hand is suited.
  */
-data class EmptyRangeHand(
+data class RangeHand(
   val firstCard: String,
   val secondCard: String,
   val suited: Boolean,

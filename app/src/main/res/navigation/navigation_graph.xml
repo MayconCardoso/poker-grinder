@@ -68,11 +68,15 @@
     </fragment>
 
     <fragment
+        android:id="@+id/ranges_fragment"
+        android:name="com.mctech.pokergrinder.ranges.presentation.list.RangesFragment"
+        android:label="@string/ranges"
+        tools:layout="@layout/fragment_ranges"/>
+    <fragment
         android:id="@+id/settings_fragment"
         android:name="com.mctech.pokergrinder.settings.presentation.SettingsFragment"
         android:label="@string/settings"
         tools:layout="@layout/fragment_settings" />
-
 
     <fragment
         android:id="@+id/tournament_register"
