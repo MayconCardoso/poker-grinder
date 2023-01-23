@@ -4,20 +4,11 @@ import com.mctech.common_test.TestScenario.Companion.responseScenario
 import com.mctech.common_test.TestScenario.Companion.simpleScenario
 import com.mctech.pokergrinder.grind.data.database.GrindDao
 import com.mctech.pokergrinder.grind.data.database.SessionRoomEntity
-import com.mctech.pokergrinder.grind.data.database.SessionTournamentFlipRoomEntity
-import com.mctech.pokergrinder.grind.data.database.SessionTournamentRoomEntity
 import com.mctech.pokergrinder.grind.data.mapper.asBusinessSession
 import com.mctech.pokergrinder.grind.data.mapper.asBusinessSessions
-import com.mctech.pokergrinder.grind.data.mapper.asBusinessTournamentFlips
-import com.mctech.pokergrinder.grind.data.mapper.asBusinessTournaments
 import com.mctech.pokergrinder.grind.data.mapper.asDatabaseSession
-import com.mctech.pokergrinder.grind.data.mapper.asDatabaseTournaments
 import com.mctech.pokergrinder.grind.domain.entities.Session
-import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
-import com.mctech.pokergrinder.grind.domain.entities.SessionTournamentFlip
 import com.mctech.pokergrinder.grind.testing.newSession
-import com.mctech.pokergrinder.grind.testing.newSessionFlip
-import com.mctech.pokergrinder.grind.testing.newTournament
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.coVerifyOrder
@@ -87,7 +78,7 @@ internal class GrindRepositoryImplTest {
   @Test
   fun `should delegate load current grind`() = responseScenario<Session?> {
     givenScenario {
-      coEvery{ dao.loadCurrentGrind() } returns newDatabaseSessionDetail(id = "1")
+      coEvery { dao.loadCurrentGrind() } returns newDatabaseSessionDetail(id = "1")
     }
 
     whenAction {
@@ -104,7 +95,7 @@ internal class GrindRepositoryImplTest {
   @Test
   fun `should delegate load current grind when it is null`() = responseScenario<Session?> {
     givenScenario {
-      coEvery{ dao.loadCurrentGrind() } returns null
+      coEvery { dao.loadCurrentGrind() } returns null
     }
 
     whenAction {
@@ -140,58 +131,6 @@ internal class GrindRepositoryImplTest {
   }
 
   @Test
-  fun `should delegate observe all grind tournaments`() =
-    responseScenario<Flow<List<SessionTournament>>> {
-      val items = listOf(
-        newDatabaseTournament(id = "1"),
-        newDatabaseTournament(id = "2"),
-      )
-      val flow = flow {
-        emit(items)
-      }
-
-      givenScenario {
-        every { dao.observeGrindTournaments(any()) } returns flow
-      }
-
-      whenAction {
-        target.observeGrindTournament("10")
-      }
-
-      thenAssert { result ->
-        assertThat(result.last()).isEqualTo(items.asBusinessTournaments())
-        coVerifyOrder { dao.observeGrindTournaments("10") }
-        confirmVerified(dao)
-      }
-    }
-
-  @Test
-  fun `should delegate observe all grind flips`() =
-    responseScenario<Flow<List<SessionTournamentFlip>>> {
-      val items = listOf(
-        newDatabaseSessionFlip(id = "1"),
-        newDatabaseSessionFlip(id = "2"),
-      )
-      val flow = flow {
-        emit(items)
-      }
-
-      givenScenario {
-        every { dao.observeGrindTournamentFlips(any()) } returns flow
-      }
-
-      whenAction {
-        target.observeGrindTournamentFlips("10")
-      }
-
-      thenAssert { result ->
-        assertThat(result.last()).isEqualTo(items.asBusinessTournamentFlips())
-        coVerifyOrder { dao.observeGrindTournamentFlips("10") }
-        confirmVerified(dao)
-      }
-    }
-
-  @Test
   fun `should delegate save session flow`() = simpleScenario {
     val session = newSession(id = "1")
 
@@ -209,39 +148,4 @@ internal class GrindRepositoryImplTest {
     }
   }
 
-  @Test
-  fun `should delegate save session tournament flow`() = simpleScenario {
-    val session = newTournament(id = "1")
-
-    whenAction {
-      target.saveGrindTournament(session)
-    }
-
-    thenAssert {
-      val sessionSlot = slot<SessionTournamentRoomEntity>()
-      coVerify { dao.saveTournament(capture(sessionSlot)) }
-      assertThat(sessionSlot.captured).isEqualTo(session.asDatabaseTournaments())
-
-      coVerifyOrder { dao.saveTournament(any()) }
-      confirmVerified(dao)
-    }
-  }
-
-  @Test
-  fun `should delegate save session flip flow`() = simpleScenario {
-    val session = newSessionFlip(id = "1")
-
-    whenAction {
-      target.saveGrindTournamentFlip(session)
-    }
-
-    thenAssert {
-      val sessionSlot = slot<SessionTournamentFlipRoomEntity>()
-      coVerify { dao.saveTournamentFlip(capture(sessionSlot)) }
-      assertThat(sessionSlot.captured).isEqualTo(session.asBusinessTournamentFlips())
-
-      coVerifyOrder { dao.saveTournamentFlip(any()) }
-      confirmVerified(dao)
-    }
-  }
 }

@@ -1,0 +1,9 @@
+apply from: "$rootDir/buildSrc/module/base-kotlin.gradle"
+
+dependencies {
+    implementation project(path: ':libraries:formatter')
+    implementation project(path: ':features:grind:domain')
+    implementation project(path: ':features:bankroll:domain')
+    testImplementation project(path: ':features:grind:testing')
+    testImplementation project(path: ':features:grind-tournament:testing')
+}

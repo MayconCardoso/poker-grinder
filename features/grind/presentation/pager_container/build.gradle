@@ -4,10 +4,10 @@ dependencies {
     // Internal modules
     implementation project(path: ':features:grind:domain')
     implementation project(path: ':features:grind:presentation:list')
-    implementation project(path: ':features:grind:presentation:summary')
-    implementation project(path: ':features:grind:presentation:flip-list')
     implementation project(path: ':features:grind:presentation:navigation')
-    implementation project(path: ':features:grind:presentation:tournament-list')
+    implementation project(path: ':features:grind-summary:presentation')
+    implementation project(path: ':features:grind-gameplay:presentation:list')
+    implementation project(path: ':features:grind-tournament:presentation:list')
 
     // Ui
     implementation libraries.androidCardView

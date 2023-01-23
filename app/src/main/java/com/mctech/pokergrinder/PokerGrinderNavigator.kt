@@ -5,11 +5,11 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import com.mctech.pokergrinder.bankroll.presentation.navigation.BankrollNavigation
 import com.mctech.pokergrinder.grind.domain.entities.Session
-import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
-import com.mctech.pokergrinder.grind.presentation.flip_creation.RegisterFlipFragment
+import com.mctech.pokergrinder.grind_gameplay.presentation.creation.RegisterFlipFragment
 import com.mctech.pokergrinder.grind.presentation.navigation.GrindNavigation
 import com.mctech.pokergrinder.grind.presentation.pager_container.GrindDetailContainerFragment
-import com.mctech.pokergrinder.grind.presentation.tournamnet_creation.RegisterTournamentFragment
+import com.mctech.pokergrinder.grind_tournament.domain.entities.SessionTournament
+import com.mctech.pokergrinder.grind_tournament.presentation.creation.RegisterTournamentFragment
 import com.mctech.pokergrinder.summary.domain.entities.TournamentSummary
 import com.mctech.pokergrinder.summary.presentation.navigation.SummaryNavigation
 import com.mctech.pokergrinder.summary.presentation.tournaments.details.SummaryTournamentDetailsFragment
@@ -123,7 +123,7 @@ class PokerGrinderNavigator :
     navController?.navigate(
       R.id.action_session_details_to_session_details_tournament_flip,
       Bundle().apply {
-        putSerializable(RegisterFlipFragment.SESSION_PARAM, session)
+        putSerializable(com.mctech.pokergrinder.grind_gameplay.presentation.creation.RegisterFlipFragment.SESSION_PARAM, session)
       },
     )
   }

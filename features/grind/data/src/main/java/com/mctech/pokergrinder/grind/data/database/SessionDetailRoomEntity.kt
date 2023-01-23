@@ -11,7 +11,7 @@ import androidx.room.DatabaseView
     "LEFT JOIN grind_session_tournament gst ON gs.id = gst.idSession " +
     "GROUP BY gs.id" +
     "")
-public data class SessionDetailRoomEntity(
+data class SessionDetailRoomEntity(
   val id: String,
   val title: String,
   val isOpened: Boolean,

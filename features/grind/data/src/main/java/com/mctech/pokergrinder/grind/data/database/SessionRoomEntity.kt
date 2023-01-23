@@ -13,7 +13,7 @@ import androidx.room.PrimaryKey
     ),
   ]
 )
-public data class SessionRoomEntity(
+data class SessionRoomEntity(
   @PrimaryKey
   val id: String,
   val title: String,

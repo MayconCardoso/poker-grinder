@@ -2,13 +2,7 @@ package com.mctech.pokergrinder.grind.data.mapper
 
 import com.mctech.pokergrinder.grind.data.database.SessionDetailRoomEntity
 import com.mctech.pokergrinder.grind.data.database.SessionRoomEntity
-import com.mctech.pokergrinder.grind.data.database.SessionTournamentFlipRoomEntity
-import com.mctech.pokergrinder.grind.data.database.SessionTournamentRoomEntity
 import com.mctech.pokergrinder.grind.domain.entities.Session
-import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
-import com.mctech.pokergrinder.grind.domain.entities.SessionTournamentFlip
-
-// region Session
 
 /**
  * Converts a list of tournament database entity onto a business one known by the modules.
@@ -42,86 +36,3 @@ internal fun Session.asDatabaseSession() = SessionRoomEntity(
   title = title,
   startTimeInMs = startTimeInMs,
 )
-
-// endregion
-
-// region Session Tournament
-
-/**
- * Converts a list of tournament database entity onto a business one known by the modules.
- */
-internal fun List<SessionTournamentRoomEntity>.asBusinessTournaments(): List<SessionTournament> {
-  return this.map { dbEntity ->
-    dbEntity.asBusinessTournaments()
-  }
-}
-
-/**
- * Converts a tournament database entity onto a business one known by the modules.
- */
-internal fun SessionTournamentRoomEntity.asBusinessTournaments() = SessionTournament(
-  id = id,
-  idSession = idSession,
-  idTransactionBuyIn = idTransactionBuyIn,
-  idTransactionProfit = idTransactionProfit,
-  title = title,
-  buyIn = buyIn,
-  profit = profit,
-  startTimeInMs = startTimeInMs,
-  isGrouped = false,
-)
-
-/**
- * Converts a business tournament onto a database one.
- */
-internal fun SessionTournament.asDatabaseTournaments() = SessionTournamentRoomEntity(
-  id = id,
-  idSession = idSession,
-  idTransactionBuyIn = idTransactionBuyIn,
-  idTransactionProfit = idTransactionProfit,
-  title = title,
-  buyIn = buyIn,
-  profit = profit,
-  startTimeInMs = startTimeInMs,
-)
-
-// endregion
-
-// region Session Tournament Flip
-
-/**
- * Converts a list of tournament flips database entity onto a business one known by the modules.
- */
-internal fun List<SessionTournamentFlipRoomEntity>.asBusinessTournamentFlips(): List<SessionTournamentFlip> {
-  return this.map { dbEntity ->
-    dbEntity.asBusinessTournamentFlips()
-  }
-}
-
-/**
- * Converts a tournament flip database entity onto a business one known by the modules.
- */
-internal fun SessionTournamentFlipRoomEntity.asBusinessTournamentFlips() = SessionTournamentFlip(
-  id = id,
-  idSession = idSession,
-  tournament = tournament,
-  heroHand = heroHand,
-  villainHand = villainHand,
-  board = board,
-  won = won,
-)
-
-/**
- * Converts a tournament flip database entity onto a business one known by the modules.
- */
-internal fun SessionTournamentFlip.asBusinessTournamentFlips() = SessionTournamentFlipRoomEntity(
-  id = id,
-  idSession = idSession,
-  tournament = tournament,
-  heroHand = heroHand,
-  villainHand = villainHand,
-  board = board,
-  won = won,
-)
-
-// endregion

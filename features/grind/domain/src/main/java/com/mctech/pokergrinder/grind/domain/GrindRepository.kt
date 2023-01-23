@@ -1,12 +1,10 @@
 package com.mctech.pokergrinder.grind.domain
 
 import com.mctech.pokergrinder.grind.domain.entities.Session
-import com.mctech.pokergrinder.grind.domain.entities.SessionTournament
-import com.mctech.pokergrinder.grind.domain.entities.SessionTournamentFlip
 import kotlinx.coroutines.flow.Flow
 
 /**
- * Transaction repository to access transaction data.
+ * Transaction repository to access grind data.
  */
 interface GrindRepository {
 
@@ -26,29 +24,9 @@ interface GrindRepository {
   fun observeGrind(sessionId: String): Flow<Session>
 
   /**
-   * Observes grind played tournaments given its [sessionId].
-   */
-  fun observeGrindTournament(sessionId: String): Flow<List<SessionTournament>>
-
-  /**
-   * Observes grind played flips given its [sessionId].
-   */
-  fun observeGrindTournamentFlips(sessionId: String): Flow<List<SessionTournamentFlip>>
-
-  /**
    * Saves a grind session.
    */
   suspend fun saveGrind(session: Session)
-
-  /**
-   * Saves a grind tournament
-   */
-  suspend fun saveGrindTournament(sessionTournament: SessionTournament)
-
-  /**
-   * Saves a grind flip
-   */
-  suspend fun saveGrindTournamentFlip(flip: SessionTournamentFlip)
 
   /**
    * Loads current session
