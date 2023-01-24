@@ -25,7 +25,7 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/container_tab"
-        style="@style/Widget.Design.TabLayout.Fixed"
+        style="@style/Widget.Design.TabLayout.Scrollable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primary"
