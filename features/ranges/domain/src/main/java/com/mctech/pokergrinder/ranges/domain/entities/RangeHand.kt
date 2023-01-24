@@ -1,5 +1,7 @@
 package com.mctech.pokergrinder.ranges.domain.entities
 
+import java.io.Serializable
+
 /**
  * Describes a range hand.
  * @property firstCard hols the first card.
@@ -10,7 +12,7 @@ data class RangeHand(
   val firstCard: String,
   val secondCard: String,
   val suited: Boolean,
-) {
+) : Serializable {
 
   /**
    * True when hand is a pocket pair.
@@ -21,6 +23,6 @@ data class RangeHand(
    * Formats the hand.
    */
   fun formattedName(): String {
-    return firstCard + secondCard + if(suited) "s" else if(isPockedPair()) "" else "o"
+    return firstCard + secondCard + if (suited) "s" else if (isPockedPair()) "" else "o"
   }
 }

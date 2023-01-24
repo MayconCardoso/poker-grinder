@@ -6,7 +6,8 @@ dependencies {
     implementation project(path: ':features:ranges:presentation:navigation')
 
     // Ui
-    implementation libraries.androidCardView
+    implementation libraries.androidViewPager2
+    implementation libraries.googleMaterialDesign
 
     // Testing
     testImplementation project(path: ':features:ranges:testing')

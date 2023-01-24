@@ -12,6 +12,7 @@ import com.mctech.pokergrinder.grind_tournament.domain.entities.SessionTournamen
 import com.mctech.pokergrinder.grind_tournament.presentation.creation.RegisterTournamentFragment
 import com.mctech.pokergrinder.ranges.domain.entities.Range
 import com.mctech.pokergrinder.ranges.presentation.navigation.RangeNavigation
+import com.mctech.pokergrinder.ranges.presentation.viewer.RangeViewerFragment
 import com.mctech.pokergrinder.summary.domain.entities.TournamentSummary
 import com.mctech.pokergrinder.summary.presentation.navigation.SummaryNavigation
 import com.mctech.pokergrinder.summary.presentation.tournaments.details.SummaryTournamentDetailsFragment
@@ -150,7 +151,12 @@ class PokerGrinderNavigator :
   // region Ranges
 
   override fun goToRangeDetails(range: Range) {
-   //  TODO("Not yet implemented")
+    navController?.navigate(
+      R.id.action_ranges_fragment_to_ranges_viewer_fragment,
+      Bundle().apply {
+        putSerializable(RangeViewerFragment.RANGE_PARAM, range)
+      },
+    )
   }
 
   // endregion

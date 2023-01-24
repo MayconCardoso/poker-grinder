@@ -8,5 +8,5 @@ import kotlinx.coroutines.flow.Flow
  */
 interface RangesRepository {
   fun observeAllRanges(): Flow<List<Range>>
-  fun observeRangeByName(name: String): Flow<Range>
+  fun observeRange(range: Range): Flow<Range>
 }

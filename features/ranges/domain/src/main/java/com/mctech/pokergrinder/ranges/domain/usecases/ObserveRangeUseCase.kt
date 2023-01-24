@@ -10,12 +10,12 @@ import javax.inject.Inject
  *
  * @property repository grind data repository.
  */
-class ObserveRangeByNameUseCase @Inject constructor(
+class ObserveRangeUseCase @Inject constructor(
   private val repository: RangesRepository,
 ) {
 
-  operator fun invoke(name: String): Flow<Range> {
-    return repository.observeRangeByName(name)
+  operator fun invoke(range: Range): Flow<Range> {
+    return repository.observeRange(range)
   }
 
 }

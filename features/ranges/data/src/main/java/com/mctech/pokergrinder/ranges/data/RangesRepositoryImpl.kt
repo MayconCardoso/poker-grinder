@@ -22,11 +22,12 @@ class RangesRepositoryImpl @Inject constructor() : RangesRepository {
     emit(mockedRanges)
   }
 
-  override fun observeRangeByName(name: String): Flow<Range> = flow {
-    emit(mockedRanges.first { it.name == name })
+  override fun observeRange(range: Range): Flow<Range> = flow {
+    emit(mockedRanges.first { it.id == range.id })
   }
 
   private fun createUtg14Range() = Range(
+    id = "1",
     name = "15BB - Open",
     action = RangeAction.OPEN,
     effectiveStack = 14,
@@ -70,7 +71,77 @@ class RangesRepositoryImpl @Inject constructor() : RangesRepository {
         )
       ),
       RangePosition(
-        position = RangePlayerPosition.UTG,
+        position = RangePlayerPosition.UTG1,
+        hands = listOf(
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "A", suited = false)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "K", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "Q", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "J", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "T", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "9", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "8", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "7", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "6", suited = true)),
+        ),
+      ),
+      RangePosition(
+        position = RangePlayerPosition.LJ,
+        hands = listOf(
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "A", suited = false)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "K", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "Q", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "J", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "T", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "9", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "8", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "7", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "6", suited = true)),
+        ),
+      ),
+      RangePosition(
+        position = RangePlayerPosition.HJ,
+        hands = listOf(
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "A", suited = false)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "K", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "Q", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "J", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "T", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "9", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "8", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "7", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "6", suited = true)),
+        ),
+      ),
+      RangePosition(
+        position = RangePlayerPosition.CO,
+        hands = listOf(
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "A", suited = false)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "K", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "Q", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "J", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "T", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "9", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "8", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "7", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "6", suited = true)),
+        ),
+      ),
+      RangePosition(
+        position = RangePlayerPosition.BTN,
+        hands = listOf(
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "A", suited = false)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "K", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "Q", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "J", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "T", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "9", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "8", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "7", suited = true)),
+          RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "6", suited = true)),
+        ),
+      ),
+      RangePosition(
+        position = RangePlayerPosition.SB,
         hands = listOf(
           RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "A", suited = false)),
           RangeHandInput(hand = RangeHand(firstCard = "A", secondCard = "K", suited = true)),
@@ -88,6 +159,7 @@ class RangesRepositoryImpl @Inject constructor() : RangesRepository {
 
 
   private fun createLj14Range() = Range(
+    id = "2",
     name = "30BB - Open",
     action = RangeAction.OPEN,
     effectiveStack = 14,

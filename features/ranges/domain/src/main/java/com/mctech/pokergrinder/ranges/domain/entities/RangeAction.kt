@@ -1,9 +1,11 @@
 package com.mctech.pokergrinder.ranges.domain.entities
 
+import java.io.Serializable
+
 /**
  * Defines player position
  */
-enum class RangeAction {
+enum class RangeAction: Serializable {
   OPEN,
   FLAT,
   BET3,

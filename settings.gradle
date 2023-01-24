@@ -79,7 +79,9 @@ include ':features:deck:domain'
 include ':features:deck:presentation:card_picker'
 
 // Feature - Ranges
-include ':features:ranges:domain'
 include ':features:ranges:data'
+include ':features:ranges:domain'
 include ':features:ranges:presentation:list'
+include ':features:ranges:presentation:viewer'
 include ':features:ranges:presentation:navigation'
+include ':features:ranges:testing'

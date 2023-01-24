@@ -26,8 +26,8 @@ internal class RangesViewModel @Inject constructor(
 
   override suspend fun initializeComponents() {
     observeAllRangesUseCase()
-      .onEach { sessions ->
-        _componentState.value = ComponentState.Success(sessions)
+      .onEach { ranges ->
+        _componentState.value = ComponentState.Success(ranges)
       }
       .launchIn(viewModelScope)
   }
