@@ -53,6 +53,13 @@ dependencies {
     implementation project(path: ':features:grind:presentation:pager_container')
     implementation project(path: ':features:grind-summary:presentation')
 
+    // Features - Range
+    implementation project(path: ':features:ranges:data')
+    implementation project(path: ':features:ranges:domain')
+    implementation project(path: ':features:ranges:presentation:list')
+    implementation project(path: ':features:ranges:presentation:viewer')
+    implementation project(path: ':features:ranges:presentation:navigation')
+
     // Feature - Grind Tournament
     implementation project(path: ':features:grind-tournament:domain')
     implementation project(path: ':features:grind-tournament:presentation:creation')

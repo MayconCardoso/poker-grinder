@@ -68,11 +68,33 @@
     </fragment>
 
     <fragment
+        android:id="@+id/ranges_fragment"
+        android:name="com.mctech.pokergrinder.ranges.presentation.list.RangesFragment"
+        android:label="@string/ranges"
+        tools:layout="@layout/fragment_ranges">
+        <action
+            android:id="@+id/action_ranges_fragment_to_ranges_viewer_fragment"
+            app:destination="@id/ranges_viewer_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ranges_viewer_fragment"
+        android:name="com.mctech.pokergrinder.ranges.presentation.viewer.RangeViewerFragment"
+        android:label="@string/ranges"
+        tools:layout="@layout/fragment_range_viewer" >
+
+        <argument
+            android:name="RANGE_PARAM"
+            app:argType="com.mctech.pokergrinder.ranges.domain.entities.Range"
+            app:nullable="false" />
+
+    </fragment>
+
+    <fragment
         android:id="@+id/settings_fragment"
         android:name="com.mctech.pokergrinder.settings.presentation.SettingsFragment"
         android:label="@string/settings"
         tools:layout="@layout/fragment_settings" />
-
 
     <fragment
         android:id="@+id/tournament_register"

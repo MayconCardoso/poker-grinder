@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="12dp"
+    android:layout_height="match_parent">
+
+    <com.mctech.pokergrinder.ranges.presentation.viewer.component.RangeViewerComponent
+        android:id="@+id/range_component"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_background_shape"
+        android:padding="4dp" />
+
+</FrameLayout>

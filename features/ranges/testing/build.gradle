@@ -1,0 +1,5 @@
+apply from: "$rootDir/buildSrc/module/base-kotlin.gradle"
+
+dependencies {
+    implementation project(path: ':features:ranges:domain')
+}

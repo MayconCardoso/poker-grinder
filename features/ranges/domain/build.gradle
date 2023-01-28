@@ -1,0 +1,6 @@
+apply from: "$rootDir/buildSrc/module/base-kotlin.gradle"
+
+dependencies {
+    // Testing
+    testImplementation project(path: ':features:ranges:testing')
+}

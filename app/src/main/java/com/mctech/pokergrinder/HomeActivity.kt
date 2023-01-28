@@ -28,9 +28,10 @@ class HomeActivity : AppCompatActivity() {
     listOf(
       R.id.session_details,
       R.id.session_register,
-      R.id.session_details_tournament,
       R.id.statement_register,
       R.id.tournament_register,
+      R.id.ranges_viewer_fragment,
+      R.id.session_details_tournament,
       R.id.session_details_tournament_flip,
     )
   }
