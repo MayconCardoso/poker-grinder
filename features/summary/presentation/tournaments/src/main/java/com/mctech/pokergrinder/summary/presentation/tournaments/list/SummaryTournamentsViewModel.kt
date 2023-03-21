@@ -79,8 +79,6 @@ internal class SummaryTournamentsViewModel @Inject constructor(
   // region Secondary functions
 
   private suspend fun updateTournamentListBasedOnCurrentQuery() = withContext(dispatchers.default) {
-    if (shownTournaments.isEmpty()) return@withContext
-
     // Filter tournaments
     val tournaments = if (currentFilterQuery.isBlank()) {
       shownTournaments
