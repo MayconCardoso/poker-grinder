@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.architecture.extensions.bindState
+import com.mctech.pokergrinder.architecture.extensions.deserialize
 import com.mctech.pokergrinder.architecture.extensions.dp
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.architecture.utility.SimpleSpaceItemDecoration
@@ -54,7 +55,7 @@ class GrindDetailsGameplayFragment : Fragment(R.layout.fragment_grind_flips) {
     super.onViewCreated(view, savedInstanceState)
 
     // Gets tournament
-    val session = arguments?.getSerializable(SESSION_PARAM) as Session
+    val session = arguments?.deserialize<Session>(SESSION_PARAM) ?: return
     viewModel.interact(GrindDetailsGameplayInteraction.ScreenFirstOpen(session))
 
     // Setup Listeners

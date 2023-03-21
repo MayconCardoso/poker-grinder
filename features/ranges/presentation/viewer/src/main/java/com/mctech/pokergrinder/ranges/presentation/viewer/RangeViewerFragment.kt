@@ -10,6 +10,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.architecture.extensions.avoidFrozenFrames
 import com.mctech.pokergrinder.architecture.extensions.bindState
+import com.mctech.pokergrinder.architecture.extensions.deserialize
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.ranges.domain.entities.Range
 import com.mctech.pokergrinder.ranges.presentation.navigation.RangeNavigation
@@ -57,7 +58,7 @@ class RangeViewerFragment : Fragment(R.layout.fragment_range_viewer) {
     super.onViewCreated(view, savedInstanceState)
     avoidFrozenFrames {
       // Gets tournament from param
-      val range = arguments?.getSerializable(RANGE_PARAM) as Range
+      val range = arguments?.deserialize<Range>(RANGE_PARAM) ?: return@avoidFrozenFrames
 
       // Initialize view model
       viewModel.interact(RangeViewerInteraction.OnScreenFirstOpened(range))

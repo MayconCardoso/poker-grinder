@@ -5,10 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mctech.pokergrinder.architecture.ViewCommand
-import com.mctech.pokergrinder.architecture.extensions.bindCommand
-import com.mctech.pokergrinder.architecture.extensions.bindState
-import com.mctech.pokergrinder.architecture.extensions.onDataFormFilled
-import com.mctech.pokergrinder.architecture.extensions.viewBinding
+import com.mctech.pokergrinder.architecture.extensions.*
 import com.mctech.pokergrinder.tournament.presentation.creation.databinding.FragmentTournamentBinding
 import com.mctech.pokergrinder.tournament.presentation.navigation.TournamentNavigation
 import com.mctech.pokergrinder.tournament.domain.entities.Tournament
@@ -43,7 +40,7 @@ public class NewTournamentFragment : Fragment(R.layout.fragment_tournament) {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     // Gets tournament
-    val tournament = arguments?.getSerializable(TOURNAMENT_PARAM) as? Tournament
+    val tournament = arguments?.deserialize<Tournament>(TOURNAMENT_PARAM) ?: return
     viewModel.interact(NewTournamentInteraction.ScreenFirstOpen(tournament))
 
     // Setup Listeners

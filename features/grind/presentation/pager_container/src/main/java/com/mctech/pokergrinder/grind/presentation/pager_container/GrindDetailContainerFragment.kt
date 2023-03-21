@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
+import com.mctech.pokergrinder.architecture.extensions.deserialize
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.presentation.navigation.GrindNavigation
 import com.mctech.pokergrinder.grind.presentation.pager_container.databinding.FragmentGrindDetailsContainerBinding
+import com.mctech.pokergrinder.grind_summary.presentation.GrindSummaryFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -29,7 +31,7 @@ public class GrindDetailContainerFragment : Fragment(R.layout.fragment_grind_det
     super.onViewCreated(view, savedInstanceState)
 
     // Gets selected session.
-    val session = arguments?.getSerializable(SESSION_PARAM) as Session
+    val session = arguments?.deserialize<Session>(GrindSummaryFragment.SESSION_PARAM) ?: return
     binding.toolbar.title = session.title
 
     // Setup view pager with session.

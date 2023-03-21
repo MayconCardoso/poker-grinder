@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import com.mctech.chart.money.MoneyVariationEntry
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.architecture.extensions.bindState
+import com.mctech.pokergrinder.architecture.extensions.deserialize
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind_gameplay.domain.entities.SessionTournamentFlip
@@ -36,7 +37,7 @@ class GrindSummaryFragment : Fragment(R.layout.fragment_grind_details_summary) {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     // Gets tournament
-    val session = arguments?.getSerializable(SESSION_PARAM) as Session
+    val session = arguments?.deserialize<Session>(SESSION_PARAM) ?: return
     viewModel.interact(GrindSummaryInteraction.ScreenFirstOpen(session))
 
     // Observes state.

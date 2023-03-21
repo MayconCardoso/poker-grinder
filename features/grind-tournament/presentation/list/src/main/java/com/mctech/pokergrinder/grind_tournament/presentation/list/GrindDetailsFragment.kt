@@ -9,10 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.architecture.ViewCommand
-import com.mctech.pokergrinder.architecture.extensions.bindCommand
-import com.mctech.pokergrinder.architecture.extensions.bindState
-import com.mctech.pokergrinder.architecture.extensions.dp
-import com.mctech.pokergrinder.architecture.extensions.viewBinding
+import com.mctech.pokergrinder.architecture.extensions.*
 import com.mctech.pokergrinder.architecture.utility.SimpleSpaceItemDecoration
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.presentation.navigation.GrindNavigation
@@ -66,7 +63,7 @@ class GrindDetailsFragment : Fragment(R.layout.fragment_grind_tournaments) {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     // Gets tournament
-    val session = arguments?.getSerializable(SESSION_PARAM) as Session
+    val session = arguments?.deserialize<Session>(SESSION_PARAM) ?: return
     viewModel.interact(GrindDetailsInteraction.ScreenFirstOpen(session))
 
     // Setup Listeners

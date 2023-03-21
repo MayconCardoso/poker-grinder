@@ -9,6 +9,7 @@ include ':libraries:formatter'
 include ':libraries:localization'
 include ':libraries:architecture'
 include ':libraries:threading'
+include ':libraries:theming'
 
 // Testing
 include ':testing:common-test'

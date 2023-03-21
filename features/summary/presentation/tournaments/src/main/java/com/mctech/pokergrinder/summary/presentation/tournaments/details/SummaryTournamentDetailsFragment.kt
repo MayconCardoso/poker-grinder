@@ -6,12 +6,9 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.mctech.chart.money.MoneyVariationEntry
 import com.mctech.pokergrinder.architecture.ComponentState
-import com.mctech.pokergrinder.architecture.extensions.bindState
-import com.mctech.pokergrinder.architecture.extensions.dp
-import com.mctech.pokergrinder.architecture.extensions.viewBinding
+import com.mctech.pokergrinder.architecture.extensions.*
 import com.mctech.pokergrinder.architecture.utility.SimpleSpaceItemDecoration
 import com.mctech.pokergrinder.summary.domain.entities.TournamentSummary
 import com.mctech.pokergrinder.summary.presentation.navigation.SummaryNavigation
@@ -55,9 +52,11 @@ class SummaryTournamentDetailsFragment : Fragment(R.layout.fragment_summary_tour
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    viewLifecycleOwner.lifecycleScope.launch {
+    avoidFrozenFrames {
       // Gets tournament from param
-      val tournament = arguments?.getSerializable(TOURNAMENT_PARAM) as TournamentSummary
+      val tournament = arguments?.deserialize<TournamentSummary>(
+        TOURNAMENT_PARAM,
+      ) ?: return@avoidFrozenFrames
 
       // Setup List
       setupTournamentList()
