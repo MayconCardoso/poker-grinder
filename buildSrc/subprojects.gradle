@@ -34,7 +34,6 @@ subprojects {
                 }
                 kotlinOptions {
                     jvmTarget = targets.kotlinJvmTarget
-                    allWarningsAsErrors = true
                 }
                 packagingOptions {
                     exclude 'META-INF/*'

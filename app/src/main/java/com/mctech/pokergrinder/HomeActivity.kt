@@ -2,17 +2,15 @@ package com.mctech.pokergrinder
 
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.mctech.pokergrinder.architecture.extensions.bindState
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
+import com.mctech.pokergrinder.bankroll.presentation.balance_component.BankrollBalanceComponent
 import com.mctech.pokergrinder.databinding.ActivityHomeBinding
-import com.mctech.pokergrinder.grind.domain.entities.Session
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -45,11 +43,9 @@ class HomeActivity : AppCompatActivity() {
    * Holds the navigator callback used to handle toolbar and bottom navigator.
    */
   private val navigatorCallback by lazy {
-    object : PokerGrinderNavigator.Callback {
-      override fun onDestinationChanged(destination: NavDestination) {
-        renderToolbarBasedOnDestination(destination)
-        renderBottomNavigatorBasedOnDestination(destination)
-      }
+    PokerGrinderNavigator.Callback { destination ->
+      renderToolbarBasedOnDestination(destination)
+      renderBottomNavigatorBasedOnDestination(destination)
     }
   }
 
@@ -74,10 +70,13 @@ class HomeActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(binding.root)
 
-    // Setup component
+    // Setup toolbar component
+    setupToolbar()
+
+    // Setup navigator component
     setupNavigator()
 
-    // Setup component
+    // Setup bottom component
     setUpBottomNavigation()
   }
 
@@ -102,6 +101,12 @@ class HomeActivity : AppCompatActivity() {
   // endregion
 
   // region Component setup
+
+  private fun setupToolbar() {
+    binding.toolbar.setContent {
+      BankrollBalanceComponent()
+    }
+  }
 
   private fun setupNavigator() {
     appNavigator.bindNavController(navController = navigatorController)

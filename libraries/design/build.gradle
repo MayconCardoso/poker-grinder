@@ -1,6 +1,19 @@
 apply plugin: 'com.android.library'
 apply plugin: "kotlin-android"
 
+android {
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.3'
+    }
+}
+
 dependencies {
     implementation libraries.googleMaterialDesign
+    implementation libraries.androidComposeUi
+    implementation libraries.androidComposeMaterial
+    implementation libraries.androidComposeToolingPreview
+    debugImplementation libraries.androidComposeTooling
 }
