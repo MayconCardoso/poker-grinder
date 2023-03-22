@@ -161,7 +161,7 @@ class PokerGrinderNavigator :
 
   // endregion
 
-  interface Callback {
+  fun interface Callback {
     fun onDestinationChanged(destination: NavDestination)
   }
 }

@@ -13,7 +13,11 @@ android {
     }
 
     buildFeatures {
+        compose true
         viewBinding true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.3'
     }
 }
 
@@ -85,7 +89,9 @@ dependencies {
     implementation libraries.androidNavigationFragmentKtx
     implementation libraries.androidNavigationUiKtx
 
+    // UI
     implementation libraries.androidCodeKtx
+    implementation libraries.androidComposeUi
     implementation libraries.androidAppCompat
     implementation libraries.googleMaterialDesign
 

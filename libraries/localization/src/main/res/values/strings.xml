@@ -1,4 +1,5 @@
 <resources>
+    <string name="hyphen">-</string>
     <string name="summary">Summary</string>
     <string name="session">Session</string>
     <string name="statement">Statement</string>

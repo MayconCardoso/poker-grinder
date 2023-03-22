@@ -5,13 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.fragment.app.FragmentContainerView
+    <androidx.compose.ui.platform.ComposeView
         android:id="@+id/toolbar"
-        android:name="com.mctech.pokergrinder.bankroll.presentation.balance_component.BankrollBalanceFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/fragment_bankroll_balance" />
+        tools:layout_height="?android:attr/actionBarSize" />
 
     <fragment
         android:id="@+id/feature_fragment"
