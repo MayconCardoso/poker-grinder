@@ -1,13 +1,26 @@
 apply from: "$rootDir/buildSrc/module/feature/presentation.gradle"
 
+android {
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.3'
+    }
+}
+
 dependencies {
     // Internal modules
     implementation project(path: ':features:bankroll:domain')
-    implementation project(path: ':features:bankroll:presentation:balance-component')
     implementation project(path: ':features:bankroll:presentation:navigation')
 
     // Ui
     implementation libraries.androidCardView
+    implementation libraries.androidComposeUi
+    implementation libraries.androidComposeHilt
+    implementation libraries.androidComposeMaterial
+    implementation libraries.androidComposeToolingPreview
+    debugImplementation libraries.androidComposeTooling
 
     // Testing
     testImplementation project(path: ':features:bankroll:testing')

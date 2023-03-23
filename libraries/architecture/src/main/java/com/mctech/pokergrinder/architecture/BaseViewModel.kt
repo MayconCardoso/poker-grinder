@@ -140,7 +140,7 @@ abstract class BaseViewModel : ViewModel() {
    */
   private suspend fun internalInteractionHandler(interaction: UserInteraction) {
     // It is a mapped function
-    if(mappedUserInteractions.containsKey(interaction::class)){
+    if (mappedUserInteractions.containsKey(interaction::class)) {
       mappedUserInteractions[interaction::class]?.invoke(interaction)
       return
     }
@@ -191,7 +191,6 @@ abstract class BaseViewModel : ViewModel() {
   protected open suspend fun sendCommand(viewCommand: ViewCommand) = withContext(Dispatchers.Main) {
     _commandObservable.value = viewCommand
   }
-
 
 
 }

@@ -11,6 +11,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.bankroll.presentation.balance_component.BankrollBalanceComponent
 import com.mctech.pokergrinder.databinding.ActivityHomeBinding
+import com.mctech.pokergrinder.design.compose.PokerGrinder
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -27,6 +28,7 @@ class HomeActivity : AppCompatActivity() {
       R.id.session_details,
       R.id.session_register,
       R.id.statement_register,
+      R.id.statement_withdraw,
       R.id.tournament_register,
       R.id.ranges_viewer_fragment,
       R.id.session_details_tournament,
@@ -104,7 +106,9 @@ class HomeActivity : AppCompatActivity() {
 
   private fun setupToolbar() {
     binding.toolbar.setContent {
-      BankrollBalanceComponent()
+      PokerGrinder.PokerGrinderTheme {
+        BankrollBalanceComponent()
+      }
     }
   }
 

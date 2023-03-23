@@ -1,10 +1,6 @@
 package com.mctech.pokergrinder.architecture.extensions
 
 import android.view.View
-import android.widget.EditText
-import androidx.core.widget.addTextChangedListener
-import androidx.core.widget.doOnTextChanged
-
 fun measureDimension(desiredSize: Int, measureSpec: Int): Int {
   val specMode = View.MeasureSpec.getMode(measureSpec)
   val specSize = View.MeasureSpec.getSize(measureSpec)

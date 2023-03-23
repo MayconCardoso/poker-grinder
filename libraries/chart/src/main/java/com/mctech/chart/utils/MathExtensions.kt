@@ -23,13 +23,13 @@ internal fun lengthSquare(p1: PointF, p2: PointF): Float {
  * @param angleFunction function that will compute the angle projection.
  */
 internal fun computeCenterProjectionRatio(
-  pointA : PointF,
-  pointB : PointF,
-  pointC : PointF,
-  currentXPosition : Float,
-  intersectionHeight : Float,
-  angleFunction : (Float) -> Float
-) : Float {
+  pointA: PointF,
+  pointB: PointF,
+  pointC: PointF,
+  currentXPosition: Float,
+  intersectionHeight: Float,
+  angleFunction: (Float) -> Float
+): Float {
   // Calculate distance between points.
   val a2 = lengthSquare(pointB, pointC)
   val b2 = lengthSquare(pointA, pointC)

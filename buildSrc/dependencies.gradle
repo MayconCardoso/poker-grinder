@@ -1,14 +1,5 @@
 ext.libraries = [
         //==========================================================================================
-        // Plugins
-        //==========================================================================================
-        "androidToolsBuild": "com.android.tools.build:gradle:7.2.2",
-        "androidHiltPlugin": "com.google.dagger:hilt-android-gradle-plugin:2.44",
-        "kotlinGradlePlugin": "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10",
-        "androidJaCoCoPlugin": "com.vanniktech:gradle-android-junit-jacoco-plugin:0.16.0",
-        "androidNavigationPlugin": "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3",
-
-        //==========================================================================================
         // Platform - Kotlin
         //==========================================================================================
         "kotlinJdk": "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.10",

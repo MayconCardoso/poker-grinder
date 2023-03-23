@@ -5,8 +5,12 @@
 [![kotlin](https://img.shields.io/github/languages/top/MayconCardoso/poker-grinder.svg?style=for-the-badge)](https://kotlinlang.org/)
 [![License Apache-2.0](https://img.shields.io/github/license/MayconCardoso/poker-grinder.svg?style=for-the-badge&color=yellow)](https://opensource.org/licenses/Apache-2.0) 
 
-For those who don't know, apart from a software engineer, I am also a recreative, but profitable, poker player. I used to play poker for fun a couple of years ago and thought the game was  all about being lucky or not. With that in mind, naturally, I used to lose very often for those who know the game theory and the math behind it. So, tired of losing, back in January of 2022 I decided to start studying the game, and bring everything I learnt to my day-to-day evening sessions. Had a tough beggining but managed to achive my year challenge of $100 to $10K by playing sit and go and low, middle level tournaments. 
-
+For those who don't know, apart from a software engineer, I am also a recreative, but profitable, poker player. I used to play poker for fun a couple of years ago and thought the game was  all about being lucky or not. With that in mind, naturally, I used to lose very often for those who know the game theory and the math behind it. So, tired of losing, back in January of 2022 I decided to start studying the game, and bring everything I learnt to my day-to-day evening sessions. Had a tough beggining but managed to achive my year challenge of $100 to $10K by playing sit and go and low, middle level tournaments.
+implementation "androidx.compose.ui:ui:1.3.3"
+implementation "androidx.compose.runtime:runtime:1.3.3"
+implementation "androidx.compose.material:material:1.3.1"
+implementation "androidx.compose.ui:ui-tooling-preview:1.3.3"
+debugImplementation "androidx.compose.ui:ui-tooling:1.3.3"
 # About the app
 Poker grinder was built with the goal of helping players to manage their game bankroll and also to track the performance of all sessions. You can check the [project roadmap](https://github.com/users/MayconCardoso/projects/2) to see what is coming, now those are the supported features:
 
