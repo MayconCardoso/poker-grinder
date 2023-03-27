@@ -7,7 +7,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.mctech.pokergrinder.bankroll.presentation.list.BankrollComponentEventConsumer
+import com.mctech.pokergrinder.bankroll.presentation.list.StatementInteraction
 import com.mctech.pokergrinder.design.compose.PokerGrinder
 import com.mctech.pokergrinder.design.compose.typoProvider
 import com.mctech.pokergrinder.design.extension.fillScreen
@@ -16,7 +16,7 @@ import com.mctech.pokergrinder.localization.R
 @Composable
 internal fun NoResultsUi(
   message: String,
-  consumer: BankrollComponentEventConsumer,
+  interact: (StatementInteraction) -> Unit = {},
 ) {
   // Draws the outer card.
   Box(modifier = Modifier.fillScreen()) {
@@ -29,7 +29,7 @@ internal fun NoResultsUi(
 
     // Draw bottom buttons
     BottomButtons(
-      consumer = consumer,
+      interact = interact,
       modifier = Modifier.align(Alignment.BottomCenter)
     )
   }
@@ -41,9 +41,6 @@ internal fun NoResultsPreview() {
   PokerGrinder.PokerGrinderTheme {
     NoResultsUi(
       message = stringResource(id = R.string.no_transaction),
-      consumer = {
-        // STUB
-      }
     )
   }
 }

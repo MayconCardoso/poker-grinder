@@ -8,16 +8,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.mctech.pokergrinder.bankroll.presentation.list.BankrollComponentEvent
-import com.mctech.pokergrinder.bankroll.presentation.list.BankrollComponentEventConsumer
+import com.mctech.pokergrinder.bankroll.presentation.list.StatementInteraction
 import com.mctech.pokergrinder.design.compose.PokerGrinder
 import com.mctech.pokergrinder.design.compose.typoProvider
 import com.mctech.pokergrinder.localization.R
 
 @Composable
 internal fun BottomButtons(
-  consumer: BankrollComponentEventConsumer,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  interact: (StatementInteraction) -> Unit = {}
 ) {
   // Creates the row for drawing both buttons.
   Row(
@@ -25,7 +24,7 @@ internal fun BottomButtons(
   ) {
     // Creates deposit button
     BottomButton(text = stringResource(id = R.string.deposit)) {
-      consumer.onNewEvent(BankrollComponentEvent.OnDepositClicked)
+      interact(StatementInteraction.OnDepositClicked)
     }
 
     // Creates space between buttons
@@ -33,7 +32,7 @@ internal fun BottomButtons(
 
     // Creates withdraw button
     BottomButton(text = stringResource(id = R.string.withdraw)) {
-      consumer.onNewEvent(BankrollComponentEvent.OnWithDrawClicked)
+      interact(StatementInteraction.OnWithDrawClicked)
     }
   }
 }
@@ -52,10 +51,6 @@ internal fun RowScope.BottomButton(
 @Composable
 internal fun BottomButtonsPreview() {
   PokerGrinder.PokerGrinderTheme {
-    BottomButtons(
-      consumer = {
-        // STUB
-      }
-    )
+    BottomButtons()
   }
 }

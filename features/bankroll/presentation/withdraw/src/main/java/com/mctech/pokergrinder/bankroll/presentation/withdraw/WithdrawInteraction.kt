@@ -10,5 +10,5 @@ internal sealed class WithdrawInteraction : UserInteraction {
   /**
    * Used to create a new deposit with given values.
    */
-  data class SaveDeposit(val title: String, val amount: Double) : WithdrawInteraction()
+  data class SaveWithdraw(val title: String, val amount: Double) : WithdrawInteraction()
 }

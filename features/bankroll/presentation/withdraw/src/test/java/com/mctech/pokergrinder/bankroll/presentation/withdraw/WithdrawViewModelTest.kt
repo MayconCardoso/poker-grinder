@@ -22,7 +22,7 @@ internal class WithdrawViewModelTest : BaseViewModelTest() {
   fun `should withdraw money`() = TestObserverScenario.observerScenario {
     whenAction {
       target.interact(
-        WithdrawInteraction.SaveDeposit(amount = 100.0, title = "Tournament Profit")
+        WithdrawInteraction.SaveWithdraw(amount = 100.0, title = "Tournament Profit")
       )
     }
 
@@ -49,7 +49,7 @@ internal class WithdrawViewModelTest : BaseViewModelTest() {
 
     whenAction {
       target.interact(
-        WithdrawInteraction.SaveDeposit(amount = 100.0, title = "Tournament Profit")
+        WithdrawInteraction.SaveWithdraw(amount = 100.0, title = "Tournament Profit")
       )
     }
 

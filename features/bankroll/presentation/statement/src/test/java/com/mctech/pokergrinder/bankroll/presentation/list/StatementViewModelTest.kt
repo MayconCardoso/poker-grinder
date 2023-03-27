@@ -13,9 +13,9 @@ import io.mockk.verifyOrder
 import kotlinx.coroutines.flow.flow
 import org.junit.Test
 
-internal class BankrollViewModelTest: BaseViewModelTest() {
+internal class StatementViewModelTest: BaseViewModelTest() {
   private val observeTransactionsUseCase = mockk<ObserveTransactionsUseCase>(relaxed = true)
-  private val target = BankrollViewModel(
+  private val target = StatementViewModel(
     observeTransactionsUseCase = observeTransactionsUseCase,
   )
 

@@ -28,5 +28,10 @@ object TypographyFactory {
       fontWeight = FontWeight.Normal,
       fontSize = 12.sp,
     ),
+    body2 = TextStyle(
+      color = colors.textColorSecondary,
+      fontWeight = FontWeight.Normal,
+      fontSize = 14.sp,
+    ),
   )
 }
