@@ -7,7 +7,7 @@ dependencies {
     implementation libraries.kotlinReflection
 
     // Android Core Libs
-    implementation libraries.androidCodeKtx
+    implementation libraries.androidCoreKtx
     implementation libraries.androidAppCompat
     implementation libraries.androidViewBinding
     implementation libraries.androidRecyclerView

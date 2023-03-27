@@ -90,7 +90,7 @@ dependencies {
     implementation libraries.androidNavigationUiKtx
 
     // UI
-    implementation libraries.androidCodeKtx
+    implementation libraries.androidCoreKtx
     implementation libraries.androidComposeUi
     implementation libraries.androidAppCompat
     implementation libraries.googleMaterialDesign
