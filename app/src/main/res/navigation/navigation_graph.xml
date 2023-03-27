@@ -10,7 +10,7 @@
         android:id="@+id/summary_fragment"
         android:name="com.mctech.pokergrinder.summary.presentation.pager_container.SummaryContainerFragment"
         android:label="@string/summary"
-        tools:layout="@layout/fragment_summary" >
+        tools:layout="@layout/fragment_summary">
         <action
             android:id="@+id/action_summary_fragment_to_summary_tournament_details_fragment"
             app:destination="@id/summary_tournament_details_fragment" />
@@ -46,7 +46,7 @@
 
     <fragment
         android:id="@+id/statement_fragment"
-        android:name="com.mctech.pokergrinder.bankroll.presentation.list.BankrollFragment"
+        android:name="com.mctech.pokergrinder.bankroll.presentation.list.StatementFragment"
         android:label="@string/statement"
         tools:layout="@layout/fragment_bankroll">
         <action
@@ -81,7 +81,7 @@
         android:id="@+id/ranges_viewer_fragment"
         android:name="com.mctech.pokergrinder.ranges.presentation.viewer.RangeViewerFragment"
         android:label="@string/ranges"
-        tools:layout="@layout/fragment_range_viewer" >
+        tools:layout="@layout/fragment_range_viewer">
 
         <argument
             android:name="RANGE_PARAM"
@@ -109,13 +109,11 @@
 
     <fragment
         android:id="@+id/statement_register"
-        android:name="com.mctech.pokergrinder.bankroll.presentation.deposit.DepositFragment"
-        tools:layout="@layout/fragment_deposit" />
+        android:name="com.mctech.pokergrinder.bankroll.presentation.deposit.DepositFragment" />
 
     <fragment
         android:id="@+id/statement_withdraw"
-        android:name="com.mctech.pokergrinder.bankroll.presentation.withdraw.WithdrawFragment"
-        tools:layout="@layout/fragment_withdraw" />
+        android:name="com.mctech.pokergrinder.bankroll.presentation.withdraw.WithdrawFragment" />
 
     <fragment
         android:id="@+id/session_register"

@@ -15,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mctech.pokergrinder.bankroll.domain.entities.BankrollTransaction
 import com.mctech.pokergrinder.bankroll.domain.entities.BankrollTransactionType
-import com.mctech.pokergrinder.bankroll.presentation.list.BankrollComponentEventConsumer
+import com.mctech.pokergrinder.bankroll.presentation.list.StatementInteraction
 import com.mctech.pokergrinder.design.components.MoneyIndicator
 import com.mctech.pokergrinder.design.compose.PokerGrinder
 import com.mctech.pokergrinder.design.compose.typoProvider
@@ -24,7 +24,7 @@ import com.mctech.pokergrinder.design.extension.fillScreen
 @Composable
 internal fun TransactionList(
   items: List<BankrollTransaction>,
-  consumer: BankrollComponentEventConsumer,
+  interact: (StatementInteraction) -> Unit = {},
 ) {
   // Draws the outer card.
   Column(modifier = Modifier.fillScreen()) {
@@ -42,7 +42,7 @@ internal fun TransactionList(
     }
 
     // Draw bottom buttons
-    BottomButtons(consumer = consumer)
+    BottomButtons(interact = interact)
   }
 }
 
@@ -107,7 +107,6 @@ internal fun TransactionItemPreview() {
           dateInMs = 100000000000,
         ),
       ),
-      consumer = {}
     )
   }
 }

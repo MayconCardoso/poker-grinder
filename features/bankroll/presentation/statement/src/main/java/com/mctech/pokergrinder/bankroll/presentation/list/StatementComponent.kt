@@ -17,7 +17,7 @@ fun BankrollTransactionComponent(
   navigation: BankrollNavigation,
 ) {
   // Gets view model
-  val viewModel = hiltViewModel<BankrollViewModel>().apply {
+  val viewModel = hiltViewModel<StatementViewModel>().apply {
     initialize()
   }
 
@@ -25,10 +25,10 @@ fun BankrollTransactionComponent(
   val state = viewModel.transactionState.collectAsState().value
 
   // Creates event consumer.
-  val eventConsumer = BankrollComponentEventConsumer { event ->
-    when (event) {
-      is BankrollComponentEvent.OnDepositClicked -> navigation.goToBankrollDeposit()
-      is BankrollComponentEvent.OnWithDrawClicked -> navigation.goToBankrollWithdraw()
+  val eventConsumer: (StatementInteraction) -> Unit = { userInteraction ->
+    when (userInteraction) {
+      is StatementInteraction.OnDepositClicked -> navigation.goToBankrollDeposit()
+      is StatementInteraction.OnWithDrawClicked -> navigation.goToBankrollWithdraw()
     }
   }
 
@@ -37,11 +37,11 @@ fun BankrollTransactionComponent(
     is ComponentState.Loading -> CircularLoadingIndicator()
     is ComponentState.Error -> NoResultsUi(
       message = stringResource(id = R.string.something_went_wrong),
-      consumer = eventConsumer,
+      interact = eventConsumer,
     )
     is ComponentState.Success -> TransactionsUi(
       items = state.result,
-      consumer = eventConsumer,
+      interact = eventConsumer,
     )
   }
 }
@@ -49,17 +49,17 @@ fun BankrollTransactionComponent(
 @Composable
 internal fun TransactionsUi(
   items: List<BankrollTransaction>,
-  consumer: BankrollComponentEventConsumer,
+  interact: (StatementInteraction) -> Unit = {},
 ) {
   // Draws empty list text if there is no transactions
   if (items.isEmpty()) {
     NoResultsUi(
       message = stringResource(id = R.string.no_transaction),
-      consumer = consumer,
+      interact = interact,
     )
     return
   }
 
   // Draws transactions items.
-  TransactionList(items = items, consumer = consumer)
+  TransactionList(items = items, interact = interact)
 }

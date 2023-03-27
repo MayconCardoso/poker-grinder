@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
-internal class BankrollViewModel @Inject constructor(
+internal class StatementViewModel @Inject constructor(
   private val observeTransactionsUseCase: ObserveTransactionsUseCase,
 ) : BaseViewModel() {
 

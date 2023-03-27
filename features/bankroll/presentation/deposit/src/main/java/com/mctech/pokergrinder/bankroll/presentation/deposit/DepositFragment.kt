@@ -1,81 +1,59 @@
 package com.mctech.pokergrinder.bankroll.presentation.deposit
 
 import android.os.Bundle
-import android.view.View
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import com.mctech.pokergrinder.architecture.ViewCommand
-import com.mctech.pokergrinder.architecture.extensions.bindCommand
-import com.mctech.pokergrinder.architecture.extensions.onDataFormFilled
-import com.mctech.pokergrinder.architecture.extensions.viewBinding
-import com.mctech.pokergrinder.bankroll.presentation.deposit.R
-import com.mctech.pokergrinder.bankroll.presentation.deposit.databinding.FragmentDepositBinding
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.mctech.pokergrinder.bankroll.presentation.deposit.composables.DepositUi
 import com.mctech.pokergrinder.bankroll.presentation.navigation.BankrollNavigation
+import com.mctech.pokergrinder.design.compose.PokerGrinder
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-public class DepositFragment : Fragment(R.layout.fragment_deposit) {
+class DepositFragment : Fragment() {
 
   // region Variables
-
-  /**
-   * Tournament View Model
-   */
-  private val viewModel by viewModels<DepositViewModel>()
-
-  /**
-   * Tournament Ui Binding
-   */
-  private val binding by viewBinding(FragmentDepositBinding::bind)
-
   /**
    * Feature navigation
    */
   @Inject
-  public lateinit var navigation: BankrollNavigation
+  lateinit var navigation: BankrollNavigation
 
   // endregion
 
   // region Lifecycle
 
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-    // Setup Listeners
-    setupListeners()
-
-    // Observes commands
-    bindCommand(viewModel, ::consumeCommand)
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) = ComposeView(inflater.context).apply {
+    setContent {
+      PokerGrinder.PokerGrinderTheme {
+        DepositComponent(navigation = navigation)
+      }
+    }
   }
 
-  // endregion
+  @Composable
+  fun DepositComponent(navigation: BankrollNavigation) {
+    // Gets view model
+    val viewModel = hiltViewModel<DepositViewModel>()
 
-  // region Component Setup
-
-  private fun setupListeners() {
-    binding.save.setOnClickListener {
-      viewModel.interact(
-        DepositInteraction.SaveDeposit(
-          title = binding.depositTitle.text.toString(),
-          amount = binding.amount.text.toString().toDouble(),
-        )
-      )
+    // Observe commands
+    val command = viewModel.commandObservable.observeAsState().value
+    if (command == DepositCommand.CloseScreen) {
+      navigation.navigateBack()
+      return
     }
 
-    listOf(binding.depositTitle, binding.amount).onDataFormFilled { allSet ->
-      binding.save.isEnabled = allSet
+    // Draw component
+    DepositUi { userInteraction ->
+      viewModel.interact(userInteraction)
     }
   }
 
   // endregion
 
-  // region Commands
-
-  private fun consumeCommand(command: ViewCommand) {
-    when (command) {
-      is DepositCommand.CloseScreen -> navigation.navigateBack()
-    }
-  }
-
-  // endregion
 }

@@ -13,8 +13,8 @@ internal class WithdrawViewModel @Inject constructor(
   private val withdrawUseCase: WithdrawUseCase,
 ) : BaseViewModel() {
 
-  @OnInteraction(WithdrawInteraction.SaveDeposit::class)
-  private suspend fun saveDepositInteraction(interaction: WithdrawInteraction.SaveDeposit) {
+  @OnInteraction(WithdrawInteraction.SaveWithdraw::class)
+  private suspend fun saveDepositInteraction(interaction: WithdrawInteraction.SaveWithdraw) {
     try {
       // Saves deposit
       withdrawUseCase(

@@ -11,7 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class BankrollFragment : Fragment() {
+class StatementFragment : Fragment() {
 
   // region Variables
 
@@ -30,4 +30,5 @@ class BankrollFragment : Fragment() {
       }
     }
   }
+
 }
