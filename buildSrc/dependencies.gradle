@@ -11,46 +11,46 @@ ext.libraries = [
         //==========================================================================================
         // Application - Google
         //==========================================================================================
-        "googleGson": "com.google.code.gson:gson:2.9.1",
-        "googleDagger": "com.google.dagger:dagger:2.44",
-        "googleHiltAndroid": "com.google.dagger:hilt-android:2.44",
-        "googleHiltCompiler": "com.google.dagger:hilt-compiler:2.44",
-        "googleMaterialDesign": "com.google.android.material:material:1.6.1",
+        "googleDagger": "com.google.dagger:dagger:2.45",
+        "googleHiltAndroid": "com.google.dagger:hilt-android:2.45",
+        "googleHiltCompiler": "com.google.dagger:hilt-compiler:2.45",
+        "googleMaterialDesign": "com.google.android.material:material:1.8.0",
+
+        //==========================================================================================
+        // Application - Room
+        //==========================================================================================
+        "androidRoomKtx": "androidx.room:room-ktx:2.5.0",
+        "androidRoomRuntime": "androidx.room:room-compiler:2.5.0",
+        "androidRoomTesting": "androidx.room:room-testing:2.5.0",
+        "androidRoomCompiler": "androidx.room:room-runtime:2.5.0",
 
         //==========================================================================================
         // Application - AndroidX
         //==========================================================================================
-        "androidCodeKtx": "androidx.core:core-ktx:1.8.0",
-        "androidRoomKtx": "androidx.room:room-ktx:2.4.3",
+        "androidCoreKtx": "androidx.core:core-ktx:1.9.0",
         "androidCardView": "androidx.cardview:cardview:1.0.0",
-        "androidAppCompat": "androidx.appcompat:appcompat:1.5.1",
+        "androidAppCompat": "androidx.appcompat:appcompat:1.6.1",
         "androidViewPager2": "androidx.viewpager2:viewpager2:1.0.0",
-        "androidRoomRuntime": "androidx.room:room-compiler:2.4.3",
-        "androidRoomTesting": "androidx.room:room-testing:2.4.3",
-        "androidFragmentKtx": "androidx.fragment:fragment-ktx:1.5.2",
-        "androidViewBinding": "androidx.databinding:viewbinding:7.3.1",
-        "androidRoomCompiler": "androidx.room:room-runtime:2.4.3",
-        "androidRecyclerView": "androidx.recyclerview:recyclerview:1.2.1",
+        "androidFragmentKtx": "androidx.fragment:fragment-ktx:1.5.5",
+        "androidViewBinding": "androidx.databinding:viewbinding:7.4.2",
+        "androidRecyclerView": "androidx.recyclerview:recyclerview:1.3.0",
         "androidNavigationUiKtx": "androidx.navigation:navigation-ui-ktx:2.5.3",
         "androidConstraintLayout": "androidx.constraintlayout:constraintlayout:2.1.4",
-        "androidLifecycleRuntimeKtx": "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1",
-        "androidLifecycleLiveDataKtx": "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1",
-        "androidLifecycleViewModelKtx": "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1",
+        "androidLifecycleRuntimeKtx": "androidx.lifecycle:lifecycle-runtime-ktx:2.6.0",
+        "androidLifecycleLiveDataKtx": "androidx.lifecycle:lifecycle-livedata-ktx:2.6.0",
+        "androidLifecycleViewModelKtx": "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0",
         "androidNavigationFragmentKtx": "androidx.navigation:navigation-fragment-ktx:2.5.3",
 
         //==========================================================================================
         // Application - Compose
         //==========================================================================================
-        "androidComposeHilt": "androidx.hilt:hilt-navigation-compose:1.0.0",
         "androidComposeUi": "androidx.compose.ui:ui:1.3.3",
-        "androidComposeManifest": "androidx.compose.ui:ui-test-manifest:1.3.3",
-        "androidComposeViewModel": "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1",
+        "androidComposeHilt": "androidx.hilt:hilt-navigation-compose:1.0.0",
         "androidComposeMaterial": "androidx.compose.material:material:1.3.1",
         "androidComposeTooling": "androidx.compose.ui:ui-tooling:1.3.3",
         "androidComposeToolingPreview": "androidx.compose.ui:ui-tooling-preview:1.3.3",
-        "androidComposeNavigation": "androidx.navigation:navigation-compose:2.5.1",
-        "androidComposeRuntime": "androidx.compose.runtime:runtime:1.3.3",
-        "androidComposeRuntimeLivedata": "androidx.compose.runtime:runtime-livedata:1.2.1",
+        "androidComposeViewModel": "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0",
+        "androidComposeNavigation": "androidx.navigation:navigation-compose:2.5.3",
 
         //==========================================================================================
         // Application - Testing

@@ -5,10 +5,7 @@ dependencies {
     // Kotlin
     implementation libraries.kotlinJdk
     implementation libraries.kotlinCoroutineCore
-    implementation libraries.androidCodeKtx
-
-    // Standard
-    implementation libraries.googleGson
+    implementation libraries.androidCoreKtx
 
     // Testing
     testImplementation project(path: ':testing:common-test')
