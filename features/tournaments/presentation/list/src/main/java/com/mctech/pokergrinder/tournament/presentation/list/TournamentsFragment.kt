@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-public class TournamentsFragment : Fragment(R.layout.fragment_tournaments), TournamentListCallback {
+class TournamentsFragment : Fragment(R.layout.fragment_tournaments), TournamentListCallback {
 
   // region Variables
 
