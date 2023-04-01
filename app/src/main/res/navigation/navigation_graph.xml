@@ -47,8 +47,7 @@
     <fragment
         android:id="@+id/statement_fragment"
         android:name="com.mctech.pokergrinder.bankroll.presentation.list.StatementFragment"
-        android:label="@string/statement"
-        tools:layout="@layout/fragment_bankroll">
+        android:label="@string/statement">
         <action
             android:id="@+id/action_statement_fragment_to_statement_register"
             app:destination="@id/statement_register" />

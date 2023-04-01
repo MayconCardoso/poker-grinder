@@ -40,7 +40,7 @@ public class NewTournamentFragment : Fragment(R.layout.fragment_tournament) {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     // Gets tournament
-    val tournament = arguments?.deserialize<Tournament>(TOURNAMENT_PARAM) ?: return
+    val tournament = arguments?.deserialize<Tournament>(TOURNAMENT_PARAM)
     viewModel.interact(NewTournamentInteraction.ScreenFirstOpen(tournament))
 
     // Setup Listeners
