@@ -1,19 +1,26 @@
 package com.mctech.pokergrinder.tournament.presentation.creation
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.mctech.pokergrinder.architecture.ViewCommand
-import com.mctech.pokergrinder.architecture.extensions.*
-import com.mctech.pokergrinder.tournament.presentation.creation.databinding.FragmentTournamentBinding
-import com.mctech.pokergrinder.tournament.presentation.navigation.TournamentNavigation
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.mctech.pokergrinder.architecture.extensions.deserialize
+import com.mctech.pokergrinder.design.compose.PokerGrinder
 import com.mctech.pokergrinder.tournament.domain.entities.Tournament
+import com.mctech.pokergrinder.tournament.presentation.creation.composables.NewTournamentUi
+import com.mctech.pokergrinder.tournament.presentation.navigation.TournamentNavigation
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-public class NewTournamentFragment : Fragment(R.layout.fragment_tournament) {
+class NewTournamentFragment : Fragment() {
 
   // region Variables
 
@@ -23,73 +30,51 @@ public class NewTournamentFragment : Fragment(R.layout.fragment_tournament) {
   private val viewModel by viewModels<NewTournamentViewModel>()
 
   /**
-   * Tournament Ui Binding
-   */
-  private val binding by viewBinding(FragmentTournamentBinding::bind)
-
-  /**
    * Feature navigation
    */
   @Inject
-  public lateinit var navigation: TournamentNavigation
+  lateinit var navigation: TournamentNavigation
 
   // endregion
 
   // region Lifecycle
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) = ComposeView(inflater.context).apply {
+    setContent {
+      PokerGrinder.PokerGrinderTheme {
+        NewTournamentComponent(
+          viewModel = viewModel,
+          navigation = navigation,
+        )
+      }
+    }
+  }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+
     // Gets tournament
     val tournament = arguments?.deserialize<Tournament>(TOURNAMENT_PARAM)
     viewModel.interact(NewTournamentInteraction.ScreenFirstOpen(tournament))
-
-    // Setup Listeners
-    setupListeners()
-
-    // Observes state.
-    bindState(viewModel.componentState, ::rendersState)
-
-    // Observes commands
-    bindCommand(viewModel, ::consumeCommand)
   }
 
-  // endregion
+  @Composable
+  private fun NewTournamentComponent(
+    navigation: TournamentNavigation,
+    viewModel: NewTournamentViewModel = hiltViewModel(),
+  ) {
+    // Gets view model
+    val tournamentState = viewModel.componentState.collectAsState().value
 
-  // region State Manipulation
-  private fun rendersState(tournament: Tournament?) {
-    val data = tournament ?: return
-    binding.tournamentTitle.setText(data.title)
-    binding.tournamentBuyIn.setText(data.buyIn.toString())
-  }
-
-  // endregion
-
-  // region Component Setup
-
-  private fun setupListeners() {
-    // Click on save button.
-    binding.save.setOnClickListener {
-      viewModel.interact(
-        NewTournamentInteraction.SaveTournament(
-          title = binding.tournamentTitle.text.toString(),
-          buyIn = binding.tournamentBuyIn.text.toString().toFloat(),
-        )
-      )
+    // Observe commands
+    val command = viewModel.commandObservable.observeAsState().value
+    if (command == NewTournamentCommand.CloseScreen) {
+      navigation.navigateBack()
+      return
     }
 
-    // Observe fields content to enable/disable save button.
-    listOf(binding.tournamentTitle, binding.tournamentBuyIn).onDataFormFilled { allSet ->
-      binding.save.isEnabled = allSet
-    }
-  }
-
-  // endregion
-
-  // region Commands
-
-  private fun consumeCommand(command: ViewCommand) {
-    when (command) {
-      is NewTournamentCommand.CloseScreen -> navigation.navigateBack()
+    // Draw component
+    NewTournamentUi(tournamentState = tournamentState) { userInteraction ->
+      viewModel.interact(userInteraction)
     }
   }
 
@@ -97,9 +82,10 @@ public class NewTournamentFragment : Fragment(R.layout.fragment_tournament) {
 
   // region Builder
 
-  public companion object {
-    public const val TOURNAMENT_PARAM: String = "TOURNAMENT_PARAM"
+  companion object {
+    const val TOURNAMENT_PARAM: String = "TOURNAMENT_PARAM"
   }
 
   // endregion
+
 }

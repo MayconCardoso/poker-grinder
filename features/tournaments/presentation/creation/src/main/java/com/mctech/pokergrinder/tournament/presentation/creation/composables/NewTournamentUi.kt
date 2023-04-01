@@ -1,4 +1,4 @@
-package com.mctech.pokergrinder.bankroll.presentation.withdraw.composable
+package com.mctech.pokergrinder.tournament.presentation.creation.composables
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -16,30 +16,32 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.mctech.pokergrinder.bankroll.presentation.withdraw.WithdrawInteraction
 import com.mctech.pokergrinder.design.components.TextField
 import com.mctech.pokergrinder.design.compose.PokerGrinder
 import com.mctech.pokergrinder.design.compose.typoProvider
 import com.mctech.pokergrinder.design.extension.fillScreen
 import com.mctech.pokergrinder.localization.R
+import com.mctech.pokergrinder.tournament.domain.entities.Tournament
+import com.mctech.pokergrinder.tournament.presentation.creation.NewTournamentInteraction
 
 @Composable
-internal fun WithdrawUi(
-  interact: (WithdrawInteraction) -> Unit = {}
+internal fun NewTournamentUi(
+  tournamentState: Tournament? = null,
+  interact: (NewTournamentInteraction) -> Unit = {},
 ) {
   // Hold fields value.
-  val title = remember { mutableStateOf(TextFieldValue()) }
-  val amount = remember { mutableStateOf(TextFieldValue()) }
+  val title = remember { mutableStateOf(TextFieldValue(text = tournamentState?.title.orEmpty())) }
+  val buyIn = remember { mutableStateOf(TextFieldValue(text = tournamentState?.buyIn?.toString().orEmpty())) }
   val isSaveEnabled = remember { mutableStateOf(false) }
   val computeButtonEnabled = {
-    isSaveEnabled.value = title.value.text.isNotBlank() && amount.value.text.isNotBlank()
+    isSaveEnabled.value = title.value.text.isNotBlank() && buyIn.value.text.isNotBlank()
   }
 
   // Draws the component.
   Column(modifier = Modifier.fillScreen()) {
     // Render title
     Text(
-      text = stringResource(id = R.string.bankroll_withdraw),
+      text = stringResource(id = R.string.tournament_management),
       style = typoProvider().h2
     )
 
@@ -57,8 +59,8 @@ internal fun WithdrawUi(
 
     // Draw amount field.
     TextField(
-      text = stringResource(id = R.string.amount),
-      value = amount,
+      text = stringResource(id = R.string.buy_in),
+      value = buyIn,
       onValueChange = {
         computeButtonEnabled()
       },
@@ -70,9 +72,9 @@ internal fun WithdrawUi(
       enabled = isSaveEnabled.value,
       onClick = {
         interact(
-          WithdrawInteraction.SaveWithdraw(
+          NewTournamentInteraction.SaveTournament(
             title = title.value.text,
-            amount = amount.value.text.toDouble(),
+            buyIn = buyIn.value.text.toFloat(),
           )
         )
       },
@@ -88,8 +90,8 @@ internal fun WithdrawUi(
 
 @Preview(showBackground = true)
 @Composable
-internal fun WithdrawUiPreview() {
+internal fun NewTournamentUiPreview() {
   PokerGrinder.PokerGrinderTheme {
-    WithdrawUi()
+    NewTournamentUi()
   }
 }
