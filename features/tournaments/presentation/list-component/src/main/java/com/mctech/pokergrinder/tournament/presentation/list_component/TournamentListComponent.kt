@@ -2,6 +2,7 @@ package com.mctech.pokergrinder.tournament.presentation.list_component
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.mctech.pokergrinder.architecture.ComponentState
@@ -13,8 +14,9 @@ import com.mctech.pokergrinder.tournament.presentation.list_component.composable
 
 @Composable
 fun TournamentListComponent(
+  modifier: Modifier = Modifier,
   viewModel: TournamentListViewModel = hiltViewModel(),
-  callback: TournamentListCallback
+  callback: TournamentListCallback,
 ) {
   // Gets view model
   viewModel.initialize()
@@ -31,12 +33,14 @@ fun TournamentListComponent(
     is ComponentState.Success -> TournamentListUi(
       items = state.result,
       callback = callback,
+      modifier = modifier,
     )
   }
 }
 
 @Composable
 internal fun TournamentListUi(
+  modifier: Modifier = Modifier,
   items: List<Tournament>,
   callback: TournamentListCallback,
 ) {
@@ -47,5 +51,5 @@ internal fun TournamentListUi(
   }
 
   // Draws transactions items.
-  TransactionList(items = items, callback = callback)
+  TransactionList(items = items, callback = callback, modifier = modifier)
 }

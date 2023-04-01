@@ -1,67 +1,43 @@
 package com.mctech.pokergrinder.tournament.presentation.list
 
 import android.os.Bundle
-import android.view.View
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
-import com.mctech.pokergrinder.architecture.extensions.avoidFrozenFrames
-import com.mctech.pokergrinder.architecture.extensions.viewBinding
-import com.mctech.pokergrinder.tournament.presentation.list.databinding.FragmentTournamentsBinding
-import com.mctech.pokergrinder.tournament.presentation.list_component.TournamentListCallback
-import com.mctech.pokergrinder.tournament.presentation.navigation.TournamentNavigation
+import com.mctech.pokergrinder.design.compose.PokerGrinder
 import com.mctech.pokergrinder.tournament.domain.entities.Tournament
+import com.mctech.pokergrinder.tournament.presentation.navigation.TournamentNavigation
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class TournamentsFragment : Fragment(R.layout.fragment_tournaments), TournamentListCallback {
+class TournamentsFragment : Fragment() {
 
   // region Variables
-
-  /**
-   * Tournaments Ui Binding
-   */
-  private val binding by viewBinding(FragmentTournamentsBinding::bind)
 
   /**
    * Feature navigation
    */
   @Inject
-  public lateinit var navigation: TournamentNavigation
+  lateinit var navigation: TournamentNavigation
 
   // endregion
 
   // region Lifecycle
 
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-    avoidFrozenFrames {
-      setupListeners()
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) = ComposeView(inflater.context).apply {
+    setContent {
+      PokerGrinder.PokerGrinderTheme {
+        TournamentsComponent(
+          callback = { tournament ->
+            navigation.goToTournament(tournament)
+          }
+        )
+      }
     }
   }
 
   // endregion
 
-  // region Component Setup
-
-  private fun setupListeners() {
-    binding.newTournament.setOnClickListener {
-      navigateToEditor(tournament = null)
-    }
-  }
-
-  override fun onTournamentClicked(tournament: Tournament) {
-    navigateToEditor(tournament)
-  }
-
-  // endregion
-
-  // region Commands
-
-  private fun navigateToEditor(tournament: Tournament?) {
-    navigation.goToTournament(tournament)
-  }
-
-  // endregion
 }

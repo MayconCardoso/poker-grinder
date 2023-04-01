@@ -1,26 +1,9 @@
-apply from: "$rootDir/buildSrc/module/feature/presentation.gradle"
-
-android {
-    buildFeatures {
-        compose true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion '1.4.3'
-    }
-}
+apply from: "$rootDir/buildSrc/module/feature/compose.gradle"
 
 dependencies {
     // Internal modules
     implementation project(path: ':features:bankroll:domain')
     implementation project(path: ':features:bankroll:presentation:navigation')
-
-    // Ui
-    implementation libraries.androidComposeUi
-    implementation libraries.androidComposeHilt
-    implementation libraries.androidComposeMaterial
-    implementation libraries.androidComposeToolingPreview
-    implementation libraries.androidComposeRuntimeLivedata
-    debugImplementation libraries.androidComposeTooling
 
     // Testing
     testImplementation project(path: ':features:bankroll:testing')

@@ -1,11 +1,8 @@
-apply from: "$rootDir/buildSrc/module/feature/presentation.gradle"
+apply from: "$rootDir/buildSrc/module/feature/compose.gradle"
 
 dependencies {
     // Internal modules
     implementation project(path: ':features:tournaments:domain')
     implementation project(path: ':features:tournaments:presentation:navigation')
     implementation project(path: ':features:tournaments:presentation:list-component')
-
-    // Ui
-    implementation libraries.androidCardView
 }

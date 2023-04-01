@@ -116,9 +116,9 @@ class RegisterTournamentFragment : Fragment(R.layout.fragment_register_tournamen
     }
   }
 
-  override fun onTournamentClicked(tournament: Tournament) {
-    binding.tournamentTitle.setText(tournament.title)
-    binding.tournamentBuyIn.setText(tournament.buyIn.toString())
+  override fun onTournamentClicked(tournament: Tournament?) {
+    binding.tournamentTitle.setText(tournament?.title)
+    binding.tournamentBuyIn.setText(tournament?.buyIn.toString())
   }
 
   // endregion

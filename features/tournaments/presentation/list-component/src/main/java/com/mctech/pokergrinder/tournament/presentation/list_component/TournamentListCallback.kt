@@ -10,5 +10,5 @@ fun interface TournamentListCallback {
   /**
    * Called whenever a [tournament] is clicked.
    */
-  fun onTournamentClicked(tournament: Tournament)
+  fun onTournamentClicked(tournament: Tournament?)
 }

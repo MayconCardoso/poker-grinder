@@ -23,22 +23,19 @@ import com.mctech.pokergrinder.tournament.presentation.list_component.Tournament
 
 @Composable
 internal fun TransactionList(
+  modifier: Modifier = Modifier,
   items: List<Tournament>,
   callback: TournamentListCallback,
 ) {
-  // Draws the outer card.
-  Column(modifier = Modifier.fillScreen()) {
-    // Draw List with Transactions
-    LazyColumn(
-      verticalArrangement = Arrangement.spacedBy(8.dp),
-      modifier = Modifier
-        .fillMaxWidth()
-        .padding(bottom = 12.dp)
-        .weight(1F)
-    ) {
-      items(items) { tournament ->
-        TournamentItemRow(tournament = tournament, callback = callback)
-      }
+  // Draw List with Transactions
+  LazyColumn(
+    verticalArrangement = Arrangement.spacedBy(8.dp),
+    modifier = modifier
+      .fillMaxWidth()
+      .padding(bottom = 12.dp)
+  ) {
+    items(items) { tournament ->
+      TournamentItemRow(tournament = tournament, callback = callback)
     }
   }
 }
@@ -82,7 +79,7 @@ internal fun TournamentItemRow(
 internal fun TransactionItemPreview() {
   PokerGrinder.PokerGrinderTheme {
     TransactionList(
-      listOf(
+      items = listOf(
         Tournament(
           id = "1",
           type = TournamentType.TURBO,

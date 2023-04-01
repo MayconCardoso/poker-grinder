@@ -1,0 +1,20 @@
+apply from: "$rootDir/buildSrc/module/feature/presentation.gradle"
+
+android {
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.3'
+    }
+}
+
+dependencies {
+    // Ui
+    implementation libraries.androidComposeUi
+    implementation libraries.androidComposeHilt
+    implementation libraries.androidComposeMaterial
+    implementation libraries.androidComposeToolingPreview
+    implementation libraries.androidComposeRuntimeLivedata
+    debugImplementation libraries.androidComposeTooling
+}
