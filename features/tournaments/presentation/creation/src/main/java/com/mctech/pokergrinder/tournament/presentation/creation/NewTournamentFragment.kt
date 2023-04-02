@@ -57,27 +57,6 @@ class NewTournamentFragment : Fragment() {
     viewModel.interact(NewTournamentInteraction.ScreenFirstOpen(tournament))
   }
 
-  @Composable
-  private fun NewTournamentComponent(
-    navigation: TournamentNavigation,
-    viewModel: NewTournamentViewModel = hiltViewModel(),
-  ) {
-    // Gets view model
-    val tournamentState = viewModel.componentState.collectAsState().value
-
-    // Observe commands
-    val command = viewModel.commandObservable.observeAsState().value
-    if (command == NewTournamentCommand.CloseScreen) {
-      navigation.navigateBack()
-      return
-    }
-
-    // Draw component
-    NewTournamentUi(tournamentState = tournamentState) { userInteraction ->
-      viewModel.interact(userInteraction)
-    }
-  }
-
   // endregion
 
   // region Builder
