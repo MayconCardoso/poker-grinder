@@ -32,7 +32,7 @@ internal fun NewTournamentUi(
   // Hold fields value.
   val title = remember { mutableStateOf(TextFieldValue(text = tournamentState?.title.orEmpty())) }
   val buyIn = remember { mutableStateOf(TextFieldValue(text = tournamentState?.buyIn?.toString().orEmpty())) }
-  val isSaveEnabled = remember { mutableStateOf(false) }
+  val isSaveEnabled = remember { mutableStateOf(title.value.text.isNotBlank()) }
   val computeButtonEnabled = {
     isSaveEnabled.value = title.value.text.isNotBlank() && buyIn.value.text.isNotBlank()
   }
