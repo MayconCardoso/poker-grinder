@@ -34,7 +34,7 @@ internal fun TransactionList(
       .fillMaxWidth()
       .padding(bottom = 12.dp)
   ) {
-    items(items) { tournament ->
+    items(items, key = { item -> item.id }) { tournament ->
       TournamentItemRow(tournament = tournament, callback = callback)
     }
   }

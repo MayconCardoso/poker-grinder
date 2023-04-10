@@ -36,7 +36,7 @@ internal fun TransactionList(
         .padding(bottom = 12.dp)
         .weight(1F)
     ) {
-      items(items) { transaction ->
+      items(items, key = { item -> item.id }) { transaction ->
         TransactionItemRow(transaction = transaction)
       }
     }
