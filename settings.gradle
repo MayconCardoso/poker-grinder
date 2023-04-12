@@ -85,3 +85,7 @@ include ':features:ranges:presentation:list'
 include ':features:ranges:presentation:viewer'
 include ':features:ranges:presentation:navigation'
 include ':features:ranges:testing'
+
+// Feature - Ranges Practice
+include ':features:ranges-practice:data'
+include ':features:ranges-practice:domain'
