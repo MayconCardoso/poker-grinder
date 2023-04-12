@@ -23,8 +23,8 @@
         android:title="@string/ranges" />
 
     <item
-        android:id="@+id/tournament_fragment"
+        android:id="@+id/range_practice_fragment"
         android:checked="true"
         android:icon="@drawable/ic_tournament"
-        android:title="@string/tournament" />
+        android:title="@string/warm_up" />
 </menu>

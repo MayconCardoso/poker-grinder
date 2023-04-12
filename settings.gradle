@@ -6,25 +6,25 @@ include ':database'
 include ':libraries:chart'
 include ':libraries:design'
 include ':libraries:formatter'
+include ':libraries:threading'
 include ':libraries:localization'
 include ':libraries:architecture'
-include ':libraries:threading'
 
 // Testing
 include ':testing:common-test'
 include ':testing:architecture-testing'
 
 // Feature - Tournament
-include ':features:tournaments:domain'
 include ':features:tournaments:data'
+include ':features:tournaments:domain'
 include ':features:tournaments:presentation:list'
 include ':features:tournaments:presentation:creation'
 include ':features:tournaments:presentation:navigation'
 include ':features:tournaments:presentation:list-component'
 
 // Feature - Bankroll
-include ':features:bankroll:domain'
 include ':features:bankroll:data'
+include ':features:bankroll:domain'
 include ':features:bankroll:testing'
 include ':features:bankroll:presentation:deposit'
 include ':features:bankroll:presentation:withdraw'
@@ -33,8 +33,8 @@ include ':features:bankroll:presentation:navigation'
 include ':features:bankroll:presentation:balance-component'
 
 // Feature - Grind
-include ':features:grind:domain'
 include ':features:grind:data'
+include ':features:grind:domain'
 include ':features:grind:testing'
 include ':features:grind:presentation:list'
 include ':features:grind:presentation:creation'
@@ -59,8 +59,8 @@ include ':features:grind-gameplay:presentation:creation'
 include ':features:grind-summary:presentation'
 
 // Feature - Summary
-include ':features:summary:domain'
 include ':features:summary:data'
+include ':features:summary:domain'
 include ':features:summary:presentation:session'
 include ':features:summary:presentation:navigation'
 include ':features:summary:presentation:investment'
@@ -69,8 +69,8 @@ include ':features:summary:presentation:overall_chart'
 include ':features:summary:presentation:pager_container'
 
 // Feature - Settings
-include ':features:settings:domain'
 include ':features:settings:data'
+include ':features:settings:domain'
 include ':features:settings:testing'
 include ':features:settings:presentation'
 
@@ -81,11 +81,15 @@ include ':features:deck:presentation:card_picker'
 // Feature - Ranges
 include ':features:ranges:data'
 include ':features:ranges:domain'
+include ':features:ranges:testing'
 include ':features:ranges:presentation:list'
 include ':features:ranges:presentation:viewer'
 include ':features:ranges:presentation:navigation'
-include ':features:ranges:testing'
 
 // Feature - Ranges Practice
 include ':features:ranges-practice:data'
 include ':features:ranges-practice:domain'
+include ':features:ranges-practice:presentation:list'
+include ':features:ranges-practice:presentation:filter'
+include ':features:ranges-practice:presentation:practice'
+include ':features:ranges-practice:presentation:navigation'

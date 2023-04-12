@@ -13,6 +13,7 @@ import com.mctech.pokergrinder.grind_tournament.presentation.creation.RegisterTo
 import com.mctech.pokergrinder.ranges.domain.entities.Range
 import com.mctech.pokergrinder.ranges.presentation.navigation.RangeNavigation
 import com.mctech.pokergrinder.ranges.presentation.viewer.RangeViewerFragment
+import com.mctech.pokergrinder.ranges_practice.presentation.navigation.RangePracticeNavigation
 import com.mctech.pokergrinder.summary.domain.entities.TournamentSummary
 import com.mctech.pokergrinder.summary.presentation.navigation.SummaryNavigation
 import com.mctech.pokergrinder.summary.presentation.tournaments.details.SummaryTournamentDetailsFragment
@@ -23,6 +24,7 @@ import com.mctech.pokergrinder.tournament.domain.entities.Tournament
 class PokerGrinderNavigator :
   GrindNavigation,
   RangeNavigation,
+  RangePracticeNavigation,
   SummaryNavigation,
   BankrollNavigation,
   TournamentNavigation {
@@ -127,7 +129,7 @@ class PokerGrinderNavigator :
     navController?.navigate(
       R.id.action_session_details_to_session_details_tournament_flip,
       Bundle().apply {
-        putSerializable(com.mctech.pokergrinder.grind_gameplay.presentation.creation.RegisterFlipFragment.SESSION_PARAM, session)
+        putSerializable(RegisterFlipFragment.SESSION_PARAM, session)
       },
     )
   }
@@ -157,6 +159,15 @@ class PokerGrinderNavigator :
         putSerializable(RangeViewerFragment.RANGE_PARAM, range)
       },
     )
+  }
+
+  // endregion
+
+
+  // region Ranges Practice
+
+  override fun goToFilterRangePractice() {
+
   }
 
   // endregion

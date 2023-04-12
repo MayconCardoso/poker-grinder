@@ -1,6 +1,9 @@
 apply from: "$rootDir/buildSrc/module/base-kotlin.gradle"
 
 dependencies {
+    // Internal Modules.
+    implementation project(path: ':features:ranges:domain')
+
     // Testing
     testImplementation project(path: ':features:ranges:testing')
 }

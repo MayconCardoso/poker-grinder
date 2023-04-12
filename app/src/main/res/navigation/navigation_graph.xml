@@ -59,12 +59,17 @@
     <fragment
         android:id="@+id/tournament_fragment"
         android:name="com.mctech.pokergrinder.tournament.presentation.list.TournamentsFragment"
-        android:label="@string/tournament"
-        tools:layout="@layout/fragment_tournaments">
+        android:label="@string/tournament">
         <action
             android:id="@+id/action_tournament_fragment_to_tournament_register"
             app:destination="@id/tournament_register" />
     </fragment>
+
+
+    <fragment
+        android:id="@+id/range_practice_fragment"
+        android:name="com.mctech.pokergrinder.ranges_practice.presentation.list.RangePracticeListFragment"
+        android:label="@string/warm_up" />
 
     <fragment
         android:id="@+id/ranges_fragment"
@@ -116,8 +121,7 @@
 
     <fragment
         android:id="@+id/session_register"
-        android:name="com.mctech.pokergrinder.grind.presentation.creation.NewGrindFragment"
-        tools:layout="@layout/fragment_new_grind" />
+        android:name="com.mctech.pokergrinder.grind.presentation.creation.NewGrindFragment" />
 
     <fragment
         android:id="@+id/session_details"
