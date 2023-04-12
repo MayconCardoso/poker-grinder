@@ -47,7 +47,6 @@ public class GrindDetailContainerFragment : Fragment(R.layout.fragment_grind_det
   private fun setupViewPager(session: Session) = with(binding) {
     containerPager.adapter = GrindDetailContainerAdapter(childFragmentManager, lifecycle, session)
     containerPager.offscreenPageLimit = 3
-    containerPager.isUserInputEnabled = false
   }
 
   private fun setupTabLayout() {

@@ -67,7 +67,7 @@ class RangeViewerFragment : Fragment(R.layout.fragment_range_viewer) {
       bindState(viewModel.componentState, ::consumeState)
 
       // Setup List
-      setupTournamentPages()
+      setupRangesPager()
     }
   }
 
@@ -108,7 +108,7 @@ class RangeViewerFragment : Fragment(R.layout.fragment_range_viewer) {
 
   // region Component Setup
 
-  private fun setupTournamentPages() {
+  private fun setupRangesPager() {
     // Set adapter
     binding.containerPager.adapter = rangePagerAdapter
     binding.containerPager.offscreenPageLimit = 3

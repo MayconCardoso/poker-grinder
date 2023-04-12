@@ -19,6 +19,7 @@ fun TextField(
   text: String,
   value: MutableState<TextFieldValue>,
   onValueChange: (TextFieldValue) -> Unit = {},
+  singleLine: Boolean = true,
   keyboardOptions: KeyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
 ) {
   OutlinedTextField(
@@ -27,6 +28,7 @@ fun TextField(
     },
     value = value.value,
     textStyle = typoProvider().body2,
+    singleLine = singleLine,
     onValueChange = {
       value.value = it
       onValueChange(it)

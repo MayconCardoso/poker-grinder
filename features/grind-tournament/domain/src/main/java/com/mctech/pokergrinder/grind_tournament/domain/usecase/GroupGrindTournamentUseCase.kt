@@ -1,6 +1,7 @@
 package com.mctech.pokergrinder.grind_tournament.domain.usecase
 
 import com.mctech.pokergrinder.grind_tournament.domain.entities.SessionTournament
+import java.lang.Long.max
 import javax.inject.Inject
 import kotlin.math.min
 
@@ -23,7 +24,7 @@ class GroupGrindTournamentUseCase @Inject constructor() {
           buyIn = acc.buyIn + reduced.buyIn,
           profit = acc.profit + reduced.profit,
           isGrouped = true,
-          startTimeInMs = min(acc.startTimeInMs, reduced.startTimeInMs)
+          startTimeInMs = max(acc.startTimeInMs, reduced.startTimeInMs)
         )
       }
     }

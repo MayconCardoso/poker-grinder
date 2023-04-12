@@ -19,8 +19,7 @@ public class SummaryContainerFragment : Fragment(R.layout.fragment_summary_conta
 
   private fun setupViewPager() = with(binding) {
     containerPager.adapter = SummaryContainerAdapter(childFragmentManager, lifecycle)
-    containerPager.offscreenPageLimit = 2
-    containerPager.isUserInputEnabled = false
+    containerPager.offscreenPageLimit = 3
   }
 
   private fun setupTabLayout() {
