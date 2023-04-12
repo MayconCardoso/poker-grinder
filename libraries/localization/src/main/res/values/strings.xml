@@ -29,6 +29,8 @@
     <string name="no_transaction">No transaction found</string>
     <string name="no_practice">Start practicing and improve your game</string>
     <string name="something_went_wrong">Something went wrong.</string>
+    <string name="that_is_correct">That is correct</string>
+    <string name="that_is_not_correct">Wrong move</string>
     <string name="no_sessions">No sessions found</string>
     <string name="no_ranges">No ranges found</string>
     <string name="sessions">Sessions</string>
@@ -46,11 +48,14 @@
     <string name="deposit">Deposit</string>
     <string name="withdraw">Withdraw</string>
     <string name="practice">Practice</string>
+    <string name="fold">Fold</string>
+    <string name="next_question">Next question</string>
     <string name="title">Title</string>
     <string name="new_profit_value">New profit value</string>
     <string name="save">Save</string>
     <string name="next">Next</string>
     <string name="position">Position</string>
+    <string name="effective_stack">Effective Stack</string>
     <string name="stack">Stack</string>
     <string name="action">Action</string>
     <string name="new_tournament">New tournament</string>
