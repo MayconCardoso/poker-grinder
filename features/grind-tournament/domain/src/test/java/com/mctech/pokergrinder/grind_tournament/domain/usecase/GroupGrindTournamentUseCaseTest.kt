@@ -69,7 +69,7 @@ class GroupGrindTournamentUseCaseTest {
         title = "Tournament 01",
         buyIn = 33.00,
         profit = 55.00,
-        startTimeInMs = 1,
+        startTimeInMs = 3,
         isGrouped = true,
       ),
       newTournament(
@@ -79,7 +79,7 @@ class GroupGrindTournamentUseCaseTest {
         title = "Tournament 02",
         buyIn = 218.00,
         profit = 50.00,
-        startTimeInMs = 1,
+        startTimeInMs = 2,
         isGrouped = true,
       ),
       newTournament(
