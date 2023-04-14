@@ -16,7 +16,7 @@ class SaveRangePracticeAnswerUseCase @Inject constructor(
   private val repository: RangesPracticeRepository,
 ) {
 
-  operator fun invoke(
+  suspend operator fun invoke(
     question: RangePracticeQuestion,
     takenAction: RangeAction,
     isAnswerCorrect: Boolean,

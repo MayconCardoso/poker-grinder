@@ -25,6 +25,7 @@ dependencies {
     implementation project(path: ':features:tournaments:data')
     implementation project(path: ':features:summary:data')
     implementation project(path: ':features:settings:data')
+    implementation project(path: ':features:ranges-practice:data')
 
     // Database
     implementation libraries.androidRoomCompiler

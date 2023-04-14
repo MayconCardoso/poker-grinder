@@ -22,5 +22,5 @@ interface RangesPracticeRepository {
   /**
    * Used to observe all ranges practice.
    */
-  fun savePracticeAnswer(answer: RangePracticeResult)
+  suspend fun savePracticeAnswer(answer: RangePracticeResult)
 }

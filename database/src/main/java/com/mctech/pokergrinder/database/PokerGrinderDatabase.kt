@@ -11,6 +11,8 @@ import com.mctech.pokergrinder.grind_gameplay.data.database.GrindGameplayDao
 import com.mctech.pokergrinder.grind_gameplay.data.database.SessionTournamentFlipRoomEntity
 import com.mctech.pokergrinder.grind_tournament.data.database.GrindTournamentDao
 import com.mctech.pokergrinder.grind_tournament.data.database.SessionTournamentRoomEntity
+import com.mctech.pokergrinder.ranges_practice.data.database.RangePracticeDao
+import com.mctech.pokergrinder.ranges_practice.data.database.RangePracticeRoomEntity
 import com.mctech.pokergrinder.settings.data.database.SettingsDao
 import com.mctech.pokergrinder.settings.data.database.SettingsRoomEntity
 import com.mctech.pokergrinder.summary.data.database.SummaryDao
@@ -18,7 +20,7 @@ import com.mctech.pokergrinder.tournament.data.database.TournamentDao
 import com.mctech.pokergrinder.tournament.data.database.TournamentRoomEntity
 
 @Database(
-  version = 5,
+  version = 7,
   entities = [
     // Settings
     SettingsRoomEntity::class,
@@ -33,6 +35,9 @@ import com.mctech.pokergrinder.tournament.data.database.TournamentRoomEntity
 
     // Bankroll
     BankrollTransactionRoomEntity::class,
+
+    // Bankroll
+    RangePracticeRoomEntity::class,
   ],
   views = [
     SessionDetailRoomEntity::class,
@@ -45,5 +50,6 @@ abstract class PokerGrinderDatabase : RoomDatabase() {
   abstract fun summaryDao(): SummaryDao
   abstract fun settingsDao(): SettingsDao
   abstract fun tournamentDao(): TournamentDao
+  abstract fun rangePracticeDao(): RangePracticeDao
   abstract fun bankrollTransactionDao(): BankrollTransactionDao
 }
