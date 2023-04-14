@@ -23,7 +23,7 @@ internal fun HandContextUi(state: RangePracticeState) {
     style = typoProvider().h2,
   )
   Text(
-    text = state.question.position.name,
+    text = state.question.heroPosition.name,
     textAlign = TextAlign.Center,
     style = typoProvider().h2.copy(
       fontWeight = FontWeight.Bold,

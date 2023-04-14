@@ -21,20 +21,20 @@ internal fun BottomButtonsActions(
   interact: (RangePracticeInteraction) -> Unit = {}
 ) {
   // Creates the row for drawing both buttons.
-  Row(
+  Column(
     modifier = modifier.fillMaxWidth()
   ) {
-    // Creates deposit button
-    BottomButton(text = stringResource(id = R.string.fold)) {
-      interact(RangePracticeInteraction.OnFoldClicked)
+    // Creates action button
+    BottomButton(text = action.name) {
+      interact(RangePracticeInteraction.OnActionClicked)
     }
 
     // Creates space between buttons
     Spacer(modifier = Modifier.width(12.dp))
 
-    // Creates withdraw button
-    BottomButton(text = action.name) {
-      interact(RangePracticeInteraction.OnActionClicked)
+    // Creates fold button
+    BottomButton(text = stringResource(id = R.string.fold)) {
+      interact(RangePracticeInteraction.OnFoldClicked)
     }
   }
 }
@@ -58,11 +58,11 @@ internal fun BottomNextQuestionButton(
 }
 
 @Composable
-internal fun RowScope.BottomButton(
+internal fun BottomButton(
   text: String,
   onClick: () -> Unit,
 ) {
-  Button(onClick = onClick, modifier = Modifier.weight(0.5F)) {
+  Button(onClick = onClick, modifier = Modifier.fillMaxWidth()) {
     Text(text = text.uppercase(), style = typoProvider().button)
   }
 }

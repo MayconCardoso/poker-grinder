@@ -14,4 +14,5 @@ enum class RangeAction: Serializable {
   CALL4BET,
   SHOVE,
   CALL_SHOVE,
+  FOLD,
 }

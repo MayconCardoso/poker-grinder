@@ -29,6 +29,6 @@ internal class RangeContainerAdapter(
 
   fun getTitleByPosition(position: Int) = range?.handPosition
     ?.getOrNull(position)
-    ?.position?.name.orEmpty()
+    ?.heroPosition?.name.orEmpty()
 
 }

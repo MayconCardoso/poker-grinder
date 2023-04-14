@@ -9,5 +9,6 @@ import com.mctech.pokergrinder.ranges.domain.entities.RangePlayerPosition
 data class RangePracticeFilter(
   val stack: Int? = null,
   val action: RangeAction? = null,
-  val position: RangePlayerPosition? = null,
+  val heroPosition: RangePlayerPosition? = null,
+  val villainPosition: RangePlayerPosition? = null,
 )

@@ -30,7 +30,9 @@ internal fun QuestionUi(
       horizontalAlignment = Alignment.CenterHorizontally,
     ) {
       // Draw header
-      HeaderUi()
+      HeaderUi(
+        countOfAppliedFilter = state.countAppliedFilter,
+      )
 
       // Top Spacer
       Spacer(modifier = Modifier.height(24.dp))
@@ -47,6 +49,9 @@ internal fun QuestionUi(
 
       // Draw cards.
       CardViewer(cards = state.question.cards)
+
+      // See range button
+      SeeRangeButton()
 
       // Draw info message
       AnimatedVisibility(state.infoMessage != null) {

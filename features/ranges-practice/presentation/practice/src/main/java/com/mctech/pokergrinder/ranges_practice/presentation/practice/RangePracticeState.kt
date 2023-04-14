@@ -8,6 +8,7 @@ import com.mctech.pokergrinder.ranges_practice.domain.entities.RangePracticeQues
 data class RangePracticeState(
   val question: RangePracticeQuestion,
   val infoMessage: Int?,
+  val countAppliedFilter: Int,
   val isShowingNextQuestion: Boolean,
   val isShowingActionButtons: Boolean,
   val isShowingRangeButtonVisible: Boolean,

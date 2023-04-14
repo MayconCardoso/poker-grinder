@@ -57,7 +57,7 @@ internal fun TrainingAnswerItemRow(item: RangePracticeResult) {
     .fillMaxWidth()
     .height(70.dp)
     .semantics {
-      contentDescription = "Item${item.cards}-${item.position.name}"
+      contentDescription = "Item${item.cards}-${item.heroPosition.name}"
     }
 
   // Creates the card.
@@ -69,8 +69,13 @@ internal fun TrainingAnswerItemRow(item: RangePracticeResult) {
       // Draws action.
       ColumnInfo(title = stringResource(id = R.string.action), data = item.action)
 
-      // Draws position.
-      ColumnInfo(title = stringResource(id = R.string.position), data = item.position.name)
+      // Draws hero position.
+      ColumnInfo(title = stringResource(id = R.string.hero), data = item.heroPosition.name)
+
+      // Draws villain position.
+      if(item.villainPosition != null) {
+        ColumnInfo(title = stringResource(id = R.string.villain), data = item.villainPosition?.name.orEmpty())
+      }
 
       // Draws stack.
       ColumnInfo(title = stringResource(id = R.string.stack), data = "${item.effectiveStack}BB")

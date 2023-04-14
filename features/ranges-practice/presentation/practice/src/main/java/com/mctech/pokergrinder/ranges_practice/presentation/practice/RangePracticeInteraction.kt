@@ -18,6 +18,16 @@ sealed class RangePracticeInteraction: UserInteraction {
   object OnFoldClicked : RangePracticeInteraction()
 
   /**
+   * Indicates user has clicked to see the range.
+   */
+  object SeeRangeButtonClicked : RangePracticeInteraction()
+
+  /**
+   * Indicates user has clicked to see the filters.
+   */
+  object OnFilterClicked : RangePracticeInteraction()
+
+  /**
    * Indicates user has clicked the action
    */
   object OnActionClicked : RangePracticeInteraction()

@@ -81,4 +81,5 @@
     <string name="select_villain_cards">Select villain cards</string>
     <string name="select_board_cards">Select board cards</string>
     <string name="select_the_winner">Select the winner</string>
+    <string name="see_range">See range</string>
 </resources>
