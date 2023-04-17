@@ -11,6 +11,7 @@ import com.mctech.pokergrinder.ranges.domain.entities.Range
 import com.mctech.pokergrinder.ranges.domain.entities.RangeAction
 import com.mctech.pokergrinder.ranges.domain.entities.RangePlayerPosition
 import com.mctech.pokergrinder.ranges.domain.usecases.ObserveAllRangesUseCase
+import com.mctech.pokergrinder.ranges_practice.domain.RangePracticeAnalytics
 import com.mctech.pokergrinder.ranges_practice.domain.entities.RangePracticeFilter
 import com.mctech.pokergrinder.ranges_practice.domain.entities.RangePracticeQuestion
 import com.mctech.pokergrinder.ranges_practice.domain.usecases.ObserveRangePracticeFilterUseCase
@@ -26,6 +27,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class RangePracticeViewModel @Inject constructor(
+  private val analytics: RangePracticeAnalytics,
   private val dispatchers: CoroutineDispatchers,
   private val observeAllRangesUseCase: ObserveAllRangesUseCase,
   private val saveRangePracticeAnswerUseCase: SaveRangePracticeAnswerUseCase,
@@ -58,11 +60,18 @@ internal class RangePracticeViewModel @Inject constructor(
 
   @OnInteraction(RangePracticeInteraction.OnFilterClicked::class)
   private suspend fun onFilterClicked() {
+    // Analytics
+    analytics.onFilterClicked()
+
+    // Open screen.
     sendCommand(RangePracticeCommand.OpenFilterScreen)
   }
 
   @OnInteraction(RangePracticeInteraction.SeeRangeButtonClicked::class)
   private suspend fun onSeeRangeClicked() = withContext(dispatchers.default) {
+    // Analytics
+    analytics.onSeeRangeClicked()
+
     // Gets the current state
     val question = currentRenderedState?.question ?: return@withContext
 
@@ -130,6 +139,9 @@ internal class RangePracticeViewModel @Inject constructor(
       villainPosition = villainPositionTask.await(),
     )
 
+    // Analytics
+    analytics.onQuestionGenerated()
+
     // Creates state
     currentRenderedState = RangePracticeState(
       question = question,
@@ -171,6 +183,9 @@ internal class RangePracticeViewModel @Inject constructor(
 
     // Gets the taken action
     val takenAction = if (shouldHaveAction) question.action else RangeAction.FOLD
+
+    // Analytics
+    analytics.onActionPerformed(takenAction)
 
     // Creates persistence entity
     saveRangePracticeAnswerUseCase(

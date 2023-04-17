@@ -3,6 +3,7 @@ apply from: "$rootDir/buildSrc/module/base-kotlin.gradle"
 dependencies {
     // Internal Modules.
     implementation project(path: ':features:ranges:domain')
+    implementation project(path: ':libraries:analytics-core')
 
     // Testing
     testImplementation project(path: ':features:ranges:testing')

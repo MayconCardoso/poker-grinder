@@ -3,6 +3,8 @@ package com.mctech.pokergrinder.ranges_practice.presentation.list
 import androidx.lifecycle.viewModelScope
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.ComponentState
+import com.mctech.pokergrinder.architecture.OnInteraction
+import com.mctech.pokergrinder.ranges_practice.domain.RangePracticeAnalytics
 import com.mctech.pokergrinder.ranges_practice.domain.entities.RangePracticeResult
 import com.mctech.pokergrinder.ranges_practice.domain.usecases.ObserveRangePracticeResultUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,6 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class RangePracticeListViewModel @Inject constructor(
+  private val analytics: RangePracticeAnalytics,
   private val observeRangePracticeResultUseCase: ObserveRangePracticeResultUseCase,
 ) : BaseViewModel() {
 
@@ -35,6 +38,15 @@ internal class RangePracticeListViewModel @Inject constructor(
         _state.value = ComponentState.Success(transactions)
       }
       .launchIn(viewModelScope)
+  }
+
+  @OnInteraction(RangePracticeListInteraction.OnStartPracticing::class)
+  private suspend fun onStartPracticingClicked(){
+    // Send analytics.
+    analytics.onStartPracticeClicked()
+
+    // Navigate to the right place.
+    sendCommand(RangePracticeListCommand.GoToPracticing)
   }
 
 }

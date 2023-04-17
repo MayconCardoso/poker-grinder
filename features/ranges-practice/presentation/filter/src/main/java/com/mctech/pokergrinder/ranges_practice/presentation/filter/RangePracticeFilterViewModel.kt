@@ -7,6 +7,7 @@ import com.mctech.pokergrinder.architecture.OnInteraction
 import com.mctech.pokergrinder.ranges.domain.entities.Range
 import com.mctech.pokergrinder.ranges.domain.entities.RangePlayerPosition
 import com.mctech.pokergrinder.ranges.domain.usecases.ObserveAllRangesUseCase
+import com.mctech.pokergrinder.ranges_practice.domain.RangePracticeAnalytics
 import com.mctech.pokergrinder.ranges_practice.domain.entities.RangePracticeFilter
 import com.mctech.pokergrinder.ranges_practice.domain.usecases.ObserveRangePracticeFilterUseCase
 import com.mctech.pokergrinder.ranges_practice.domain.usecases.SaveRangePracticeFilterUseCase
@@ -24,6 +25,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class RangePracticeFilterViewModel @Inject constructor(
+  private val analytics: RangePracticeAnalytics,
   private val dispatchers: CoroutineDispatchers,
   private val observeAllRangesUseCase: ObserveAllRangesUseCase,
   private val saveRangePracticeFilterUseCase: SaveRangePracticeFilterUseCase,
@@ -135,6 +137,9 @@ internal class RangePracticeFilterViewModel @Inject constructor(
       stack = interaction.option.name?.toInt()
     )
 
+    // Analytics
+    analytics.onFilterChanged()
+
     // Save filter
     saveRangePracticeFilterUseCase(filter)
   }
@@ -147,6 +152,9 @@ internal class RangePracticeFilterViewModel @Inject constructor(
     val filter = currentLearningFilter.copy(
       heroPosition = interaction.option.name?.let { RangePlayerPosition.valueOf(it) }
     )
+
+    // Analytics
+    analytics.onFilterChanged()
 
     // Save filter
     saveRangePracticeFilterUseCase(filter)

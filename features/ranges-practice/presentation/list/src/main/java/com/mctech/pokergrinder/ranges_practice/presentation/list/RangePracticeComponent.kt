@@ -10,25 +10,20 @@ import com.mctech.pokergrinder.localization.R
 import com.mctech.pokergrinder.ranges_practice.domain.entities.RangePracticeResult
 import com.mctech.pokergrinder.ranges_practice.presentation.list.composables.NoResultsUi
 import com.mctech.pokergrinder.ranges_practice.presentation.list.composables.TrainingAnswerList
-import com.mctech.pokergrinder.ranges_practice.presentation.navigation.RangePracticeNavigation
 
 @Composable
-fun RangePracticeComponent(
-  navigation: RangePracticeNavigation,
+internal fun RangePracticeComponent(
+  viewModel: RangePracticeListViewModel = hiltViewModel<RangePracticeListViewModel>()
 ) {
   // Gets view model
-  val viewModel = hiltViewModel<RangePracticeListViewModel>().apply {
-    initialize()
-  }
+  viewModel.initialize()
 
   // Gets state
   val state = viewModel.state.collectAsState().value
 
   // Creates event consumer.
   val eventConsumer: (RangePracticeListInteraction) -> Unit = { userInteraction ->
-    when (userInteraction) {
-      is RangePracticeListInteraction.OnStartPracticing -> navigation.goToRangePracticeTrainer()
-    }
+    viewModel.interact(userInteraction)
   }
 
   // Resolves the balance text according to the state.
