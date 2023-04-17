@@ -14,6 +14,8 @@ Poker grinder was built with the goal of helping players to manage their game ba
 
 <img src=".art/sessions.png" alt="with-internet" width="200px"/> <img src=".art/session_details.png" alt="with-internet" width="200px"/> <img src=".art/flips.png" alt="with-internet" width="200px"/>
 
+<img src=".art/range_practice.jpg" alt="with-internet" width="200px"/> <img src=".art/range_practice_question.jpg" alt="with-internet" width="200px"/> <img src=".art/range_practice_range.jpg" alt="with-internet" width="200px"/>
+
 
 ### Bankroll Management
 * Statement
