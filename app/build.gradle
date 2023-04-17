@@ -2,7 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
 apply plugin: 'dagger.hilt.android.plugin'
-apply plugin: "com.google.gms.google-services"
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
@@ -111,4 +112,9 @@ dependencies {
     // dagger
     implementation libraries.googleHiltAndroid
     kapt libraries.googleHiltCompiler
+
+    // Firebase
+    implementation platform(libraries.firebaseBom)
+    implementation libraries.firebaseCrash
+    implementation libraries.firebaseAnalytics
 }
