@@ -5,6 +5,7 @@ import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.OnInteraction
 import com.mctech.pokergrinder.bankroll.domain.error.BankrollException
 import com.mctech.pokergrinder.grind.domain.entities.Session
+import com.mctech.pokergrinder.grind_tournament.domain.GrindTournamentAnalytics
 import com.mctech.pokergrinder.grind_tournament.domain.entities.SessionTournament
 import com.mctech.pokergrinder.grind_tournament.domain.usecase.RegisterTournamentUseCase
 import com.mctech.pokergrinder.grind_tournament.domain.usecase.UpdatesTournamentUseCase
@@ -20,6 +21,9 @@ import kotlin.time.Duration.Companion.hours
 
 @HiltViewModel
 internal class RegisterTournamentViewModel @Inject constructor(
+  // Analytics
+  private val analytics: GrindTournamentAnalytics,
+
   // Session tournaments.
   private val updatesTournamentUseCase: UpdatesTournamentUseCase,
   private val registerTournamentUseCase: RegisterTournamentUseCase,
@@ -92,6 +96,7 @@ internal class RegisterTournamentViewModel @Inject constructor(
 
     // Tournament does not exist.
     else {
+      analytics.onTourneyRegistered(title = interaction.title, buyIn = interaction.buyIn)
       registerTournamentUseCase(
         session = session,
         title = interaction.title,

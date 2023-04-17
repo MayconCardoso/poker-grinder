@@ -6,6 +6,7 @@ import com.mctech.architecture_testing.extensions.assertFlow
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.bankroll.domain.error.BankrollException
 import com.mctech.pokergrinder.grind.testing.newSession
+import com.mctech.pokergrinder.grind_tournament.domain.GrindTournamentAnalytics
 import com.mctech.pokergrinder.grind_tournament.domain.entities.SessionTournament
 import com.mctech.pokergrinder.grind_tournament.domain.usecase.GroupGrindTournamentUseCase
 import com.mctech.pokergrinder.grind_tournament.domain.usecase.ObserveGrindTournamentUseCase
@@ -14,28 +15,24 @@ import com.mctech.pokergrinder.grind_tournament.testing.newTournament
 import com.mctech.pokergrinder.settings.domain.entities.Settings
 import com.mctech.pokergrinder.settings.domain.entities.SettingsAvailable
 import com.mctech.pokergrinder.settings.domain.usecase.ObserveSettingsUseCase
-import io.mockk.coEvery
-import io.mockk.coVerifyOrder
-import io.mockk.confirmVerified
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.verifyOrder
+import io.mockk.*
 import kotlinx.coroutines.flow.flow
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
 internal class GrindDetailsViewModelTest : BaseViewModelTest() {
+  private val analytics = mockk<GrindTournamentAnalytics>(relaxed = true)
   private val observeSettingsUseCase = mockk<ObserveSettingsUseCase>(relaxed = true)
   private val registerTournamentUseCase = mockk<RegisterTournamentUseCase>(relaxed = true)
   private val groupGrindTournamentUseCase = mockk<GroupGrindTournamentUseCase>(relaxed = true)
   private val observeGrindTournamentUseCase = mockk<ObserveGrindTournamentUseCase>(relaxed = true)
-  private val target =
-    com.mctech.pokergrinder.grind_tournament.presentation.list.GrindDetailsViewModel(
-      observeSettingsUseCase = observeSettingsUseCase,
-      registerTournamentUseCase = registerTournamentUseCase,
-      groupGrindTournamentUseCase = groupGrindTournamentUseCase,
-      observeGrindTournamentUseCase = observeGrindTournamentUseCase,
-    )
+  private val target = GrindDetailsViewModel(
+    analytics = analytics,
+    observeSettingsUseCase = observeSettingsUseCase,
+    registerTournamentUseCase = registerTournamentUseCase,
+    groupGrindTournamentUseCase = groupGrindTournamentUseCase,
+    observeGrindTournamentUseCase = observeGrindTournamentUseCase,
+  )
 
   @Test
   fun `should initialize component`() = observerScenario {
@@ -61,7 +58,7 @@ internal class GrindDetailsViewModelTest : BaseViewModelTest() {
     val session = newSession(id = "1")
 
     whenAction {
-      target.interact(com.mctech.pokergrinder.grind_tournament.presentation.list.GrindDetailsInteraction.ScreenFirstOpen(session))
+      target.interact(GrindDetailsInteraction.ScreenFirstOpen(session))
     }
 
     thenAssertLiveDataFlowIsEmpty(target.commandObservable)
@@ -103,7 +100,7 @@ internal class GrindDetailsViewModelTest : BaseViewModelTest() {
     }
 
     whenAction {
-      target.interact(com.mctech.pokergrinder.grind_tournament.presentation.list.GrindDetailsInteraction.ScreenFirstOpen(session))
+      target.interact(GrindDetailsInteraction.ScreenFirstOpen(session))
     }
 
     thenAssertLiveDataFlowIsEmpty(target.commandObservable)
@@ -144,7 +141,7 @@ internal class GrindDetailsViewModelTest : BaseViewModelTest() {
     }
 
     whenAction {
-      target.interact(com.mctech.pokergrinder.grind_tournament.presentation.list.GrindDetailsInteraction.ScreenFirstOpen(session))
+      target.interact(GrindDetailsInteraction.ScreenFirstOpen(session))
     }
 
     thenAssertLiveDataFlowIsEmpty(target.commandObservable)
@@ -176,12 +173,12 @@ internal class GrindDetailsViewModelTest : BaseViewModelTest() {
     }
 
     whenAction {
-      target.interact(com.mctech.pokergrinder.grind_tournament.presentation.list.GrindDetailsInteraction.RegisterTournamentClicked)
+      target.interact(GrindDetailsInteraction.RegisterTournamentClicked)
     }
 
     thenAssertLiveDataContainsExactly(
       target.commandObservable,
-      com.mctech.pokergrinder.grind_tournament.presentation.list.GrindDetailsCommand.GoToTournamentEditor(
+      GrindDetailsCommand.GoToTournamentEditor(
         session = session,
         sessionTournament = null,
       )
@@ -203,12 +200,12 @@ internal class GrindDetailsViewModelTest : BaseViewModelTest() {
     }
 
     whenAction {
-      target.interact(com.mctech.pokergrinder.grind_tournament.presentation.list.GrindDetailsInteraction.OnTournamentEvent(tournamentEvent))
+      target.interact(GrindDetailsInteraction.OnTournamentEvent(tournamentEvent))
     }
 
     thenAssertLiveDataContainsExactly(
       target.commandObservable,
-      com.mctech.pokergrinder.grind_tournament.presentation.list.GrindDetailsCommand.GoToTournamentEditor(
+      GrindDetailsCommand.GoToTournamentEditor(
         session = session,
         sessionTournament = tournament,
       )
@@ -236,12 +233,12 @@ internal class GrindDetailsViewModelTest : BaseViewModelTest() {
     }
 
     whenAction {
-      target.interact(com.mctech.pokergrinder.grind_tournament.presentation.list.GrindDetailsInteraction.OnTournamentEvent(tournamentEvent))
+      target.interact(GrindDetailsInteraction.OnTournamentEvent(tournamentEvent))
     }
 
     thenAssertLiveDataContainsExactly(
       target.commandObservable,
-      com.mctech.pokergrinder.grind_tournament.presentation.list.GrindDetailsCommand.ShowTournamentSelection(
+      GrindDetailsCommand.ShowTournamentSelection(
         options = listOf(
           newTournament(id = "1", title = "Sit and Go $10", buyIn = 10.0, profit = 0.0),
           newTournament(id = "2", title = "Sit and Go $10", buyIn = 10.0, profit = 28.50),
@@ -269,7 +266,7 @@ internal class GrindDetailsViewModelTest : BaseViewModelTest() {
     }
 
     whenAction {
-      target.interact(com.mctech.pokergrinder.grind_tournament.presentation.list.GrindDetailsInteraction.OnTournamentEvent(tournamentEvent))
+      target.interact(GrindDetailsInteraction.OnTournamentEvent(tournamentEvent))
     }
 
     thenAssertLiveDataFlowIsEmpty(target.commandObservable)
@@ -304,12 +301,12 @@ internal class GrindDetailsViewModelTest : BaseViewModelTest() {
     }
 
     whenAction {
-      target.interact(com.mctech.pokergrinder.grind_tournament.presentation.list.GrindDetailsInteraction.OnTournamentEvent(tournamentEvent))
+      target.interact(GrindDetailsInteraction.OnTournamentEvent(tournamentEvent))
     }
 
     thenAssertLiveDataContainsExactly(
       target.commandObservable,
-      com.mctech.pokergrinder.grind_tournament.presentation.list.GrindDetailsCommand.InsufficientBalanceError
+      GrindDetailsCommand.InsufficientBalanceError
     )
 
     thenAssert {

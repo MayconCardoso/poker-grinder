@@ -7,6 +7,7 @@ import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.architecture.OnInteraction
 import com.mctech.pokergrinder.bankroll.domain.error.BankrollException
 import com.mctech.pokergrinder.grind.domain.entities.Session
+import com.mctech.pokergrinder.grind_tournament.domain.GrindTournamentAnalytics
 import com.mctech.pokergrinder.grind_tournament.presentation.list.adapter.GrindDetailsConsumerEvent
 import com.mctech.pokergrinder.grind_tournament.domain.entities.SessionTournament
 import com.mctech.pokergrinder.grind_tournament.domain.usecase.GroupGrindTournamentUseCase
@@ -24,6 +25,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class GrindDetailsViewModel @Inject constructor(
+  private val analytics: GrindTournamentAnalytics,
   private val observeSettingsUseCase: ObserveSettingsUseCase,
   private val registerTournamentUseCase: RegisterTournamentUseCase,
   private val groupGrindTournamentUseCase: GroupGrindTournamentUseCase,
@@ -67,6 +69,7 @@ internal class GrindDetailsViewModel @Inject constructor(
 
   @OnInteraction(GrindDetailsInteraction.RegisterTournamentClicked::class)
   private suspend fun registerTournamentClicked() {
+    analytics.onNewTourneyClicked()
     openTournament(tournament = null)
   }
 
@@ -74,9 +77,11 @@ internal class GrindDetailsViewModel @Inject constructor(
   private suspend fun onTournamentEvent(interaction: GrindDetailsInteraction.OnTournamentEvent) {
     when (interaction.event) {
       is GrindDetailsConsumerEvent.TournamentClicked -> {
+        analytics.onTourneyClicked(interaction.event.tournament)
         openTournament(tournament = interaction.event.tournament)
       }
       is GrindDetailsConsumerEvent.DuplicateClicked -> {
+        analytics.onTourneyDuplicated(interaction.event.tournament)
         duplicateTournament(tournament = interaction.event.tournament)
       }
     }

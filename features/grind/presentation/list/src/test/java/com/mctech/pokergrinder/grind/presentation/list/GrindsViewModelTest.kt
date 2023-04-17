@@ -4,19 +4,19 @@ import com.mctech.architecture_testing.BaseViewModelTest
 import com.mctech.architecture_testing.extensions.TestObserverScenario.Companion.observerScenario
 import com.mctech.architecture_testing.extensions.assertFlow
 import com.mctech.pokergrinder.architecture.ComponentState
+import com.mctech.pokergrinder.grind.domain.GrindAnalytics
 import com.mctech.pokergrinder.grind.domain.usecase.ObserveAllGrindsUseCase
 import com.mctech.pokergrinder.grind.presentation.list.adapter.GrindAdapterConsumerEvent
 import com.mctech.pokergrinder.grind.testing.newSession
-import io.mockk.confirmVerified
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.verifyOrder
+import io.mockk.*
 import kotlinx.coroutines.flow.flow
 import org.junit.Test
 
 internal class GrindsViewModelTest : BaseViewModelTest() {
+  private val analytics = mockk<GrindAnalytics>(relaxed = true)
   private val observeAllGrindsUseCase = mockk<ObserveAllGrindsUseCase>(relaxed = true)
   private val target = GrindsViewModel(
+    analytics = analytics,
     observeAllGrindsUseCase = observeAllGrindsUseCase,
   )
 
@@ -43,12 +43,12 @@ internal class GrindsViewModelTest : BaseViewModelTest() {
 
     thenAssert {
       verifyOrder { observeAllGrindsUseCase() }
-      confirmVerified(observeAllGrindsUseCase)
+      confirmVerified(observeAllGrindsUseCase, analytics)
     }
   }
 
   @Test
-  fun `should load flips for the session`() = observerScenario {
+  fun `should session clicked`() = observerScenario {
     val clickedSession = newSession(id = "1")
 
     whenAction {
@@ -59,11 +59,14 @@ internal class GrindsViewModelTest : BaseViewModelTest() {
 
     thenAssertLiveDataContainsExactly(
       target.commandObservable,
-      GrindsCommand.NavigateToEditor(clickedSession),
+      GrindsCommand.NavigateToSessionDetails(clickedSession),
     )
 
     thenAssert {
-      confirmVerified(observeAllGrindsUseCase)
+      coVerifyOrder {
+        analytics.onSessionViewed(clickedSession)
+      }
+      confirmVerified(observeAllGrindsUseCase, analytics)
     }
   }
 }

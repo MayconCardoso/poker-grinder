@@ -4,32 +4,30 @@ import com.mctech.architecture_testing.BaseViewModelTest
 import com.mctech.architecture_testing.extensions.TestObserverScenario.Companion.observerScenario
 import com.mctech.pokergrinder.bankroll.domain.error.BankrollException
 import com.mctech.pokergrinder.grind.testing.newSession
+import com.mctech.pokergrinder.grind_tournament.domain.GrindTournamentAnalytics
 import com.mctech.pokergrinder.grind_tournament.domain.usecase.RegisterTournamentUseCase
 import com.mctech.pokergrinder.grind_tournament.domain.usecase.UpdatesTournamentUseCase
 import com.mctech.pokergrinder.grind_tournament.testing.newTournament
 import com.mctech.pokergrinder.tournament.domain.entities.Tournament
 import com.mctech.pokergrinder.tournament.domain.usecase.LoadTournamentUseCase
 import com.mctech.pokergrinder.tournament.domain.usecase.SavesTournamentUseCase
-import io.mockk.coEvery
-import io.mockk.coVerifyOrder
-import io.mockk.confirmVerified
-import io.mockk.mockk
-import io.mockk.slot
+import io.mockk.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
 internal class RegisterTournamentViewModelTest : BaseViewModelTest() {
+  private val analytics = mockk<GrindTournamentAnalytics>(relaxed = true)
   private val updatesTournamentUseCase = mockk<UpdatesTournamentUseCase>(relaxed = true)
   private val registerTournamentUseCase = mockk<RegisterTournamentUseCase>(relaxed = true)
   private val loadTournamentUseCase = mockk<LoadTournamentUseCase>(relaxed = true)
   private val savesTournamentUseCase = mockk<SavesTournamentUseCase>(relaxed = true)
-  private val target =
-    RegisterTournamentViewModel(
-      updatesTournamentUseCase = updatesTournamentUseCase,
-      registerTournamentUseCase = registerTournamentUseCase,
-      loadTournamentUseCase = loadTournamentUseCase,
-      savesTournamentUseCase = savesTournamentUseCase,
-    )
+  private val target = RegisterTournamentViewModel(
+    analytics = analytics,
+    updatesTournamentUseCase = updatesTournamentUseCase,
+    registerTournamentUseCase = registerTournamentUseCase,
+    loadTournamentUseCase = loadTournamentUseCase,
+    savesTournamentUseCase = savesTournamentUseCase,
+  )
 
   @Test
   fun `should initialize component`() = observerScenario {
@@ -56,7 +54,10 @@ internal class RegisterTournamentViewModelTest : BaseViewModelTest() {
 
     whenAction {
       target.interact(
-        com.mctech.pokergrinder.grind_tournament.presentation.creation.RegisterTournamentInteraction.ScreenFirstOpen(session = session, tournament = tournament)
+        RegisterTournamentInteraction.ScreenFirstOpen(
+          session = session,
+          tournament = tournament
+        )
       )
     }
 
