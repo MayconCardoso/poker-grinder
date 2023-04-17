@@ -1,0 +1,7 @@
+apply from: "$rootDir/buildSrc/module/feature/data.gradle"
+
+dependencies {
+    // Internal Modules.
+    implementation project(path: ':features:ranges:domain')
+    implementation project(path: ':features:ranges-practice:domain')
+}

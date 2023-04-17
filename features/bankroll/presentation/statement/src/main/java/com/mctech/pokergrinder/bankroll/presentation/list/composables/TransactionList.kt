@@ -100,7 +100,7 @@ internal fun TransactionItemPreview() {
           dateInMs = 100000000000,
         ),
         BankrollTransaction(
-          id = "1",
+          id = "2",
           type = BankrollTransactionType.DEPOSIT,
           description = "This is a mock transaction",
           amount = -100.0,

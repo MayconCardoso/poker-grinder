@@ -30,7 +30,10 @@ class HomeActivity : AppCompatActivity() {
       R.id.statement_register,
       R.id.statement_withdraw,
       R.id.tournament_register,
+      R.id.range_viewer_dialog,
       R.id.ranges_viewer_fragment,
+      R.id.range_practice_training_fragment,
+      R.id.range_practice_filter_fragment,
       R.id.session_details_tournament,
       R.id.session_details_tournament_flip,
     )

@@ -6,6 +6,7 @@ import java.io.Serializable
  * Defines player position
  */
 data class RangePosition(
-  val position: RangePlayerPosition,
+  val heroPosition: RangePlayerPosition,
+  val villainPosition: RangePlayerPosition?,
   val hands: List<RangeHandInput>,
 ): Serializable

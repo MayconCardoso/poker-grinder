@@ -1,0 +1,443 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 7,
+    "identityHash": "aff2b49b1a72262ca275c9a9731c2abc",
+    "entities": [
+      {
+        "tableName": "settings",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`settingKey` TEXT NOT NULL, `settingValue` TEXT NOT NULL, `settingTitle` TEXT NOT NULL, PRIMARY KEY(`settingKey`))",
+        "fields": [
+          {
+            "fieldPath": "settingKey",
+            "columnName": "settingKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "settingValue",
+            "columnName": "settingValue",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "settingTitle",
+            "columnName": "settingTitle",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "settingKey"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "grind_session",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `title` TEXT NOT NULL, `isOpened` INTEGER NOT NULL, `startTimeInMs` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isOpened",
+            "columnName": "isOpened",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startTimeInMs",
+            "columnName": "startTimeInMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "grind_session_is_opened_index",
+            "unique": false,
+            "columnNames": [
+              "isOpened"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `grind_session_is_opened_index` ON `${TABLE_NAME}` (`isOpened`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "grind_session_tournament",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `idSession` TEXT NOT NULL, `idTransactionProfit` TEXT, `idTransactionBuyIn` TEXT NOT NULL, `title` TEXT NOT NULL, `buyIn` REAL NOT NULL, `profit` REAL NOT NULL, `startTimeInMs` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idSession",
+            "columnName": "idSession",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idTransactionProfit",
+            "columnName": "idTransactionProfit",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "idTransactionBuyIn",
+            "columnName": "idTransactionBuyIn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "buyIn",
+            "columnName": "buyIn",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "profit",
+            "columnName": "profit",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startTimeInMs",
+            "columnName": "startTimeInMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "grind_session_tournament_session_index",
+            "unique": false,
+            "columnNames": [
+              "idSession"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `grind_session_tournament_session_index` ON `${TABLE_NAME}` (`idSession`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "grind_session_tournament_flip",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `idSession` TEXT NOT NULL, `tournament` TEXT NOT NULL, `heroHand` TEXT NOT NULL, `villainHand` TEXT NOT NULL, `board` TEXT NOT NULL, `won` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idSession",
+            "columnName": "idSession",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tournament",
+            "columnName": "tournament",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "heroHand",
+            "columnName": "heroHand",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "villainHand",
+            "columnName": "villainHand",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "board",
+            "columnName": "board",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "won",
+            "columnName": "won",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "grind_session_tournament_flip_session_index",
+            "unique": false,
+            "columnNames": [
+              "idSession"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `grind_session_tournament_flip_session_index` ON `${TABLE_NAME}` (`idSession`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "tournament",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `type` TEXT NOT NULL, `buy_in` REAL NOT NULL, `title` TEXT NOT NULL, `count_rebuy` INTEGER NOT NULL, `guaranteed` INTEGER NOT NULL, `is_bounty` INTEGER NOT NULL, `start_time` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "buyIn",
+            "columnName": "buy_in",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "countReBuy",
+            "columnName": "count_rebuy",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "guaranteed",
+            "columnName": "guaranteed",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isBounty",
+            "columnName": "is_bounty",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startTimeInMs",
+            "columnName": "start_time",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "bankroll_transaction",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `type` TEXT NOT NULL, `amount` REAL NOT NULL, `description` TEXT NOT NULL, `dateInMs` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "amount",
+            "columnName": "amount",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateInMs",
+            "columnName": "dateInMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "bankroll_transaction_type_index",
+            "unique": false,
+            "columnNames": [
+              "type"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `bankroll_transaction_type_index` ON `${TABLE_NAME}` (`type`)"
+          },
+          {
+            "name": "bankroll_transaction_date_index",
+            "unique": false,
+            "columnNames": [
+              "dateInMs"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `bankroll_transaction_date_index` ON `${TABLE_NAME}` (`dateInMs`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "range_practice",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `cards` TEXT NOT NULL, `action` TEXT NOT NULL, `heroPosition` TEXT NOT NULL, `villainPosition` TEXT, `effectiveStack` INTEGER NOT NULL, `isAnswerCorrect` INTEGER NOT NULL, `dateInMs` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cards",
+            "columnName": "cards",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "action",
+            "columnName": "action",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "heroPosition",
+            "columnName": "heroPosition",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "villainPosition",
+            "columnName": "villainPosition",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "effectiveStack",
+            "columnName": "effectiveStack",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isAnswerCorrect",
+            "columnName": "isAnswerCorrect",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateInMs",
+            "columnName": "dateInMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "range_practice_hero_position_index",
+            "unique": false,
+            "columnNames": [
+              "heroPosition"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `range_practice_hero_position_index` ON `${TABLE_NAME}` (`heroPosition`)"
+          },
+          {
+            "name": "range_practice_stack_index",
+            "unique": false,
+            "columnNames": [
+              "effectiveStack"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `range_practice_stack_index` ON `${TABLE_NAME}` (`effectiveStack`)"
+          }
+        ],
+        "foreignKeys": []
+      }
+    ],
+    "views": [
+      {
+        "viewName": "grind_session_detail",
+        "createSql": "CREATE VIEW `${VIEW_NAME}` AS SELECT gs.id, gs.title, gs.isOpened, COUNT(1) tournaments, COALESCE(SUM(buyIn), 0) buyIn, COALESCE(SUM(profit), 0) cash, COALESCE(AVG(buyIn), 0) avgBuyIn, gs.startTimeInMs FROM grind_session gs LEFT JOIN grind_session_tournament gst ON gs.id = gst.idSession GROUP BY gs.id"
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'aff2b49b1a72262ca275c9a9731c2abc')"
+    ]
+  }
+}

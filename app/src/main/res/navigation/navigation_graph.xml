@@ -59,12 +59,38 @@
     <fragment
         android:id="@+id/tournament_fragment"
         android:name="com.mctech.pokergrinder.tournament.presentation.list.TournamentsFragment"
-        android:label="@string/tournament"
-        tools:layout="@layout/fragment_tournaments">
+        android:label="@string/tournament">
         <action
             android:id="@+id/action_tournament_fragment_to_tournament_register"
             app:destination="@id/tournament_register" />
     </fragment>
+
+
+    <fragment
+        android:id="@+id/range_practice_fragment"
+        android:name="com.mctech.pokergrinder.ranges_practice.presentation.list.RangePracticeListFragment"
+        android:label="@string/warm_up" >
+        <action
+            android:id="@+id/action_range_practice_fragment_to_range_practice_training_fragment"
+            app:destination="@id/range_practice_training_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/range_practice_training_fragment"
+        android:name="com.mctech.pokergrinder.ranges_practice.presentation.practice.RangePracticeFragment"
+        android:label="@string/warm_up" >
+        <action
+            android:id="@+id/action_range_practice_training_fragment_to_range_practice_filter_fragment"
+            app:destination="@id/range_practice_filter_fragment" />
+        <action
+            android:id="@+id/action_range_practice_training_fragment_to_rangeViewerDialog"
+            app:destination="@id/range_viewer_dialog" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/range_practice_filter_fragment"
+        android:name="com.mctech.pokergrinder.ranges_practice.presentation.filter.RangePracticeFilterFragment"
+        android:label="@string/warm_up" />
 
     <fragment
         android:id="@+id/ranges_fragment"
@@ -116,8 +142,7 @@
 
     <fragment
         android:id="@+id/session_register"
-        android:name="com.mctech.pokergrinder.grind.presentation.creation.NewGrindFragment"
-        tools:layout="@layout/fragment_new_grind" />
+        android:name="com.mctech.pokergrinder.grind.presentation.creation.NewGrindFragment" />
 
     <fragment
         android:id="@+id/session_details"
@@ -161,4 +186,14 @@
             app:argType="com.mctech.pokergrinder.grind.domain.entities.Session" />
 
     </fragment>
+    <dialog
+        android:id="@+id/range_viewer_dialog"
+        android:name="com.mctech.pokergrinder.ranges.presentation.viewer.RangeViewerDialog"
+        android:label="RangeViewerDialog"
+        tools:layout="@layout/fragment_range_viewer_dialog">
+
+        <argument
+            android:name="RANGE_POSITION_PARAM"
+            app:argType="com.mctech.pokergrinder.ranges.domain.entities.RangePosition" />
+    </dialog>
 </navigation>

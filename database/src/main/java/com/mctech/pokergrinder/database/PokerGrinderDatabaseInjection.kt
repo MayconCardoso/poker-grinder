@@ -6,6 +6,7 @@ import com.mctech.pokergrinder.bankroll.data.database.BankrollTransactionDao
 import com.mctech.pokergrinder.grind.data.database.GrindDao
 import com.mctech.pokergrinder.grind_gameplay.data.database.GrindGameplayDao
 import com.mctech.pokergrinder.grind_tournament.data.database.GrindTournamentDao
+import com.mctech.pokergrinder.ranges_practice.data.database.RangePracticeDao
 import com.mctech.pokergrinder.settings.data.database.SettingsDao
 import com.mctech.pokergrinder.summary.data.database.SummaryDao
 import com.mctech.pokergrinder.tournament.data.database.TournamentDao
@@ -56,6 +57,12 @@ class PokerGrinderDatabaseInjection {
   @Singleton
   fun providesGrindTournamentDao(db: PokerGrinderDatabase): GrindTournamentDao {
     return db.grindTournamentDao()
+  }
+
+  @Provides
+  @Singleton
+  fun providesRangePracticeDao(db: PokerGrinderDatabase): RangePracticeDao {
+    return db.rangePracticeDao()
   }
 
   @Provides

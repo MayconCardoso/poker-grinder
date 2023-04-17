@@ -4,6 +4,7 @@ import com.mctech.pokergrinder.PokerGrinderNavigator
 import com.mctech.pokergrinder.bankroll.presentation.navigation.BankrollNavigation
 import com.mctech.pokergrinder.grind.presentation.navigation.GrindNavigation
 import com.mctech.pokergrinder.ranges.presentation.navigation.RangeNavigation
+import com.mctech.pokergrinder.ranges_practice.presentation.navigation.RangePracticeNavigation
 import com.mctech.pokergrinder.summary.presentation.navigation.SummaryNavigation
 import com.mctech.pokergrinder.tournament.presentation.navigation.TournamentNavigation
 import dagger.Binds
@@ -36,6 +37,10 @@ abstract class NavigationModule {
   @Binds
   @Singleton
   abstract fun bindsTournamentNavigator(appNavigator: PokerGrinderNavigator): TournamentNavigation
+
+  @Binds
+  @Singleton
+  abstract fun bindsRangePracticeNavigation(appNavigator: PokerGrinderNavigator): RangePracticeNavigation
 
   @InstallIn(SingletonComponent::class)
   @Module
