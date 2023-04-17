@@ -3,10 +3,8 @@ package com.mctech.pokergrinder.bankroll.domain.usecases
 import com.mctech.pokergrinder.bankroll.domain.BankrollRepository
 import com.mctech.pokergrinder.bankroll.domain.entities.BankrollTransaction
 import com.mctech.pokergrinder.bankroll.domain.entities.BankrollTransactionType
-import com.mctech.pokergrinder.bankroll.domain.error.BankrollException
 import java.util.Calendar
 import javax.inject.Inject
-import kotlin.math.absoluteValue
 
 /**
  * Responsible for making a bankroll withdraw.
@@ -27,14 +25,6 @@ class WithdrawUseCase @Inject constructor(
     description: String,
     type: BankrollTransactionType,
   ): String {
-    // Gets current balance
-    val balance = repository.loadBalance()
-
-    // Checks if has balance to withdraw.
-    if (balance < amount) {
-      throw BankrollException.InsufficientBalance
-    }
-
     // Resolves balance to make sure it's negative
     val resolvedAmount = if(amount > 0) amount * -1 else amount
 

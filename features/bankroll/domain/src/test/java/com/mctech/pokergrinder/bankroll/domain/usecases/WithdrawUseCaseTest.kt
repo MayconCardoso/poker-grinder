@@ -2,11 +2,9 @@ package com.mctech.pokergrinder.bankroll.domain.usecases
 
 import com.mctech.common_test.CalendarTestRule
 import com.mctech.common_test.TestScenario.Companion.responseScenario
-import com.mctech.common_test.TestScenario.Companion.simpleScenario
 import com.mctech.pokergrinder.bankroll.domain.BankrollRepository
 import com.mctech.pokergrinder.bankroll.domain.entities.BankrollTransaction
 import com.mctech.pokergrinder.bankroll.domain.entities.BankrollTransactionType
-import com.mctech.pokergrinder.bankroll.domain.error.BankrollException
 import com.mctech.pokergrinder.bankroll.testing.newTransaction
 import io.mockk.coEvery
 import io.mockk.coVerifyOrder
@@ -46,23 +44,6 @@ class WithdrawUseCaseTest {
     description = "This is a profit",
     type = BankrollTransactionType.BUY_IN,
   )
-
-  @Test(expected = BankrollException.InsufficientBalance::class)
-  fun `should throw error when out of balance`() = simpleScenario {
-    givenScenario {
-      coEvery { repository.loadBalance() } returns 10.0
-    }
-
-    whenAction {
-      target(amount = 1000.0, description = "Withdraw", type = BankrollTransactionType.WITHDRAW)
-    }
-
-    thenAssert {
-      coVerifyOrder {
-        repository.loadBalance()
-      }
-    }
-  }
 
   private fun internalTestExecutor(
     id: String,

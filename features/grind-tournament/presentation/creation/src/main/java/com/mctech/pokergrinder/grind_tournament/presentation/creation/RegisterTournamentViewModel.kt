@@ -3,7 +3,6 @@ package com.mctech.pokergrinder.grind_tournament.presentation.creation
 import androidx.annotation.VisibleForTesting
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.OnInteraction
-import com.mctech.pokergrinder.bankroll.domain.error.BankrollException
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind_tournament.domain.GrindTournamentAnalytics
 import com.mctech.pokergrinder.grind_tournament.domain.entities.SessionTournament
@@ -58,20 +57,14 @@ internal class RegisterTournamentViewModel @Inject constructor(
   private suspend fun saveTournamentInteraction(
     interaction: RegisterTournamentInteraction.SaveTournament,
   ) {
-    try {
-      // Handles tournament registration.
-      handleSessionTournamentRegistration(interaction)
+    // Handles tournament registration.
+    handleSessionTournamentRegistration(interaction)
 
-      // Handles tournament creation.
-      handlesTournamentCreation(interaction.buyIn, interaction.title)
+    // Handles tournament creation.
+    handlesTournamentCreation(interaction.buyIn, interaction.title)
 
-      // Closes screen
-      sendCommand(RegisterTournamentCommand.CloseScreen)
-    } catch (exception: Exception) {
-      if (exception is BankrollException.InsufficientBalance) {
-        sendCommand(RegisterTournamentCommand.InsufficientBalanceError)
-      }
-    }
+    // Closes screen
+    sendCommand(RegisterTournamentCommand.CloseScreen)
   }
 
   private suspend fun handleSessionTournamentRegistration(

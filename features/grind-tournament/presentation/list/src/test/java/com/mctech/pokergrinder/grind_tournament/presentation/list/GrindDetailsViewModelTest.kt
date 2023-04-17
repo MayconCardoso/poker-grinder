@@ -4,7 +4,6 @@ import com.mctech.architecture_testing.BaseViewModelTest
 import com.mctech.architecture_testing.extensions.TestObserverScenario.Companion.observerScenario
 import com.mctech.architecture_testing.extensions.assertFlow
 import com.mctech.pokergrinder.architecture.ComponentState
-import com.mctech.pokergrinder.bankroll.domain.error.BankrollException
 import com.mctech.pokergrinder.grind.testing.newSession
 import com.mctech.pokergrinder.grind_tournament.domain.GrindTournamentAnalytics
 import com.mctech.pokergrinder.grind_tournament.domain.entities.SessionTournament
@@ -270,44 +269,6 @@ internal class GrindDetailsViewModelTest : BaseViewModelTest() {
     }
 
     thenAssertLiveDataFlowIsEmpty(target.commandObservable)
-
-    thenAssert {
-      coVerifyOrder {
-        registerTournamentUseCase(
-          session = session,
-          title = "Sit and Go $10",
-          buyIn = 10.0
-        )
-      }
-      confirmAll()
-    }
-  }
-
-  @Test
-  fun `should not duplicate tournament when out of balance`() = observerScenario {
-    val session = newSession(id = "1")
-    val tournament = newTournament(id = "1", title = "Sit and Go $10")
-    val tournamentEvent = com.mctech.pokergrinder.grind_tournament.presentation.list.adapter.GrindDetailsConsumerEvent.DuplicateClicked(tournament)
-
-    givenScenario {
-      target.session = session
-      target.originalTemplateList = listOf(
-        newTournament(id = "1", title = "Sit and Go $10", buyIn = 10.0, profit = 0.0),
-        newTournament(id = "4", title = "Sit and Go $25", buyIn = 25.0, profit = 180.0),
-      )
-      coEvery {
-        registerTournamentUseCase(any(), any(), any())
-      } throws BankrollException.InsufficientBalance
-    }
-
-    whenAction {
-      target.interact(GrindDetailsInteraction.OnTournamentEvent(tournamentEvent))
-    }
-
-    thenAssertLiveDataContainsExactly(
-      target.commandObservable,
-      GrindDetailsCommand.InsufficientBalanceError
-    )
 
     thenAssert {
       coVerifyOrder {

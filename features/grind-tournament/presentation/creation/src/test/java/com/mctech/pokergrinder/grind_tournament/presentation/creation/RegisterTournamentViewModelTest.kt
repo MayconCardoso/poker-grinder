@@ -2,7 +2,6 @@ package com.mctech.pokergrinder.grind_tournament.presentation.creation
 
 import com.mctech.architecture_testing.BaseViewModelTest
 import com.mctech.architecture_testing.extensions.TestObserverScenario.Companion.observerScenario
-import com.mctech.pokergrinder.bankroll.domain.error.BankrollException
 import com.mctech.pokergrinder.grind.testing.newSession
 import com.mctech.pokergrinder.grind_tournament.domain.GrindTournamentAnalytics
 import com.mctech.pokergrinder.grind_tournament.domain.usecase.RegisterTournamentUseCase
@@ -153,41 +152,6 @@ internal class RegisterTournamentViewModelTest : BaseViewModelTest() {
       coVerifyOrder {
         updatesTournamentUseCase(expected)
         loadTournamentUseCase(title = "Hey")
-      }
-      confirmAll()
-    }
-  }
-
-  @Test
-  fun `should show error when out of balance`() = observerScenario {
-    val session = newSession(id = "1")
-
-    givenScenario {
-      target.session = session
-      coEvery {
-        registerTournamentUseCase(any(), any(), any())
-      } throws BankrollException.InsufficientBalance
-    }
-
-    whenAction {
-      target.interact(
-        RegisterTournamentInteraction.SaveTournament(
-          title = "Hey",
-          buyIn = 1.0,
-          profit = 2.0,
-          addNewProfit = 5.0,
-        )
-      )
-    }
-
-    thenAssertLiveDataContainsExactly(
-      target.commandObservable,
-      RegisterTournamentCommand.InsufficientBalanceError,
-    )
-
-    thenAssert {
-      coVerifyOrder {
-        registerTournamentUseCase(session = session, title = "Hey", buyIn = 1.0)
       }
       confirmAll()
     }

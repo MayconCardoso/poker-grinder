@@ -5,22 +5,17 @@ import androidx.lifecycle.viewModelScope
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.architecture.OnInteraction
-import com.mctech.pokergrinder.bankroll.domain.error.BankrollException
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind_tournament.domain.GrindTournamentAnalytics
-import com.mctech.pokergrinder.grind_tournament.presentation.list.adapter.GrindDetailsConsumerEvent
 import com.mctech.pokergrinder.grind_tournament.domain.entities.SessionTournament
 import com.mctech.pokergrinder.grind_tournament.domain.usecase.GroupGrindTournamentUseCase
 import com.mctech.pokergrinder.grind_tournament.domain.usecase.ObserveGrindTournamentUseCase
 import com.mctech.pokergrinder.grind_tournament.domain.usecase.RegisterTournamentUseCase
+import com.mctech.pokergrinder.grind_tournament.presentation.list.adapter.GrindDetailsConsumerEvent
 import com.mctech.pokergrinder.settings.domain.entities.SettingsAvailable
 import com.mctech.pokergrinder.settings.domain.usecase.ObserveSettingsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -88,18 +83,12 @@ internal class GrindDetailsViewModel @Inject constructor(
   }
 
   private suspend fun duplicateTournament(tournament: SessionTournament) {
-    try {
-      // Register new item.
-      registerTournamentUseCase(
-        session = requireNotNull(session),
-        title = tournament.title,
-        buyIn = originalTemplateList.first { it.title == tournament.title }.buyIn
-      )
-    } catch (exception: Exception) {
-      if (exception is BankrollException.InsufficientBalance) {
-        sendCommand(GrindDetailsCommand.InsufficientBalanceError)
-      }
-    }
+    // Register new item.
+    registerTournamentUseCase(
+      session = requireNotNull(session),
+      title = tournament.title,
+      buyIn = originalTemplateList.first { it.title == tournament.title }.buyIn
+    )
   }
 
   // endregion
