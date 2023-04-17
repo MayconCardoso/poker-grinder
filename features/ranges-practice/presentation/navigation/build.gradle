@@ -2,5 +2,6 @@ apply from: "$rootDir/buildSrc/module/base-android.gradle"
 
 dependencies {
     // Internal modules
+    implementation project(path: ':features:ranges:domain')
     implementation project(path: ':features:ranges-practice:domain')
 }

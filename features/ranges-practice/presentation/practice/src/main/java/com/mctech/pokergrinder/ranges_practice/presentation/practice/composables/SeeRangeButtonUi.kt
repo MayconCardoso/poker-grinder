@@ -13,7 +13,7 @@ import com.mctech.pokergrinder.ranges_practice.presentation.practice.RangePracti
 @Composable
 internal fun SeeRangeButton(
   modifier: Modifier = Modifier,
-  interact: (RangePracticeInteraction) -> Unit = {},
+  interact: (RangePracticeInteraction) -> Unit,
 ) {
   TextButton(
     onClick = { interact(RangePracticeInteraction.SeeRangeButtonClicked) },

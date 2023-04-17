@@ -11,20 +11,15 @@ import com.mctech.pokergrinder.ranges_practice.presentation.practice.composables
 import com.mctech.pokergrinder.ranges_practice.presentation.practice.composables.QuestionUi
 
 @Composable
-fun RangePracticeComponent(
-  navigation: RangePracticeNavigation,
+internal fun RangePracticeComponent(
+  viewModel: RangePracticeViewModel = hiltViewModel()
 ) {
   // Gets view practice model
-  val viewModel = hiltViewModel<RangePracticeViewModel>().apply {
-    initialize()
-  }
+  viewModel.initialize()
 
   // Creates event consumer.
   val eventConsumer: (RangePracticeInteraction) -> Unit = { userInteraction ->
-    when(userInteraction) {
-      RangePracticeInteraction.OnFilterClicked -> navigation.goToRangePracticeFilter()
-      else -> viewModel.interact(userInteraction)
-    }
+    viewModel.interact(userInteraction)
   }
 
   // Gets state

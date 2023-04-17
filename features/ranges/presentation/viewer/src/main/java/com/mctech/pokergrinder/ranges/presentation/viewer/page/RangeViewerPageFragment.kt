@@ -7,8 +7,6 @@ import androidx.fragment.app.Fragment
 import com.mctech.pokergrinder.architecture.extensions.avoidFrozenFrames
 import com.mctech.pokergrinder.architecture.extensions.deserialize
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
-import com.mctech.pokergrinder.ranges.domain.entities.EmptyRange
-import com.mctech.pokergrinder.ranges.domain.entities.RangeHandInput
 import com.mctech.pokergrinder.ranges.domain.entities.RangePosition
 import com.mctech.pokergrinder.ranges.presentation.viewer.R
 import com.mctech.pokergrinder.ranges.presentation.viewer.databinding.FragmentRangeViewerPageBinding

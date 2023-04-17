@@ -40,7 +40,7 @@ internal class RangePracticeViewModel @Inject constructor(
   val state: StateFlow<ComponentState<RangePracticeState>> by lazy { _state }
 
   override suspend fun initializeComponents() {
-    viewModelScope.async { observeRangePracticeFilter() }
+    observeRangePracticeFilter()
   }
 
   private fun observeRangePracticeFilter() {
@@ -56,14 +56,38 @@ internal class RangePracticeViewModel @Inject constructor(
       .launchIn(viewModelScope)
   }
 
-  @OnInteraction(RangePracticeInteraction.OnActionClicked::class)
-  private suspend fun onActionClicked() = validatesQuestionAnswer(
-    shouldHaveAction = true,
-  )
+  @OnInteraction(RangePracticeInteraction.OnFilterClicked::class)
+  private suspend fun onFilterClicked() {
+    sendCommand(RangePracticeCommand.OpenFilterScreen)
+  }
+
+  @OnInteraction(RangePracticeInteraction.SeeRangeButtonClicked::class)
+  private suspend fun onSeeRangeClicked() = withContext(dispatchers.default) {
+    // Gets the current state
+    val question = currentRenderedState?.question ?: return@withContext
+
+    // Finds the right range of hands that should be validated according to the action and stack.
+    val targetRange = currentRanges.first { range ->
+      range.action == question.action && range.effectiveStack == question.stack
+    }
+
+    // Gets the hands of that range for the target position.
+    val rangePosition = targetRange.handPosition.first { rangePosition ->
+      rangePosition.heroPosition == question.heroPosition
+    }
+
+    // Opens range viewer
+    sendCommand(RangePracticeCommand.OpenRangeScreen(range = rangePosition))
+  }
 
   @OnInteraction(RangePracticeInteraction.OnFoldClicked::class)
   private suspend fun onFoldClicked() = validatesQuestionAnswer(
     shouldHaveAction = false,
+  )
+
+  @OnInteraction(RangePracticeInteraction.OnActionClicked::class)
+  private suspend fun onActionClicked() = validatesQuestionAnswer(
+    shouldHaveAction = true,
   )
 
   @OnInteraction(RangePracticeInteraction.OnNextQuestionClicked::class)
@@ -120,7 +144,6 @@ internal class RangePracticeViewModel @Inject constructor(
     _state.value = ComponentState.Success(requireNotNull(currentRenderedState))
   }
 
-
   private suspend fun validatesQuestionAnswer(shouldHaveAction: Boolean) = withContext(dispatchers.default) {
     // Gets the current state
     val question = currentRenderedState?.question ?: return@withContext
@@ -130,7 +153,7 @@ internal class RangePracticeViewModel @Inject constructor(
       range.action == question.action && range.effectiveStack == question.stack
     }
 
-    // Gets the hands of that range for the target positon.
+    // Gets the hands of that range for the target position.
     val handsForTheAction = targetRange.handPosition.first { rangePosition ->
       rangePosition.heroPosition == question.heroPosition
     }.hands.map { it.hand }

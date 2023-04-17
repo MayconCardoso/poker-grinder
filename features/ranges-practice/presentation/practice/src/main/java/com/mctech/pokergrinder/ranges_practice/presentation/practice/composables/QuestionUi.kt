@@ -45,7 +45,7 @@ internal fun QuestionUi(
       CardViewer(cards = state.question.cards)
 
       // See range button
-      SeeRangeButton()
+      SeeRangeButton(interact = interact)
 
       // Draw info message
       AnimatedVisibility(state.infoMessage != null) {

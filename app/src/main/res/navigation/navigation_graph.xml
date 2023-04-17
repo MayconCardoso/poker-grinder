@@ -82,6 +82,9 @@
         <action
             android:id="@+id/action_range_practice_training_fragment_to_range_practice_filter_fragment"
             app:destination="@id/range_practice_filter_fragment" />
+        <action
+            android:id="@+id/action_range_practice_training_fragment_to_rangeViewerDialog"
+            app:destination="@id/range_viewer_dialog" />
     </fragment>
 
     <fragment
@@ -183,4 +186,14 @@
             app:argType="com.mctech.pokergrinder.grind.domain.entities.Session" />
 
     </fragment>
+    <dialog
+        android:id="@+id/range_viewer_dialog"
+        android:name="com.mctech.pokergrinder.ranges.presentation.viewer.RangeViewerDialog"
+        android:label="RangeViewerDialog"
+        tools:layout="@layout/fragment_range_viewer_dialog">
+
+        <argument
+            android:name="RANGE_POSITION_PARAM"
+            app:argType="com.mctech.pokergrinder.ranges.domain.entities.RangePosition" />
+    </dialog>
 </navigation>

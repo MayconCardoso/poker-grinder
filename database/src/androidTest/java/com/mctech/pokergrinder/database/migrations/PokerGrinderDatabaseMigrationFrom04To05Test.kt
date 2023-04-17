@@ -17,7 +17,7 @@ internal class PokerGrinderDatabaseMigrationFrom04To05Test {
 
     // MigrationTestHelper automatically verifies the schema changes
     helper.runMigrationsAndValidate(DATABASE_NAME,
-      4,
+      5,
       true,
       POKER_GRINDER_DATABASE_MIGRATION_04_TO_05)
   }

@@ -11,7 +11,9 @@ import com.mctech.pokergrinder.grind.presentation.pager_container.GrindDetailCon
 import com.mctech.pokergrinder.grind_tournament.domain.entities.SessionTournament
 import com.mctech.pokergrinder.grind_tournament.presentation.creation.RegisterTournamentFragment
 import com.mctech.pokergrinder.ranges.domain.entities.Range
+import com.mctech.pokergrinder.ranges.domain.entities.RangePosition
 import com.mctech.pokergrinder.ranges.presentation.navigation.RangeNavigation
+import com.mctech.pokergrinder.ranges.presentation.viewer.RangeViewerDialog
 import com.mctech.pokergrinder.ranges.presentation.viewer.RangeViewerFragment
 import com.mctech.pokergrinder.ranges_practice.presentation.navigation.RangePracticeNavigation
 import com.mctech.pokergrinder.summary.domain.entities.TournamentSummary
@@ -175,6 +177,15 @@ class PokerGrinderNavigator :
   override fun goToRangePracticeFilter() {
     navController?.navigate(
       R.id.action_range_practice_training_fragment_to_range_practice_filter_fragment,
+    )
+  }
+
+  override fun goToRangeViewer(range: RangePosition) {
+    navController?.navigate(
+      R.id.action_range_practice_training_fragment_to_rangeViewerDialog,
+      Bundle().apply {
+        putSerializable(RangeViewerDialog.RANGE_POSITION_PARAM, range)
+      },
     )
   }
 
