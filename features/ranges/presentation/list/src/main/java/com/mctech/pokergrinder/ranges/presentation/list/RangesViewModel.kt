@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.architecture.OnInteraction
+import com.mctech.pokergrinder.ranges.domain.RangeAnalytics
 import com.mctech.pokergrinder.ranges.domain.entities.Range
 import com.mctech.pokergrinder.ranges.domain.usecases.ObserveAllRangesUseCase
 import com.mctech.pokergrinder.ranges.presentation.list.adapter.RangeAdapterConsumerEvent
@@ -16,6 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class RangesViewModel @Inject constructor(
+  private val analytics: RangeAnalytics,
   private val observeAllRangesUseCase: ObserveAllRangesUseCase,
 ) : BaseViewModel() {
 
@@ -36,6 +38,7 @@ internal class RangesViewModel @Inject constructor(
   private suspend fun onTournamentEventInteraction(interaction: RangesInteraction.OnRangeEvent) {
     when (interaction.event) {
       is RangeAdapterConsumerEvent.Clicked -> {
+        analytics.onRangeViewed(interaction.event.range)
         sendCommand(RangesCommand.NavigateToViewer(interaction.event.range))
       }
     }

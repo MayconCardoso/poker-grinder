@@ -4,19 +4,19 @@ import com.mctech.architecture_testing.BaseViewModelTest
 import com.mctech.architecture_testing.extensions.TestObserverScenario
 import com.mctech.architecture_testing.extensions.assertFlow
 import com.mctech.pokergrinder.architecture.ComponentState
+import com.mctech.pokergrinder.ranges.domain.RangeAnalytics
 import com.mctech.pokergrinder.ranges.domain.usecases.ObserveAllRangesUseCase
 import com.mctech.pokergrinder.ranges.presentation.list.adapter.RangeAdapterConsumerEvent
 import com.mctech.pokergrinder.ranges.testing.newRange
-import io.mockk.confirmVerified
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.verifyOrder
+import io.mockk.*
 import kotlinx.coroutines.flow.flow
 import org.junit.Test
 
 class RangesViewModelTest : BaseViewModelTest() {
+  private val analytics = mockk<RangeAnalytics>(relaxed = true)
   private val observeAllRangesUseCase = mockk<ObserveAllRangesUseCase>(relaxed = true)
   private val target = RangesViewModel(
+    analytics = analytics,
     observeAllRangesUseCase = observeAllRangesUseCase,
   )
 
@@ -43,7 +43,7 @@ class RangesViewModelTest : BaseViewModelTest() {
 
     thenAssert {
       verifyOrder { observeAllRangesUseCase() }
-      confirmVerified(observeAllRangesUseCase)
+      confirmVerified(observeAllRangesUseCase, analytics)
     }
   }
 
@@ -63,7 +63,10 @@ class RangesViewModelTest : BaseViewModelTest() {
     )
 
     thenAssert {
-      confirmVerified(observeAllRangesUseCase)
+      coVerifyOrder {
+        analytics.onRangeViewed(clickedRange)
+      }
+      confirmVerified(observeAllRangesUseCase, analytics)
     }
   }
 }
