@@ -34,6 +34,11 @@ interface GrindNavigation {
   fun goToSessionTournamentGameplay(session: Session)
 
   /**
+   * Goes to support developer screen.
+   */
+  fun goToSupportDeveloper()
+
+  /**
    * Navigates back.
    */
   fun navigateBack()

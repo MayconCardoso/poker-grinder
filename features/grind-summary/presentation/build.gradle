@@ -6,6 +6,7 @@ dependencies {
     implementation project(path: ':features:grind:domain')
     implementation project(path: ':features:grind-gameplay::domain')
     implementation project(path: ':features:grind-tournament:domain')
+    implementation project(path: ':features:grind:presentation:navigation')
 
     // Ui
     implementation libraries.androidCardView

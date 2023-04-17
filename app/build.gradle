@@ -92,6 +92,9 @@ dependencies {
     implementation project(path: ':features:settings:domain')
     implementation project(path: ':features:settings:presentation')
 
+    // Feature support developer
+    implementation project(path: ':features:support-developer:presentation')
+
     // Navigation
     implementation libraries.androidNavigationFragmentKtx
     implementation libraries.androidNavigationUiKtx

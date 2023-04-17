@@ -122,6 +122,11 @@
         tools:layout="@layout/fragment_settings" />
 
     <fragment
+        android:id="@+id/support_developer"
+        android:name="com.mctech.pokergrinder.support_developer.presentation.SupportDeveloperFragment"
+        android:label="@string/help_developer_toolbar" />
+
+    <fragment
         android:id="@+id/tournament_register"
         android:name="com.mctech.pokergrinder.tournament.presentation.creation.NewTournamentFragment"
         tools:layout="@layout/fragment_register_tournament">
@@ -186,6 +191,7 @@
             app:argType="com.mctech.pokergrinder.grind.domain.entities.Session" />
 
     </fragment>
+
     <dialog
         android:id="@+id/range_viewer_dialog"
         android:name="com.mctech.pokergrinder.ranges.presentation.viewer.RangeViewerDialog"

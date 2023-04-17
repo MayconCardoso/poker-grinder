@@ -68,6 +68,10 @@ class PokerGrinderNavigator :
     navController = null
   }
 
+  // endregion
+
+  // region Global navigation
+
   override fun navigateBack() {
     navController?.navigateUp()
   }
@@ -75,7 +79,13 @@ class PokerGrinderNavigator :
   override fun goToSettings() {
     navController?.navigate(R.id.settings_fragment)
   }
+
+  override fun goToSupportDeveloper() {
+    navController?.navigate(R.id.support_developer)
+  }
+
   // endregion
+
 
   // region Tournament navigation
 

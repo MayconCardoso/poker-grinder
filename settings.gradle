@@ -93,3 +93,6 @@ include ':features:ranges-practice:presentation:list'
 include ':features:ranges-practice:presentation:filter'
 include ':features:ranges-practice:presentation:practice'
 include ':features:ranges-practice:presentation:navigation'
+
+// Feature - Support developer
+include ':features:support-developer:presentation'

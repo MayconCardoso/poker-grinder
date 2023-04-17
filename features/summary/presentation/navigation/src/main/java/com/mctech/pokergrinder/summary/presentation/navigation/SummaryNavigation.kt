@@ -12,4 +12,9 @@ interface SummaryNavigation {
    */
   fun goToTournamentSummaryDetail(tournamentSummary: TournamentSummary)
 
+  /**
+   * Goes to support developer screen.
+   */
+  fun goToSupportDeveloper()
+
 }

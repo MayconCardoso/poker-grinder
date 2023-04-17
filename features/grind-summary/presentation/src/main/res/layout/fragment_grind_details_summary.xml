@@ -260,7 +260,6 @@
 
     </androidx.cardview.widget.CardView>
 
-
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/component_gameplay"
         android:layout_width="match_parent"
@@ -355,4 +354,12 @@
 
     </androidx.cardview.widget.CardView>
 
+    <Button
+        android:id="@+id/developer"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:text="@string/help_developer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

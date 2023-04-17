@@ -27,6 +27,8 @@ class HomeActivity : AppCompatActivity() {
     listOf(
       R.id.session_details,
       R.id.session_register,
+      R.id.settings_fragment,
+      R.id.support_developer,
       R.id.statement_register,
       R.id.statement_withdraw,
       R.id.tournament_register,

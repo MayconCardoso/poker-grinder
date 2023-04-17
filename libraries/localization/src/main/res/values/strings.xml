@@ -86,4 +86,10 @@
     <string name="select_the_winner">Select the winner</string>
     <string name="see_range">See range</string>
     <string name="not_possible_load_filters">It was not possible to load your current filters</string>
+    <string name="help_developer">Support the app developer</string>
+    <string name="help_developer_toolbar">It\'s just a ticket</string>
+    <string name="help_developer_title">Hello players</string>
+    <string name="poker_stars">PokerStars</string>
+    <string name="my_nickname">Maikinho94</string>
+    <string name="help_developer_message">I hope you\'re enjoying using the app so far. As you may have noticed, the app is completely free, and I am committed to keeping it that way.\n\nHowever, as a solo developer, it can be challenging to maintain and improve the app without a source of income. That\'s why I\'m kindly asking for your support to keep the app running for free.\n\nIf you find the app useful and would like to help, please consider transferring some funds to my PokerStars account under the nickname right below.\n\nThank you for considering my request, and I wish you all the best of luck at the tables</string>
 </resources>

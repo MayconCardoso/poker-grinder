@@ -11,9 +11,11 @@ import com.mctech.pokergrinder.architecture.extensions.bindState
 import com.mctech.pokergrinder.architecture.extensions.deserialize
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
 import com.mctech.pokergrinder.grind.domain.entities.Session
+import com.mctech.pokergrinder.grind.presentation.navigation.GrindNavigation
 import com.mctech.pokergrinder.grind_gameplay.domain.entities.SessionTournamentFlip
 import com.mctech.pokergrinder.grind_summary.presentation.databinding.FragmentGrindDetailsSummaryBinding
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class GrindSummaryFragment : Fragment(R.layout.fragment_grind_details_summary) {
@@ -30,6 +32,12 @@ class GrindSummaryFragment : Fragment(R.layout.fragment_grind_details_summary) {
    */
   private val binding by viewBinding(FragmentGrindDetailsSummaryBinding::bind)
 
+  /**
+   * Feature navigation
+   */
+  @Inject
+  lateinit var navigation: GrindNavigation
+
   // endregion
 
   // region Lifecycle
@@ -44,6 +52,11 @@ class GrindSummaryFragment : Fragment(R.layout.fragment_grind_details_summary) {
     bindState(viewModel.flipState, ::consumeFlipState)
     bindState(viewModel.chartState, ::consumeChartState)
     bindState(viewModel.detailsState, ::consumeDetailState)
+
+    // Developer support
+    binding.developer.setOnClickListener {
+      navigation.goToSupportDeveloper()
+    }
   }
 
   // endregion
