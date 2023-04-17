@@ -31,6 +31,7 @@ internal fun QuestionUi(
     ) {
       // Draw header
       HeaderUi(
+        interact = interact,
         countOfAppliedFilter = state.countAppliedFilter,
       )
 
@@ -39,13 +40,6 @@ internal fun QuestionUi(
 
       // Draw hand context
       HandContextUi(state = state)
-    }
-
-    // Draw middle screen container
-    Column(
-      modifier = Modifier.align(Alignment.Center),
-      horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
 
       // Draw cards.
       CardViewer(cards = state.question.cards)

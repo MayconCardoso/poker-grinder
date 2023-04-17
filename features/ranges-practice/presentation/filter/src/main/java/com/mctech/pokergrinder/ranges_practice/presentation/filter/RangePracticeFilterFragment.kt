@@ -1,4 +1,4 @@
-package com.mctech.pokergrinder.ranges_practice.presentation.practice
+package com.mctech.pokergrinder.ranges_practice.presentation.filter
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class RangePracticeFragment : Fragment() {
+class RangePracticeFilterFragment : Fragment() {
 
   /**
    * Feature navigation
@@ -22,7 +22,7 @@ class RangePracticeFragment : Fragment() {
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) = ComposeView(inflater.context).apply {
     setContent {
       PokerGrinder.PokerGrinderTheme {
-        RangePracticeComponent(navigation = navigation)
+        RangePracticeFilterComponent(navigation = navigation)
       }
     }
   }

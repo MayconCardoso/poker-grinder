@@ -2,6 +2,7 @@ apply from: "$rootDir/buildSrc/module/feature/compose.gradle"
 
 dependencies {
     // Internal modules
+    implementation project(path: ':features:ranges:domain')
     implementation project(path: ':features:ranges-practice:domain')
     implementation project(path: ':features:ranges-practice:presentation:navigation')
 }

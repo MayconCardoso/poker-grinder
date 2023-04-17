@@ -166,9 +166,15 @@ class PokerGrinderNavigator :
 
   // region Ranges Practice
 
-  override fun goToFilterRangePractice() {
+  override fun goToRangePracticeTrainer() {
     navController?.navigate(
       R.id.action_range_practice_fragment_to_range_practice_training_fragment,
+    )
+  }
+
+  override fun goToRangePracticeFilter() {
+    navController?.navigate(
+      R.id.action_range_practice_training_fragment_to_range_practice_filter_fragment,
     )
   }
 

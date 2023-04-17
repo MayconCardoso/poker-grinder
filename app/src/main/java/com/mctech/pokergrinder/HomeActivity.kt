@@ -32,6 +32,7 @@ class HomeActivity : AppCompatActivity() {
       R.id.tournament_register,
       R.id.ranges_viewer_fragment,
       R.id.range_practice_training_fragment,
+      R.id.range_practice_filter_fragment,
       R.id.session_details_tournament,
       R.id.session_details_tournament_flip,
     )

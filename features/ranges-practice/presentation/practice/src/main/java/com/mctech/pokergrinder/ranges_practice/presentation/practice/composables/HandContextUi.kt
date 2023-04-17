@@ -46,4 +46,5 @@ internal fun HandContextUi(state: RangePracticeState) {
       color = colorProvider().textColorSecondary
     ),
   )
+  Spacer(modifier = Modifier.height(12.dp))
 }

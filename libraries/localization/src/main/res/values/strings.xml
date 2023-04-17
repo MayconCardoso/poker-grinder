@@ -5,6 +5,7 @@
     <string name="statement">Statement</string>
     <string name="tournament">Tournament</string>
     <string name="warm_up">Warm up</string>
+    <string name="choose_the_spot">Choose the spot</string>
     <string name="ranges">Ranges</string>
     <string name="settings">Settings</string>
     <string name="app_name">Poker Grinder</string>
@@ -55,6 +56,8 @@
     <string name="save">Save</string>
     <string name="next">Next</string>
     <string name="position">Position</string>
+    <string name="all">All</string>
+    <string name="hero_position">Hero Position</string>
     <string name="effective_stack">Effective Stack</string>
     <string name="stack">Stack</string>
     <string name="action">Action</string>
@@ -82,4 +85,5 @@
     <string name="select_board_cards">Select board cards</string>
     <string name="select_the_winner">Select the winner</string>
     <string name="see_range">See range</string>
+    <string name="not_possible_load_filters">It was not possible to load your current filters</string>
 </resources>

@@ -214,13 +214,13 @@ internal class RangePracticeViewModel @Inject constructor(
 
   private fun countOfAppliedFilter(): Int {
     var count = 0
-    if(currentLearningFilter.stack != null) {
+    if (currentLearningFilter.stack != null) {
       count++
     }
-    if(currentLearningFilter.heroPosition != null) {
+    if (currentLearningFilter.heroPosition != null) {
       count++
     }
-    if(currentLearningFilter.action != null) {
+    if (currentLearningFilter.action != null) {
       count++
     }
     return count

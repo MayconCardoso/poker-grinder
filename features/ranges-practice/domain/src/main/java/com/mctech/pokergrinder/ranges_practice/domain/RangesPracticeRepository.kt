@@ -20,7 +20,12 @@ interface RangesPracticeRepository {
   fun observePracticeFilterResult(): Flow<RangePracticeFilter>
 
   /**
-   * Used to observe all ranges practice.
+   * Used to save an answer.
    */
   suspend fun savePracticeAnswer(answer: RangePracticeResult)
+
+  /**
+   * Used to save an filter.
+   */
+  suspend fun savePracticeFilter(filter: RangePracticeFilter)
 }

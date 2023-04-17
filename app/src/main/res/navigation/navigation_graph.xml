@@ -78,6 +78,15 @@
     <fragment
         android:id="@+id/range_practice_training_fragment"
         android:name="com.mctech.pokergrinder.ranges_practice.presentation.practice.RangePracticeFragment"
+        android:label="@string/warm_up" >
+        <action
+            android:id="@+id/action_range_practice_training_fragment_to_range_practice_filter_fragment"
+            app:destination="@id/range_practice_filter_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/range_practice_filter_fragment"
+        android:name="com.mctech.pokergrinder.ranges_practice.presentation.filter.RangePracticeFilterFragment"
         android:label="@string/warm_up" />
 
     <fragment

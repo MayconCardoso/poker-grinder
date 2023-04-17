@@ -27,7 +27,7 @@ fun RangePracticeComponent(
   // Creates event consumer.
   val eventConsumer: (RangePracticeListInteraction) -> Unit = { userInteraction ->
     when (userInteraction) {
-      is RangePracticeListInteraction.OnStartPracticing -> navigation.goToFilterRangePractice()
+      is RangePracticeListInteraction.OnStartPracticing -> navigation.goToRangePracticeTrainer()
     }
   }
 
