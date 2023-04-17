@@ -2,6 +2,7 @@ package com.mctech.pokergrinder.bankroll.presentation.withdraw
 
 import com.mctech.architecture_testing.BaseViewModelTest
 import com.mctech.architecture_testing.extensions.TestObserverScenario
+import com.mctech.pokergrinder.bankroll.domain.BankrollAnalytics
 import com.mctech.pokergrinder.bankroll.domain.entities.BankrollTransactionType
 import com.mctech.pokergrinder.bankroll.domain.error.BankrollException
 import com.mctech.pokergrinder.bankroll.domain.usecases.WithdrawUseCase
@@ -13,8 +14,10 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
 internal class WithdrawViewModelTest : BaseViewModelTest() {
+  private val analytics = mockk<BankrollAnalytics>(relaxed = true)
   private val withdrawUseCase = mockk<WithdrawUseCase>(relaxed = true)
   private val target = WithdrawViewModel(
+    analytics = analytics,
     withdrawUseCase = withdrawUseCase,
   )
 
@@ -35,9 +38,12 @@ internal class WithdrawViewModelTest : BaseViewModelTest() {
         withdrawUseCase(
           amount = 100.0,
           description = "Tournament Profit",
-          type = BankrollTransactionType.WITHDRAW)
+          type = BankrollTransactionType.WITHDRAW
+        )
+
+        analytics.onWithdrawMade(amount = 100.0)
       }
-      confirmVerified(withdrawUseCase)
+      confirmVerified(withdrawUseCase, analytics)
     }
   }
 
@@ -62,9 +68,10 @@ internal class WithdrawViewModelTest : BaseViewModelTest() {
         withdrawUseCase(
           amount = 100.0,
           description = "Tournament Profit",
-          type = BankrollTransactionType.WITHDRAW)
+          type = BankrollTransactionType.WITHDRAW
+        )
       }
-      confirmVerified(withdrawUseCase)
+      confirmVerified(withdrawUseCase, analytics)
     }
   }
 

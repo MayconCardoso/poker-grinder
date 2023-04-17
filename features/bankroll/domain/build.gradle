@@ -2,5 +2,6 @@ apply from: "$rootDir/buildSrc/module/base-kotlin.gradle"
 
 dependencies {
     implementation project(path: ':libraries:formatter')
+    implementation project(path: ':libraries:analytics-core')
     testImplementation project(path: ':features:bankroll:testing')
 }

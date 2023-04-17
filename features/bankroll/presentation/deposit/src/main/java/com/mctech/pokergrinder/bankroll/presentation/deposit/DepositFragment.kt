@@ -2,22 +2,33 @@ package com.mctech.pokergrinder.bankroll.presentation.deposit
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.lifecycleScope
+import com.mctech.pokergrinder.bankroll.domain.BankrollAnalytics
 import com.mctech.pokergrinder.bankroll.presentation.deposit.composables.DepositUi
 import com.mctech.pokergrinder.bankroll.presentation.navigation.BankrollNavigation
 import com.mctech.pokergrinder.design.compose.PokerGrinder
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class DepositFragment : Fragment() {
 
   // region Variables
+
+  /**
+   * Feature analytics
+   */
+  @Inject
+  lateinit var analytics: BankrollAnalytics
+
   /**
    * Feature navigation
    */
@@ -33,6 +44,13 @@ class DepositFragment : Fragment() {
       PokerGrinder.PokerGrinderTheme {
         DepositComponent(navigation = navigation)
       }
+    }
+  }
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    viewLifecycleOwner.lifecycleScope.launch {
+      analytics.onDepositScreenViewed()
     }
   }
 

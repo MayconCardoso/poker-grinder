@@ -1,0 +1,18 @@
+apply plugin: 'com.android.library'
+apply plugin: "kotlin-android"
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+dependencies {
+    // Project
+    implementation project(path: ':libraries:threading')
+    implementation project(path: ':libraries:analytics-core')
+
+    // DI
+    implementation libraries.googleHiltAndroid
+    kapt libraries.googleHiltCompiler
+
+    // Firebase
+    implementation platform('com.google.firebase:firebase-bom:31.5.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+}

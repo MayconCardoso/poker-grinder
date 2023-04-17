@@ -2,6 +2,7 @@ package com.mctech.pokergrinder.bankroll.presentation.withdraw
 
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.OnInteraction
+import com.mctech.pokergrinder.bankroll.domain.BankrollAnalytics
 import com.mctech.pokergrinder.bankroll.domain.entities.BankrollTransactionType
 import com.mctech.pokergrinder.bankroll.domain.error.BankrollException
 import com.mctech.pokergrinder.bankroll.domain.usecases.WithdrawUseCase
@@ -10,11 +11,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class WithdrawViewModel @Inject constructor(
+  private val analytics: BankrollAnalytics,
   private val withdrawUseCase: WithdrawUseCase,
 ) : BaseViewModel() {
 
   @OnInteraction(WithdrawInteraction.SaveWithdraw::class)
-  private suspend fun saveDepositInteraction(interaction: WithdrawInteraction.SaveWithdraw) {
+  private suspend fun saveWithdrawInteraction(interaction: WithdrawInteraction.SaveWithdraw) {
     try {
       // Saves deposit
       withdrawUseCase(
@@ -23,11 +25,13 @@ internal class WithdrawViewModel @Inject constructor(
         description = interaction.title,
       )
 
+      // Analytics
+      analytics.onWithdrawMade(amount = interaction.amount)
+
       // Closes screen
       sendCommand(WithdrawCommand.CloseScreen)
-    }
-    catch (exception: Exception) {
-      if(exception is BankrollException.InsufficientBalance) {
+    } catch (exception: Exception) {
+      if (exception is BankrollException.InsufficientBalance) {
         sendCommand(WithdrawCommand.InsufficientBalanceError)
       }
     }
