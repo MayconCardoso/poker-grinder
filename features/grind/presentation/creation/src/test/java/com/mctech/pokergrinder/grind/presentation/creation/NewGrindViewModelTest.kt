@@ -4,6 +4,7 @@ import com.mctech.architecture_testing.BaseViewModelTest
 import com.mctech.architecture_testing.extensions.TestObserverScenario.Companion.observerScenario
 import com.mctech.common_test.CalendarTestRule
 import com.mctech.pokergrinder.formatter.asFormattedDate
+import com.mctech.pokergrinder.grind.domain.GrindAnalytics
 import com.mctech.pokergrinder.grind.domain.usecase.CreateNewSessionUseCase
 import io.mockk.coVerifyOrder
 import io.mockk.confirmVerified
@@ -18,8 +19,10 @@ internal class NewGrindViewModelTest : BaseViewModelTest() {
   @get:Rule
   val calendarRule = CalendarTestRule()
 
+  private val analytics = mockk<GrindAnalytics>(relaxed = true)
   private val createNewSessionUseCase = mockk<CreateNewSessionUseCase>(relaxed = true)
   private val target = NewGrindViewModel(
+    analytics = analytics,
     createNewSessionUseCase = createNewSessionUseCase,
   )
 
@@ -45,7 +48,7 @@ internal class NewGrindViewModelTest : BaseViewModelTest() {
     }
 
     thenAssert {
-      confirmVerified(createNewSessionUseCase)
+      confirmVerified(createNewSessionUseCase, analytics)
     }
   }
 
@@ -62,8 +65,9 @@ internal class NewGrindViewModelTest : BaseViewModelTest() {
     thenAssert {
       coVerifyOrder {
         createNewSessionUseCase(title = "My new session")
+        analytics.onSessionCreated(title = "My new session")
       }
-      confirmVerified(createNewSessionUseCase)
+      confirmVerified(createNewSessionUseCase, analytics)
     }
   }
 }

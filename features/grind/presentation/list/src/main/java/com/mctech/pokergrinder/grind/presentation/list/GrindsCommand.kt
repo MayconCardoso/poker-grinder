@@ -9,7 +9,12 @@ import com.mctech.pokergrinder.grind.domain.entities.Session
 internal sealed class GrindsCommand : ViewCommand {
 
   /**
+   * Called to navigate to the new session.
+   */
+  object NavigateToNewSession: GrindsCommand()
+
+  /**
    * Called to navigate to the session editor.
    */
-  data class NavigateToEditor(val session: Session) : GrindsCommand()
+  data class NavigateToSessionDetails(val session: Session) : GrindsCommand()
 }

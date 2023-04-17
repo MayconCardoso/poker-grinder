@@ -4,6 +4,7 @@ dependencies {
     // Internal Modules.
     implementation project(path: ':features:deck:domain')
     implementation project(path: ':libraries:formatter')
+    implementation project(path: ':libraries:analytics-core')
 
     // Internal test Modules
     testImplementation project(path: ':features:grind:testing')

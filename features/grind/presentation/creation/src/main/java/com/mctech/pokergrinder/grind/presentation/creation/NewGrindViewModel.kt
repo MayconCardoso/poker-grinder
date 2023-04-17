@@ -3,6 +3,7 @@ package com.mctech.pokergrinder.grind.presentation.creation
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.OnInteraction
 import com.mctech.pokergrinder.formatter.asFormattedDate
+import com.mctech.pokergrinder.grind.domain.GrindAnalytics
 import com.mctech.pokergrinder.grind.domain.usecase.CreateNewSessionUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,6 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class NewGrindViewModel @Inject constructor(
+  private val analytics: GrindAnalytics,
   private val createNewSessionUseCase: CreateNewSessionUseCase,
 ) : BaseViewModel() {
 
@@ -27,6 +29,9 @@ internal class NewGrindViewModel @Inject constructor(
   private suspend fun saveTournamentInteraction(interaction: NewGrindInteraction.SaveGrind) {
     // Saves new grind
     createNewSessionUseCase(title = interaction.title)
+
+    // Analytics
+    analytics.onSessionCreated(title = interaction.title)
 
     // Closes screen
     sendCommand(NewGrindCommand.CloseScreen)

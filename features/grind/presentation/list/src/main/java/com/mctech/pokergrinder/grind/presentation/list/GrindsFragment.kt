@@ -129,7 +129,7 @@ public class GrindsFragment : Fragment(R.layout.fragment_grinds) {
 
   private fun setupListeners() {
     binding.newGrind.setOnClickListener {
-      navigateToEditor()
+      viewModel.interact(GrindsInteraction.NewSessionClicked)
     }
   }
 
@@ -139,11 +139,12 @@ public class GrindsFragment : Fragment(R.layout.fragment_grinds) {
 
   private fun consumeCommands(command: ViewCommand) {
     when (command) {
-      is GrindsCommand.NavigateToEditor -> navigateToSession(command.session)
+      is GrindsCommand.NavigateToNewSession -> navigateToNewSession()
+      is GrindsCommand.NavigateToSessionDetails -> navigateToSession(command.session)
     }
   }
 
-  private fun navigateToEditor() {
+  private fun navigateToNewSession() {
     navigation.goToNewSession()
   }
 

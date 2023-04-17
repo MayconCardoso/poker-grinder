@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.architecture.OnInteraction
+import com.mctech.pokergrinder.grind.domain.GrindAnalytics
 import com.mctech.pokergrinder.grind.domain.entities.Session
 import com.mctech.pokergrinder.grind.domain.usecase.ObserveAllGrindsUseCase
 import com.mctech.pokergrinder.grind.presentation.list.adapter.GrindAdapterConsumerEvent
@@ -16,6 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class GrindsViewModel @Inject constructor(
+  private val analytics: GrindAnalytics,
   private val observeAllGrindsUseCase: ObserveAllGrindsUseCase,
 ) : BaseViewModel() {
 
@@ -36,9 +38,16 @@ internal class GrindsViewModel @Inject constructor(
   private suspend fun onTournamentEventInteraction(interaction: GrindsInteraction.OnGrindEvent) {
     when (interaction.event) {
       is GrindAdapterConsumerEvent.SessionClicked -> {
-        sendCommand(GrindsCommand.NavigateToEditor(interaction.event.session))
+        analytics.onSessionViewed(interaction.event.session)
+        sendCommand(GrindsCommand.NavigateToSessionDetails(interaction.event.session))
       }
     }
+  }
+
+  @OnInteraction(GrindsInteraction.NewSessionClicked::class)
+  private suspend fun onNewSessionClicked() {
+    analytics.onCreateSessionClicked()
+    sendCommand(GrindsCommand.NavigateToNewSession)
   }
 
 }
