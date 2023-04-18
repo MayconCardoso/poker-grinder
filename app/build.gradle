@@ -9,10 +9,20 @@ apply plugin: "androidx.navigation.safeargs.kotlin"
 android {
     defaultConfig {
         applicationId = "com.mctech.pokergrinder"
-        versionCode 1
-        versionName "1.0"
+        versionCode 110
+        versionName "1.7.0"
+        archivesBaseName = "${applicationId}-v${versionName}(${versionCode})"
     }
-
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+        }
+        debug {
+            minifyEnabled false
+            shrinkResources false
+        }
+    }
     buildFeatures {
         compose true
         viewBinding true
