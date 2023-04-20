@@ -8,7 +8,7 @@ import io.mockk.coEvery
 import io.mockk.coVerifyOrder
 import io.mockk.mockk
 import io.mockk.slot
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
 class UpdateTransactionUseCaseTest {
@@ -41,7 +41,7 @@ class UpdateTransactionUseCaseTest {
       }
 
       // Assert saved transaction
-      Assertions.assertThat(transactionSlotSpy.captured).isEqualTo(expectedTransaction)
+      assertThat(transactionSlotSpy.captured).isEqualTo(expectedTransaction)
     }
   }
 }

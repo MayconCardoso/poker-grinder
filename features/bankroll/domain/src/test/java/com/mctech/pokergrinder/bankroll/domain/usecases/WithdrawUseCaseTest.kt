@@ -10,7 +10,7 @@ import io.mockk.coEvery
 import io.mockk.coVerifyOrder
 import io.mockk.mockk
 import io.mockk.slot
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Rule
 import org.junit.Test
 
@@ -62,7 +62,6 @@ class WithdrawUseCaseTest {
 
     givenScenario {
       coEvery { calendarRule.calendar.timeInMillis } returns 0
-      coEvery { repository.loadBalance() } returns balance
       coEvery { generateUniqueIdUseCase() } returns id
     }
 
@@ -75,17 +74,16 @@ class WithdrawUseCaseTest {
       val transactionSlotSpy = slot<BankrollTransaction>()
 
       // Checks generated ID.
-      Assertions.assertThat(result).isEqualTo(id)
+      assertThat(result).isEqualTo(id)
 
       // Checks calling pipeline
       coVerifyOrder {
-        repository.loadBalance()
         generateUniqueIdUseCase()
         repository.save(capture(transactionSlotSpy))
       }
 
       // Assert saved transaction
-      Assertions.assertThat(transactionSlotSpy.captured).isEqualTo(expectedTransaction)
+      assertThat(transactionSlotSpy.captured).isEqualTo(expectedTransaction)
     }
   }
 }
