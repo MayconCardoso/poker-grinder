@@ -19,6 +19,7 @@ junitJacoco {
             '**/*Test*.*',
             '**/testing/**',
             '**/di/**',
+            '**/composables/**',
             '**/*Dagger.*',
             '**/architecture_testing/agent/*.*',
             'hilt_*/**',
