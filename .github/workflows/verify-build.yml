@@ -24,12 +24,11 @@ jobs:
       - name: Copy  gradle properties file
         run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
 
-      - name: Set up Firebase
-        uses: wzieba/Firebase-Setup-Action@v1.3
-        with:
-          args: >
-            --project my-project
-            --json "${{ secrets.GOOGLE_PLAY_SERVICE }}"
+      - name: Copy google_services.json
+        env:
+          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_PLAY_SERVICE }}
+        run: |
+          echo "$GOOGLE_SERVICES_JSON" > app/google_services.json
 
       - name: Set up JDK 11
         uses: actions/setup-java@v3
