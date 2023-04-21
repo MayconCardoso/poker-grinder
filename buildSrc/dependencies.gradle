@@ -65,10 +65,10 @@ ext.libraries = [
         //==========================================================================================
         "androidTestingMockk": "io.mockk:mockk:1.12.8",
         "androidTestingJunit": "junit:junit:4.13.2",
-        "androidTestingRules": "androidx.test:rules:1.5.0",
-        "androidTestingRunner": "androidx.test:runner:1.5.2",
-        "androidTestingAssertj": "org.assertj:assertj-core:3.24.2",
-        "androidTestingMonitor": "androidx.test:monitor:1.6.1",
-        "androidTestingArchCore": "androidx.arch.core:core-testing:2.2.0",
-        "androidTestingExtJunit": "androidx.test.ext:junit:1.1.5",
+        "androidTestingRules": "androidx.test:rules:1.4.0",
+        "androidTestingRunner": "androidx.test:runner:1.4.0",
+        "androidTestingAssertj": "org.assertj:assertj-core:3.23.1",
+        "androidTestingMonitor": "androidx.test:monitor:1.6.0",
+        "androidTestingArchCore": "androidx.arch.core:core-testing:2.1.0",
+        "androidTestingExtJunit": "androidx.test.ext:junit:1.1.3",
 ]
