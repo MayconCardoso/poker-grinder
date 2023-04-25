@@ -3,5 +3,5 @@ ext.targets = [
     minSdk                  : 27,
     compileSdk              : 33,
     targetSdk               : 33,
-    kotlinJvmTarget         : 11,
+    kotlinJvmTarget         : 17,
 ]

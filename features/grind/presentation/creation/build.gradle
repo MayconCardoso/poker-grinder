@@ -6,3 +6,7 @@ dependencies {
     implementation project(path: ':features:grind:domain')
     implementation project(path: ':features:grind:presentation:navigation')
 }
+
+android {
+    namespace 'com.mctech.pokergrinder.grind.presentation.creation'
+}

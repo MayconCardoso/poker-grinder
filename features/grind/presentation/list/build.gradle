@@ -11,3 +11,7 @@ dependencies {
     // Testing
     testImplementation project(path: ':features:grind:testing')
 }
+
+android {
+    namespace 'com.mctech.pokergrinder.grind.presentation.list'
+}

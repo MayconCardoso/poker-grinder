@@ -17,3 +17,7 @@ dependencies {
     implementation libraries.androidViewPager2
     implementation libraries.googleMaterialDesign
 }
+
+android {
+    namespace 'com.mctech.pokergrinder.summary.presentation.pager_container'
+}

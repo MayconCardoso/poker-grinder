@@ -1,6 +1,12 @@
 apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
 
+android {
+    kotlinOptions {
+        jvmTarget = targets.kotlinJvmTarget
+    }
+}
+
 dependencies {
     // Kotlin
     implementation libraries.kotlinJdk

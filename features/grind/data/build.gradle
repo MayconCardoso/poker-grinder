@@ -8,3 +8,7 @@ dependencies {
     // Internal test Modules
     testImplementation project(path: ':features:grind:testing')
 }
+
+android {
+    namespace 'com.mctech.pokergrinder.grind.data'
+}

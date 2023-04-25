@@ -7,3 +7,7 @@ dependencies {
     // Testing
     testImplementation project(path: ':features:bankroll:testing')
 }
+
+android {
+    namespace 'com.mctech.pokergrinder.bankroll.balance'
+}

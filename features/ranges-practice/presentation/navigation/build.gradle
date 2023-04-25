@@ -5,3 +5,7 @@ dependencies {
     implementation project(path: ':features:ranges:domain')
     implementation project(path: ':features:ranges-practice:domain')
 }
+
+android {
+    namespace 'com.mctech.pokergrinder.ranges_practice.presentation.navigation'
+}

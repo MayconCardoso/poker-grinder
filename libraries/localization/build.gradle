@@ -1,2 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: "kotlin-android"
+
+android {
+    namespace 'com.mctech.pokergrinder.localization'
+}

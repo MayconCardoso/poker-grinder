@@ -6,3 +6,7 @@ dependencies {
     implementation project(path: ':features:tournaments:presentation:navigation')
     implementation project(path: ':features:tournaments:presentation:list-component')
 }
+
+android {
+    namespace 'com.mctech.pokergrinder.tournament.presentation.list'
+}

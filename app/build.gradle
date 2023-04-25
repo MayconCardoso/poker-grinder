@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'kotlin-kapt'
 
 android {
     defaultConfig {
@@ -30,6 +30,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion '1.4.3'
     }
+    namespace 'com.mctech.pokergrinder'
 }
 
 dependencies {

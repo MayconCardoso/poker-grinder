@@ -4,3 +4,7 @@ dependencies {
     // Internal modules
     implementation project(path: ':features:summary:domain')
 }
+
+android {
+    namespace 'com.mctech.pokergrinder.summary.presentation.navigation'
+}

@@ -4,3 +4,7 @@ dependencies {
     // Internal modules
     implementation project(path: ':features:ranges:domain')
 }
+
+android {
+    namespace 'com.mctech.pokergrinder.ranges.presentation.navigation'
+}
