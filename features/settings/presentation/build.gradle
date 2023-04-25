@@ -4,3 +4,7 @@ dependencies {
     // Internal modules
     implementation project(path: ':features:settings:domain')
 }
+
+android {
+    namespace 'com.mctech.pokergrinder.settings.presentation'
+}

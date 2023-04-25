@@ -5,3 +5,7 @@ dependencies {
     implementation project(path: ':features:bankroll:domain')
     testImplementation project(path: ':features:bankroll:testing')
 }
+
+android {
+    namespace 'com.mctech.pokergrinder.bankroll.data'
+}

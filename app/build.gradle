@@ -30,6 +30,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion '1.4.3'
     }
+    namespace 'com.mctech.pokergrinder'
 }
 
 dependencies {

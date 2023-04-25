@@ -5,3 +5,7 @@ dependencies {
     implementation project(path: ':features:grind:data')
     implementation project(path: ':features:summary:domain')
 }
+
+android {
+    namespace 'com.mctech.pokergrinder.summary.data'
+}

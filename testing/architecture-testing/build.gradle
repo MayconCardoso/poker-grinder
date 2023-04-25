@@ -11,3 +11,7 @@ dependencies {
     implementation libraries.androidTestingRunner
     implementation libraries.androidLifecycleLiveDataKtx
 }
+
+android {
+    namespace 'com.mctech.architecture_testing'
+}

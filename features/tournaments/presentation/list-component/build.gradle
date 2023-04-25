@@ -4,3 +4,7 @@ dependencies {
     // Internal modules
     implementation project(path: ':features:tournaments:domain')
 }
+
+android {
+    namespace 'com.mctech.pokergrinder.tournament.presentation.list_component'
+}

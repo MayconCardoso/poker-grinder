@@ -9,3 +9,7 @@ dependencies {
     // Ui
     implementation libraries.androidCardView
 }
+
+android {
+    namespace 'com.mctech.pokergrinder.summary.presentation.tournament'
+}

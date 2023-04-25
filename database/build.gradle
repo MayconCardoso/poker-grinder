@@ -14,6 +14,7 @@ android {
     sourceSets {
         androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
     }
+    namespace 'com.mctech.pokergrinder.database'
 }
 
 dependencies {

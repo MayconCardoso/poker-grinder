@@ -8,6 +8,7 @@ android {
     kotlinOptions {
         jvmTarget = targets.kotlinJvmTarget
     }
+    namespace 'com.mctech.chart'
 }
 
 dependencies {

@@ -5,3 +5,7 @@ dependencies {
     implementation project(path: ':features:grind-tournament:domain')
     testImplementation project(path: ':features:grind-tournament:testing')
 }
+
+android {
+    namespace 'com.mctech.pokergrinder.grind_tournament.data'
+}

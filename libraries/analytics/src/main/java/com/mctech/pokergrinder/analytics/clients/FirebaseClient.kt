@@ -10,14 +10,11 @@ class FirebaseClient : AnalyticsClient {
   private val analytics by lazy { Firebase.analytics }
 
   override suspend fun sendEvent(event: AnalyticsEvent) {
-    analytics.logEvent(
-      event.name,
-      Bundle().apply {
-        event.data.forEach {
-          putString(it.first, it.second)
-        }
-      }
-    )
+    val eventData = Bundle()
+    event.data.forEach {
+      eventData.putString(it.first, it.second)
+    }
+    analytics.logEvent(event.name, eventData)
   }
 
 }

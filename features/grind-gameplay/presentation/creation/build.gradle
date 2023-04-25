@@ -17,3 +17,7 @@ dependencies {
     testImplementation project(path: ':features:grind-gameplay:testing')
     testImplementation project(path: ':features:grind-tournament:testing')
 }
+
+android {
+    namespace 'com.mctech.pokergrinder.grind_gameplay.presentation.creation'
+}
