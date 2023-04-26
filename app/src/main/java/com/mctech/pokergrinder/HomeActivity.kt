@@ -1,8 +1,14 @@
 package com.mctech.pokergrinder
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
@@ -63,6 +69,10 @@ class HomeActivity : AppCompatActivity() {
     Navigation.findNavController(this, R.id.feature_fragment)
   }
 
+  private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+    // TODO: Inform user that that your app will not show notifications.
+  }
+
   /**
    * Used to navigate through the app.
    */
@@ -85,6 +95,9 @@ class HomeActivity : AppCompatActivity() {
 
     // Setup bottom component
     setUpBottomNavigation()
+
+    // Request notification access
+    requestNotificationAccess()
   }
 
   override fun onDestroy() {
@@ -125,6 +138,18 @@ class HomeActivity : AppCompatActivity() {
   private fun setUpBottomNavigation() {
     val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation_main)
     NavigationUI.setupWithNavController(bottomNav, navigatorController)
+  }
+
+  private fun requestNotificationAccess() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+      if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
+        // All set, notifications can be sent.
+      } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
+        // Todo show dialog here.
+      } else {
+        requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+      }
+    }
   }
 
   // endregion

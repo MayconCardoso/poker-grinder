@@ -9,8 +9,8 @@ apply plugin: 'kotlin-kapt'
 android {
     defaultConfig {
         applicationId = "com.mctech.pokergrinder"
-        versionCode 110
-        versionName "1.7.0"
+        versionCode 120
+        versionName "1.7.1"
         archivesBaseName = "${applicationId}-v${versionName}(${versionCode})"
     }
     buildTypes {
@@ -128,4 +128,5 @@ dependencies {
     implementation platform(libraries.firebaseBom)
     implementation libraries.firebaseCrash
     implementation libraries.firebaseAnalytics
+    implementation libraries.firebaseMessaging
 }

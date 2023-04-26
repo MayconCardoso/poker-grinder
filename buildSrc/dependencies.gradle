@@ -59,6 +59,7 @@ ext.libraries = [
         "firebaseBom": "com.google.firebase:firebase-bom:31.5.0",
         "firebaseCrash": "com.google.firebase:firebase-crashlytics-ktx",
         "firebaseAnalytics": "com.google.firebase:firebase-analytics-ktx",
+        "firebaseMessaging": "com.google.firebase:firebase-messaging",
 
         //==========================================================================================
         // Application - Testing
