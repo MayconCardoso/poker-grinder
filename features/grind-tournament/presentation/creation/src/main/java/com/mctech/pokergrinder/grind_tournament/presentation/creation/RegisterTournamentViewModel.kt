@@ -78,24 +78,39 @@ internal class RegisterTournamentViewModel @Inject constructor(
 
     // Updates if already exists
     if (tournament != null) {
-      updatesTournamentUseCase(
-        tournament.copy(
-          title = interaction.title,
-          buyIn = interaction.buyIn,
-          profit = interaction.profit + interaction.addNewProfit,
-        )
-      )
+      updateExistentTournament(interaction, tournament)
     }
 
     // Tournament does not exist.
     else {
-      analytics.onTourneyRegistered(title = interaction.title, buyIn = interaction.buyIn)
-      registerTournamentUseCase(
-        session = session,
+      registerNewTournament(session, interaction)
+    }
+  }
+
+  private suspend fun updateExistentTournament(interaction: RegisterTournamentInteraction.SaveTournament, tournament: SessionTournament) {
+    // Computes new profit
+    val newProfit = interaction.profit + interaction.addNewProfit
+
+    // Send analytics
+    analytics.onTourneyUpdated(title = interaction.title, buyIn = interaction.buyIn, profit = newProfit)
+
+    // Save tournament
+    updatesTournamentUseCase(
+      tournament.copy(
         title = interaction.title,
         buyIn = interaction.buyIn,
+        profit = newProfit,
       )
-    }
+    )
+  }
+
+  private suspend fun registerNewTournament(session: Session, interaction: RegisterTournamentInteraction.SaveTournament) {
+    analytics.onTourneyRegistered(title = interaction.title, buyIn = interaction.buyIn)
+    registerTournamentUseCase(
+      session = session,
+      title = interaction.title,
+      buyIn = interaction.buyIn,
+    )
   }
 
   private suspend fun handlesTournamentCreation(buyIn: Double, title: String) {

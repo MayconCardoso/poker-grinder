@@ -5,5 +5,5 @@ package com.mctech.pokergrinder.analytics.core
  */
 data class AnalyticsEvent(
   val name: String,
-  val data: List<Pair<String, String>> = listOf()
+  val data: List<Pair<String, Any>> = listOf()
 )

@@ -13,7 +13,7 @@ class LogcatClient : AnalyticsClient {
       event.name,
       Bundle().apply {
         event.data.forEach {
-          putString(it.first, it.second)
+          putString(it.first, it.second.toString())
         }
       }
     )

@@ -22,7 +22,7 @@ class GrindTournamentAnalytics @Inject constructor(
         name = "session_screen_tourney_clicked",
         data = listOf(
           "title" to tournament.title,
-          "buy_in" to tournament.buyIn.toString(),
+          "buy_in" to tournament.buyIn,
         )
       )
     )
@@ -34,7 +34,7 @@ class GrindTournamentAnalytics @Inject constructor(
         name = "session_screen_tourney_duplicated",
         data = listOf(
           "title" to tournament.title,
-          "buy_in" to tournament.buyIn.toString(),
+          "buy_in" to tournament.buyIn,
         )
       )
     )
@@ -46,7 +46,20 @@ class GrindTournamentAnalytics @Inject constructor(
         name = "session_screen_tourney_registered",
         data = listOf(
           "title" to title,
-          "buy_in" to buyIn.toString(),
+          "buy_in" to buyIn,
+        )
+      )
+    )
+  }
+
+  suspend fun onTourneyUpdated(title: String, buyIn: Double, profit: Double) {
+    analyticsSender.send(
+      event = AnalyticsEvent(
+        name = "session_screen_tourney_updated",
+        data = listOf(
+          "title" to title,
+          "buy_in" to buyIn,
+          "profit" to profit,
         )
       )
     )

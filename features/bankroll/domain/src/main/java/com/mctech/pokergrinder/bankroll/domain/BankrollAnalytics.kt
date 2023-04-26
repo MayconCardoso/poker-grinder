@@ -19,7 +19,7 @@ class BankrollAnalytics @Inject constructor(
       event = AnalyticsEvent(
         name = "bankroll_screen_deposit_made",
         data = listOf(
-          "amount" to amount.toString()
+          "amount" to amount
         )
       )
     )
@@ -34,7 +34,7 @@ class BankrollAnalytics @Inject constructor(
       event = AnalyticsEvent(
         name = "bankroll_screen_withdraw_made",
         data = listOf(
-          "amount" to amount.toString()
+          "amount" to amount
         )
       )
     )

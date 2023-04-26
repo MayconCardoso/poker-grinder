@@ -1,12 +1,6 @@
-apply from: "$rootDir/buildSrc/module/feature/presentation.gradle"
+apply from: "$rootDir/buildSrc/module/feature/compose.gradle"
 
 android {
-    buildFeatures {
-        compose true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion '1.4.3'
-    }
     namespace 'com.mctech.pokergrinder.tournament.presentation.creation'
 }
 
@@ -14,12 +8,4 @@ dependencies {
     // Internal modules
     implementation project(path: ':features:tournaments:domain')
     implementation project(path: ':features:tournaments:presentation:navigation')
-
-    // Ui
-    implementation libraries.androidComposeUi
-    implementation libraries.androidComposeHilt
-    implementation libraries.androidComposeMaterial
-    implementation libraries.androidComposeToolingPreview
-    implementation libraries.androidComposeRuntimeLivedata
-    debugImplementation libraries.androidComposeTooling
 }
