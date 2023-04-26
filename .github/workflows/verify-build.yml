@@ -37,7 +37,7 @@ jobs:
           cache: 'gradle'
 
       - name: Run unit tests
-        run: ./gradlew jacocoTestReport jacocoTestReportDebug
+        run: ./gradlew test
 
       - name: Codecov
         uses: codecov/codecov-action@v3.1.1
