@@ -161,7 +161,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toStartOf="@+id/header_buy_in"
+        app:layout_constraintEnd_toStartOf="@+id/header_roi"
         app:layout_constraintStart_toStartOf="@+id/header_balance"
         app:layout_constraintTop_toBottomOf="@id/header_balance">
 
@@ -209,13 +209,65 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/header_buy_in"
+        android:id="@+id/header_roi"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         app:layout_constraintEnd_toEndOf="@+id/header_tournaments"
         app:layout_constraintStart_toEndOf="@id/header_cash"
         app:layout_constraintTop_toTopOf="@+id/header_cash">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/roi_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/roi"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/roi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/roi_title"
+                tools:text="8.00" />
+
+            <ProgressBar
+                android:id="@+id/progress_roi"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/roi_title"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/header_buy_in"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/header_avg_buy_in"
+        app:layout_constraintStart_toStartOf="@+id/header_balance"
+        app:layout_constraintTop_toBottomOf="@id/header_cash">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -260,6 +312,58 @@
 
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/header_avg_buy_in"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/header_tournaments"
+        app:layout_constraintStart_toEndOf="@id/header_buy_in"
+        app:layout_constraintTop_toTopOf="@+id/header_buy_in">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/avg_buy_in_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/avg_buy_in"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/avg_buy_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/avg_buy_in_title"
+                tools:text="8.00" />
+
+            <ProgressBar
+                android:id="@+id/progress_avg_buy_in"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/avg_buy_in_title"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/component_gameplay"
         android:layout_width="match_parent"
@@ -268,7 +372,7 @@
         android:text="@string/gameplay"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/header_cash" />
+        app:layout_constraintTop_toBottomOf="@id/header_buy_in" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/header_flip_won"

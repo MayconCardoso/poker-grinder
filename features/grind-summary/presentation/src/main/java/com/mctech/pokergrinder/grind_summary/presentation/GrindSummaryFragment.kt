@@ -110,6 +110,14 @@ class GrindSummaryFragment : Fragment(R.layout.fragment_grind_details_summary) {
     binding.cash.text = session.formattedCash()
     binding.cash.isVisible = true
     binding.progressCash.isVisible = false
+
+    binding.roi.text = session.formattedRoi()
+    binding.roi.isVisible = true
+    binding.progressRoi.isVisible = false
+
+    binding.avgBuyIn.text = session.formattedAvgBuyIn()
+    binding.avgBuyIn.isVisible = true
+    binding.progressAvgBuyIn.isVisible = false
   }
 
   private fun rendersSessionError() {

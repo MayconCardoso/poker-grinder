@@ -1,23 +1,14 @@
 package com.mctech.pokergrinder.bankroll.presentation.balance_component
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.mctech.pokergrinder.architecture.ComponentState
+import com.mctech.pokergrinder.design.components.HeaderToolbarUi
 import com.mctech.pokergrinder.design.compose.PokerGrinder
-import com.mctech.pokergrinder.design.compose.PokerGrinder.LocalColors
 import com.mctech.pokergrinder.localization.R
 
 @Composable
@@ -51,41 +42,17 @@ internal fun BankrollBalance(
   balance: String,
   modifier: Modifier = Modifier
 ) {
-  // Draws the outer card.
-  Column(
-    modifier
-      .background(LocalColors.current.primary)
-      .fillMaxWidth()
-      .padding(start = 15.dp, top = 4.dp, bottom = 6.dp, end = 6.dp)
-  ) {
-
-    // Draws the title
-    Text(
-      text = stringResource(id = R.string.bankroll),
-      style = TextStyle(
-        color = LocalColors.current.textColorInverted,
-        fontSize = 19.sp,
-        letterSpacing = 0.sp,
-        fontWeight = FontWeight.SemiBold,
-      ),
-    )
-
-    // Draws the Balance
-    Text(
-      text = balance,
-      style = TextStyle(
-        color = LocalColors.current.textColorInverted,
-        fontSize = 16.sp,
-        letterSpacing = 0.sp,
-      ),
-    )
-  }
+  HeaderToolbarUi(
+    title = stringResource(id = R.string.bankroll),
+    subtitle = balance,
+    modifier = modifier,
+  )
 }
 
 @Preview(showBackground = true)
 @Composable
 internal fun BankrollBalanceComponentPreview() {
-  PokerGrinder.PokerGrinderTheme() {
-    BankrollBalance(balance = "R$2100.00")
+  PokerGrinder.PokerGrinderTheme {
+    BankrollBalance(balance = "$2100.00")
   }
 }

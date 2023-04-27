@@ -16,6 +16,7 @@ data class PokerGrinderColors(
   val textColorPrimary: Color,
   val textColorSecondary: Color,
   val textColorInverted: Color,
+  val neutralIndicator: Color,
   val positiveIndicator: Color,
   val negativeIndicator: Color,
 )
@@ -36,6 +37,7 @@ val lightColors: PokerGrinderColors = PokerGrinderColors(
   textColorSecondary = Color(parseColor("#7F7F82")),
   textColorInverted = Color.White,
 
+  neutralIndicator = Color(parseColor("#FFC107")),
   positiveIndicator = Color(parseColor("#4CAF50")),
   negativeIndicator = Color(parseColor("#F44336")),
 )
