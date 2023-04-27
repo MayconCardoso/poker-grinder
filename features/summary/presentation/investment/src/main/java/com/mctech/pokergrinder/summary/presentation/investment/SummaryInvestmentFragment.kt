@@ -8,17 +8,15 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.mctech.pokergrinder.architecture.ComponentState
+import com.mctech.pokergrinder.architecture.extensions.avoidFrozenFrames
 import com.mctech.pokergrinder.architecture.extensions.bindState
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
-import com.mctech.pokergrinder.summary.domain.entities.InvestmentSummary
 import com.mctech.pokergrinder.summary.presentation.investment.databinding.FragmentSummaryInvestmentBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-public class SummaryInvestmentFragment : Fragment(R.layout.fragment_summary_investment) {
+class SummaryInvestmentFragment : Fragment(R.layout.fragment_summary_investment) {
 
   // region Variables
 
@@ -38,7 +36,7 @@ public class SummaryInvestmentFragment : Fragment(R.layout.fragment_summary_inve
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    viewLifecycleOwner.lifecycleScope.launch {
+    avoidFrozenFrames {
       // Initialize view model
       viewModel.initialize()
 
@@ -51,7 +49,7 @@ public class SummaryInvestmentFragment : Fragment(R.layout.fragment_summary_inve
 
   // region State Manipulation
 
-  private fun consumeInvestmentState(state: ComponentState<InvestmentSummary>) {
+  private fun consumeInvestmentState(state: ComponentState<SummaryInvestmentState>) {
     when (state) {
       is ComponentState.Error -> rendersInvestmentError()
       is ComponentState.Loading -> rendersInvestmentLoading()
@@ -65,12 +63,12 @@ public class SummaryInvestmentFragment : Fragment(R.layout.fragment_summary_inve
     binding.groupInvestment.isInvisible = true
   }
 
-  private fun rendersInvestmentSuccess(state: InvestmentSummary) {
+  private fun rendersInvestmentSuccess(state: SummaryInvestmentState) {
     binding.progressInvestment.isVisible = false
     binding.groupInvestment.isInvisible = false
 
     // Render profit
-    binding.profit.text = state.formattedProfit()
+    binding.profit.text = state.formattedProfit
     binding.profit.setTextColor(
       ContextCompat.getColor(
         binding.root.context,
@@ -80,17 +78,17 @@ public class SummaryInvestmentFragment : Fragment(R.layout.fragment_summary_inve
     )
 
     // Render roi
-    binding.roi.text = state.formattedRoi()
+    binding.roi.text = state.roi
     binding.roi.setTextColor(
       ContextCompat.getColor(
         binding.root.context,
-        if (state.computeRoi() >= 0) com.mctech.pokergrinder.design.R.color.deposit
+        if (state.profit >= 0) com.mctech.pokergrinder.design.R.color.deposit
         else com.mctech.pokergrinder.design.R.color.withdraw
       )
     )
 
-    binding.cash.text = state.formattedCash()
-    binding.investment.text = state.formattedBuyIn()
+    binding.cash.text = state.cash
+    binding.investment.text = state.buyIn
   }
 
   private fun rendersInvestmentError() {

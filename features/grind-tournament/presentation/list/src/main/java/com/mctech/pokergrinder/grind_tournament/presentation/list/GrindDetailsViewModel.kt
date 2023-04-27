@@ -104,7 +104,7 @@ internal class GrindDetailsViewModel @Inject constructor(
         this.originalTemplateList = tournaments
 
         // Should group same same tournament
-        if (settings.asBoolean()) {
+        if (settings?.asBoolean() == true) {
           groupGrindTournamentUseCase(tournaments)
         }
 

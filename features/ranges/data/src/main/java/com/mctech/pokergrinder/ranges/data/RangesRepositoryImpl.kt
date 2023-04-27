@@ -26,7 +26,7 @@ class RangesRepositoryImpl @Inject constructor(
 
   private fun createOpenRange30BigBlinds() = Range(
     id = "1",
-    name = "30BB - Open",
+    name = "30BB - Open (Basic MTT)",
     action = RangeAction.OPEN,
     effectiveStack = 30,
     handPosition = listOf(
@@ -41,7 +41,7 @@ class RangesRepositoryImpl @Inject constructor(
 
   private fun createOpenRange50BigBlinds() = Range(
     id = "2",
-    name = "50BB - Open",
+    name = "50BB - Open (Basic MTT)",
     action = RangeAction.OPEN,
     effectiveStack = 50,
     handPosition = listOf(

@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-public class SettingsRepositoryImpl @Inject constructor(
+class SettingsRepositoryImpl @Inject constructor(
   private val dao: SettingsDao,
 ) : SettingsRepository {
 
@@ -18,8 +18,8 @@ public class SettingsRepositoryImpl @Inject constructor(
     return dao.observeAll().map { it.asBusinessSettings() }
   }
 
-  override fun observeSetting(key: String): Flow<Settings> {
-    return dao.observe(key).map { it.asBusinessSetting() }
+  override fun observeSetting(key: String): Flow<Settings?> {
+    return dao.observe(key).map { it?.asBusinessSetting() }
   }
 
   override suspend fun save(settings: Settings) {

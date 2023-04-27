@@ -16,7 +16,7 @@ interface SettingsRepository {
   /**
    * Observes an specific setting given its [key].
    */
-  fun observeSetting(key: String): Flow<Settings>
+  fun observeSetting(key: String): Flow<Settings?>
 
   /**
    * Saves a [settings].
