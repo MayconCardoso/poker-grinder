@@ -48,13 +48,13 @@ internal class SettingsViewModel @Inject constructor(
 
     // Save settings
     saveSettingsUseCase(
-      settings.map {
+      *settings.map {
         if (it == selected) {
           it.copy(value = interaction.value.toString())
         } else {
           it
         }
-      }
+      }.toTypedArray()
     )
   }
 }

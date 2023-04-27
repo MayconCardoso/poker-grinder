@@ -9,6 +9,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.design.components.HeaderToolbarUi
 import com.mctech.pokergrinder.design.compose.PokerGrinder
+import com.mctech.pokergrinder.design.extension.clickableWithoutRipple
 import com.mctech.pokergrinder.localization.R
 
 @Composable
@@ -30,22 +31,29 @@ fun BankrollBalanceComponent(
       balance = stringResource(id = R.string.hyphen),
       modifier = modifier,
     )
+
     is ComponentState.Success -> BankrollBalance(
       balance = state.result,
       modifier = modifier,
+      interact = { interaction ->
+        viewModel.interact(interaction )
+      }
     )
   }
 }
 
 @Composable
 internal fun BankrollBalance(
+  modifier: Modifier = Modifier,
   balance: String,
-  modifier: Modifier = Modifier
+  interact: (BankrollBalanceInteraction) -> Unit = {},
 ) {
   HeaderToolbarUi(
     title = stringResource(id = R.string.bankroll),
     subtitle = balance,
-    modifier = modifier,
+    modifier = modifier.clickableWithoutRipple {
+      interact(BankrollBalanceInteraction.OnBalanceClicked)
+    },
   )
 }
 

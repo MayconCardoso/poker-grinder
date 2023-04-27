@@ -3,6 +3,7 @@ apply from: "$rootDir/buildSrc/module/feature/compose.gradle"
 dependencies {
     // Internal modules
     implementation project(path: ':features:bankroll:domain')
+    implementation project(path: ':features:settings:domain')
 
     // Testing
     testImplementation project(path: ':features:bankroll:testing')

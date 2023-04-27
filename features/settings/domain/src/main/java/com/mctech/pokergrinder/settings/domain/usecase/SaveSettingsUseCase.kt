@@ -10,7 +10,7 @@ import javax.inject.Inject
  * @property repository settings data repository.
  */
 class SaveSettingsUseCase @Inject constructor(private val repository: SettingsRepository) {
-  suspend operator fun invoke(settings: List<Settings>) {
+  suspend operator fun invoke(vararg settings: Settings) {
     settings.forEach { item ->
       repository.save(item)
     }

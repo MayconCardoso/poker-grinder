@@ -12,7 +12,7 @@ import javax.inject.Inject
  * @property repository settings data repository.
  */
 class ObserveSettingsUseCase @Inject constructor(private val repository: SettingsRepository) {
-  operator fun invoke(settings: SettingsAvailable): Flow<Settings> {
+  operator fun invoke(settings: SettingsAvailable): Flow<Settings?> {
     return repository.observeSetting(settings.key)
   }
 }

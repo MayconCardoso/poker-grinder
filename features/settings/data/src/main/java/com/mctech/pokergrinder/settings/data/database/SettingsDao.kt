@@ -12,7 +12,7 @@ public interface SettingsDao {
   public suspend fun save(settings: SettingsRoomEntity)
 
   @Query("SELECT * from settings WHERE settingKey = :key")
-  public fun observe(key: String): Flow<SettingsRoomEntity>
+  public fun observe(key: String): Flow<SettingsRoomEntity?>
 
   @Query("SELECT * from settings")
   public fun observeAll(): Flow<List<SettingsRoomEntity>>
