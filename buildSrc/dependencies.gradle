@@ -11,6 +11,7 @@ ext.libraries = [
         //==========================================================================================
         // Application - Google
         //==========================================================================================
+        "gson": "com.google.code.gson:gson:2.10.1",
         "googleDagger": "com.google.dagger:dagger:2.45",
         "googleHiltAndroid": "com.google.dagger:hilt-android:2.45",
         "googleHiltCompiler": "com.google.dagger:hilt-compiler:2.45",

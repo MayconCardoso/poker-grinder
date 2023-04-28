@@ -12,12 +12,12 @@ interface BackupRepository {
   /**
    * Restores the data from a previous [backup].
    */
-  fun restoreData(backup: Backup): Flow<BackupState>
+  suspend fun restoreData(backup: Backup): Flow<BackupState>
 
   /**
    * Performs a backup of the saved data.
    */
-  fun backupData(): Flow<BackupState>
+  suspend fun backupData(): Flow<BackupState>
 
   /**
    * Loads all available backup data.

@@ -20,4 +20,7 @@ interface TournamentDao {
 
   @Query("SELECT * from tournament where title = :title LIMIT 1")
   fun loadByTitle(title: String): TournamentRoomEntity?
+
+  @Query("SELECT * from tournament")
+  fun loadAll(): List<TournamentRoomEntity>
 }

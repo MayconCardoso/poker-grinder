@@ -11,7 +11,7 @@ import javax.inject.Inject
 class BackupDataUseCase @Inject constructor(
   private val repository: BackupRepository,
 ) {
-  operator fun invoke(): Flow<BackupState> {
+  suspend operator fun invoke(): Flow<BackupState> {
     return repository.backupData()
   }
 }

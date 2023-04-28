@@ -110,6 +110,9 @@ dependencies {
     // Feature support developer
     implementation project(path: ':features:support-developer:presentation')
 
+    // Feature backup
+    implementation project(path: ':features:backup:domain')
+
     // Navigation
     implementation libraries.androidNavigationFragmentKtx
     implementation libraries.androidNavigationUiKtx

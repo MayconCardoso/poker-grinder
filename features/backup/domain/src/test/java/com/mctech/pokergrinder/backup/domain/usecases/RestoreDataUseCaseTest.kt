@@ -5,6 +5,7 @@ import com.mctech.pokergrinder.backup.domain.BackupRepository
 import com.mctech.pokergrinder.backup.domain.entities.Backup
 import com.mctech.pokergrinder.backup.domain.entities.BackupState
 import io.mockk.coEvery
+import io.mockk.coVerifyOrder
 import io.mockk.mockk
 import io.mockk.verifyOrder
 import kotlinx.coroutines.flow.Flow
@@ -33,7 +34,7 @@ internal class RestoreDataUseCaseTest {
 
     thenAssert { result ->
       assertThat(result).isEqualTo(mockkFlow)
-      verifyOrder {
+      coVerifyOrder {
         repository.restoreData(backup)
       }
     }

@@ -16,4 +16,7 @@ interface RangePracticeDao {
 
   @Query("SELECT * from range_practice ORDER BY dateInMs DESC LIMIT 1000")
   fun observe(): Flow<List<RangePracticeRoomEntity>>
+
+  @Query("SELECT * from range_practice ORDER BY dateInMs DESC LIMIT 1000")
+  fun loadAll(): List<RangePracticeRoomEntity>
 }

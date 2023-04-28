@@ -18,4 +18,6 @@ interface GrindTournamentDao {
   @Query("SELECT * from grind_session_tournament WHERE id = :id")
   suspend fun loadGrindTournament(id: String): SessionTournamentRoomEntity
 
+  @Query("SELECT * from grind_session_tournament ORDER BY startTimeInMs DESC")
+  fun loadAll(): List<SessionTournamentRoomEntity>
 }

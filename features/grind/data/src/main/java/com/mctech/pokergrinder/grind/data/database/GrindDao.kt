@@ -27,4 +27,6 @@ interface GrindDao {
   @Query("SELECT * from grind_session_detail WHERE isOpened = 1")
   suspend fun loadCurrentGrind(): SessionDetailRoomEntity?
 
+  @Query("SELECT * from grind_session ORDER BY startTimeInMs DESC")
+  fun loadAll(): List<SessionRoomEntity>
 }

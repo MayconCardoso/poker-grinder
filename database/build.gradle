@@ -18,21 +18,30 @@ android {
 }
 
 dependencies {
-    // Internal Modules.
+    // Internal Libs.
+    implementation project(path: ':libraries:threading')
+    implementation project(path: ':libraries:formatter')
+
+    // Internal feature data modules
     implementation project(path: ':features:grind:data')
-    implementation project(path: ':features:grind-gameplay:data')
-    implementation project(path: ':features:grind-tournament:data')
+    implementation project(path: ':features:grind:data')
+    implementation project(path: ':features:summary:data')
+    implementation project(path: ':features:backup:domain')
+    implementation project(path: ':features:settings:data')
     implementation project(path: ':features:bankroll:data')
     implementation project(path: ':features:tournaments:data')
-    implementation project(path: ':features:summary:data')
-    implementation project(path: ':features:settings:data')
+    implementation project(path: ':features:grind-gameplay:data')
     implementation project(path: ':features:ranges-practice:data')
+    implementation project(path: ':features:grind-tournament:data')
 
     // Database
     implementation libraries.androidRoomCompiler
     implementation libraries.androidRoomKtx
     implementation libraries.androidTestingMonitor
     kapt libraries.androidRoomRuntime
+
+    // Gson
+    implementation libraries.gson
 
     // DI
     implementation libraries.googleHiltAndroid

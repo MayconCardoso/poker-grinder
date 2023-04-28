@@ -4,21 +4,27 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mctech.pokergrinder.architecture.extensions.viewBinding
+import com.mctech.pokergrinder.backup.domain.usecases.BackupDataUseCase
 import com.mctech.pokergrinder.bankroll.presentation.balance_component.BankrollBalanceComponent
 import com.mctech.pokergrinder.databinding.ActivityHomeBinding
 import com.mctech.pokergrinder.design.compose.PokerGrinder
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -78,6 +84,9 @@ class HomeActivity : AppCompatActivity() {
    */
   @Inject
   lateinit var appNavigator: PokerGrinderNavigator
+
+  @Inject
+  lateinit var backupUseCase: BackupDataUseCase
 
   // endregion
 
@@ -158,6 +167,16 @@ class HomeActivity : AppCompatActivity() {
 
   private fun renderToolbarBasedOnDestination(destination: NavDestination) {
     binding.toolbar.isVisible = !mainAppContainerHiddenFragments.contains(destination.id)
+
+    if(binding.toolbar.isVisible == false) {
+      lifecycleScope.launch {
+        backupUseCase()
+          .onEach {
+            Log.i("BackupMockState", it.toString())
+          }
+          .launchIn(lifecycleScope)
+      }
+    }
   }
 
   private fun renderBottomNavigatorBasedOnDestination(destination: NavDestination) {

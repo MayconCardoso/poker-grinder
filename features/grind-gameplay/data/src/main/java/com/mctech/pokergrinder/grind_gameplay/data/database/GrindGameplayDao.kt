@@ -15,4 +15,6 @@ interface GrindGameplayDao {
   @Query("SELECT * from grind_session_tournament_flip WHERE idSession = :sessionId")
   fun observeGrindTournamentFlips(sessionId: String): Flow<List<SessionTournamentFlipRoomEntity>>
 
+  @Query("SELECT * from grind_session_tournament_flip")
+  fun loadAll(): List<SessionTournamentFlipRoomEntity>
 }
