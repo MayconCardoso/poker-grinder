@@ -6,5 +6,5 @@ package com.mctech.pokergrinder.backup.domain.entities
 data class Backup(
   val title: String,
   val filePath: String,
-  val sizeInMb: Double,
+  val fileSize: Long,
 )

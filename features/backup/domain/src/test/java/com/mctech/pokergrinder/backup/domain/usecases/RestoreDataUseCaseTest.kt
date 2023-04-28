@@ -25,11 +25,13 @@ internal class RestoreDataUseCaseTest {
     val backup = mockk<Backup>()
 
     givenScenario {
-      coEvery { repository.restoreData(backup) } returns mockkFlow
+      coEvery { repository.prepareFlow() } returns mockkFlow
     }
 
     whenAction {
-      useCase(backup)
+      val flow = useCase.prepare()
+      useCase.restore(backup)
+      flow
     }
 
     thenAssert { result ->

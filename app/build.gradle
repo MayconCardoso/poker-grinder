@@ -112,6 +112,7 @@ dependencies {
 
     // Feature backup
     implementation project(path: ':features:backup:domain')
+    implementation project(path: ':features:backup:presentation')
 
     // Navigation
     implementation libraries.androidNavigationFragmentKtx

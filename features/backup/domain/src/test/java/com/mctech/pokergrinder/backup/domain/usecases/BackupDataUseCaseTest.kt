@@ -6,7 +6,6 @@ import com.mctech.pokergrinder.backup.domain.entities.BackupState
 import io.mockk.coEvery
 import io.mockk.coVerifyOrder
 import io.mockk.mockk
-import io.mockk.verifyOrder
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import org.assertj.core.api.Assertions.assertThat
@@ -23,11 +22,13 @@ internal class BackupDataUseCaseTest {
     val mockkFlow = flow<BackupState> {}
 
     givenScenario {
-      coEvery { repository.backupData() } returns mockkFlow
+      coEvery { repository.prepareFlow() } returns mockkFlow
     }
 
     whenAction {
-      useCase()
+      val flow = useCase.prepare()
+      useCase.doBackUp()
+      flow
     }
 
     thenAssert { result ->

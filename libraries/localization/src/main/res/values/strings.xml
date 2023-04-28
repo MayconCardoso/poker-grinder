@@ -28,6 +28,7 @@
     <string name="no_tournament">No tournament found</string>
     <string name="no_flip">No flip found</string>
     <string name="no_transaction">No transaction found</string>
+    <string name="no_backup">No backup found</string>
     <string name="no_practice">Start practicing and improve your game</string>
     <string name="something_went_wrong">Something went wrong.</string>
     <string name="that_is_correct">That is correct</string>
@@ -91,6 +92,7 @@
     <string name="help_developer_title">Hello players</string>
     <string name="poker_stars">PokerStars</string>
     <string name="my_nickname">Maikinho94</string>
+    <string name="backup_data">Backup data</string>
     <string name="help_developer_message">I hope you\'re enjoying using the app so far. As you may have noticed, the app is completely free, and I am committed to keeping it that way.\n\nHowever, as a solo developer, it can be challenging to maintain and improve the app without a source of income. That\'s why I\'m kindly asking for your support to keep the app running for free.\n\nIf you find the app useful and would like to help, please consider transferring some funds to my PokerStars account under the nickname right below.\n\nThank you for considering my request, and I wish you all the best of luck at the tables</string>
     <string name="new_range_feature">NOTE: This feature is new on the app. More ranges will be added very soon. The ability to create your own ranges will also be added.</string>
 </resources>

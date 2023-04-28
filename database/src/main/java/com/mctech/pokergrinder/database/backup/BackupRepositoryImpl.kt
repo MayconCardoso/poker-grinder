@@ -22,6 +22,10 @@ class BackupRepositoryImpl @Inject constructor(
   private val dispatchers: CoroutineDispatchers,
 ) : BackupRepository {
 
+  private val fileExtension = ".pokergrinder"
+
+  private var stateFlow: MutableStateFlow<BackupState>? = null
+
   private val backupFolder by lazy {
     File("${application.filesDir}/backup/").apply {
       mkdirs()
@@ -34,39 +38,43 @@ class BackupRepositoryImpl @Inject constructor(
       .create()
   }
 
-  override suspend fun restoreData(backup: Backup): Flow<BackupState> {
+  override fun prepareFlow(): Flow<BackupState> {
+    return MutableStateFlow<BackupState>(BackupState.InProgress(0.0)).apply {
+      stateFlow = this
+    }
+  }
+
+  override suspend fun restoreData(backup: Backup) {
     TODO("Not yet implemented")
   }
 
-  override suspend fun backupData(): Flow<BackupState> = withContext(dispatchers.io) {
-    // Creates the state flow that will be used to emit the progress of the backup.
-    val stateFlow = MutableStateFlow<BackupState>(BackupState.InProgress(0.0))
+  override suspend fun backupData() = withContext(dispatchers.io) {
     var backupData: BackupData? = null
 
     // Starts a transaction
     database.runInTransaction {
       // Gets tournaments
-      stateFlow.value = BackupState.InProgress(10.0)
+      stateFlow?.value = BackupState.InProgress(10.0)
       val tournaments = database.tournamentDao().loadAll()
 
       // Gets bankroll
-      stateFlow.value = BackupState.InProgress(20.0)
+      stateFlow?.value = BackupState.InProgress(20.0)
       val bankroll = database.bankrollTransactionDao().loadAll()
 
       // Gets sessions
-      stateFlow.value = BackupState.InProgress(50.0)
+      stateFlow?.value = BackupState.InProgress(50.0)
       val sessions = database.grindDao().loadAll()
 
       // Gets sessions tournaments
-      stateFlow.value = BackupState.InProgress(60.0)
+      stateFlow?.value = BackupState.InProgress(60.0)
       val sessionsTournaments = database.grindTournamentDao().loadAll()
 
       // Gets sessions tournaments flips
-      stateFlow.value = BackupState.InProgress(70.0)
+      stateFlow?.value = BackupState.InProgress(70.0)
       val sessionsTournamentsFlips = database.grindGameplayDao().loadAll()
 
       // Gets range practice
-      stateFlow.value = BackupState.InProgress(80.0)
+      stateFlow?.value = BackupState.InProgress(80.0)
       val rangePractice = database.rangePracticeDao().loadAll()
 
       // Create entity to save
@@ -81,7 +89,7 @@ class BackupRepositoryImpl @Inject constructor(
     }
 
     // Create the file
-    val newFile = File(backupFolder, "${Calendar.getInstance().timeInMillis}.pokergrinder").apply {
+    val newFile = File(backupFolder, "${Calendar.getInstance().timeInMillis}$fileExtension").apply {
       delete()
       createNewFile()
     }
@@ -92,18 +100,15 @@ class BackupRepositoryImpl @Inject constructor(
     }
 
     // Finishes
-    stateFlow.value = BackupState.Finished
-
-    // Returns the flow.
-    return@withContext stateFlow
+    stateFlow?.value = BackupState.Finished
   }
 
   override suspend fun loadAvailableBackup(): List<Backup> = withContext(dispatchers.io) {
     backupFolder.listFiles().orEmpty().map {
       Backup(
-        title = it.name.toLong().asFormattedFullDate(),
+        title = it.name.replace(fileExtension, "").toLong().asFormattedFullDate(),
         filePath = it.absolutePath,
-        sizeInMb = it.length().toDouble() / 1024 / 1024
+        fileSize = it.length()
       )
     }
   }

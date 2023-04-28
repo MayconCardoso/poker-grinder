@@ -192,6 +192,11 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/backup_fragment"
+        android:name="com.mctech.pokergrinder.backup.presentation.BackupFragment"
+        android:label="BackupFragment" />
+
     <dialog
         android:id="@+id/range_viewer_dialog"
         android:name="com.mctech.pokergrinder.ranges.presentation.viewer.RangeViewerDialog"

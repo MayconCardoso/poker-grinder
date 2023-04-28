@@ -12,7 +12,11 @@ import javax.inject.Inject
 class RestoreDataUseCase @Inject constructor(
   private val repository: BackupRepository,
 ) {
-  suspend operator fun invoke(backup: Backup): Flow<BackupState> {
-    return repository.restoreData(backup)
+  fun prepare(): Flow<BackupState> {
+    return repository.prepareFlow()
+  }
+
+  suspend fun restore(backup: Backup) {
+    repository.restoreData(backup)
   }
 }
