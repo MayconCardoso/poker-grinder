@@ -57,4 +57,9 @@ internal fun BackupUi(
 
   // Draws transactions items.
   BackupList(items = state.availableBackups, interact = interact)
+
+  // Confirmation dialog
+  if (state.isShowingConfirmationDialog) {
+    RestoreConfirmationDialog(interact = interact)
+  }
 }

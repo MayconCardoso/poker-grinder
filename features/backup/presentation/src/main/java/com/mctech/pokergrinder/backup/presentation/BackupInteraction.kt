@@ -14,6 +14,16 @@ sealed class BackupInteraction: UserInteraction {
   object OnBackupButtonClicked : BackupInteraction()
 
   /**
+   * Indicates user has clicked the backup button.
+   */
+  object OnRestoreBackupConfirmed : BackupInteraction()
+
+  /**
+   * Indicates user has clicked the backup button.
+   */
+  object OnRestoreConfirmationRemoved : BackupInteraction()
+
+  /**
    * Indicates user has clicked the withdraw button.
    */
   data class OnBackupClicked(val backup: Backup) : BackupInteraction()

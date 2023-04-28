@@ -95,4 +95,8 @@
     <string name="backup_data">Backup data</string>
     <string name="help_developer_message">I hope you\'re enjoying using the app so far. As you may have noticed, the app is completely free, and I am committed to keeping it that way.\n\nHowever, as a solo developer, it can be challenging to maintain and improve the app without a source of income. That\'s why I\'m kindly asking for your support to keep the app running for free.\n\nIf you find the app useful and would like to help, please consider transferring some funds to my PokerStars account under the nickname right below.\n\nThank you for considering my request, and I wish you all the best of luck at the tables</string>
     <string name="new_range_feature">NOTE: This feature is new on the app. More ranges will be added very soon. The ability to create your own ranges will also be added.</string>
+    <string name="cancel">Cancel</string>
+    <string name="restore">Restore</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="backup_confirm_message">Restoring this backup will replace your current database with the data from this backup. Any data added after this backup will be lost. Do you want to proceed with the restore process?</string>
 </resources>

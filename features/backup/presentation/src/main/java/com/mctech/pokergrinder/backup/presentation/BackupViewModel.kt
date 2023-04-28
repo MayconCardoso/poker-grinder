@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.mctech.pokergrinder.architecture.BaseViewModel
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.architecture.OnInteraction
+import com.mctech.pokergrinder.backup.domain.entities.Backup
 import com.mctech.pokergrinder.backup.domain.entities.BackupState
 import com.mctech.pokergrinder.backup.domain.usecases.BackupDataUseCase
 import com.mctech.pokergrinder.backup.domain.usecases.GetAvailableBackupUseCase
@@ -25,6 +26,19 @@ internal class BackupViewModel @Inject constructor(
   private val loadBackupUseCase: GetAvailableBackupUseCase,
 ) : BaseViewModel() {
 
+  /**
+   * Holds the item that will be restored after confirmation.
+   */
+  private var restoreBackupIntention: Backup? = null
+
+  /**
+   * Holds the current rendered backup state.
+   */
+  private var currentRenderedState: BackupComponentState? = null
+
+  /**
+   * Holds the current rendered state.
+   */
   private val _state by lazy {
     MutableStateFlow<ComponentState<BackupComponentState>>(ComponentState.Loading.FromEmpty)
   }
@@ -35,14 +49,14 @@ internal class BackupViewModel @Inject constructor(
   }
 
   private suspend fun loadBackups() {
-    val items = loadBackupUseCase()
-    _state.value = ComponentState.Success(
-      BackupComponentState(
-        message = "",
-        isShowingLoading = false,
-        availableBackups = items
-      )
+    // Creates state
+    currentRenderedState = BackupComponentState(
+      isShowingConfirmationDialog = false,
+      availableBackups = loadBackupUseCase()
     )
+
+    // Renders state.
+    _state.value = ComponentState.Success(requireNotNull(currentRenderedState))
   }
 
   @OnInteraction(BackupInteraction.OnBackupButtonClicked::class)
@@ -64,10 +78,11 @@ internal class BackupViewModel @Inject constructor(
     backupDataUseCase.doBackUp()
   }
 
-  @OnInteraction(BackupInteraction.OnBackupClicked::class)
-  private suspend fun onBackupButtonClicked(
-    interaction: BackupInteraction.OnBackupClicked
-  ) {
+  @OnInteraction(BackupInteraction.OnRestoreBackupConfirmed::class)
+  private suspend fun onRestoreBackupConfirmed() {
+    // Gets the selected backup item.
+    val backup = restoreBackupIntention ?: return
+
     // Put component in loading
     _state.value = ComponentState.Loading.FromEmpty
 
@@ -82,7 +97,30 @@ internal class BackupViewModel @Inject constructor(
       .launchIn(viewModelScope)
 
     // Start
-    restoreDataUseCase.restore(interaction.backup)
+    restoreDataUseCase.restore(backup)
+  }
+  @OnInteraction(BackupInteraction.OnRestoreConfirmationRemoved::class)
+  private fun onRestoreBackRemoved() {
+    // Gets current state
+    val state = this.currentRenderedState ?: return
+
+    // Asks for confirmation
+    _state.value = ComponentState.Success(
+      state.copy(isShowingConfirmationDialog = false)
+    )
   }
 
+  @OnInteraction(BackupInteraction.OnBackupClicked::class)
+  private fun onBackupButtonClicked(interaction: BackupInteraction.OnBackupClicked) {
+    // Holds the selected item
+    this.restoreBackupIntention = interaction.backup
+
+    // Gets current state
+    val state = this.currentRenderedState ?: return
+
+    // Asks for confirmation
+    _state.value = ComponentState.Success(
+      state.copy(isShowingConfirmationDialog = true)
+    )
+  }
 }
