@@ -22,7 +22,7 @@ class GrindGameplayRepositoryImpl @Inject constructor(
   }
 
   override suspend fun saveGrindTournamentFlip(flip: SessionTournamentFlip) {
-    grindDao.saveTournamentFlip(flip.asBusinessTournamentFlips())
+    grindDao.save(flip.asBusinessTournamentFlips())
   }
 
 }

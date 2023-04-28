@@ -12,11 +12,14 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface RangePracticeDao {
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  suspend fun save(item: RangePracticeRoomEntity)
+  suspend fun save(vararg item: RangePracticeRoomEntity)
 
   @Query("SELECT * from range_practice ORDER BY dateInMs DESC LIMIT 1000")
   fun observe(): Flow<List<RangePracticeRoomEntity>>
 
   @Query("SELECT * from range_practice ORDER BY dateInMs DESC LIMIT 1000")
   fun loadAll(): List<RangePracticeRoomEntity>
+
+  @Query("DELETE from range_practice")
+  fun deleteAll()
 }

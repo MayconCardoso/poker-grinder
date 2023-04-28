@@ -1,6 +1,7 @@
 package com.mctech.pokergrinder.database.backup
 
 import android.app.Application
+import androidx.room.withTransaction
 import com.google.gson.GsonBuilder
 import com.mctech.pokergrinder.backup.domain.BackupRepository
 import com.mctech.pokergrinder.backup.domain.entities.Backup
@@ -44,8 +45,50 @@ class BackupRepositoryImpl @Inject constructor(
     }
   }
 
-  override suspend fun restoreData(backup: Backup) {
-    TODO("Not yet implemented")
+  override suspend fun restoreData(backup: Backup) = withContext(dispatchers.io) {
+    // Gets file
+    val backupFile = File(backup.filePath)
+
+    // Decodes file
+    val backupData = gson.fromJson(backupFile.readText(), BackupData::class.java)
+
+    // Starts a transaction
+    database.withTransaction {
+      // Gets tournaments
+      stateFlow?.value = BackupState.InProgress(10.0)
+      database.tournamentDao().deleteAll()
+      database.tournamentDao().save(*backupData.tournaments.toTypedArray())
+
+      // Gets bankroll
+      stateFlow?.value = BackupState.InProgress(20.0)
+      database.bankrollTransactionDao().deleteAll()
+      database.bankrollTransactionDao().save(*backupData.bankrollTransactions.toTypedArray())
+
+      // Gets range practice
+      stateFlow?.value = BackupState.InProgress(50.0)
+      database.rangePracticeDao().deleteAll()
+      database.rangePracticeDao().save(*backupData.rangePractice.toTypedArray())
+
+      // Delete sessions
+      stateFlow?.value = BackupState.InProgress(60.0)
+      database.grindGameplayDao().deleteAll()
+      database.grindTournamentDao().deleteAll()
+      database.grindDao().deleteAll()
+
+      // Gets sessions
+      stateFlow?.value = BackupState.InProgress(70.0)
+      database.grindDao().save(*backupData.sessions.toTypedArray())
+
+      // Gets sessions tournaments
+      stateFlow?.value = BackupState.InProgress(80.0)
+      database.grindTournamentDao().save(*backupData.sessionsTournament.toTypedArray())
+
+      // Gets sessions tournaments flips
+      stateFlow?.value = BackupState.InProgress(80.0)
+      database.grindGameplayDao().save(*backupData.sessionsTournamentFlips.toTypedArray())
+    }
+
+    stateFlow?.value = BackupState.Finished
   }
 
   override suspend fun backupData() = withContext(dispatchers.io) {

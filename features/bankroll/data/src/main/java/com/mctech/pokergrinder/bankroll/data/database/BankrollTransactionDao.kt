@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface BankrollTransactionDao {
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  suspend fun save(transaction: BankrollTransactionRoomEntity)
+  suspend fun save(vararg transaction: BankrollTransactionRoomEntity)
 
   @Query("SELECT * from bankroll_transaction ORDER BY dateInMs DESC")
   fun observe(): Flow<List<BankrollTransactionRoomEntity>>
@@ -28,4 +28,7 @@ interface BankrollTransactionDao {
 
   @Query("SELECT * from bankroll_transaction ORDER BY dateInMs DESC")
   fun loadAll(): List<BankrollTransactionRoomEntity>
+
+  @Query("DELETE from bankroll_transaction")
+  fun deleteAll()
 }

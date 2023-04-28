@@ -64,4 +64,25 @@ internal class BackupViewModel @Inject constructor(
     backupDataUseCase.doBackUp()
   }
 
+  @OnInteraction(BackupInteraction.OnBackupClicked::class)
+  private suspend fun onBackupButtonClicked(
+    interaction: BackupInteraction.OnBackupClicked
+  ) {
+    // Put component in loading
+    _state.value = ComponentState.Loading.FromEmpty
+
+    // Prepare backup
+    restoreDataUseCase.prepare()
+      .flowOn(dispatchers.main)
+      .onEach { state ->
+        if (state is BackupState.Finished) {
+          loadBackups()
+        }
+      }
+      .launchIn(viewModelScope)
+
+    // Start
+    restoreDataUseCase.restore(interaction.backup)
+  }
+
 }

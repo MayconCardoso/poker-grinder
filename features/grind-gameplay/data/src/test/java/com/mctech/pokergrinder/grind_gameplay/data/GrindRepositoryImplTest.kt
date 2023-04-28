@@ -62,10 +62,10 @@ internal class GrindRepositoryImplTest {
 
     thenAssert {
       val sessionSlot = slot<SessionTournamentFlipRoomEntity>()
-      coVerify { dao.saveTournamentFlip(capture(sessionSlot)) }
+      coVerify { dao.save(capture(sessionSlot)) }
       assertThat(sessionSlot.captured).isEqualTo(session.asBusinessTournamentFlips())
 
-      coVerifyOrder { dao.saveTournamentFlip(any()) }
+      coVerifyOrder { dao.save(any()) }
       confirmVerified(dao)
     }
   }

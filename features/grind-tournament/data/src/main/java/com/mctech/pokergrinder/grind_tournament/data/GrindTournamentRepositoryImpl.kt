@@ -23,7 +23,7 @@ class GrindTournamentRepositoryImpl @Inject constructor(
   }
 
   override suspend fun saveGrindTournament(sessionTournament: SessionTournament) {
-    grindDao.saveTournament(sessionTournament.asDatabaseTournaments())
+    grindDao.save(sessionTournament.asDatabaseTournaments())
   }
 
 }

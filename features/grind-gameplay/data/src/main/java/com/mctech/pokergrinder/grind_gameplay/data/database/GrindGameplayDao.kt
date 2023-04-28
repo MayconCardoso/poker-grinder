@@ -10,11 +10,14 @@ import kotlinx.coroutines.flow.Flow
 interface GrindGameplayDao {
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  suspend fun saveTournamentFlip(item: SessionTournamentFlipRoomEntity)
+  suspend fun save(vararg item: SessionTournamentFlipRoomEntity)
 
   @Query("SELECT * from grind_session_tournament_flip WHERE idSession = :sessionId")
   fun observeGrindTournamentFlips(sessionId: String): Flow<List<SessionTournamentFlipRoomEntity>>
 
   @Query("SELECT * from grind_session_tournament_flip")
   fun loadAll(): List<SessionTournamentFlipRoomEntity>
+
+  @Query("DELETE from grind_session_tournament_flip")
+  fun deleteAll()
 }

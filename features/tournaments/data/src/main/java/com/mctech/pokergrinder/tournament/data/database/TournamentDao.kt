@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TournamentDao {
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  suspend fun save(tournament: TournamentRoomEntity)
+  suspend fun save(vararg tournament: TournamentRoomEntity)
 
   @Delete
   fun delete(tournament: TournamentRoomEntity)
@@ -23,4 +23,7 @@ interface TournamentDao {
 
   @Query("SELECT * from tournament")
   fun loadAll(): List<TournamentRoomEntity>
+
+  @Query("DELETE from tournament")
+  fun deleteAll()
 }
