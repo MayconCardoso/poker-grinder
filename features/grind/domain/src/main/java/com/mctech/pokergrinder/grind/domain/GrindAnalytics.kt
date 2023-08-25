@@ -16,12 +16,12 @@ class GrindAnalytics @Inject constructor(
     analyticsSender.send(event = AnalyticsEvent(name = "sessions_screen_create_session_clicked"))
   }
 
-  suspend fun onSessionViewed(session: Session) {
+  suspend fun onSessionViewed(title: String) {
     analyticsSender.send(
       event = AnalyticsEvent(
         name = "sessions_screen_session_clicked",
         data = listOf(
-          "title" to session.title
+          "title" to title
         )
       )
     )

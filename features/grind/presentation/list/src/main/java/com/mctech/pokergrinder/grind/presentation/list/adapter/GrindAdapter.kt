@@ -7,13 +7,19 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mctech.pokergrinder.architecture.utility.SimpleItemDiffCallback
 import com.mctech.pokergrinder.design.R
-import com.mctech.pokergrinder.grind.domain.entities.Session
+import com.mctech.pokergrinder.grind.presentation.list.GrindState
 import com.mctech.pokergrinder.grind.presentation.list.databinding.FragmentGrindItemBinding
 
 internal class GrindAdapter(
   private val eventConsumer: GrindAdapterConsumer,
 ) :
-  ListAdapter<Session, GrindAdapter.ViewHolder>(SimpleItemDiffCallback()) {
+  ListAdapter<GrindState, GrindAdapter.ViewHolder>(
+    SimpleItemDiffCallback(
+      itemsTheSame = { oldItem, newItem ->
+        oldItem.session.id == newItem.session.id
+      }
+    ),
+  ) {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
     FragmentGrindItemBinding.inflate(
@@ -35,31 +41,31 @@ internal class GrindAdapter(
       }
     }
 
-    fun bind(session: Session) {
+    fun bind(state: GrindState) {
       val context = binding.root.context
 
-      binding.title.text = session.title
-      binding.roi.text = session.formattedRoi()
-      binding.cash.text = session.formattedCash()
-      binding.buyIn.text = session.formattedBuyIn()
-      binding.avgBuyIn.text = session.formattedAvgBuyIn()
-      binding.balance.text = session.formattedBalance()
+      binding.title.text = state.title
+      binding.roi.text = state.roi
+      binding.cash.text = state.cash
+      binding.buyIn.text = state.buyIn
+      binding.avgBuyIn.text = state.avgBuyIn
+      binding.balance.text = state.profit
       binding.countBuyIn.text = context.getString(
         com.mctech.pokergrinder.localization.R.string.count_buy_in,
-        session.tournamentsPlayed,
+        state.tournaments,
       )
 
       // Change indicator color
       val color = ContextCompat.getColor(
         binding.root.context,
-        if (session.isInProfit()) R.color.deposit else R.color.withdraw
+        if (state.session.isInProfit()) R.color.deposit else R.color.withdraw
       )
       binding.indicator.setBackgroundColor(color)
       binding.balance.setTextColor(color)
     }
   }
 
-  private fun onItemClicked(item: Session) {
+  private fun onItemClicked(item: GrindState) {
     eventConsumer.consume(GrindAdapterConsumerEvent.SessionClicked(item))
   }
 }

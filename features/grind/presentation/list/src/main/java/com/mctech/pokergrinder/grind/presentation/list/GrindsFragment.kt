@@ -90,7 +90,7 @@ public class GrindsFragment : Fragment(R.layout.fragment_grinds) {
 
   // region State Manipulation
 
-  private fun consumeState(state: ComponentState<List<Session>>) {
+  private fun consumeState(state: ComponentState<List<GrindState>>) {
     when (state) {
       is ComponentState.Error -> rendersError()
       is ComponentState.Loading -> rendersLoading()
@@ -104,7 +104,7 @@ public class GrindsFragment : Fragment(R.layout.fragment_grinds) {
     binding.grindsEmpty.isVisible = false
   }
 
-  private fun rendersSuccess(state: List<Session>) {
+  private fun rendersSuccess(state: List<GrindState>) {
     // Show containers.
     binding.progress.isVisible = false
     binding.grinds.isVisible = state.isNotEmpty()
@@ -125,6 +125,7 @@ public class GrindsFragment : Fragment(R.layout.fragment_grinds) {
   private fun setupTournamentList() {
     binding.grinds.addItemDecoration(SimpleSpaceItemDecoration(bottomOffset = 12.dp()))
     binding.grinds.adapter = grindsAdapter
+    binding.grinds.itemAnimator = null
   }
 
   private fun setupListeners() {

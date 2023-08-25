@@ -4,6 +4,7 @@ dependencies {
     // Internal modules
     implementation project(path: ':features:grind:domain')
     implementation project(path: ':features:grind:presentation:navigation')
+    implementation project(path: ':features:settings:domain')
 
     // Ui
     implementation libraries.androidCardView
