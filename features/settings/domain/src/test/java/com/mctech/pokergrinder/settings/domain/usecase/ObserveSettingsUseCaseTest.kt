@@ -21,7 +21,7 @@ class ObserveSettingsUseCaseTest {
   )
 
   @Test
-  fun `should delegate repository flow`() = responseScenario<Flow<Settings>> {
+  fun `should delegate repository flow`() = responseScenario<Flow<Settings?>> {
     val flow = flow { emit(newSettings()) }
 
     givenScenario {

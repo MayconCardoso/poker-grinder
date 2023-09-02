@@ -23,7 +23,9 @@ class SaveSettingsUseCaseTest {
     )
 
     whenAction {
-      target.invoke(items)
+      items.forEach {
+        target.invoke(it)
+      }
     }
 
     thenAssert {
