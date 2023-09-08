@@ -12,8 +12,11 @@ internal fun NewGrindComponent(
   navigation: GrindNavigation,
   viewModel: NewGrindViewModel = hiltViewModel(),
 ) {
+  // Initialize
+  viewModel.initialize()
+
   // Gets view model
-  val state = viewModel.componentState.collectAsState().value
+  val state = viewModel.componentState.collectAsState().value ?: return
 
   // Observe commands
   val command = viewModel.commandObservable.observeAsState().value

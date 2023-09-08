@@ -2,36 +2,31 @@ package com.mctech.pokergrinder.grind.presentation.creation
 
 import com.mctech.architecture_testing.BaseViewModelTest
 import com.mctech.architecture_testing.extensions.TestObserverScenario.Companion.observerScenario
-import com.mctech.common_test.CalendarTestRule
-import com.mctech.pokergrinder.formatter.asFormattedDate
 import com.mctech.pokergrinder.grind.domain.GrindAnalytics
 import com.mctech.pokergrinder.grind.domain.usecase.CreateNewSessionUseCase
+import com.mctech.pokergrinder.grind.domain.usecase.NewSessionsSuggestedNameUseCase
 import io.mockk.coVerifyOrder
 import io.mockk.confirmVerified
 import io.mockk.every
 import io.mockk.mockk
+import kotlinx.coroutines.flow.filterNotNull
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.Rule
 import org.junit.Test
 
 internal class NewGrindViewModelTest : BaseViewModelTest() {
-
-  @get:Rule
-  val calendarRule = CalendarTestRule()
-
   private val analytics = mockk<GrindAnalytics>(relaxed = true)
   private val createNewSessionUseCase = mockk<CreateNewSessionUseCase>(relaxed = true)
+  private val sessionNameSuggestionUseCase = mockk<NewSessionsSuggestedNameUseCase>(relaxed = true)
   private val target = NewGrindViewModel(
     analytics = analytics,
     createNewSessionUseCase = createNewSessionUseCase,
+    sessionNameSuggestionUseCase = sessionNameSuggestionUseCase,
   )
 
   @Test
   fun `should initialize new session component`() = observerScenario {
-    val timeInMs = 0L
-
     givenScenario {
-      every { calendarRule.calendar.timeInMillis } returns timeInMs
+      every { sessionNameSuggestionUseCase() } returns "Sep, 14th"
     }
 
     whenAction {
@@ -42,8 +37,8 @@ internal class NewGrindViewModelTest : BaseViewModelTest() {
       assertThat(commands).isEmpty()
     }
 
-    thenAssertFlow(target.componentState) { states ->
-      val expectedItem = NewGrindState(suggestedTitle = timeInMs.asFormattedDate())
+    thenAssertFlow(target.componentState.filterNotNull()) { states ->
+      val expectedItem = NewGrindState(suggestedTitle = "Sep, 14th")
       assertThat(states).isEqualTo(listOf(expectedItem))
     }
 
