@@ -1,6 +1,7 @@
 package com.mctech.pokergrinder.formatter
 
 import java.text.DateFormat
+import java.text.DateFormat.FULL
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Locale
@@ -12,6 +13,7 @@ internal object Formatters {
   val decimalCurrency = DecimalFormat("$#0.00", DecimalFormatSymbols(Locale.ENGLISH))
   val decimalPercentage = DecimalFormat("#0.00%", DecimalFormatSymbols(Locale.ENGLISH))
   val date = DateFormat.getDateInstance()
+  val fullDate = DateFormat.getDateInstance(FULL)
 }
 
 /**
@@ -33,3 +35,8 @@ fun Float.asFormattedCurrency() = Formatters.decimalCurrency.format(this)
  * Formats a Long onto a formatted date string.
  */
 fun Long.asFormattedDate() = Formatters.date.format(this)
+
+/**
+ * Formats a Long onto a formatted date string.
+ */
+fun Long.asFormattedFullDate() = Formatters.fullDate.format(this)

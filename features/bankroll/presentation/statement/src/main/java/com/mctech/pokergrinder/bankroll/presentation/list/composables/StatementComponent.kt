@@ -1,4 +1,4 @@
-package com.mctech.pokergrinder.bankroll.presentation.list
+package com.mctech.pokergrinder.bankroll.presentation.list.composables
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -6,8 +6,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.mctech.pokergrinder.architecture.ComponentState
 import com.mctech.pokergrinder.bankroll.domain.entities.BankrollTransaction
-import com.mctech.pokergrinder.bankroll.presentation.list.composables.NoResultsUi
-import com.mctech.pokergrinder.bankroll.presentation.list.composables.TransactionList
+import com.mctech.pokergrinder.bankroll.presentation.list.StatementInteraction
+import com.mctech.pokergrinder.bankroll.presentation.list.StatementViewModel
 import com.mctech.pokergrinder.bankroll.presentation.navigation.BankrollNavigation
 import com.mctech.pokergrinder.design.components.CircularLoadingIndicator
 import com.mctech.pokergrinder.localization.R

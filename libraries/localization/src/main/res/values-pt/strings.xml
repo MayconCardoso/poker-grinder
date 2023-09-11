@@ -26,6 +26,7 @@
     <string name="no_tournament">Nenhum torneio encontrado</string>
     <string name="no_flip">Nenhum flip encontrado</string>
     <string name="no_transaction">Nenhuma transação encontrada</string>
+    <string name="no_backup">Nenhum backup encontrado</string>
     <string name="no_practice">Comece a praticar e melhore seu jogo</string>
     <string name="something_went_wrong">Algo deu errado.</string>
     <string name="that_is_correct">Está correto</string>
@@ -89,6 +90,11 @@
     <string name="help_developer_title">Olá jogadores</string>
     <string name="poker_stars">PokerStars</string>
     <string name="my_nickname">Maikinho94</string>
+    <string name="backup_data">Fazer backup</string>
     <string name="help_developer_message">Espero que você esteja gostando de usar o aplicativo até agora. Como você deve ter notado, o aplicativo é totalmente gratuito e estou empenhado em mantê-lo assim.\n\nNo entanto, como desenvolvedor individual, pode ser um desafio manter e melhorar o aplicativo sem uma fonte de renda. É por isso que peço gentilmente seu apoio para manter o aplicativo funcionando gratuitamente.\n\nSe você achar o aplicativo útil e quiser ajudar, considere fazer uma transferencia para minha conta do PokerStars com o nickname abaixo.\n\nObrigado por considerar meu pedido e desejo a todos boa sorte nas mesas</string>
     <string name="new_range_feature">NOTA: Essa funcionalidade é nova no aplicativo. Mais ranges serão adicionados em breve junto com a possibilidade de criar seus próprios ranges.</string>
+    <string name="cancel">Cancelar</string>
+    <string name="restore">Restaurar</string>
+    <string name="confirmation">Confirmação</string>
+    <string name="backup_confirm_message">Seu banco de dados será restaurado com os dados deste backup. Todos os dados criados após este backup serão perdidos. Você realmente deseja restaurar este backup?</string>
 </resources>

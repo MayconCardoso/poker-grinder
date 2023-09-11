@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 interface GrindTournamentDao {
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  suspend fun saveTournament(item: SessionTournamentRoomEntity)
+  suspend fun save(vararg item: SessionTournamentRoomEntity)
 
   @Query("SELECT * from grind_session_tournament WHERE idSession = :sessionId ORDER BY startTimeInMs DESC")
   fun observeGrindTournaments(sessionId: String): Flow<List<SessionTournamentRoomEntity>>
@@ -18,4 +18,9 @@ interface GrindTournamentDao {
   @Query("SELECT * from grind_session_tournament WHERE id = :id")
   suspend fun loadGrindTournament(id: String): SessionTournamentRoomEntity
 
+  @Query("SELECT * from grind_session_tournament ORDER BY startTimeInMs DESC")
+  fun loadAll(): List<SessionTournamentRoomEntity>
+
+  @Query("DELETE from grind_session_tournament")
+  fun deleteAll()
 }
