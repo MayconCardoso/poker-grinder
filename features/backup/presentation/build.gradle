@@ -1,0 +1,11 @@
+apply from: "$rootDir/buildSrc/module/feature/compose.gradle"
+
+android {
+    namespace 'com.mctech.pokergrinder.backup.presentation'
+}
+
+dependencies {
+    // Internal modules
+    implementation project(path: ':features:backup:domain')
+}
+

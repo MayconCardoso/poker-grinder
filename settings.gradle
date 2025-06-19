@@ -99,3 +99,7 @@ include ':features:ranges-practice:presentation:navigation'
 // Feature - Support developer
 include ':features:support-developer:domain'
 include ':features:support-developer:presentation'
+
+// Feature - Backup
+include ':features:backup:domain'
+include ':features:backup:presentation'

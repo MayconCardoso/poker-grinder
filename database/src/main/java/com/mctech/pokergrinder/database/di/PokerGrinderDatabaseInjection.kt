@@ -1,8 +1,11 @@
-package com.mctech.pokergrinder.database
+package com.mctech.pokergrinder.database.di
 
 import android.app.Application
 import androidx.room.Room
 import com.mctech.pokergrinder.bankroll.data.database.BankrollTransactionDao
+import com.mctech.pokergrinder.database.PokerGrinderDatabase
+import com.mctech.pokergrinder.database.PokerGrinderDatabaseInitialization
+import com.mctech.pokergrinder.database.PokerGrinderDatabaseMigrations
 import com.mctech.pokergrinder.grind.data.database.GrindDao
 import com.mctech.pokergrinder.grind_gameplay.data.database.GrindGameplayDao
 import com.mctech.pokergrinder.grind_tournament.data.database.GrindTournamentDao
