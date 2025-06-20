@@ -9,8 +9,8 @@ apply plugin: 'kotlin-kapt'
 android {
     defaultConfig {
         applicationId = "com.mctech.pokergrinder"
-        versionCode 122
-        versionName "1.8.1"
+        versionCode 123
+        versionName "1.8.2"
         archivesBaseName = "${applicationId}-v${versionName}(${versionCode})"
     }
     buildTypes {

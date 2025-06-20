@@ -1,7 +1,7 @@
 // Defines SDK variables.
 ext.targets = [
     minSdk                  : 27,
-    compileSdk              : 33,
-    targetSdk               : 33,
+    compileSdk              : 34,
+    targetSdk               : 34,
     kotlinJvmTarget         : 17,
 ]
